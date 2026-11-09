@@ -29,51 +29,49 @@ export const HeroSection: React.FC = () => {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+      const tl = gsap.timeline({ defaults: { ease: "power2.out" } });
 
-      tl.from(".hero-coupon", {
-        opacity: 0,
-        y: -15,
-        duration: 0.6,
-      })
-      .from(".hero-title", {
-        opacity: 0,
-        y: 25,
-        duration: 0.8,
-      }, "-=0.3")
-      .from(".hero-desc", {
-        opacity: 0,
-        y: 20,
-        duration: 0.6,
-      }, "-=0.4")
-      .from(".hero-stat-card", {
-        opacity: 0,
-        y: 20,
-        stagger: 0.1,
-        duration: 0.6,
-      }, "-=0.3")
-      .from(".hero-action-btn", {
-        opacity: 0,
-        scale: 0.96,
-        stagger: 0.1,
-        duration: 0.5,
-      }, "-=0.3")
-      .from(".hero-trust-box", {
-        opacity: 0,
-        y: 15,
-        stagger: 0.08,
-        duration: 0.5,
-      }, "-=0.3");
-
-      // Right 2x2 product showcase cards stagger
-      tl.from(".hero-product-card", {
-        opacity: 0,
-        scale: 0.92,
-        y: 35,
-        stagger: 0.12,
-        duration: 0.8,
-        ease: "back.out(1.2)",
-      }, "-=0.7");
+      tl.fromTo(
+        ".hero-coupon",
+        { opacity: 0, y: -12 },
+        { opacity: 1, y: 0, duration: 0.5, clearProps: "all" }
+      )
+        .fromTo(
+          ".hero-title",
+          { opacity: 0, y: 16 },
+          { opacity: 1, y: 0, duration: 0.6, clearProps: "all" },
+          "-=0.25"
+        )
+        .fromTo(
+          ".hero-desc",
+          { opacity: 0, y: 12 },
+          { opacity: 1, y: 0, duration: 0.5, clearProps: "all" },
+          "-=0.3"
+        )
+        .fromTo(
+          ".hero-stat-card",
+          { opacity: 0, y: 15 },
+          { opacity: 1, y: 0, stagger: 0.08, duration: 0.5, clearProps: "all" },
+          "-=0.25"
+        )
+        .fromTo(
+          ".hero-action-btn",
+          { opacity: 0, scale: 0.96 },
+          { opacity: 1, scale: 1, stagger: 0.08, duration: 0.45, clearProps: "all" },
+          "-=0.2"
+        )
+        .fromTo(
+          ".hero-trust-box",
+          { opacity: 0, y: 12 },
+          { opacity: 1, y: 0, stagger: 0.06, duration: 0.45, clearProps: "all" },
+          "-=0.2"
+        )
+        .fromTo(
+          ".hero-product-card",
+          { opacity: 0, y: 22, scale: 0.96 },
+          { opacity: 1, y: 0, scale: 1, stagger: 0.08, duration: 0.6, clearProps: "all" },
+          "-=0.5"
+        );
 
       // Gentle floating animation on floating indicator badges
       gsap.to(".hero-float-tag", {
@@ -115,9 +113,9 @@ export const HeroSection: React.FC = () => {
             {/* Left Column: Heading, Offers, Stats, CTAs, 2x2 Grid (6 cols) */}
             <div className="lg:col-span-6 xl:col-span-6 space-y-6">
               {/* 1. Promotional Coupon Banner (Matching Reference Image) */}
-              <div className="hero-coupon inline-flex items-center justify-between gap-3 p-2 pr-2.5 rounded-xl bg-orange-50 border border-orange-200/80 text-xs w-full max-w-lg shadow-2xs">
+              <div className="hero-coupon inline-flex items-center justify-between gap-3 p-2 pr-2.5 rounded-xl bg-[var(--color-accent-soft)] border border-[var(--color-accent-border)] text-xs w-full max-w-lg shadow-2xs">
                 <div className="flex items-center gap-2 text-slate-800 font-semibold truncate">
-                  <div className="w-7 h-7 rounded-lg bg-[#FF4D24] text-white flex items-center justify-center shrink-0 shadow-2xs">
+                  <div className="w-7 h-7 rounded-lg bg-[var(--color-accent)] text-white flex items-center justify-center shrink-0 shadow-2xs">
                     <Gift className="w-4 h-4" />
                   </div>
                   <span className="truncate">Extra 15% off on first order</span>
@@ -126,7 +124,7 @@ export const HeroSection: React.FC = () => {
                 <button
                   type="button"
                   onClick={handleCopyCode}
-                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-dashed border-[#FF4D24] bg-white text-[#FF4D24] font-mono font-bold hover:bg-orange-100 transition-colors shrink-0"
+                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-dashed border-[var(--color-accent)] bg-white text-[var(--color-accent)] font-mono font-bold hover:bg-slate-50 transition-colors shrink-0 cursor-pointer"
                 >
                   <span>SPECIAL15</span>
                   {copied ? (
@@ -139,9 +137,9 @@ export const HeroSection: React.FC = () => {
 
               {/* 2. Main Heading (Matching Exact Layout) */}
               <div>
-                <h1 className="hero-title text-4xl sm:text-5xl lg:text-[3.25rem] font-black tracking-tight leading-[1.08] text-[#142344]">
+                <h1 className="hero-title text-4xl sm:text-5xl lg:text-[3.25rem] font-black tracking-tight leading-[1.08] text-[var(--color-primary)]">
                   Your Logo. <br />
-                  <span className="text-[#FF4D24]">On Magnetic Badges.</span>
+                  <span className="text-[var(--color-accent)]">On Magnetic Badges.</span>
                 </h1>
                 <p className="hero-desc text-sm sm:text-base text-slate-600 mt-3.5 font-medium leading-relaxed">
                   Made in our own factory in Noida NCR. Dispatched in 24–48 hours across India.
@@ -156,7 +154,7 @@ export const HeroSection: React.FC = () => {
                   </div>
                   <div>
                     <div className="flex items-center gap-1">
-                      <span className="font-black text-sm text-[#142344]">4.4</span>
+                      <span className="font-black text-sm text-[var(--color-primary)]">4.4</span>
                       <div className="flex text-amber-500 text-xs">★★★★★</div>
                     </div>
                     <div className="text-[11px] text-slate-500 font-medium">3,400+ Reviews</div>
@@ -164,11 +162,11 @@ export const HeroSection: React.FC = () => {
                 </div>
 
                 <div className="hero-stat-card p-3.5 rounded-xl bg-slate-50 border border-slate-200 flex items-center gap-3 transition-transform hover:-translate-y-0.5">
-                  <div className="w-10 h-10 rounded-lg bg-orange-100 text-[#FF4D24] flex items-center justify-center shrink-0">
+                  <div className="w-10 h-10 rounded-lg bg-[var(--color-accent-soft)] text-[var(--color-accent)] flex items-center justify-center shrink-0">
                     <Package className="w-5 h-5" />
                   </div>
                   <div>
-                    <div className="font-black text-sm text-[#142344]">81,000+</div>
+                    <div className="font-black text-sm text-[var(--color-primary)]">81,000+</div>
                     <div className="text-[11px] text-slate-500 font-medium">Orders Delivered</div>
                   </div>
                 </div>
@@ -176,25 +174,26 @@ export const HeroSection: React.FC = () => {
 
               {/* 4. Action Buttons */}
               <div className="flex flex-wrap items-center gap-3 pt-1">
-                {/* Watch Factory Tour Button with Play Icon and warm orange shadow */}
+                {/* Watch Factory Tour Button with Play Icon */}
                 <button
                   type="button"
                   onClick={() => setIsVideoModalOpen(true)}
-                  className="hero-action-btn px-5 py-3.5 bg-[#FF4D24] hover:bg-[#E03C14] text-white rounded-xl shadow-lg shadow-[#FF4D24]/30 transition-all flex items-center gap-3 group active:scale-98"
+                  className="hero-action-btn px-5 py-3.5 bg-[var(--color-accent)] hover:opacity-90 text-white rounded-xl shadow-lg transition-all flex items-center gap-3 group active:scale-98 cursor-pointer"
+                  style={{ boxShadow: "0 10px 25px -5px var(--color-accent-border)" }}
                 >
-                  <div className="w-8 h-8 rounded-full bg-white text-[#FF4D24] flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
-                    <Play className="w-4 h-4 fill-[#FF4D24] ml-0.5" />
+                  <div className="w-8 h-8 rounded-full bg-white text-[var(--color-accent)] flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
+                    <Play className="w-4 h-4 fill-[var(--color-accent)] ml-0.5" />
                   </div>
                   <div className="text-left">
-                    <div className="text-xs font-bold leading-none">Watch Factory Tour</div>
-                    <div className="text-[10px] text-orange-100 mt-0.5 leading-none">1 min video</div>
+                    <div className="text-xs font-bold leading-none text-white">Watch Factory Tour</div>
+                    <div className="text-[10px] text-white/80 mt-0.5 leading-none">1 min video</div>
                   </div>
                 </button>
 
                 {/* Shop Best Sellers Button */}
                 <Link
                   href="/products"
-                  className="hero-action-btn px-6 py-4 bg-white hover:bg-slate-50 text-[#142344] font-bold text-xs rounded-xl border border-slate-300 shadow-2xs transition-colors flex items-center gap-2"
+                  className="hero-action-btn px-6 py-4 bg-white hover:bg-slate-50 text-[var(--color-primary)] font-bold text-xs rounded-xl border border-slate-300 shadow-2xs transition-colors flex items-center gap-2"
                 >
                   <span>Shop Best Sellers</span>
                   <ArrowRight className="w-4 h-4" />
@@ -204,33 +203,33 @@ export const HeroSection: React.FC = () => {
               {/* 5. 2x2 Trust Indicators Grid (Matching Screenshot) */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
                 <div className="hero-trust-box p-3.5 rounded-xl bg-slate-50 border border-slate-200 flex items-start gap-3 hover:border-slate-300 transition-colors">
-                  <PenTool className="w-5 h-5 text-[#FF4D24] shrink-0 mt-0.5" />
+                  <PenTool className="w-5 h-5 text-[var(--color-accent)] shrink-0 mt-0.5" />
                   <div>
-                    <div className="text-xs font-bold text-[#142344]">Approve Before We Print</div>
+                    <div className="text-xs font-bold text-[var(--color-primary)]">Approve Before We Print</div>
                     <div className="text-[11px] text-slate-500 mt-0.5">Upload your logo, preview it live</div>
                   </div>
                 </div>
 
                 <div className="hero-trust-box p-3.5 rounded-xl bg-slate-50 border border-slate-200 flex items-start gap-3 hover:border-slate-300 transition-colors">
-                  <Truck className="w-5 h-5 text-[#FF4D24] shrink-0 mt-0.5" />
+                  <Truck className="w-5 h-5 text-[var(--color-accent)] shrink-0 mt-0.5" />
                   <div>
-                    <div className="text-xs font-bold text-[#142344]">Dispatch in 24–48 hrs</div>
+                    <div className="text-xs font-bold text-[var(--color-primary)]">Dispatch in 24–48 hrs</div>
                     <div className="text-[11px] text-slate-500 mt-0.5">Straight from our factory floor</div>
                   </div>
                 </div>
 
                 <div className="hero-trust-box p-3.5 rounded-xl bg-slate-50 border border-slate-200 flex items-start gap-3 hover:border-slate-300 transition-colors">
-                  <Building2 className="w-5 h-5 text-[#FF4D24] shrink-0 mt-0.5" />
+                  <Building2 className="w-5 h-5 text-[var(--color-accent)] shrink-0 mt-0.5" />
                   <div>
-                    <div className="text-xs font-bold text-[#142344]">In-house manufacturing</div>
+                    <div className="text-xs font-bold text-[var(--color-primary)]">In-house manufacturing</div>
                     <div className="text-[11px] text-slate-500 mt-0.5">Our own factory in Noida NCR</div>
                   </div>
                 </div>
 
                 <div className="hero-trust-box p-3.5 rounded-xl bg-slate-50 border border-slate-200 flex items-start gap-3 hover:border-slate-300 transition-colors">
-                  <MapPin className="w-5 h-5 text-[#FF4D24] shrink-0 mt-0.5" />
+                  <MapPin className="w-5 h-5 text-[var(--color-accent)] shrink-0 mt-0.5" />
                   <div>
-                    <div className="text-xs font-bold text-[#142344]">Pan-India delivery</div>
+                    <div className="text-xs font-bold text-[var(--color-primary)]">Pan-India delivery</div>
                     <div className="text-[11px] text-slate-500 mt-0.5">Safe, tracked shipping</div>
                   </div>
                 </div>
@@ -243,13 +242,13 @@ export const HeroSection: React.FC = () => {
                 {/* 1. Magnetic Badges Card */}
                 <Link
                   href="/products/prod-1"
-                  className="hero-product-card group bg-white rounded-2xl border border-slate-200 p-4 shadow-sm hover:shadow-xl hover:border-[#142344]/30 transition-all duration-300 flex flex-col justify-between"
+                  className="hero-product-card group bg-white rounded-2xl border border-slate-200 p-4 shadow-sm hover:shadow-xl hover:border-slate-400 transition-all duration-300 flex flex-col justify-between"
                 >
                   <div>
-                    <div className="text-xs font-black tracking-tight text-[#142344] uppercase">
+                    <div className="text-xs font-black tracking-tight text-[var(--color-primary)] uppercase">
                       MAGNETIC BADGES
                     </div>
-                    <div className="text-[10px] font-bold text-[#FF4D24] uppercase tracking-wide">
+                    <div className="text-[10px] font-bold text-[var(--color-accent)] uppercase tracking-wide">
                       WITH YOUR COMPANY LOGO
                     </div>
                     <p className="text-[11px] text-slate-500 mt-1 leading-snug line-clamp-1">
@@ -262,6 +261,7 @@ export const HeroSection: React.FC = () => {
                         alt="Custom Magnetic Name Badges"
                         fill
                         priority
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 300px"
                         className="object-cover group-hover:scale-105 transition-transform duration-500"
                       />
                       <div className="hero-float-tag absolute top-2 right-2 bg-white/95 backdrop-blur-2xs px-2 py-0.5 rounded text-[10px] font-bold text-slate-700 shadow-xs">
@@ -272,10 +272,10 @@ export const HeroSection: React.FC = () => {
 
                   <div className="pt-2 border-t border-slate-100 flex items-center justify-between">
                     <div>
-                      <div className="text-xs font-bold text-[#142344]">Magnetic Badge</div>
-                      <div className="text-xs font-black text-[#FF4D24]">₹ 999 for 5 pcs</div>
+                      <div className="text-xs font-bold text-[var(--color-primary)]">Magnetic Badge</div>
+                      <div className="text-xs font-black text-[var(--color-accent)]">₹ 999 for 5 pcs</div>
                     </div>
-                    <div className="w-8 h-8 rounded-full bg-[#FF4D24] text-white flex items-center justify-center group-hover:scale-110 group-hover:bg-[#E03C14] transition-all">
+                    <div className="w-8 h-8 rounded-full bg-[var(--color-accent)] text-white flex items-center justify-center group-hover:scale-110 transition-all shadow-xs">
                       <ArrowRight className="w-4 h-4" />
                     </div>
                   </div>
@@ -284,13 +284,13 @@ export const HeroSection: React.FC = () => {
                 {/* 2. Customized Printed T-Shirts Card */}
                 <Link
                   href="/products/prod-2"
-                  className="hero-product-card group bg-white rounded-2xl border border-slate-200 p-4 shadow-sm hover:shadow-xl hover:border-[#142344]/30 transition-all duration-300 flex flex-col justify-between"
+                  className="hero-product-card group bg-white rounded-2xl border border-slate-200 p-4 shadow-sm hover:shadow-xl hover:border-slate-400 transition-all duration-300 flex flex-col justify-between"
                 >
                   <div>
-                    <div className="text-xs font-black tracking-tight text-[#142344] uppercase">
+                    <div className="text-xs font-black tracking-tight text-[var(--color-primary)] uppercase">
                       CUSTOMIZED PRINTED T-SHIRTS
                     </div>
-                    <div className="text-[10px] font-bold text-[#FF4D24] uppercase tracking-wide">
+                    <div className="text-[10px] font-bold text-[var(--color-accent)] uppercase tracking-wide">
                       WITH YOUR COMPANY LOGO
                     </div>
                     <p className="text-[11px] text-slate-500 mt-1 leading-snug line-clamp-1">
@@ -303,9 +303,10 @@ export const HeroSection: React.FC = () => {
                         alt="Customized Printed Polo T-Shirts"
                         fill
                         priority
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 300px"
                         className="object-cover group-hover:scale-105 transition-transform duration-500"
                       />
-                      <div className="hero-float-tag absolute bottom-2 left-2 bg-[#142344]/90 backdrop-blur-2xs text-white px-2 py-0.5 rounded text-[10px] font-bold shadow-xs">
+                      <div className="hero-float-tag absolute bottom-2 left-2 bg-[var(--color-primary)]/90 backdrop-blur-2xs text-white px-2 py-0.5 rounded text-[10px] font-bold shadow-xs">
                         Front & Back Print
                       </div>
                     </div>
@@ -313,10 +314,10 @@ export const HeroSection: React.FC = () => {
 
                   <div className="pt-2 border-t border-slate-100 flex items-center justify-between">
                     <div>
-                      <div className="text-xs font-bold text-[#142344]">Polo T-Shirt</div>
-                      <div className="text-xs font-black text-[#FF4D24]">₹ 1,449 for 2 pcs</div>
+                      <div className="text-xs font-bold text-[var(--color-primary)]">Polo T-Shirt</div>
+                      <div className="text-xs font-black text-[var(--color-accent)]">₹ 1,449 for 2 pcs</div>
                     </div>
-                    <div className="w-8 h-8 rounded-full bg-[#FF4D24] text-white flex items-center justify-center group-hover:scale-110 group-hover:bg-[#E03C14] transition-all">
+                    <div className="w-8 h-8 rounded-full bg-[var(--color-accent)] text-white flex items-center justify-center group-hover:scale-110 transition-all shadow-xs">
                       <ArrowRight className="w-4 h-4" />
                     </div>
                   </div>
@@ -325,13 +326,13 @@ export const HeroSection: React.FC = () => {
                 {/* 3. Customized Caps Card */}
                 <Link
                   href="/products/prod-4"
-                  className="hero-product-card group bg-white rounded-2xl border border-slate-200 p-4 shadow-sm hover:shadow-xl hover:border-[#142344]/30 transition-all duration-300 flex flex-col justify-between"
+                  className="hero-product-card group bg-white rounded-2xl border border-slate-200 p-4 shadow-sm hover:shadow-xl hover:border-slate-400 transition-all duration-300 flex flex-col justify-between"
                 >
                   <div>
-                    <div className="text-xs font-black tracking-tight text-[#142344] uppercase">
+                    <div className="text-xs font-black tracking-tight text-[var(--color-primary)] uppercase">
                       CUSTOMIZED CAPS
                     </div>
-                    <div className="text-[10px] font-bold text-[#FF4D24] uppercase tracking-wide">
+                    <div className="text-[10px] font-bold text-[var(--color-accent)] uppercase tracking-wide">
                       WITH YOUR COMPANY LOGO
                     </div>
                     <p className="text-[11px] text-slate-500 mt-1 leading-snug line-clamp-1">
@@ -343,6 +344,7 @@ export const HeroSection: React.FC = () => {
                         src="https://images.unsplash.com/photo-1588850561407-ed78c282e89b?auto=format&fit=crop&w=600&q=80"
                         alt="Customized Caps with Embroidery"
                         fill
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 300px"
                         className="object-cover group-hover:scale-105 transition-transform duration-500"
                       />
                       <div className="hero-float-tag absolute top-2 right-2 bg-white/95 backdrop-blur-2xs px-2 py-0.5 rounded text-[10px] font-bold text-slate-700 shadow-xs">
@@ -353,10 +355,10 @@ export const HeroSection: React.FC = () => {
 
                   <div className="pt-2 border-t border-slate-100 flex items-center justify-between">
                     <div>
-                      <div className="text-xs font-bold text-[#142344]">Caps</div>
-                      <div className="text-xs font-black text-[#FF4D24]">₹ 1,390 for 5 pcs</div>
+                      <div className="text-xs font-bold text-[var(--color-primary)]">Caps</div>
+                      <div className="text-xs font-black text-[var(--color-accent)]">₹ 1,390 for 5 pcs</div>
                     </div>
-                    <div className="w-8 h-8 rounded-full bg-[#FF4D24] text-white flex items-center justify-center group-hover:scale-110 group-hover:bg-[#E03C14] transition-all">
+                    <div className="w-8 h-8 rounded-full bg-[var(--color-accent)] text-white flex items-center justify-center group-hover:scale-110 transition-all shadow-xs">
                       <ArrowRight className="w-4 h-4" />
                     </div>
                   </div>
@@ -365,13 +367,13 @@ export const HeroSection: React.FC = () => {
                 {/* 4. Customized Printed Hoodies Card */}
                 <Link
                   href="/products/prod-3"
-                  className="hero-product-card group bg-white rounded-2xl border border-slate-200 p-4 shadow-sm hover:shadow-xl hover:border-[#142344]/30 transition-all duration-300 flex flex-col justify-between"
+                  className="hero-product-card group bg-white rounded-2xl border border-slate-200 p-4 shadow-sm hover:shadow-xl hover:border-slate-400 transition-all duration-300 flex flex-col justify-between"
                 >
                   <div>
-                    <div className="text-xs font-black tracking-tight text-[#142344] uppercase">
+                    <div className="text-xs font-black tracking-tight text-[var(--color-primary)] uppercase">
                       CUSTOMIZED PRINTED HOODIES
                     </div>
-                    <div className="text-[10px] font-bold text-[#FF4D24] uppercase tracking-wide">
+                    <div className="text-[10px] font-bold text-[var(--color-accent)] uppercase tracking-wide">
                       WITH YOUR COMPANY LOGO
                     </div>
                     <p className="text-[11px] text-slate-500 mt-1 leading-snug line-clamp-1">
@@ -383,9 +385,10 @@ export const HeroSection: React.FC = () => {
                         src="https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=600&q=80"
                         alt="Customized Fleece Hoodies"
                         fill
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 300px"
                         className="object-cover group-hover:scale-105 transition-transform duration-500"
                       />
-                      <div className="hero-float-tag absolute bottom-2 left-2 bg-[#142344]/90 backdrop-blur-2xs text-white px-2 py-0.5 rounded text-[10px] font-bold shadow-xs">
+                      <div className="hero-float-tag absolute bottom-2 left-2 bg-[var(--color-primary)]/90 backdrop-blur-2xs text-white px-2 py-0.5 rounded text-[10px] font-bold shadow-xs">
                         380 GSM Fleece
                       </div>
                     </div>
@@ -393,10 +396,10 @@ export const HeroSection: React.FC = () => {
 
                   <div className="pt-2 border-t border-slate-100 flex items-center justify-between">
                     <div>
-                      <div className="text-xs font-bold text-[#142344]">Hoodies</div>
-                      <div className="text-xs font-black text-[#FF4D24]">₹ 2,034 for 2 pcs</div>
+                      <div className="text-xs font-bold text-[var(--color-primary)]">Hoodies</div>
+                      <div className="text-xs font-black text-[var(--color-accent)]">₹ 2,034 for 2 pcs</div>
                     </div>
-                    <div className="w-8 h-8 rounded-full bg-[#FF4D24] text-white flex items-center justify-center group-hover:scale-110 group-hover:bg-[#E03C14] transition-all">
+                    <div className="w-8 h-8 rounded-full bg-[var(--color-accent)] text-white flex items-center justify-center group-hover:scale-110 transition-all shadow-xs">
                       <ArrowRight className="w-4 h-4" />
                     </div>
                   </div>
@@ -410,30 +413,31 @@ export const HeroSection: React.FC = () => {
       {/* Video Tour Modal */}
       {isVideoModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-xs animate-in fade-in duration-200">
-          <div className="relative w-full max-w-2xl bg-[#142344] rounded-2xl overflow-hidden shadow-2xl border border-slate-700">
-            <div className="p-4 border-b border-slate-700 flex items-center justify-between text-white">
+          <div className="relative w-full max-w-2xl bg-[var(--color-primary)] rounded-2xl overflow-hidden shadow-2xl border border-slate-700">
+            <div className="p-4 border-b border-white/10 flex items-center justify-between text-white">
               <div className="flex items-center gap-2">
-                <Building2 className="w-4 h-4 text-[#FF4D24]" />
+                <Building2 className="w-4 h-4 text-[var(--color-accent)]" />
                 <span className="font-bold text-sm">Inside MyPrintHub Factory • Noida NCR</span>
               </div>
               <button
                 onClick={() => setIsVideoModalOpen(false)}
-                className="p-1 text-slate-400 hover:text-white rounded-lg"
+                className="p-1 text-slate-400 hover:text-white rounded-lg cursor-pointer"
               >
                 <X className="w-5 h-5" />
               </button>
             </div>
 
             <div className="p-6 space-y-4 text-white text-center">
-              <div className="relative aspect-video rounded-xl overflow-hidden bg-slate-900 border border-slate-700 flex items-center justify-center">
+              <div className="relative aspect-video rounded-xl overflow-hidden bg-slate-900 border border-white/10 flex items-center justify-center">
                 <Image
                   src="https://images.unsplash.com/photo-1581655353564-df123a1eb820?auto=format&fit=crop&w=800&q=80"
                   alt="Factory Floor"
                   fill
+                  sizes="800px"
                   className="object-cover opacity-60"
                 />
                 <div className="relative z-10 flex flex-col items-center">
-                  <div className="w-16 h-16 rounded-full bg-[#FF4D24] text-white flex items-center justify-center shadow-xl mb-3">
+                  <div className="w-16 h-16 rounded-full bg-[var(--color-accent)] text-white flex items-center justify-center shadow-xl mb-3">
                     <Play className="w-7 h-7 fill-white ml-1" />
                   </div>
                   <span className="text-sm font-bold">10,000 Sq. Ft. Manufacturing & Laser Lab</span>
@@ -443,22 +447,22 @@ export const HeroSection: React.FC = () => {
 
               <div className="grid grid-cols-3 gap-3 text-xs text-left">
                 <div className="p-2.5 rounded-lg bg-white/5 border border-white/10">
-                  <div className="text-[#FF4D24] font-bold">UV DTF Printers</div>
+                  <div className="text-[var(--color-accent)] font-bold">UV DTF Printers</div>
                   <div className="text-[11px] text-slate-300 mt-0.5">Mimaki Japanese 1200 DPI</div>
                 </div>
                 <div className="p-2.5 rounded-lg bg-white/5 border border-white/10">
-                  <div className="text-[#FF4D24] font-bold">Laser Engravers</div>
+                  <div className="text-[var(--color-accent)] font-bold">Laser Engravers</div>
                   <div className="text-[11px] text-slate-300 mt-0.5">Fiber laser rotary units</div>
                 </div>
                 <div className="p-2.5 rounded-lg bg-white/5 border border-white/10">
-                  <div className="text-[#FF4D24] font-bold">Daily Output</div>
+                  <div className="text-[var(--color-accent)] font-bold">Daily Output</div>
                   <div className="text-[11px] text-slate-300 mt-0.5">5,000+ units dispatched</div>
                 </div>
               </div>
 
               <button
                 onClick={() => setIsVideoModalOpen(false)}
-                className="mt-2 px-6 py-2.5 bg-[#FF4D24] text-white text-xs font-bold rounded-xl hover:bg-[#E03C14] transition-colors"
+                className="mt-2 px-6 py-2.5 bg-[var(--color-accent)] text-white text-xs font-bold rounded-xl hover:opacity-90 transition-opacity cursor-pointer"
               >
                 Close Video Preview
               </button>

@@ -16,18 +16,23 @@ export const TrustBadges: React.FC = () => {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.from(".trust-item-card", {
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 88%",
-          once: true,
-        },
-        opacity: 0,
-        y: 25,
-        stagger: 0.08,
-        duration: 0.6,
-        ease: "power2.out",
-      });
+      gsap.fromTo(
+        ".trust-item-card",
+        { opacity: 0, y: 20 },
+        {
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 88%",
+            once: true,
+          },
+          opacity: 1,
+          y: 0,
+          stagger: 0.06,
+          duration: 0.5,
+          ease: "power2.out",
+          clearProps: "all",
+        }
+      );
     }, sectionRef);
 
     return () => ctx.revert();
@@ -61,26 +66,26 @@ export const TrustBadges: React.FC = () => {
     },
     {
       icon: Sparkles,
-      title: "Free Design Support",
-      desc: "Our in-house design team verifies every vector logo",
+      title: "Free Digital Proof",
+      desc: "Live mockups approved before print starts",
     },
   ];
 
   return (
-    <section ref={sectionRef} className="py-12 bg-white border-b border-slate-200">
+    <section ref={sectionRef} className="py-12 bg-white border-b border-slate-200/80">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
-          {badges.map((b, i) => {
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+          {badges.map((b, idx) => {
             const Icon = b.icon;
             return (
               <div
-                key={i}
-                className="trust-item-card flex flex-col items-center text-center p-4 rounded-2xl bg-slate-50 border border-slate-200/80 hover:border-[#142344]/30 hover:bg-slate-100/60 transition-all group"
+                key={idx}
+                className="trust-item-card p-4 rounded-xl bg-slate-50 border border-slate-200/80 hover:border-slate-300 transition-all flex flex-col items-center text-center group"
               >
-                <div className="w-12 h-12 rounded-xl bg-white shadow-xs border border-slate-200/80 flex items-center justify-center text-[#FF4D24] mb-3 group-hover:scale-110 transition-transform">
-                  <Icon className="w-6 h-6" />
+                <div className="w-10 h-10 rounded-xl bg-[var(--color-accent-soft)] text-[var(--color-accent)] flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+                  <Icon className="w-5 h-5" />
                 </div>
-                <h4 className="text-xs font-bold text-[#142344] mb-1">
+                <h4 className="font-bold text-xs text-[var(--color-primary)] leading-tight mb-1">
                   {b.title}
                 </h4>
                 <p className="text-[11px] text-slate-500 leading-snug">

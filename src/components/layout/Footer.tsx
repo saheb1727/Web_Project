@@ -17,47 +17,47 @@ import { categories } from "@/data/categories";
 
 export const Footer: React.FC = () => {
   return (
-    <footer className="bg-[#142344] text-slate-300 pt-16 pb-8 border-t border-[#23355C]">
+    <footer className="bg-[var(--color-primary)] text-slate-300 pt-16 pb-8 border-t border-white/10 transition-colors duration-300">
       {/* Top Value Badges */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12 border-b border-[#23355C]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12 border-b border-white/10">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
           <div className="flex items-center gap-3.5">
-            <div className="w-12 h-12 rounded-2xl bg-[#FF4D24]/10 border border-[#FF4D24]/20 flex items-center justify-center text-[#FF4D24] shrink-0">
+            <div className="w-12 h-12 rounded-2xl bg-white/10 border border-white/10 flex items-center justify-center text-[var(--color-accent)] shrink-0">
               <Truck className="w-6 h-6" />
             </div>
             <div>
               <h5 className="font-bold text-white text-sm">Pan-India Express</h5>
-              <p className="text-xs text-slate-400 mt-0.5">Free delivery over ₹999</p>
+              <p className="text-xs text-slate-300 mt-0.5">Free delivery over ₹999</p>
             </div>
           </div>
 
           <div className="flex items-center gap-3.5">
-            <div className="w-12 h-12 rounded-2xl bg-[#FF4D24]/10 border border-[#FF4D24]/20 flex items-center justify-center text-[#FF4D24] shrink-0">
+            <div className="w-12 h-12 rounded-2xl bg-white/10 border border-white/10 flex items-center justify-center text-[var(--color-accent)] shrink-0">
               <ShieldCheck className="w-6 h-6" />
             </div>
             <div>
               <h5 className="font-bold text-white text-sm">Print Perfection</h5>
-              <p className="text-xs text-slate-400 mt-0.5">100% Quality guarantee</p>
+              <p className="text-xs text-slate-300 mt-0.5">100% Quality guarantee</p>
             </div>
           </div>
 
           <div className="flex items-center gap-3.5">
-            <div className="w-12 h-12 rounded-2xl bg-[#FF4D24]/10 border border-[#FF4D24]/20 flex items-center justify-center text-[#FF4D24] shrink-0">
+            <div className="w-12 h-12 rounded-2xl bg-white/10 border border-white/10 flex items-center justify-center text-[var(--color-accent)] shrink-0">
               <RotateCcw className="w-6 h-6" />
             </div>
             <div>
               <h5 className="font-bold text-white text-sm">No Minimum MOQ</h5>
-              <p className="text-xs text-slate-400 mt-0.5">Order 1 piece or 10,000</p>
+              <p className="text-xs text-slate-300 mt-0.5">Order 1 piece or 10,000</p>
             </div>
           </div>
 
           <div className="flex items-center gap-3.5">
-            <div className="w-12 h-12 rounded-2xl bg-[#FF4D24]/10 border border-[#FF4D24]/20 flex items-center justify-center text-[#FF4D24] shrink-0">
+            <div className="w-12 h-12 rounded-2xl bg-white/10 border border-white/10 flex items-center justify-center text-[var(--color-accent)] shrink-0">
               <CreditCard className="w-6 h-6" />
             </div>
             <div>
               <h5 className="font-bold text-white text-sm">Secure Checkout</h5>
-              <p className="text-xs text-slate-400 mt-0.5">UPI, Cards & NetBanking</p>
+              <p className="text-xs text-slate-300 mt-0.5">UPI, Cards & NetBanking</p>
             </div>
           </div>
         </div>
@@ -69,11 +69,11 @@ export const Footer: React.FC = () => {
           {/* Brand Column */}
           <div className="lg:col-span-2 space-y-4">
             <Link href="/" className="flex items-center gap-2.5">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-[#FF4D24] to-[#E03C14] flex items-center justify-center text-white shadow-lg">
+              <div className="w-10 h-10 rounded-xl bg-[var(--color-accent)] flex items-center justify-center text-white shadow-lg">
                 <Printer className="w-5 h-5 text-white" />
               </div>
               <div className="font-extrabold text-2xl text-white tracking-tight">
-                MyPrintHub<span className="text-[#FF4D24]">.in</span>
+                MyPrintHub<span className="text-[var(--color-accent)]">.in</span>
               </div>
             </Link>
             <p className="text-sm text-slate-300 leading-relaxed pr-6">
@@ -85,15 +85,15 @@ export const Footer: React.FC = () => {
 
             <div className="space-y-2.5 text-xs text-slate-300 pt-2">
               <div className="flex items-center gap-2.5">
-                <MapPin className="w-4 h-4 text-[#FF4D24] shrink-0" />
+                <MapPin className="w-4 h-4 text-[var(--color-accent)] shrink-0" />
                 <span>Sector 62, Noida, NCR Delhi, India - 201309</span>
               </div>
               <div className="flex items-center gap-2.5">
-                <Phone className="w-4 h-4 text-[#FF4D24] shrink-0" />
+                <Phone className="w-4 h-4 text-[var(--color-accent)] shrink-0" />
                 <span>+91 98765 43210 / +91 120 4567890</span>
               </div>
               <div className="flex items-center gap-2.5">
-                <Mail className="w-4 h-4 text-[#FF4D24] shrink-0" />
+                <Mail className="w-4 h-4 text-[var(--color-accent)] shrink-0" />
                 <span>support@myprinthub.in | bulk@myprinthub.in</span>
               </div>
             </div>
@@ -109,7 +109,7 @@ export const Footer: React.FC = () => {
                 <li key={cat.id}>
                   <Link
                     href={`/category/${cat.slug}`}
-                    className="hover:text-[#FF4D24] transition-colors"
+                    className="hover:text-[var(--color-accent)] transition-colors"
                   >
                     {cat.name}
                   </Link>
@@ -118,7 +118,7 @@ export const Footer: React.FC = () => {
               <li>
                 <Link
                   href="/products"
-                  className="text-[#FF4D24] font-semibold hover:underline inline-flex items-center gap-1"
+                  className="text-[var(--color-accent)] font-semibold hover:underline inline-flex items-center gap-1"
                 >
                   View All Products →
                 </Link>
@@ -133,32 +133,32 @@ export const Footer: React.FC = () => {
             </h4>
             <ul className="space-y-2.5 text-sm">
               <li>
-                <Link href="/contact" className="hover:text-[#FF4D24] transition-colors">
+                <Link href="/contact" className="hover:text-[var(--color-accent)] transition-colors">
                   Bulk Order Quotations
                 </Link>
               </li>
               <li>
-                <Link href="/contact" className="hover:text-[#FF4D24] transition-colors">
+                <Link href="/track" className="hover:text-[var(--color-accent)] transition-colors">
                   Track Your Order
                 </Link>
               </li>
               <li>
-                <Link href="/about" className="hover:text-[#FF4D24] transition-colors">
+                <Link href="/about" className="hover:text-[var(--color-accent)] transition-colors">
                   Printing Technology & DTF
                 </Link>
               </li>
               <li>
-                <Link href="/about" className="hover:text-[#FF4D24] transition-colors">
+                <Link href="/about" className="hover:text-[var(--color-accent)] transition-colors">
                   Artwork Guidelines
                 </Link>
               </li>
               <li>
-                <Link href="/contact" className="hover:text-[#FF4D24] transition-colors">
+                <Link href="/contact" className="hover:text-[var(--color-accent)] transition-colors">
                   Shipping & Return Policy
                 </Link>
               </li>
               <li>
-                <Link href="/contact" className="hover:text-[#FF4D24] transition-colors">
+                <Link href="/contact" className="hover:text-[var(--color-accent)] transition-colors">
                   Contact Support Desk
                 </Link>
               </li>
@@ -172,27 +172,27 @@ export const Footer: React.FC = () => {
             </h4>
             <ul className="space-y-2.5 text-sm">
               <li>
-                <Link href="/auth" className="hover:text-[#FF4D24] transition-colors">
+                <Link href="/auth" className="hover:text-[var(--color-accent)] transition-colors">
                   Sign In / Create Account
                 </Link>
               </li>
               <li>
-                <Link href="/cart" className="hover:text-[#FF4D24] transition-colors">
+                <Link href="/cart" className="hover:text-[var(--color-accent)] transition-colors">
                   View Shopping Cart
                 </Link>
               </li>
               <li>
-                <Link href="/wishlist" className="hover:text-[#FF4D24] transition-colors">
+                <Link href="/wishlist" className="hover:text-[var(--color-accent)] transition-colors">
                   Saved Wishlist
                 </Link>
               </li>
               <li>
-                <Link href="/about" className="hover:text-[#FF4D24] transition-colors">
+                <Link href="/about" className="hover:text-[var(--color-accent)] transition-colors">
                   About MyPrintHub.in
                 </Link>
               </li>
               <li>
-                <Link href="/contact" className="hover:text-[#FF4D24] transition-colors">
+                <Link href="/contact" className="hover:text-[var(--color-accent)] transition-colors">
                   Corporate Partnership
                 </Link>
               </li>
@@ -202,11 +202,11 @@ export const Footer: React.FC = () => {
       </div>
 
       {/* Bottom Bar */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 border-t border-[#23355C]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 border-t border-white/10">
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
           <p>
             © {new Date().getFullYear()} MyPrintHub.in. All rights reserved. Made with{" "}
-            <Heart className="w-3.5 h-3.5 text-[#FF4D24] inline fill-[#FF4D24]" /> in India.
+            <Heart className="w-3.5 h-3.5 text-[var(--color-accent)] inline fill-[var(--color-accent)]" /> in India.
           </p>
           <div className="flex items-center gap-6">
             <span>Privacy Policy</span>
@@ -219,4 +219,3 @@ export const Footer: React.FC = () => {
     </footer>
   );
 };
-

@@ -12,18 +12,23 @@ export const CategoryGrid: React.FC = () => {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.from(".category-card", {
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 85%",
-          once: true,
-        },
-        opacity: 0,
-        y: 40,
-        stagger: 0.1,
-        duration: 0.8,
-        ease: "power2.out",
-      });
+      gsap.fromTo(
+        ".category-card",
+        { opacity: 0, y: 25 },
+        {
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 85%",
+            once: true,
+          },
+          opacity: 1,
+          y: 0,
+          stagger: 0.08,
+          duration: 0.6,
+          ease: "power2.out",
+          clearProps: "all",
+        }
+      );
     }, sectionRef);
 
     return () => ctx.revert();
@@ -35,11 +40,11 @@ export const CategoryGrid: React.FC = () => {
         {/* Section Header */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-10 gap-4">
           <div>
-            <div className="flex items-center gap-2 text-xs font-bold text-[#FF4D24] uppercase tracking-wider mb-2">
+            <div className="flex items-center gap-2 text-xs font-bold text-[var(--color-accent)] uppercase tracking-wider mb-2">
               <Layers className="w-4 h-4" />
               <span>Browse by Category</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl font-black text-[#142344] tracking-tight">
+            <h2 className="text-3xl sm:text-4xl font-black text-[var(--color-primary)] tracking-tight">
               Custom Merch Designed For You
             </h2>
             <p className="text-sm text-slate-500 mt-1 max-w-xl">
@@ -49,7 +54,7 @@ export const CategoryGrid: React.FC = () => {
 
           <Link
             href="/products"
-            className="inline-flex items-center gap-2 text-sm font-bold text-[#FF4D24] hover:text-[#E03C14] transition-colors group"
+            className="inline-flex items-center gap-2 text-sm font-bold text-[var(--color-accent)] hover:opacity-85 transition-colors group"
           >
             <span>View All Categories</span>
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -62,7 +67,7 @@ export const CategoryGrid: React.FC = () => {
             <Link
               key={cat.id}
               href={`/category/${cat.slug}`}
-              className="category-card group relative rounded-2xl overflow-hidden bg-slate-50 border border-slate-200/80 hover:border-[#142344]/30 shadow-xs hover:shadow-xl transition-all duration-300 flex flex-col"
+              className="category-card group relative rounded-2xl overflow-hidden bg-slate-50 border border-slate-200/80 hover:border-slate-400 shadow-xs hover:shadow-xl transition-all duration-300 flex flex-col"
             >
               <div className="relative aspect-16/10 w-full overflow-hidden bg-slate-100">
                 <Image
@@ -75,7 +80,7 @@ export const CategoryGrid: React.FC = () => {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-60 group-hover:opacity-80 transition-opacity" />
 
                 {cat.badge && (
-                  <span className="absolute top-4 left-4 bg-[#FF4D24] text-white text-[11px] font-extrabold uppercase tracking-wider px-2.5 py-1 rounded-md shadow-md">
+                  <span className="absolute top-4 left-4 bg-[var(--color-accent)] text-white text-[11px] font-extrabold uppercase tracking-wider px-2.5 py-1 rounded-md shadow-md">
                     {cat.badge}
                   </span>
                 )}
@@ -84,7 +89,7 @@ export const CategoryGrid: React.FC = () => {
                   <span className="text-xs text-slate-200 font-medium">
                     {cat.itemCount}+ Products
                   </span>
-                  <h3 className="text-xl font-black tracking-tight text-white group-hover:text-[#FF4D24] transition-colors">
+                  <h3 className="text-xl font-black tracking-tight text-white group-hover:text-[var(--color-accent)] transition-colors">
                     {cat.name}
                   </h3>
                 </div>
@@ -94,7 +99,7 @@ export const CategoryGrid: React.FC = () => {
                 <p className="text-xs text-slate-600 line-clamp-2 leading-relaxed">
                   {cat.description}
                 </p>
-                <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-[#142344] group-hover:text-[#FF4D24] transition-colors">
+                <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-[var(--color-primary)] group-hover:text-[var(--color-accent)] transition-colors">
                   <span>Explore Collection</span>
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </div>

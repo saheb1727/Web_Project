@@ -11,18 +11,23 @@ export const Testimonials: React.FC = () => {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.from(".testimonial-card", {
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 82%",
-          once: true,
-        },
-        opacity: 0,
-        y: 35,
-        stagger: 0.1,
-        duration: 0.7,
-        ease: "power2.out",
-      });
+      gsap.fromTo(
+        ".testimonial-card",
+        { opacity: 0, y: 25 },
+        {
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 82%",
+            once: true,
+          },
+          opacity: 1,
+          y: 0,
+          stagger: 0.08,
+          duration: 0.6,
+          ease: "power2.out",
+          clearProps: "all",
+        }
+      );
     }, sectionRef);
 
     return () => ctx.revert();
@@ -36,10 +41,10 @@ export const Testimonials: React.FC = () => {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-2xl mx-auto mb-14">
-          <span className="text-xs font-bold text-[#FF4D24] uppercase tracking-wider block mb-2">
+          <span className="text-xs font-bold text-[var(--color-accent)] uppercase tracking-wider block mb-2">
             Verified Customer Stories
           </span>
-          <h2 className="text-3xl sm:text-4xl font-black text-[#142344] tracking-tight">
+          <h2 className="text-3xl sm:text-4xl font-black text-[var(--color-primary)] tracking-tight">
             Loved by 50,000+ Teams & Brands
           </h2>
           <p className="text-sm text-slate-500 mt-2">
@@ -51,7 +56,7 @@ export const Testimonials: React.FC = () => {
           {testimonials.map((t) => (
             <div
               key={t.id}
-              className="testimonial-card bg-white rounded-3xl p-6 border border-slate-200/80 shadow-xs hover:shadow-xl hover:border-[#142344]/30 transition-all duration-300 flex flex-col justify-between"
+              className="testimonial-card bg-white rounded-3xl p-6 border border-slate-200/80 shadow-xs hover:shadow-xl hover:border-slate-400 transition-all duration-300 flex flex-col justify-between"
             >
               <div>
                 {/* Rating stars & Quote Icon */}
@@ -78,14 +83,15 @@ export const Testimonials: React.FC = () => {
                       src={t.avatar}
                       alt={t.name}
                       fill
+                      sizes="40px"
                       className="object-cover"
                     />
                   </div>
                   <div className="min-w-0">
-                    <div className="text-xs font-bold text-[#142344] flex items-center gap-1 truncate">
+                    <div className="text-xs font-bold text-[var(--color-primary)] flex items-center gap-1 truncate">
                       <span>{t.name}</span>
                       {t.verified && (
-                        <CheckCircle2 className="w-3 h-3 text-[#FF4D24] shrink-0" />
+                        <CheckCircle2 className="w-3 h-3 text-[var(--color-accent)] shrink-0" />
                       )}
                     </div>
                     <div className="text-[10px] text-slate-500 truncate">
@@ -95,7 +101,7 @@ export const Testimonials: React.FC = () => {
                 </div>
 
                 <div className="mt-3 pt-2 text-[10px] font-semibold text-slate-400 truncate">
-                  Ordered: <span className="text-[#142344]">{t.productOrdered}</span>
+                  Ordered: <span className="text-[var(--color-primary)]">{t.productOrdered}</span>
                 </div>
               </div>
             </div>

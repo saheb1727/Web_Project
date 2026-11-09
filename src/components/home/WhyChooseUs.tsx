@@ -10,30 +10,40 @@ export const WhyChooseUs: React.FC = () => {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.from(".why-perk-card", {
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 80%",
-          once: true,
-        },
-        opacity: 0,
-        x: -30,
-        stagger: 0.1,
-        duration: 0.7,
-        ease: "power2.out",
-      });
+      gsap.fromTo(
+        ".why-perk-card",
+        { opacity: 0, x: -20 },
+        {
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 80%",
+            once: true,
+          },
+          opacity: 1,
+          x: 0,
+          stagger: 0.08,
+          duration: 0.6,
+          ease: "power2.out",
+          clearProps: "all",
+        }
+      );
 
-      gsap.from(".why-comparison-box", {
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 80%",
-          once: true,
-        },
-        opacity: 0,
-        x: 30,
-        duration: 0.9,
-        ease: "power2.out",
-      });
+      gsap.fromTo(
+        ".why-comparison-box",
+        { opacity: 0, x: 20 },
+        {
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 80%",
+            once: true,
+          },
+          opacity: 1,
+          x: 0,
+          duration: 0.7,
+          ease: "power2.out",
+          clearProps: "all",
+        }
+      );
     }, sectionRef);
 
     return () => ctx.revert();
@@ -74,10 +84,10 @@ export const WhyChooseUs: React.FC = () => {
           {/* Left Column: Perks List */}
           <div className="lg:col-span-7 space-y-6">
             <div>
-              <span className="text-xs font-bold text-[#FF4D24] uppercase tracking-wider block mb-2">
+              <span className="text-xs font-bold text-[var(--color-accent)] uppercase tracking-wider block mb-2">
                 Uncompromising Standards
               </span>
-              <h2 className="text-3xl sm:text-4xl font-black text-[#142344] tracking-tight leading-tight">
+              <h2 className="text-3xl sm:text-4xl font-black text-[var(--color-primary)] tracking-tight leading-tight">
                 Why Top Companies & Creators Choose MyPrintHub.in
               </h2>
               <p className="text-sm text-slate-600 mt-2">
@@ -91,13 +101,13 @@ export const WhyChooseUs: React.FC = () => {
                 return (
                   <div
                     key={idx}
-                    className="why-perk-card flex items-start gap-4 p-4 rounded-2xl bg-white border border-slate-200 shadow-2xs hover:border-[#142344]/30 hover:shadow-md transition-all"
+                    className="why-perk-card flex items-start gap-4 p-4 rounded-2xl bg-white border border-slate-200 shadow-2xs hover:border-slate-300 hover:shadow-md transition-all"
                   >
-                    <div className="w-10 h-10 rounded-xl bg-[#142344] text-[#FF4D24] flex items-center justify-center shrink-0">
+                    <div className="w-10 h-10 rounded-xl bg-[var(--color-primary)] text-[var(--color-accent)] flex items-center justify-center shrink-0">
                       <Icon className="w-5 h-5" />
                     </div>
                     <div>
-                      <h4 className="text-sm font-bold text-[#142344]">{p.title}</h4>
+                      <h4 className="text-sm font-bold text-[var(--color-primary)]">{p.title}</h4>
                       <p className="text-xs text-slate-500 mt-1 leading-relaxed">{p.desc}</p>
                     </div>
                   </div>
@@ -108,7 +118,7 @@ export const WhyChooseUs: React.FC = () => {
             <div className="pt-2">
               <Link
                 href="/about"
-                className="inline-flex items-center gap-2 px-6 py-3 bg-[#FF4D24] hover:bg-[#E03C14] text-white text-xs font-bold rounded-xl shadow-md transition-colors"
+                className="inline-flex items-center gap-2 px-6 py-3 bg-[var(--color-accent)] hover:opacity-90 text-white text-xs font-bold rounded-xl shadow-md transition-opacity"
               >
                 <span>Read Our Quality Story</span>
               </Link>
@@ -117,16 +127,16 @@ export const WhyChooseUs: React.FC = () => {
 
           {/* Right Column: Visual Comparison Card */}
           <div className="lg:col-span-5">
-            <div className="why-comparison-box relative rounded-3xl overflow-hidden bg-[#142344] p-6 text-white shadow-2xl border border-[#273B66]">
+            <div className="why-comparison-box relative rounded-3xl overflow-hidden bg-[var(--color-primary)] p-6 text-white shadow-2xl border border-white/10">
               {/* Badge */}
-              <div className="flex items-center justify-between border-b border-[#273B66] pb-4 mb-6">
+              <div className="flex items-center justify-between border-b border-white/10 pb-4 mb-6">
                 <div>
-                  <span className="text-[10px] text-slate-400 font-bold uppercase tracking-wider block">
+                  <span className="text-[10px] text-slate-300 font-bold uppercase tracking-wider block">
                     Print Lab Standards
                   </span>
                   <h3 className="text-lg font-black text-white">MyPrintHub vs. Local Vendors</h3>
                 </div>
-                <div className="w-9 h-9 rounded-xl bg-[#FF4D24] flex items-center justify-center font-bold text-white text-xs">
+                <div className="w-9 h-9 rounded-xl bg-[var(--color-accent)] flex items-center justify-center font-bold text-white text-xs shadow-xs">
                   A+
                 </div>
               </div>
@@ -160,8 +170,8 @@ export const WhyChooseUs: React.FC = () => {
                     them: "Manual email back-and-forth for days",
                   },
                 ].map((row, i) => (
-                  <div key={i} className="p-3 rounded-xl bg-[#1C2E56] border border-[#2B4174]">
-                    <div className="font-bold text-slate-200 mb-1">{row.feature}</div>
+                  <div key={i} className="p-3 rounded-xl bg-white/10 border border-white/10">
+                    <div className="font-bold text-slate-100 mb-1">{row.feature}</div>
                     <div className="flex items-center justify-between gap-2">
                       <div className="flex items-center gap-1.5 text-emerald-400 font-medium">
                         <Check className="w-3.5 h-3.5 shrink-0 stroke-[3]" />
@@ -172,8 +182,8 @@ export const WhyChooseUs: React.FC = () => {
                 ))}
               </div>
 
-              <div className="mt-6 pt-4 border-t border-[#273B66] text-center">
-                <span className="text-xs text-slate-400">
+              <div className="mt-6 pt-4 border-t border-white/10 text-center">
+                <span className="text-xs text-slate-300">
                   Trusted by 2,500+ Indian Startups, Colleges & Enterprises
                 </span>
               </div>

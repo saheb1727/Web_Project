@@ -1,8 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { Star, ArrowLeft, ArrowRight, X } from "lucide-react";
-import Link from "next/link";
+import { Star, ArrowLeft, ArrowRight } from "lucide-react";
 
 export const AnnouncementBar: React.FC = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -23,20 +22,20 @@ export const AnnouncementBar: React.FC = () => {
   };
 
   return (
-    <div className="bg-[#142344] text-white text-xs border-b border-[#23355C] relative z-40 select-none">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2.5 flex items-center justify-between">
+    <div className="bg-[var(--color-primary)] text-white text-xs border-b border-white/10 relative z-40 select-none transition-colors duration-300">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2.5 flex items-center justify-center gap-6 sm:gap-10">
         {/* Left Arrow */}
         <button
           onClick={handlePrev}
-          className="p-1 text-slate-400 hover:text-white transition-colors"
+          className="p-1 text-slate-300 hover:text-white transition-colors cursor-pointer"
           aria-label="Previous announcement"
         >
           <ArrowLeft className="w-3.5 h-3.5" />
         </button>
 
         {/* Center Message */}
-        <div className="flex-1 flex items-center justify-center gap-2 text-center overflow-hidden px-4">
-          <Star className="w-3.5 h-3.5 text-[#FF4D24] fill-[#FF4D24] shrink-0" />
+        <div className="flex items-center justify-center gap-2 text-center overflow-hidden">
+          <Star className="w-3.5 h-3.5 text-[var(--color-accent)] fill-[var(--color-accent)] shrink-0" />
           <span className="font-semibold text-xs text-slate-100 tracking-wide transition-all">
             {messages[currentSlide]}
           </span>
@@ -45,7 +44,7 @@ export const AnnouncementBar: React.FC = () => {
         {/* Right Arrow */}
         <button
           onClick={handleNext}
-          className="p-1 text-slate-400 hover:text-white transition-colors"
+          className="p-1 text-slate-300 hover:text-white transition-colors cursor-pointer"
           aria-label="Next announcement"
         >
           <ArrowRight className="w-3.5 h-3.5" />

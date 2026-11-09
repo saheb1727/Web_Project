@@ -1,12 +1,59 @@
 @import "tailwindcss";
 
 :root {
-  --primary-navy: #142344;
-  --primary-navy-dark: #0D1830;
-  --accent-orange: #FF4D24;
-  --accent-orange-hover: #E03C14;
+  --color-primary: #142344;
+  --color-primary-dark: #0A1324;
+  --color-accent: #FF4D24;
+  --color-accent-hover: #E0370E;
+  --color-accent-soft: #FFF3F0;
+  --color-accent-border: #FFD6CC;
   --background: #FFFFFF;
   --foreground: #0F172A;
+}
+
+[data-theme="sunset-navy"] {
+  --color-primary: #142344;
+  --color-primary-dark: #0A1324;
+  --color-accent: #FF4D24;
+  --color-accent-hover: #E0370E;
+  --color-accent-soft: #FFF3F0;
+  --color-accent-border: #FFD6CC;
+}
+
+[data-theme="emerald-gold"] {
+  --color-primary: #064E3B;
+  --color-primary-dark: #022C22;
+  --color-accent: #D97706;
+  --color-accent-hover: #B45309;
+  --color-accent-soft: #FEF3C7;
+  --color-accent-border: #FDE68A;
+}
+
+[data-theme="midnight-cyan"] {
+  --color-primary: #0B132B;
+  --color-primary-dark: #050814;
+  --color-accent: #0284C7;
+  --color-accent-hover: #0369A1;
+  --color-accent-soft: #F0F9FF;
+  --color-accent-border: #BAE6FD;
+}
+
+[data-theme="crimson-black"] {
+  --color-primary: #18181B;
+  --color-primary-dark: #09090B;
+  --color-accent: #E11D48;
+  --color-accent-hover: #BE123C;
+  --color-accent-soft: #FFF1F2;
+  --color-accent-border: #FECDD3;
+}
+
+[data-theme="royal-purple"] {
+  --color-primary: #1E1B4B;
+  --color-primary-dark: #110E38;
+  --color-accent: #F95738;
+  --color-accent-hover: #E03A1B;
+  --color-accent-soft: #FFF5F3;
+  --color-accent-border: #FFDDD6;
 }
 
 html {
@@ -38,4 +85,41 @@ body {
 
 ::-webkit-scrollbar-thumb:hover {
   background: #94A3B8;
+}
+
+/* Dynamic theme helper classes */
+.theme-bg-primary {
+  background-color: var(--color-primary) !important;
+}
+
+.theme-bg-primary-dark {
+  background-color: var(--color-primary-dark) !important;
+}
+
+.theme-bg-accent {
+  background-color: var(--color-accent) !important;
+}
+
+.theme-bg-accent-soft {
+  background-color: var(--color-accent-soft) !important;
+}
+
+.theme-text-primary {
+  color: var(--color-primary) !important;
+}
+
+.theme-text-accent {
+  color: var(--color-accent) !important;
+}
+
+.theme-border-accent {
+  border-color: var(--color-accent) !important;
+}
+
+.theme-border-accent-border {
+  border-color: var(--color-accent-border) !important;
+}
+
+.theme-hover-accent:hover {
+  background-color: var(--color-accent-hover) !important;
 }

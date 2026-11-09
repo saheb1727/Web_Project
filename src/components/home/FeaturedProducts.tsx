@@ -28,18 +28,23 @@ export const FeaturedProducts: React.FC = () => {
   // Initial ScrollTrigger entrance
   useEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.from(".featured-product-card", {
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 85%",
-          once: true,
-        },
-        opacity: 0,
-        y: 35,
-        stagger: 0.08,
-        duration: 0.7,
-        ease: "power2.out",
-      });
+      gsap.fromTo(
+        ".featured-product-card",
+        { opacity: 0, y: 25 },
+        {
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 85%",
+            once: true,
+          },
+          opacity: 1,
+          y: 0,
+          stagger: 0.06,
+          duration: 0.5,
+          ease: "power2.out",
+          clearProps: "all",
+        }
+      );
     }, sectionRef);
 
     return () => ctx.revert();
@@ -50,8 +55,8 @@ export const FeaturedProducts: React.FC = () => {
     if (!gridRef.current) return;
     gsap.fromTo(
       gridRef.current.children,
-      { opacity: 0, y: 15, scale: 0.98 },
-      { opacity: 1, y: 0, scale: 1, stagger: 0.05, duration: 0.4, ease: "power2.out" }
+      { opacity: 0, y: 12, scale: 0.98 },
+      { opacity: 1, y: 0, scale: 1, stagger: 0.04, duration: 0.35, ease: "power2.out", clearProps: "all" }
     );
   }, [activeTab]);
 
@@ -61,11 +66,11 @@ export const FeaturedProducts: React.FC = () => {
         {/* Section Header */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-4">
           <div>
-            <div className="flex items-center gap-2 text-xs font-bold text-[#FF4D24] uppercase tracking-wider mb-2">
+            <div className="flex items-center gap-2 text-xs font-bold text-[var(--color-accent)] uppercase tracking-wider mb-2">
               <Flame className="w-4 h-4" />
               <span>Trending & Best Sellers</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl font-black text-[#142344] tracking-tight">
+            <h2 className="text-3xl sm:text-4xl font-black text-[var(--color-primary)] tracking-tight">
               Top Custom Products
             </h2>
             <p className="text-sm text-slate-500 mt-1">
@@ -75,7 +80,7 @@ export const FeaturedProducts: React.FC = () => {
 
           <Link
             href="/products"
-            className="inline-flex items-center gap-2 text-sm font-bold text-[#FF4D24] hover:text-[#E03C14] transition-colors group"
+            className="inline-flex items-center gap-2 text-sm font-bold text-[var(--color-accent)] hover:opacity-85 transition-colors group"
           >
             <span>See Full Catalog ({products.length})</span>
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -88,9 +93,9 @@ export const FeaturedProducts: React.FC = () => {
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
-              className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold whitespace-nowrap transition-all ${
+              className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold whitespace-nowrap transition-all cursor-pointer ${
                 activeTab === tab.id
-                  ? "bg-[#142344] text-white shadow-md scale-102"
+                  ? "bg-[var(--color-primary)] text-white shadow-md scale-102"
                   : "bg-white text-slate-600 hover:bg-slate-200/80 border border-slate-200"
               }`}
             >
@@ -112,10 +117,10 @@ export const FeaturedProducts: React.FC = () => {
         <div className="mt-12 text-center">
           <Link
             href="/products"
-            className="inline-flex items-center gap-2 px-8 py-3.5 bg-[#142344] hover:bg-[#0D1830] text-white text-sm font-bold rounded-xl shadow-lg transition-all"
+            className="inline-flex items-center gap-2 px-8 py-3.5 bg-[var(--color-primary)] hover:opacity-90 text-white text-sm font-bold rounded-xl shadow-lg transition-all"
           >
             <span>Browse All {products.length}+ Products & Corporate Kits</span>
-            <ArrowRight className="w-4 h-4 text-[#FF4D24]" />
+            <ArrowRight className="w-4 h-4 text-[var(--color-accent)]" />
           </Link>
         </div>
       </div>
