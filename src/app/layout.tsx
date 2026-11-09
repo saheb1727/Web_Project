@@ -6,6 +6,8 @@ import { CartProvider } from "@/context/CartContext";
 import { AnnouncementBar } from "@/components/layout/AnnouncementBar";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
+import { Star } from "lucide-react";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "MyPrintHub.in | Custom Printing, Magnetic Badges & Premium Merch",
@@ -28,7 +30,19 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="h-full antialiased">
-      <body className="min-h-full flex flex-col font-sans bg-[#F8FAFC] text-[#0F172A]">
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="anonymous"
+        />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap"
+          rel="stylesheet"
+        />
+      </head>
+      <body className="min-h-full flex flex-col font-sans bg-white text-[#0F172A]">
         <ToastProvider>
           <WishlistProvider>
             <CartProvider>
@@ -36,6 +50,18 @@ export default function RootLayout({
               <Navbar />
               <main className="flex-1">{children}</main>
               <Footer />
+
+              {/* Floating Reviews Side Tab (Matching Reference Screenshot) */}
+              <Link
+                href="/#testimonials"
+                className="fixed right-0 top-1/2 -translate-y-1/2 z-40 bg-[#142344] hover:bg-[#FF4D24] text-white px-2.5 py-4 rounded-l-xl shadow-xl flex flex-col items-center gap-1.5 transition-colors cursor-pointer group"
+                title="Read Customer Reviews"
+              >
+                <Star className="w-3.5 h-3.5 text-[#FF4D24] group-hover:text-white fill-[#FF4D24] group-hover:fill-white" />
+                <span className="[writing-mode:vertical-rl] rotate-180 text-[11px] font-bold tracking-widest uppercase">
+                  Reviews
+                </span>
+              </Link>
             </CartProvider>
           </WishlistProvider>
         </ToastProvider>

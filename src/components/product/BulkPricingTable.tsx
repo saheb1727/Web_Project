@@ -26,7 +26,7 @@ export const BulkPricingTable: React.FC<BulkPricingTableProps> = ({
             Tiered Wholesale Pricing
           </h4>
         </div>
-        <span className="text-xs text-[#FF4D24] font-semibold bg-[#FF4D24]/10 px-2 py-0.5 rounded-full">
+        <span className="text-xs text-[#FF4D24] font-bold bg-[#FF4D24]/10 px-2.5 py-0.5 rounded-md">
           Instant Bulk Discounts
         </span>
       </div>
@@ -51,7 +51,7 @@ export const BulkPricingTable: React.FC<BulkPricingTableProps> = ({
               }`}
             >
               {isActive && (
-                <div className="absolute top-2 right-2 w-4 h-4 rounded-full bg-[#FF4D24] flex items-center justify-center text-white">
+                <div className="absolute top-2 right-2 w-4 h-4 rounded-md bg-[#FF4D24] flex items-center justify-center text-white">
                   <Check className="w-2.5 h-2.5 stroke-[3]" />
                 </div>
               )}

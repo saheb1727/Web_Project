@@ -86,7 +86,7 @@ export const ProductCustomizer: React.FC<ProductCustomizerProps> = ({
             </p>
           </div>
         </div>
-        <span className="text-[10px] font-bold bg-emerald-50 text-emerald-600 px-2.5 py-1 rounded-full border border-emerald-200/60">
+        <span className="text-[10px] font-bold bg-emerald-50 text-emerald-600 px-2.5 py-1 rounded-md border border-emerald-200/60">
           HD Vector Print
         </span>
       </div>

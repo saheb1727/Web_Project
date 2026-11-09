@@ -130,9 +130,9 @@ export default function CartPage() {
                   </span>
                   <span className="text-slate-400">{freeShippingProgress}%</span>
                 </div>
-                <div className="w-full h-2 rounded-full bg-slate-100 overflow-hidden">
+                <div className="w-full h-2 rounded-md bg-slate-100 overflow-hidden">
                   <div
-                    className="h-full bg-gradient-to-r from-[#FF4D24] to-emerald-500 rounded-full transition-all duration-500"
+                    className="h-full bg-gradient-to-r from-[#FF4D24] to-emerald-500 rounded-md transition-all duration-500"
                     style={{ width: `${freeShippingProgress}%` }}
                   />
                 </div>

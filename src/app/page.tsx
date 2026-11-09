@@ -1,5 +1,4 @@
 import { HeroSection } from "@/components/home/HeroSection";
-import { CouponBanner } from "@/components/home/CouponBanner";
 import { CategoryGrid } from "@/components/home/CategoryGrid";
 import { TrustBadges } from "@/components/home/TrustBadges";
 import { FeaturedProducts } from "@/components/home/FeaturedProducts";
@@ -12,34 +11,31 @@ import { Newsletter } from "@/components/home/Newsletter";
 export default function Home() {
   return (
     <div className="flex flex-col min-h-screen">
-      {/* 1. Hero Section */}
+      {/* 1. Hero Section (Matching PrintMine Reference with 2x2 showcase & top coupon) */}
       <HeroSection />
 
-      {/* 2. Promotional Coupon Banner */}
-      <CouponBanner />
-
-      {/* 3. Product Category Showcase Grid */}
+      {/* 2. Product Category Showcase Grid */}
       <CategoryGrid />
 
-      {/* 4. Trust Badges & Quality Indicators */}
+      {/* 3. Trust Badges & Quality Indicators */}
       <TrustBadges />
 
-      {/* 5. Featured Products & Best Sellers */}
+      {/* 4. Featured Products & Best Sellers */}
       <FeaturedProducts />
 
-      {/* 6. Why Choose MyPrintHub Section */}
+      {/* 5. Why Choose MyPrintHub Section */}
       <WhyChooseUs />
 
-      {/* 7. How It Works (4-Step Workflow) */}
+      {/* 6. How It Works (4-Step Workflow) */}
       <HowItWorks />
 
-      {/* 8. Customer Testimonials */}
+      {/* 7. Customer Testimonials */}
       <Testimonials />
 
-      {/* 9. FAQ Accordion */}
+      {/* 8. FAQ Accordion */}
       <FAQSection />
 
-      {/* 10. Newsletter */}
+      {/* 9. Newsletter */}
       <Newsletter />
     </div>
   );

@@ -45,7 +45,7 @@ export const FAQSection: React.FC = () => {
                 >
                   <span>{faq.question}</span>
                   <div
-                    className={`w-8 h-8 rounded-full flex items-center justify-center transition-transform shrink-0 ${
+                    className={`w-8 h-8 rounded-lg flex items-center justify-center transition-transform shrink-0 ${
                       isOpen
                         ? "rotate-180 bg-[#FF4D24] text-white"
                         : "bg-slate-200 text-slate-600"

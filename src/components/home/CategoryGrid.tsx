@@ -53,7 +53,7 @@ export const CategoryGrid: React.FC = () => {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-60 group-hover:opacity-80 transition-opacity" />
 
                 {cat.badge && (
-                  <span className="absolute top-4 left-4 bg-[#FF4D24] text-white text-[11px] font-extrabold uppercase tracking-wider px-3 py-1 rounded-full shadow-md">
+                  <span className="absolute top-4 left-4 bg-[#FF4D24] text-white text-[11px] font-extrabold uppercase tracking-wider px-2.5 py-1 rounded-md shadow-md">
                     {cat.badge}
                   </span>
                 )}
