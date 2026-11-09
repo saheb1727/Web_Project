@@ -1,11 +1,44 @@
 "use client";
 
-import React from "react";
-import Image from "next/image";
+import React, { useRef, useEffect } from "react";
 import { Check, ShieldCheck, Cpu, Clock, DollarSign, HeartHandshake } from "lucide-react";
 import Link from "next/link";
+import { gsap } from "@/lib/gsap";
 
 export const WhyChooseUs: React.FC = () => {
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.from(".why-perk-card", {
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 80%",
+          once: true,
+        },
+        opacity: 0,
+        x: -30,
+        stagger: 0.1,
+        duration: 0.7,
+        ease: "power2.out",
+      });
+
+      gsap.from(".why-comparison-box", {
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 80%",
+          once: true,
+        },
+        opacity: 0,
+        x: 30,
+        duration: 0.9,
+        ease: "power2.out",
+      });
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
   const perks = [
     {
       icon: Cpu,
@@ -35,7 +68,7 @@ export const WhyChooseUs: React.FC = () => {
   ];
 
   return (
-    <section className="py-20 bg-gradient-to-b from-white to-slate-50 border-b border-slate-200">
+    <section ref={sectionRef} className="py-20 bg-gradient-to-b from-white to-slate-50 border-b border-slate-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           {/* Left Column: Perks List */}
@@ -58,7 +91,7 @@ export const WhyChooseUs: React.FC = () => {
                 return (
                   <div
                     key={idx}
-                    className="flex items-start gap-4 p-4 rounded-2xl bg-white border border-slate-200 shadow-2xs hover:border-[#142344]/30 hover:shadow-md transition-all"
+                    className="why-perk-card flex items-start gap-4 p-4 rounded-2xl bg-white border border-slate-200 shadow-2xs hover:border-[#142344]/30 hover:shadow-md transition-all"
                   >
                     <div className="w-10 h-10 rounded-xl bg-[#142344] text-[#FF4D24] flex items-center justify-center shrink-0">
                       <Icon className="w-5 h-5" />
@@ -82,9 +115,9 @@ export const WhyChooseUs: React.FC = () => {
             </div>
           </div>
 
-          {/* Right Column: Visual Infographic Card */}
+          {/* Right Column: Visual Comparison Card */}
           <div className="lg:col-span-5">
-            <div className="relative rounded-3xl overflow-hidden bg-[#142344] p-6 text-white shadow-2xl border border-[#273B66]">
+            <div className="why-comparison-box relative rounded-3xl overflow-hidden bg-[#142344] p-6 text-white shadow-2xl border border-[#273B66]">
               {/* Badge */}
               <div className="flex items-center justify-between border-b border-[#273B66] pb-4 mb-6">
                 <div>
@@ -151,4 +184,3 @@ export const WhyChooseUs: React.FC = () => {
     </section>
   );
 };
-

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import {
@@ -16,15 +16,77 @@ import {
   MapPin,
   Gift,
   X,
-  Sparkles,
 } from "lucide-react";
 import { useToast } from "@/context/ToastContext";
 import confetti from "canvas-confetti";
+import { gsap } from "@/lib/gsap";
 
 export const HeroSection: React.FC = () => {
   const [copied, setCopied] = useState(false);
   const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
   const { showToast } = useToast();
+  const heroRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+
+      tl.from(".hero-coupon", {
+        opacity: 0,
+        y: -15,
+        duration: 0.6,
+      })
+      .from(".hero-title", {
+        opacity: 0,
+        y: 25,
+        duration: 0.8,
+      }, "-=0.3")
+      .from(".hero-desc", {
+        opacity: 0,
+        y: 20,
+        duration: 0.6,
+      }, "-=0.4")
+      .from(".hero-stat-card", {
+        opacity: 0,
+        y: 20,
+        stagger: 0.1,
+        duration: 0.6,
+      }, "-=0.3")
+      .from(".hero-action-btn", {
+        opacity: 0,
+        scale: 0.96,
+        stagger: 0.1,
+        duration: 0.5,
+      }, "-=0.3")
+      .from(".hero-trust-box", {
+        opacity: 0,
+        y: 15,
+        stagger: 0.08,
+        duration: 0.5,
+      }, "-=0.3");
+
+      // Right 2x2 product showcase cards stagger
+      tl.from(".hero-product-card", {
+        opacity: 0,
+        scale: 0.92,
+        y: 35,
+        stagger: 0.12,
+        duration: 0.8,
+        ease: "back.out(1.2)",
+      }, "-=0.7");
+
+      // Gentle floating animation on floating indicator badges
+      gsap.to(".hero-float-tag", {
+        y: -3,
+        duration: 2.2,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
+      });
+    }, heroRef);
+
+    return () => ctx.revert();
+  }, []);
 
   const handleCopyCode = () => {
     navigator.clipboard.writeText("SPECIAL15");
@@ -47,15 +109,15 @@ export const HeroSection: React.FC = () => {
 
   return (
     <>
-      <section className="relative bg-white pt-8 pb-16 border-b border-slate-200/80 overflow-hidden">
+      <section ref={heroRef} className="relative bg-white pt-8 pb-16 border-b border-slate-200/80 overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
-            {/* Left Column: Heading, Offers, Stats, CTAs, 2x2 Grid (7 cols) */}
+            {/* Left Column: Heading, Offers, Stats, CTAs, 2x2 Grid (6 cols) */}
             <div className="lg:col-span-6 xl:col-span-6 space-y-6">
               {/* 1. Promotional Coupon Banner (Matching Reference Image) */}
-              <div className="inline-flex items-center justify-between gap-3 p-2 pr-2.5 rounded-xl bg-orange-50 border border-orange-200/80 text-xs w-full max-w-lg">
+              <div className="hero-coupon inline-flex items-center justify-between gap-3 p-2 pr-2.5 rounded-xl bg-orange-50 border border-orange-200/80 text-xs w-full max-w-lg shadow-2xs">
                 <div className="flex items-center gap-2 text-slate-800 font-semibold truncate">
-                  <div className="w-7 h-7 rounded-lg bg-[#FF4D24] text-white flex items-center justify-center shrink-0">
+                  <div className="w-7 h-7 rounded-lg bg-[#FF4D24] text-white flex items-center justify-center shrink-0 shadow-2xs">
                     <Gift className="w-4 h-4" />
                   </div>
                   <span className="truncate">Extra 15% off on first order</span>
@@ -77,18 +139,18 @@ export const HeroSection: React.FC = () => {
 
               {/* 2. Main Heading (Matching Exact Layout) */}
               <div>
-                <h1 className="text-4xl sm:text-5xl lg:text-[3.25rem] font-black tracking-tight leading-[1.08] text-[#142344]">
+                <h1 className="hero-title text-4xl sm:text-5xl lg:text-[3.25rem] font-black tracking-tight leading-[1.08] text-[#142344]">
                   Your Logo. <br />
                   <span className="text-[#FF4D24]">On Magnetic Badges.</span>
                 </h1>
-                <p className="text-sm sm:text-base text-slate-600 mt-3.5 font-medium leading-relaxed">
+                <p className="hero-desc text-sm sm:text-base text-slate-600 mt-3.5 font-medium leading-relaxed">
                   Made in our own factory in Noida NCR. Dispatched in 24–48 hours across India.
                 </p>
               </div>
 
               {/* 3. Stats Cards (Two Side-by-Side Rectangles) */}
               <div className="grid grid-cols-2 gap-3 max-w-md">
-                <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200 flex items-center gap-3">
+                <div className="hero-stat-card p-3.5 rounded-xl bg-slate-50 border border-slate-200 flex items-center gap-3 transition-transform hover:-translate-y-0.5">
                   <div className="w-10 h-10 rounded-lg bg-amber-100 text-amber-600 flex items-center justify-center shrink-0">
                     <Star className="w-5 h-5 fill-amber-500 text-amber-500" />
                   </div>
@@ -101,7 +163,7 @@ export const HeroSection: React.FC = () => {
                   </div>
                 </div>
 
-                <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200 flex items-center gap-3">
+                <div className="hero-stat-card p-3.5 rounded-xl bg-slate-50 border border-slate-200 flex items-center gap-3 transition-transform hover:-translate-y-0.5">
                   <div className="w-10 h-10 rounded-lg bg-orange-100 text-[#FF4D24] flex items-center justify-center shrink-0">
                     <Package className="w-5 h-5" />
                   </div>
@@ -118,7 +180,7 @@ export const HeroSection: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => setIsVideoModalOpen(true)}
-                  className="px-5 py-3.5 bg-[#FF4D24] hover:bg-[#E03C14] text-white rounded-xl shadow-lg shadow-[#FF4D24]/30 transition-all flex items-center gap-3 group active:scale-98"
+                  className="hero-action-btn px-5 py-3.5 bg-[#FF4D24] hover:bg-[#E03C14] text-white rounded-xl shadow-lg shadow-[#FF4D24]/30 transition-all flex items-center gap-3 group active:scale-98"
                 >
                   <div className="w-8 h-8 rounded-full bg-white text-[#FF4D24] flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
                     <Play className="w-4 h-4 fill-[#FF4D24] ml-0.5" />
@@ -132,7 +194,7 @@ export const HeroSection: React.FC = () => {
                 {/* Shop Best Sellers Button */}
                 <Link
                   href="/products"
-                  className="px-6 py-4 bg-white hover:bg-slate-50 text-[#142344] font-bold text-xs rounded-xl border border-slate-300 shadow-2xs transition-colors flex items-center gap-2"
+                  className="hero-action-btn px-6 py-4 bg-white hover:bg-slate-50 text-[#142344] font-bold text-xs rounded-xl border border-slate-300 shadow-2xs transition-colors flex items-center gap-2"
                 >
                   <span>Shop Best Sellers</span>
                   <ArrowRight className="w-4 h-4" />
@@ -141,7 +203,7 @@ export const HeroSection: React.FC = () => {
 
               {/* 5. 2x2 Trust Indicators Grid (Matching Screenshot) */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
-                <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200 flex items-start gap-3">
+                <div className="hero-trust-box p-3.5 rounded-xl bg-slate-50 border border-slate-200 flex items-start gap-3 hover:border-slate-300 transition-colors">
                   <PenTool className="w-5 h-5 text-[#FF4D24] shrink-0 mt-0.5" />
                   <div>
                     <div className="text-xs font-bold text-[#142344]">Approve Before We Print</div>
@@ -149,7 +211,7 @@ export const HeroSection: React.FC = () => {
                   </div>
                 </div>
 
-                <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200 flex items-start gap-3">
+                <div className="hero-trust-box p-3.5 rounded-xl bg-slate-50 border border-slate-200 flex items-start gap-3 hover:border-slate-300 transition-colors">
                   <Truck className="w-5 h-5 text-[#FF4D24] shrink-0 mt-0.5" />
                   <div>
                     <div className="text-xs font-bold text-[#142344]">Dispatch in 24–48 hrs</div>
@@ -157,7 +219,7 @@ export const HeroSection: React.FC = () => {
                   </div>
                 </div>
 
-                <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200 flex items-start gap-3">
+                <div className="hero-trust-box p-3.5 rounded-xl bg-slate-50 border border-slate-200 flex items-start gap-3 hover:border-slate-300 transition-colors">
                   <Building2 className="w-5 h-5 text-[#FF4D24] shrink-0 mt-0.5" />
                   <div>
                     <div className="text-xs font-bold text-[#142344]">In-house manufacturing</div>
@@ -165,7 +227,7 @@ export const HeroSection: React.FC = () => {
                   </div>
                 </div>
 
-                <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200 flex items-start gap-3">
+                <div className="hero-trust-box p-3.5 rounded-xl bg-slate-50 border border-slate-200 flex items-start gap-3 hover:border-slate-300 transition-colors">
                   <MapPin className="w-5 h-5 text-[#FF4D24] shrink-0 mt-0.5" />
                   <div>
                     <div className="text-xs font-bold text-[#142344]">Pan-India delivery</div>
@@ -181,7 +243,7 @@ export const HeroSection: React.FC = () => {
                 {/* 1. Magnetic Badges Card */}
                 <Link
                   href="/products/prod-1"
-                  className="group bg-white rounded-2xl border border-slate-200 p-4 shadow-sm hover:shadow-xl hover:border-[#142344]/30 transition-all flex flex-col justify-between"
+                  className="hero-product-card group bg-white rounded-2xl border border-slate-200 p-4 shadow-sm hover:shadow-xl hover:border-[#142344]/30 transition-all duration-300 flex flex-col justify-between"
                 >
                   <div>
                     <div className="text-xs font-black tracking-tight text-[#142344] uppercase">
@@ -200,9 +262,9 @@ export const HeroSection: React.FC = () => {
                         alt="Custom Magnetic Name Badges"
                         fill
                         priority
-                        className="object-cover group-hover:scale-105 transition-transform duration-300"
+                        className="object-cover group-hover:scale-105 transition-transform duration-500"
                       />
-                      <div className="absolute top-2 right-2 bg-white/90 backdrop-blur-2xs px-2 py-0.5 rounded text-[10px] font-bold text-slate-700">
+                      <div className="hero-float-tag absolute top-2 right-2 bg-white/95 backdrop-blur-2xs px-2 py-0.5 rounded text-[10px] font-bold text-slate-700 shadow-xs">
                         Zero Pinholes
                       </div>
                     </div>
@@ -213,7 +275,7 @@ export const HeroSection: React.FC = () => {
                       <div className="text-xs font-bold text-[#142344]">Magnetic Badge</div>
                       <div className="text-xs font-black text-[#FF4D24]">₹ 999 for 5 pcs</div>
                     </div>
-                    <div className="w-8 h-8 rounded-full bg-[#FF4D24] text-white flex items-center justify-center group-hover:scale-110 transition-transform">
+                    <div className="w-8 h-8 rounded-full bg-[#FF4D24] text-white flex items-center justify-center group-hover:scale-110 group-hover:bg-[#E03C14] transition-all">
                       <ArrowRight className="w-4 h-4" />
                     </div>
                   </div>
@@ -222,7 +284,7 @@ export const HeroSection: React.FC = () => {
                 {/* 2. Customized Printed T-Shirts Card */}
                 <Link
                   href="/products/prod-2"
-                  className="group bg-white rounded-2xl border border-slate-200 p-4 shadow-sm hover:shadow-xl hover:border-[#142344]/30 transition-all flex flex-col justify-between"
+                  className="hero-product-card group bg-white rounded-2xl border border-slate-200 p-4 shadow-sm hover:shadow-xl hover:border-[#142344]/30 transition-all duration-300 flex flex-col justify-between"
                 >
                   <div>
                     <div className="text-xs font-black tracking-tight text-[#142344] uppercase">
@@ -241,9 +303,9 @@ export const HeroSection: React.FC = () => {
                         alt="Customized Printed Polo T-Shirts"
                         fill
                         priority
-                        className="object-cover group-hover:scale-105 transition-transform duration-300"
+                        className="object-cover group-hover:scale-105 transition-transform duration-500"
                       />
-                      <div className="absolute bottom-2 left-2 bg-[#142344]/80 backdrop-blur-2xs text-white px-2 py-0.5 rounded text-[10px] font-bold">
+                      <div className="hero-float-tag absolute bottom-2 left-2 bg-[#142344]/90 backdrop-blur-2xs text-white px-2 py-0.5 rounded text-[10px] font-bold shadow-xs">
                         Front & Back Print
                       </div>
                     </div>
@@ -254,7 +316,7 @@ export const HeroSection: React.FC = () => {
                       <div className="text-xs font-bold text-[#142344]">Polo T-Shirt</div>
                       <div className="text-xs font-black text-[#FF4D24]">₹ 1,449 for 2 pcs</div>
                     </div>
-                    <div className="w-8 h-8 rounded-full bg-[#FF4D24] text-white flex items-center justify-center group-hover:scale-110 transition-transform">
+                    <div className="w-8 h-8 rounded-full bg-[#FF4D24] text-white flex items-center justify-center group-hover:scale-110 group-hover:bg-[#E03C14] transition-all">
                       <ArrowRight className="w-4 h-4" />
                     </div>
                   </div>
@@ -263,7 +325,7 @@ export const HeroSection: React.FC = () => {
                 {/* 3. Customized Caps Card */}
                 <Link
                   href="/products/prod-4"
-                  className="group bg-white rounded-2xl border border-slate-200 p-4 shadow-sm hover:shadow-xl hover:border-[#142344]/30 transition-all flex flex-col justify-between"
+                  className="hero-product-card group bg-white rounded-2xl border border-slate-200 p-4 shadow-sm hover:shadow-xl hover:border-[#142344]/30 transition-all duration-300 flex flex-col justify-between"
                 >
                   <div>
                     <div className="text-xs font-black tracking-tight text-[#142344] uppercase">
@@ -281,9 +343,9 @@ export const HeroSection: React.FC = () => {
                         src="https://images.unsplash.com/photo-1588850561407-ed78c282e89b?auto=format&fit=crop&w=600&q=80"
                         alt="Customized Caps with Embroidery"
                         fill
-                        className="object-cover group-hover:scale-105 transition-transform duration-300"
+                        className="object-cover group-hover:scale-105 transition-transform duration-500"
                       />
-                      <div className="absolute top-2 right-2 bg-white/90 backdrop-blur-2xs px-2 py-0.5 rounded text-[10px] font-bold text-slate-700">
+                      <div className="hero-float-tag absolute top-2 right-2 bg-white/95 backdrop-blur-2xs px-2 py-0.5 rounded text-[10px] font-bold text-slate-700 shadow-xs">
                         Universal Fit
                       </div>
                     </div>
@@ -294,7 +356,7 @@ export const HeroSection: React.FC = () => {
                       <div className="text-xs font-bold text-[#142344]">Caps</div>
                       <div className="text-xs font-black text-[#FF4D24]">₹ 1,390 for 5 pcs</div>
                     </div>
-                    <div className="w-8 h-8 rounded-full bg-[#FF4D24] text-white flex items-center justify-center group-hover:scale-110 transition-transform">
+                    <div className="w-8 h-8 rounded-full bg-[#FF4D24] text-white flex items-center justify-center group-hover:scale-110 group-hover:bg-[#E03C14] transition-all">
                       <ArrowRight className="w-4 h-4" />
                     </div>
                   </div>
@@ -303,7 +365,7 @@ export const HeroSection: React.FC = () => {
                 {/* 4. Customized Printed Hoodies Card */}
                 <Link
                   href="/products/prod-3"
-                  className="group bg-white rounded-2xl border border-slate-200 p-4 shadow-sm hover:shadow-xl hover:border-[#142344]/30 transition-all flex flex-col justify-between"
+                  className="hero-product-card group bg-white rounded-2xl border border-slate-200 p-4 shadow-sm hover:shadow-xl hover:border-[#142344]/30 transition-all duration-300 flex flex-col justify-between"
                 >
                   <div>
                     <div className="text-xs font-black tracking-tight text-[#142344] uppercase">
@@ -321,9 +383,9 @@ export const HeroSection: React.FC = () => {
                         src="https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=600&q=80"
                         alt="Customized Fleece Hoodies"
                         fill
-                        className="object-cover group-hover:scale-105 transition-transform duration-300"
+                        className="object-cover group-hover:scale-105 transition-transform duration-500"
                       />
-                      <div className="absolute bottom-2 left-2 bg-[#142344]/80 backdrop-blur-2xs text-white px-2 py-0.5 rounded text-[10px] font-bold">
+                      <div className="hero-float-tag absolute bottom-2 left-2 bg-[#142344]/90 backdrop-blur-2xs text-white px-2 py-0.5 rounded text-[10px] font-bold shadow-xs">
                         380 GSM Fleece
                       </div>
                     </div>
@@ -334,7 +396,7 @@ export const HeroSection: React.FC = () => {
                       <div className="text-xs font-bold text-[#142344]">Hoodies</div>
                       <div className="text-xs font-black text-[#FF4D24]">₹ 2,034 for 2 pcs</div>
                     </div>
-                    <div className="w-8 h-8 rounded-full bg-[#FF4D24] text-white flex items-center justify-center group-hover:scale-110 transition-transform">
+                    <div className="w-8 h-8 rounded-full bg-[#FF4D24] text-white flex items-center justify-center group-hover:scale-110 group-hover:bg-[#E03C14] transition-all">
                       <ArrowRight className="w-4 h-4" />
                     </div>
                   </div>

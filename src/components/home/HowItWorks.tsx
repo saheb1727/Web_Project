@@ -1,10 +1,32 @@
 "use client";
 
-import React from "react";
+import React, { useRef, useEffect } from "react";
 import { PackageSearch, UploadCloud, Eye, Truck, ArrowRight } from "lucide-react";
 import Link from "next/link";
+import { gsap } from "@/lib/gsap";
 
 export const HowItWorks: React.FC = () => {
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.from(".how-step-card", {
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 82%",
+          once: true,
+        },
+        opacity: 0,
+        y: 45,
+        stagger: 0.15,
+        duration: 0.8,
+        ease: "power2.out",
+      });
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
   const steps = [
     {
       step: "01",
@@ -33,7 +55,7 @@ export const HowItWorks: React.FC = () => {
   ];
 
   return (
-    <section className="py-20 bg-white border-b border-slate-200">
+    <section ref={sectionRef} className="py-20 bg-white border-b border-slate-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-2xl mx-auto mb-16">
           <span className="text-xs font-bold text-[#FF4D24] uppercase tracking-wider block mb-2">
@@ -53,7 +75,7 @@ export const HowItWorks: React.FC = () => {
             return (
               <div
                 key={idx}
-                className="relative bg-slate-50 rounded-3xl p-6 border border-slate-200/80 hover:border-[#142344]/30 shadow-xs hover:shadow-xl transition-all duration-300 flex flex-col justify-between group"
+                className="how-step-card relative bg-slate-50 rounded-3xl p-6 border border-slate-200/80 hover:border-[#142344]/30 shadow-xs hover:shadow-xl transition-all duration-300 flex flex-col justify-between group"
               >
                 <div>
                   <div className="flex items-center justify-between mb-6">
@@ -94,4 +116,3 @@ export const HowItWorks: React.FC = () => {
     </section>
   );
 };
-

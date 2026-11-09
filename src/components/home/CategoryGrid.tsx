@@ -1,14 +1,36 @@
 "use client";
 
-import React from "react";
+import React, { useRef, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight, Layers } from "lucide-react";
 import { categories } from "@/data/categories";
+import { gsap } from "@/lib/gsap";
 
 export const CategoryGrid: React.FC = () => {
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.from(".category-card", {
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 85%",
+          once: true,
+        },
+        opacity: 0,
+        y: 40,
+        stagger: 0.1,
+        duration: 0.8,
+        ease: "power2.out",
+      });
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section className="py-16 bg-white border-b border-slate-200/80">
+    <section ref={sectionRef} className="py-16 bg-white border-b border-slate-200/80">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-10 gap-4">
@@ -40,7 +62,7 @@ export const CategoryGrid: React.FC = () => {
             <Link
               key={cat.id}
               href={`/category/${cat.slug}`}
-              className="group relative rounded-3xl overflow-hidden bg-slate-50 border border-slate-200/80 hover:border-[#142344]/30 shadow-xs hover:shadow-xl transition-all duration-300 flex flex-col"
+              className="category-card group relative rounded-2xl overflow-hidden bg-slate-50 border border-slate-200/80 hover:border-[#142344]/30 shadow-xs hover:shadow-xl transition-all duration-300 flex flex-col"
             >
               <div className="relative aspect-16/10 w-full overflow-hidden bg-slate-100">
                 <Image
@@ -84,4 +106,3 @@ export const CategoryGrid: React.FC = () => {
     </section>
   );
 };
-

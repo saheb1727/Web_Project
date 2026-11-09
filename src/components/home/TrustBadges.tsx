@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useRef, useEffect } from "react";
 import {
   ShieldCheck,
   Truck,
@@ -9,8 +9,30 @@ import {
   Zap,
   Award,
 } from "lucide-react";
+import { gsap } from "@/lib/gsap";
 
 export const TrustBadges: React.FC = () => {
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.from(".trust-item-card", {
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 88%",
+          once: true,
+        },
+        opacity: 0,
+        y: 25,
+        stagger: 0.08,
+        duration: 0.6,
+        ease: "power2.out",
+      });
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
   const badges = [
     {
       icon: RotateCcw,
@@ -45,7 +67,7 @@ export const TrustBadges: React.FC = () => {
   ];
 
   return (
-    <section className="py-12 bg-white border-b border-slate-200">
+    <section ref={sectionRef} className="py-12 bg-white border-b border-slate-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
           {badges.map((b, i) => {
@@ -53,7 +75,7 @@ export const TrustBadges: React.FC = () => {
             return (
               <div
                 key={i}
-                className="flex flex-col items-center text-center p-4 rounded-2xl bg-slate-50 border border-slate-200/80 hover:border-[#142344]/30 hover:bg-slate-100/60 transition-all group"
+                className="trust-item-card flex flex-col items-center text-center p-4 rounded-2xl bg-slate-50 border border-slate-200/80 hover:border-[#142344]/30 hover:bg-slate-100/60 transition-all group"
               >
                 <div className="w-12 h-12 rounded-xl bg-white shadow-xs border border-slate-200/80 flex items-center justify-center text-[#FF4D24] mb-3 group-hover:scale-110 transition-transform">
                   <Icon className="w-6 h-6" />
@@ -72,4 +94,3 @@ export const TrustBadges: React.FC = () => {
     </section>
   );
 };
-

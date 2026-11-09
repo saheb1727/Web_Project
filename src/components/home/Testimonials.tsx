@@ -1,13 +1,39 @@
 "use client";
 
-import React from "react";
+import React, { useRef, useEffect } from "react";
 import Image from "next/image";
 import { Star, Quote, CheckCircle2 } from "lucide-react";
 import { testimonials } from "@/data/testimonials";
+import { gsap } from "@/lib/gsap";
 
 export const Testimonials: React.FC = () => {
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.from(".testimonial-card", {
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 82%",
+          once: true,
+        },
+        opacity: 0,
+        y: 35,
+        stagger: 0.1,
+        duration: 0.7,
+        ease: "power2.out",
+      });
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section id="testimonials" className="py-20 bg-slate-50 border-b border-slate-200 scroll-mt-20">
+    <section
+      id="testimonials"
+      ref={sectionRef}
+      className="py-20 bg-slate-50 border-b border-slate-200 scroll-mt-20"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-2xl mx-auto mb-14">
           <span className="text-xs font-bold text-[#FF4D24] uppercase tracking-wider block mb-2">
@@ -25,7 +51,7 @@ export const Testimonials: React.FC = () => {
           {testimonials.map((t) => (
             <div
               key={t.id}
-              className="bg-white rounded-3xl p-6 border border-slate-200/80 shadow-xs hover:shadow-xl hover:border-[#142344]/30 transition-all duration-300 flex flex-col justify-between"
+              className="testimonial-card bg-white rounded-3xl p-6 border border-slate-200/80 shadow-xs hover:shadow-xl hover:border-[#142344]/30 transition-all duration-300 flex flex-col justify-between"
             >
               <div>
                 {/* Rating stars & Quote Icon */}
@@ -79,4 +105,3 @@ export const Testimonials: React.FC = () => {
     </section>
   );
 };
-
