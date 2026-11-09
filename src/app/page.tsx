@@ -1,18 +1,46 @@
+import { HeroSection } from "@/components/home/HeroSection";
+import { CouponBanner } from "@/components/home/CouponBanner";
+import { CategoryGrid } from "@/components/home/CategoryGrid";
+import { TrustBadges } from "@/components/home/TrustBadges";
+import { FeaturedProducts } from "@/components/home/FeaturedProducts";
+import { WhyChooseUs } from "@/components/home/WhyChooseUs";
+import { HowItWorks } from "@/components/home/HowItWorks";
+import { Testimonials } from "@/components/home/Testimonials";
+import { FAQSection } from "@/components/home/FAQSection";
+import { Newsletter } from "@/components/home/Newsletter";
+
 export default function Home() {
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center p-6 text-center">
-      <main className="flex flex-col items-center gap-4 max-w-lg">
-        <div className="inline-flex items-center gap-2 px-3 py-1 text-xs font-medium rounded-full bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20">
-          <span className="h-2 w-2 rounded-full bg-amber-500 animate-pulse" />
-          Under Construction
-        </div>
-        <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">
-          Project is under construction
-        </h1>
-        <p className="text-base text-zinc-600 dark:text-zinc-400">
-          We are currently working on this website. Please check back soon!
-        </p>
-      </main>
+    <div className="flex flex-col min-h-screen">
+      {/* 1. Hero Section */}
+      <HeroSection />
+
+      {/* 2. Promotional Coupon Banner */}
+      <CouponBanner />
+
+      {/* 3. Product Category Showcase Grid */}
+      <CategoryGrid />
+
+      {/* 4. Trust Badges & Quality Indicators */}
+      <TrustBadges />
+
+      {/* 5. Featured Products & Best Sellers */}
+      <FeaturedProducts />
+
+      {/* 6. Why Choose MyPrintHub Section */}
+      <WhyChooseUs />
+
+      {/* 7. How It Works (4-Step Workflow) */}
+      <HowItWorks />
+
+      {/* 8. Customer Testimonials */}
+      <Testimonials />
+
+      {/* 9. FAQ Accordion */}
+      <FAQSection />
+
+      {/* 10. Newsletter */}
+      <Newsletter />
     </div>
   );
 }
