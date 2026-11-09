@@ -155,7 +155,11 @@ export const HeroSection: React.FC = () => {
                   <div>
                     <div className="flex items-center gap-1">
                       <span className="font-black text-sm text-[var(--color-primary)]">4.4</span>
-                      <div className="flex text-amber-500 text-xs">★★★★★</div>
+                      <div className="flex text-amber-500 gap-0.5">
+                        {[...Array(5)].map((_, i) => (
+                          <Star key={i} className="w-2.5 h-2.5 fill-amber-500 text-amber-500" />
+                        ))}
+                      </div>
                     </div>
                     <div className="text-[11px] text-slate-500 font-medium">3,400+ Reviews</div>
                   </div>

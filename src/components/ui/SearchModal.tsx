@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
-import { Search, X, ArrowRight, Tag } from "lucide-react";
+import { Search, X, ArrowRight, Tag, Sparkles, Star } from "lucide-react";
 import { products } from "@/data/products";
 import { Product } from "@/types";
 import Link from "next/link";
@@ -109,7 +109,10 @@ export const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose }) => 
 
             <div className="mt-6 pt-5 border-t border-slate-100">
               <div className="text-xs text-slate-500 flex items-center justify-between">
-                <span>💡 Tip: You can order sample prototypes with zero minimum quantity.</span>
+                <span className="flex items-center gap-1.5">
+                  <Sparkles className="w-3.5 h-3.5 text-amber-500 shrink-0" />
+                  <span>Tip: You can order sample prototypes with zero minimum quantity.</span>
+                </span>
                 <Link
                   href="/products"
                   onClick={onClose}
@@ -155,8 +158,9 @@ export const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose }) => 
                       <span className="text-xs text-slate-400 line-through">
                         ₹{product.originalPrice}
                       </span>
-                      <span className="text-[10px] font-semibold bg-emerald-50 text-emerald-600 px-1.5 py-0.2 rounded">
-                        ★ {product.rating}
+                      <span className="text-[10px] font-semibold bg-emerald-50 text-emerald-600 px-1.5 py-0.5 rounded flex items-center gap-1">
+                        <Star className="w-3 h-3 fill-emerald-600 text-emerald-600" />
+                        <span>{product.rating}</span>
                       </span>
                     </div>
                   </div>

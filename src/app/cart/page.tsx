@@ -119,8 +119,9 @@ export default function CartPage() {
                   <span className="flex items-center gap-1.5 text-[#142344]">
                     <Truck className="w-4 h-4 text-[#FF4D24]" />
                     {freeShippingRemaining === 0 ? (
-                      <span className="text-emerald-600">
-                        🎉 Congratulations! You&apos;ve unlocked FREE Pan-India Shipping!
+                      <span className="text-emerald-600 flex items-center gap-1">
+                        <Sparkles className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                        <span>Congratulations! You&apos;ve unlocked FREE Pan-India Shipping!</span>
                       </span>
                     ) : (
                       <span>

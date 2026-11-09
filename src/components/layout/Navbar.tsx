@@ -10,12 +10,33 @@ import {
   Menu,
   Printer,
   Palette,
+  IdCard,
+  Shirt,
+  Flame,
+  Gift,
 } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 import { useWishlist } from "@/context/WishlistContext";
 import { useTheme } from "@/context/ThemeContext";
 import { SearchModal } from "@/components/ui/SearchModal";
 import { MobileMenu } from "./MobileMenu";
+
+// Clean vector Cap SVG icon
+const CapIcon: React.FC<{ className?: string }> = ({ className = "w-4 h-4" }) => (
+  <svg
+    className={className}
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <path d="M4 15c0-4.4 3.6-8 8-8s8 3.6 8 8" />
+    <path d="M2 15h20c0 1.5-1.5 3-4 3H6c-2.5 0-4-1.5-4-3z" />
+    <circle cx="12" cy="7" r="1" />
+  </svg>
+);
 
 export const Navbar: React.FC = () => {
   const { totalItems } = useCart();
@@ -28,27 +49,27 @@ export const Navbar: React.FC = () => {
     {
       label: "Magnetic Badge",
       href: "/category/magnetic-badges",
-      icon: "🪪",
+      icon: IdCard,
     },
     {
       label: "T-Shirts",
       href: "/category/custom-t-shirts",
-      icon: "👕",
+      icon: Shirt,
     },
     {
       label: "Best Seller",
       href: "/products",
-      icon: "✨",
+      icon: Flame,
     },
     {
       label: "Caps",
       href: "/category/custom-caps",
-      icon: "🧢",
+      icon: CapIcon,
     },
     {
       label: "Corporate Gifts",
       href: "/category/corporate-kits",
-      icon: "🎁",
+      icon: Gift,
     },
   ];
 
@@ -83,18 +104,21 @@ export const Navbar: React.FC = () => {
               </div>
             </Link>
 
-            {/* Center Navigation Links (Matching Screenshot exactly with icon badges) */}
+            {/* Center Navigation Links (Using clean vector SVG icons, zero emojis) */}
             <nav className="hidden lg:flex items-center gap-6 xl:gap-8">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.label}
-                  href={link.href}
-                  className="flex items-center gap-1.5 text-sm font-semibold text-slate-800 hover:text-[var(--color-accent)] transition-colors py-2"
-                >
-                  <span className="text-base leading-none">{link.icon}</span>
-                  <span>{link.label}</span>
-                </Link>
-              ))}
+              {navLinks.map((link) => {
+                const Icon = link.icon;
+                return (
+                  <Link
+                    key={link.label}
+                    href={link.href}
+                    className="flex items-center gap-1.5 text-sm font-semibold text-slate-800 hover:text-[var(--color-accent)] transition-colors py-2 group"
+                  >
+                    <Icon className="w-4 h-4 text-slate-500 group-hover:text-[var(--color-accent)] transition-colors shrink-0" />
+                    <span>{link.label}</span>
+                  </Link>
+                );
+              })}
             </nav>
 
             {/* Right Icons: Search, Palette Switcher, Account, Wishlist, Cart */}
