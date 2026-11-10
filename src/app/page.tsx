@@ -6,7 +6,6 @@ import { WhyChooseUs } from "@/components/home/WhyChooseUs";
 import { HowItWorks } from "@/components/home/HowItWorks";
 import { Testimonials } from "@/components/home/Testimonials";
 import { FAQSection } from "@/components/home/FAQSection";
-import { Newsletter } from "@/components/home/Newsletter";
 
 export default function Home() {
   return (
@@ -34,9 +33,6 @@ export default function Home() {
 
       {/* 8. FAQ Accordion */}
       <FAQSection />
-
-      {/* 9. Newsletter */}
-      <Newsletter />
     </div>
   );
 }

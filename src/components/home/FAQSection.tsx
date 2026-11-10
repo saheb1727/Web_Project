@@ -1,9 +1,8 @@
 "use client";
 
 import React, { useState } from "react";
-import { ChevronDown, HelpCircle, MessageSquare } from "lucide-react";
+import { ChevronDown, HelpCircle } from "lucide-react";
 import { faqs } from "@/data/testimonials";
-import Link from "next/link";
 
 export const FAQSection: React.FC = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
@@ -63,26 +62,6 @@ export const FAQSection: React.FC = () => {
               </div>
             );
           })}
-        </div>
-
-        {/* Live Support Banner */}
-        <div className="mt-10 p-6 rounded-2xl bg-slate-50 border border-slate-200 text-center flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="text-left">
-            <h4 className="font-bold text-sm text-[var(--color-primary)]">
-              Have a custom enterprise inquiry?
-            </h4>
-            <p className="text-xs text-slate-500 mt-0.5">
-              Talk directly to our print engineers for custom Pantone matches and specialized dimensions.
-            </p>
-          </div>
-
-          <Link
-            href="/contact"
-            className="px-5 py-2.5 bg-[var(--color-primary)] hover:opacity-90 text-white text-xs font-bold rounded-xl transition-opacity flex items-center gap-2 shrink-0"
-          >
-            <MessageSquare className="w-3.5 h-3.5 text-[var(--color-accent)]" />
-            <span>Chat With Support</span>
-          </Link>
         </div>
       </div>
     </section>
