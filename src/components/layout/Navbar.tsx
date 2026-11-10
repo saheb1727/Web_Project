@@ -19,6 +19,7 @@ import {
 } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 import { useWishlist } from "@/context/WishlistContext";
+import { useAuth } from "@/context/AuthContext";
 
 // Dynamically import modals to reduce initial JavaScript bundle
 const SearchModal = dynamic(
@@ -56,6 +57,7 @@ const CapIcon: React.FC<{ className?: string }> = ({ className = "w-4 h-4" }) =>
 export const Navbar: React.FC = () => {
   const { totalItems } = useCart();
   const { wishlistCount } = useWishlist();
+  const { user, isLoggedIn } = useAuth();
   const pathname = usePathname();
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -227,11 +229,22 @@ export const Navbar: React.FC = () => {
               {/* Account Icon (Desktop & Tablet) */}
               <Link
                 href="/auth"
-                className="hidden sm:flex p-2 hover:text-[var(--color-accent)] transition-colors rounded-lg"
+                className="hidden sm:flex items-center gap-1.5 p-1.5 sm:px-2.5 sm:py-1.5 hover:text-[var(--color-accent)] transition-colors rounded-xl hover:bg-slate-50 text-slate-700"
                 aria-label="My Account"
-                title="Account"
+                title={isLoggedIn && user ? `Account: ${user.name}` : "Sign In / Register"}
               >
-                <User className="w-5 h-5 stroke-[1.8]" />
+                {isLoggedIn && user ? (
+                  <div className="w-6 h-6 rounded-full bg-[#1E1B4B] text-white flex items-center justify-center text-[10px] font-bold shadow-2xs">
+                    {user.name[0].toUpperCase()}
+                  </div>
+                ) : (
+                  <User className="w-5 h-5 stroke-[1.8]" />
+                )}
+                {isLoggedIn && user && (
+                  <span className="text-xs font-bold text-slate-800 hidden md:inline truncate max-w-[80px]">
+                    {user.name.split(" ")[0]}
+                  </span>
+                )}
               </Link>
 
               {/* Wishlist Icon */}

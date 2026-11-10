@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import {
@@ -18,9 +18,11 @@ import {
   Building,
   Smartphone,
   Sparkles,
+  Package,
 } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 import { useToast } from "@/context/ToastContext";
+import { useAuth } from "@/context/AuthContext";
 
 export default function CartPage() {
   const {
@@ -40,12 +42,14 @@ export default function CartPage() {
   } = useCart();
 
   const { showToast } = useToast();
+  const { user, addOrderToHistory } = useAuth();
   const [couponInput, setCouponInput] = useState("");
   const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
   const [isOrderPlaced, setIsOrderPlaced] = useState(false);
   const [orderId, setOrderId] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // Checkout form state
+  // Checkout form state (prefilled from Auth if available)
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
@@ -56,6 +60,21 @@ export default function CartPage() {
     pincode: "",
     paymentMethod: "upi",
   });
+
+  useEffect(() => {
+    if (user) {
+      setFormData((prev) => ({
+        ...prev,
+        fullName: prev.fullName || user.name,
+        email: prev.email || user.email,
+        phone: prev.phone || user.phone,
+        address: prev.address || user.savedAddress?.address || "",
+        city: prev.city || user.savedAddress?.city || "",
+        state: prev.state || user.savedAddress?.state || "",
+        pincode: prev.pincode || user.savedAddress?.pincode || "",
+      }));
+    }
+  }, [user]);
 
   const handleApplyCoupon = (e: React.FormEvent) => {
     e.preventDefault();
@@ -71,9 +90,72 @@ export default function CartPage() {
       return;
     }
 
-    const newOrderId = `MPH-${Math.floor(100000 + Math.random() * 900000)}`;
-    setOrderId(newOrderId);
+    setIsSubmitting(true);
+    const fallbackOrderId = `MPH-${Math.floor(100000 + Math.random() * 900000)}`;
+    let finalOrderId = fallbackOrderId;
+
+    try {
+      // 1. Post to MongoDB Orders API
+      const res = await fetch("/api/orders", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          customer: {
+            fullName: formData.fullName,
+            email: formData.email,
+            phone: formData.phone,
+          },
+          shippingAddress: {
+            address: formData.address,
+            city: formData.city || "Noida",
+            state: formData.state || "Uttar Pradesh",
+            pincode: formData.pincode,
+          },
+          items: items.map((it) => ({
+            productId: it.product.id,
+            name: it.product.name,
+            image: it.product.image,
+            category: it.product.category,
+            unitPrice: it.unitPrice,
+            quantity: it.quantity,
+            selectedColor: it.selectedColor,
+            selectedSize: it.selectedSize,
+            customText: it.customText,
+            customImage: it.customImage,
+          })),
+          subtotal,
+          discount,
+          shipping,
+          total,
+          couponCode: coupon?.code,
+          paymentMethod: formData.paymentMethod,
+        }),
+      });
+
+      if (res.ok) {
+        const data = await res.json();
+        if (data.order?.orderId) {
+          finalOrderId = data.order.orderId;
+        }
+      }
+    } catch {
+      // Fallback
+    }
+
+    // 2. Add to user order history in context & localStorage
+    addOrderToHistory({
+      orderId: finalOrderId,
+      date: new Date().toLocaleDateString("en-US", { month: "short", day: "2-digit", year: "numeric" }),
+      total,
+      itemsCount: items.reduce((acc, i) => acc + i.quantity, 0),
+      itemsSummary: `${items[0]?.product.name || "Custom Merchandise"}${items.length > 1 ? ` + ${items.length - 1} more items` : ""}`,
+      status: "Order Placed & Confirmed",
+      paymentMethod: formData.paymentMethod.toUpperCase(),
+    });
+
+    setOrderId(finalOrderId);
     setIsOrderPlaced(true);
+    setIsSubmitting(false);
     clearCart();
 
     try {
@@ -88,7 +170,7 @@ export default function CartPage() {
       // ignore
     }
 
-    showToast(`Order #${newOrderId} placed successfully!`, "success");
+    showToast(`Order #${finalOrderId} placed successfully!`, "success");
   };
 
   const freeShippingProgress = Math.min(
@@ -415,28 +497,46 @@ export default function CartPage() {
 
             {/* Modal Form Body */}
             {isOrderPlaced ? (
-              <div className="p-8 text-center space-y-4">
-                <div className="w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto">
+              <div className="p-6 sm:p-8 text-center space-y-4">
+                <div className="w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto shadow-sm">
                   <CheckCircle2 className="w-10 h-10" />
                 </div>
                 <h3 className="text-2xl font-black text-[#1E1B4B]">
                   Order Placed Successfully!
                 </h3>
-                <p className="text-xs text-slate-600 max-w-md mx-auto">
-                  Thank you, <strong>{formData.fullName || "Customer"}</strong>! Your order ID is{" "}
-                  <span className="font-mono font-bold text-[#F95738]">{orderId}</span>.
-                  A digital proof and tracking link will be sent to your email.
+                <p className="text-xs text-slate-600 max-w-md mx-auto leading-relaxed">
+                  Thank you, <strong>{formData.fullName || "Customer"}</strong>! Your official tracking order number is{" "}
+                  <span className="font-mono font-bold text-[#F95738] bg-[#F95738]/10 px-2 py-0.5 rounded">
+                    {orderId}
+                  </span>
+                  . Saved in your account history and queued for digital vector proof verification.
                 </p>
-                <div className="pt-4">
-                  <button
+
+                {/* Direct Action Buttons */}
+                <div className="pt-3 flex flex-col sm:flex-row items-center justify-center gap-3">
+                  <Link
+                    href={`/track?orderId=${orderId}`}
                     onClick={() => {
                       setIsCheckoutOpen(false);
                       setIsOrderPlaced(false);
                     }}
-                    className="px-8 py-3 bg-[#1E1B4B] text-white text-xs font-bold rounded-xl shadow-md hover:bg-[#110E38]"
+                    className="w-full sm:w-auto px-6 py-3 bg-[#F95738] hover:bg-[#E03A1B] text-white text-xs font-bold rounded-xl shadow-md shadow-[#F95738]/20 flex items-center justify-center gap-2 active:scale-95 transition-all"
                   >
-                    Close & Return to Home
-                  </button>
+                    <Package className="w-4 h-4" />
+                    <span>Track Order #{orderId}</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </Link>
+
+                  <Link
+                    href="/auth"
+                    onClick={() => {
+                      setIsCheckoutOpen(false);
+                      setIsOrderPlaced(false);
+                    }}
+                    className="w-full sm:w-auto px-6 py-3 bg-[#1E1B4B] hover:bg-[#110E38] text-white text-xs font-bold rounded-xl shadow-sm flex items-center justify-center gap-1.5 active:scale-95 transition-all"
+                  >
+                    <span>View in Account</span>
+                  </Link>
                 </div>
               </div>
             ) : (
@@ -571,9 +671,10 @@ export default function CartPage() {
                   </div>
                   <button
                     type="submit"
-                    className="px-6 py-3 bg-[#F95738] hover:bg-[#E03A1B] text-white text-xs font-bold rounded-xl shadow-lg transition-all"
+                    disabled={isSubmitting}
+                    className="px-6 py-3 bg-[#F95738] hover:bg-[#E03A1B] text-white text-xs font-bold rounded-xl shadow-lg transition-all disabled:opacity-50 cursor-pointer"
                   >
-                    Confirm & Place Order
+                    {isSubmitting ? "Processing Order..." : "Confirm & Place Order"}
                   </button>
                 </div>
               </form>

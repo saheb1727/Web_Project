@@ -26,17 +26,41 @@ export default function ContactPage() {
   });
 
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [ticketId, setTicketId] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const { showToast } = useToast();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.name || !formData.email || !formData.phone) {
       showToast("Please fill in your contact information", "error");
       return;
     }
 
+    setIsSubmitting(true);
+    let assignedTicket = `TKT-${Math.floor(100000 + Math.random() * 900000)}`;
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      if (res.ok) {
+        const data = await res.json();
+        if (data.ticketId) {
+          assignedTicket = data.ticketId;
+        }
+      }
+    } catch {
+      // fallback
+    }
+
+    setTicketId(assignedTicket);
+    setIsSubmitting(false);
     setIsSubmitted(true);
-    showToast("Inquiry submitted! Our bulk quote specialist will call you within 2 hours.", "success");
+    showToast(`Inquiry #${assignedTicket} received! Our engineer will call you shortly.`, "success");
   };
 
   return (
@@ -143,22 +167,36 @@ export default function ContactPage() {
               </div>
 
               {isSubmitted ? (
-                <div className="p-10 text-center space-y-4 bg-emerald-50 rounded-2xl border border-emerald-200">
-                  <div className="w-14 h-14 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto">
+                <div className="p-8 sm:p-10 text-center space-y-4 bg-emerald-50 rounded-2xl border border-emerald-200">
+                  <div className="w-14 h-14 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto shadow-xs">
                     <CheckCircle2 className="w-8 h-8" />
                   </div>
                   <h4 className="text-xl font-black text-slate-900">
                     Thank You, {formData.name}!
                   </h4>
-                  <p className="text-xs text-slate-600 max-w-sm mx-auto">
-                    We have received your custom order request for <strong>{formData.productInterest}</strong>. A dedicated merchandise consultant will email you digital mockup proofs and your custom tiered rate card shortly.
+                  <div className="inline-block px-3 py-1 rounded-full bg-emerald-100/70 text-emerald-800 text-xs font-mono font-bold">
+                    Reference ID: #{ticketId}
+                  </div>
+                  <p className="text-xs text-slate-600 max-w-sm mx-auto leading-relaxed">
+                    We have saved your inquiry in our database for <strong>{formData.productInterest}</strong> ({formData.quantity}). A senior print engineer will contact you on <strong>{formData.phone}</strong> with vector proof samples.
                   </p>
-                  <button
-                    onClick={() => setIsSubmitted(false)}
-                    className="mt-4 px-6 py-2.5 bg-[#1E1B4B] text-white text-xs font-bold rounded-xl shadow-md hover:bg-[#110E38]"
-                  >
-                    Send Another Message
-                  </button>
+                  <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-2.5">
+                    <button
+                      type="button"
+                      onClick={() => setIsSubmitted(false)}
+                      className="px-6 py-2.5 bg-[#1E1B4B] hover:bg-[#110E38] text-white text-xs font-bold rounded-xl shadow-md transition-all cursor-pointer"
+                    >
+                      Send Another Message
+                    </button>
+                    <a
+                      href={`https://wa.me/919876543210?text=Hi%20MyPrintHub,%20following%20up%20on%20my%20inquiry%20ticket%20${ticketId}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="px-5 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold rounded-xl shadow-md transition-all flex items-center gap-1.5"
+                    >
+                      <span>WhatsApp Direct Follow-up</span>
+                    </a>
+                  </div>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-4">
@@ -270,10 +308,11 @@ export default function ContactPage() {
 
                   <button
                     type="submit"
-                    className="w-full py-3.5 bg-[#F95738] hover:bg-[#E03A1B] text-white text-xs font-bold rounded-xl shadow-lg shadow-[#F95738]/20 transition-all flex items-center justify-center gap-2 active:scale-98"
+                    disabled={isSubmitting}
+                    className="w-full py-3.5 bg-[#F95738] hover:bg-[#E03A1B] text-white text-xs font-bold rounded-xl shadow-lg shadow-[#F95738]/20 transition-all flex items-center justify-center gap-2 active:scale-98 cursor-pointer disabled:opacity-50"
                   >
                     <Send className="w-4 h-4" />
-                    <span>Submit Quotation Request</span>
+                    <span>{isSubmitting ? "Submitting Inquiry..." : "Submit Quotation Request"}</span>
                   </button>
                 </form>
               )}

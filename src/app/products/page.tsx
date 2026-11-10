@@ -16,7 +16,7 @@ export default function ProductsPage() {
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
   const [searchQuery, setSearchQuery] = useState("");
   const [sortBy, setSortBy] = useState<string>("featured");
-  const [maxPrice, setMaxPrice] = useState<number>(1000);
+  const [maxPrice, setMaxPrice] = useState<number>(2000);
   const [isFilterDrawerOpen, setIsFilterDrawerOpen] = useState(false);
 
   const filteredProducts = useMemo(() => {
@@ -44,7 +44,7 @@ export default function ProductsPage() {
     setSelectedCategory("all");
     setSearchQuery("");
     setSortBy("featured");
-    setMaxPrice(1000);
+    setMaxPrice(2000);
   };
 
   return (
@@ -175,8 +175,8 @@ export default function ProductsPage() {
               </div>
               <input
                 type="range"
-                min="100"
-                max="1000"
+                min="50"
+                max="2000"
                 step="50"
                 value={maxPrice}
                 onChange={(e) => setMaxPrice(Number(e.target.value))}
@@ -193,7 +193,7 @@ export default function ProductsPage() {
             Showing <strong className="text-[var(--color-primary)]">{filteredProducts.length}</strong> products
           </div>
 
-          {(selectedCategory !== "all" || searchQuery || maxPrice < 1000) && (
+          {(selectedCategory !== "all" || searchQuery || maxPrice < 2000) && (
             <button
               onClick={resetFilters}
               className="text-xs font-bold text-[var(--color-accent)] hover:opacity-85 flex items-center gap-1 transition-opacity cursor-pointer"
