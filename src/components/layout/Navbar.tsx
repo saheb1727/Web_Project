@@ -1,7 +1,8 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import dynamic from "next/dynamic";
 import {
   Search,
@@ -14,6 +15,7 @@ import {
   Shirt,
   Flame,
   Gift,
+  MapPin,
 } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 import { useWishlist } from "@/context/WishlistContext";
@@ -26,6 +28,11 @@ const SearchModal = dynamic(
 
 const MobileMenu = dynamic(
   () => import("./MobileMenu").then((mod) => mod.MobileMenu),
+  { ssr: false }
+);
+
+const LocationModal = dynamic(
+  () => import("@/components/ui/LocationModal").then((mod) => mod.LocationModal),
   { ssr: false }
 );
 
@@ -49,8 +56,40 @@ const CapIcon: React.FC<{ className?: string }> = ({ className = "w-4 h-4" }) =>
 export const Navbar: React.FC = () => {
   const { totalItems } = useCart();
   const { wishlistCount } = useWishlist();
+  const pathname = usePathname();
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isLocationModalOpen, setIsLocationModalOpen] = useState(false);
+
+  // Delivery Location state (defaults to Noida NCR factory base)
+  const [deliveryLocation, setDeliveryLocation] = useState({
+    pincode: "201301",
+    city: "Noida NCR",
+  });
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const saved = localStorage.getItem("myprinthub_delivery_location");
+      if (saved) {
+        try {
+          const parsed = JSON.parse(saved);
+          if (parsed.pincode && parsed.city) {
+            setDeliveryLocation(parsed);
+          }
+        } catch {
+          // ignore parsing error
+        }
+      }
+    }
+  }, []);
+
+  const handleSaveLocation = (pincode: string, city: string) => {
+    const loc = { pincode, city };
+    setDeliveryLocation(loc);
+    if (typeof window !== "undefined") {
+      localStorage.setItem("myprinthub_delivery_location", JSON.stringify(loc));
+    }
+  };
 
   const navLinks = [
     {
@@ -96,40 +135,85 @@ export const Navbar: React.FC = () => {
               </button>
             </div>
 
-            {/* Brand Logo (Responsive sizing for mobile screens 320px+) */}
-            <Link href="/" className="flex items-center gap-2 sm:gap-2.5 shrink-0 group">
-              <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-[var(--color-primary)] text-[var(--color-accent)] flex items-center justify-center font-black shadow-sm group-hover:scale-105 transition-transform">
-                <Printer className="w-4 h-4 sm:w-5 sm:h-5 text-[var(--color-accent)]" />
-              </div>
-              <div className="flex flex-col">
-                <span className="font-black text-lg sm:text-2xl tracking-tight text-[var(--color-primary)] leading-none">
-                  MyPrintHub<span className="text-[var(--color-accent)]">.in</span>
-                </span>
-                <span className="hidden sm:block text-[10px] font-medium text-slate-500 tracking-normal mt-0.5">
-                  Your Brand. Your Style. Your Print.
-                </span>
-              </div>
-            </Link>
+            {/* Brand Logo & Tagline */}
+            <div className="flex items-center gap-3 sm:gap-4 shrink-0">
+              <Link href="/" className="flex items-center gap-2 sm:gap-2.5 group">
+                <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-[var(--color-primary)] text-[var(--color-accent)] flex items-center justify-center font-black shadow-sm group-hover:scale-105 transition-transform">
+                  <Printer className="w-4 h-4 sm:w-5 sm:h-5 text-[var(--color-accent)]" />
+                </div>
+                <div className="flex flex-col">
+                  <span className="font-black text-lg sm:text-2xl tracking-tight text-[var(--color-primary)] leading-none">
+                    MyPrintHub<span className="text-[var(--color-accent)]">.in</span>
+                  </span>
+                  <span className="hidden sm:block text-[10px] font-medium text-slate-500 tracking-normal mt-0.5">
+                    Your Brand. Your Style. Your Print.
+                  </span>
+                </div>
+              </Link>
 
-            {/* Center Navigation Links (Desktop) */}
-            <nav className="hidden lg:flex items-center gap-6 xl:gap-8">
+              {/* Delivery Pincode Locator (Desktop Expanded Pill) */}
+              <button
+                type="button"
+                onClick={() => setIsLocationModalOpen(true)}
+                className="hidden xl:flex items-center gap-2 px-3 py-1.5 rounded-xl bg-slate-50 hover:bg-slate-100 border border-slate-200/90 text-xs font-semibold text-slate-700 transition-colors cursor-pointer group shrink-0"
+                title="Change delivery location"
+              >
+                <div className="w-7 h-7 rounded-lg bg-[var(--color-accent-soft)] flex items-center justify-center text-[#F95738] shrink-0 group-hover:scale-105 transition-transform">
+                  <MapPin className="w-3.5 h-3.5" />
+                </div>
+                <div className="flex flex-col text-left leading-tight">
+                  <span className="text-[9px] text-slate-400 font-medium">Deliver to</span>
+                  <span className="text-xs font-bold text-[#1E1B4B] truncate max-w-[110px]">
+                    {deliveryLocation.city} {deliveryLocation.pincode}
+                  </span>
+                </div>
+              </button>
+            </div>
+
+            {/* Center Navigation Links (with Active Page / Route Locator) */}
+            <nav className="hidden lg:flex items-center gap-2 xl:gap-3">
               {navLinks.map((link) => {
                 const Icon = link.icon;
+                const isActive =
+                  pathname === link.href ||
+                  (link.href.startsWith("/category") && pathname.startsWith(link.href));
+
                 return (
                   <Link
                     key={link.label}
                     href={link.href}
-                    className="flex items-center gap-1.5 text-sm font-semibold text-slate-800 hover:text-[var(--color-accent)] transition-colors py-2 group"
+                    className={`flex items-center gap-1.5 text-sm font-semibold transition-all py-1.5 px-2.5 xl:px-3 rounded-xl group cursor-pointer ${
+                      isActive
+                        ? "text-[#F95738] bg-[#F95738]/10 font-bold shadow-2xs"
+                        : "text-slate-800 hover:text-[var(--color-accent)] hover:bg-slate-50"
+                    }`}
                   >
-                    <Icon className="w-4 h-4 text-slate-500 group-hover:text-[var(--color-accent)] transition-colors shrink-0" />
+                    <Icon
+                      className={`w-4 h-4 transition-colors shrink-0 ${
+                        isActive
+                          ? "text-[#F95738]"
+                          : "text-slate-500 group-hover:text-[var(--color-accent)]"
+                      }`}
+                    />
                     <span>{link.label}</span>
                   </Link>
                 );
               })}
             </nav>
 
-            {/* Right Icons: Search, Wishlist, Cart, Account */}
-            <div className="flex items-center gap-1 sm:gap-2 text-slate-700 shrink-0">
+            {/* Right Icons: Locator, Search, Account, Wishlist, Cart */}
+            <div className="flex items-center gap-1 sm:gap-1.5 text-slate-700 shrink-0">
+              {/* Compact Locator Button (Tablet & Mobile) */}
+              <button
+                type="button"
+                onClick={() => setIsLocationModalOpen(true)}
+                className="flex xl:hidden p-2 hover:text-[var(--color-accent)] transition-colors cursor-pointer rounded-lg active:bg-slate-100"
+                aria-label="Delivery location"
+                title={`Deliver to ${deliveryLocation.city} (${deliveryLocation.pincode})`}
+              >
+                <MapPin className="w-5 h-5 stroke-[1.8] text-[#F95738]" />
+              </button>
+
               {/* Search Icon */}
               <button
                 onClick={() => setIsSearchOpen(true)}
@@ -184,15 +268,34 @@ export const Navbar: React.FC = () => {
         </div>
       </header>
 
-      {/* Conditionally rendered lazy search modal */}
+      {/* Lazy Search Modal */}
       {isSearchOpen && (
         <SearchModal isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} />
       )}
 
-      {/* Conditionally rendered lazy mobile drawer */}
+      {/* Lazy Delivery Location Modal */}
+      {isLocationModalOpen && (
+        <LocationModal
+          isOpen={isLocationModalOpen}
+          onClose={() => setIsLocationModalOpen(false)}
+          currentPincode={deliveryLocation.pincode}
+          currentCity={deliveryLocation.city}
+          onSaveLocation={handleSaveLocation}
+        />
+      )}
+
+      {/* Lazy Mobile Drawer */}
       {isMobileMenuOpen && (
-        <MobileMenu isOpen={isMobileMenuOpen} onClose={() => setIsMobileMenuOpen(false)} />
+        <MobileMenu
+          isOpen={isMobileMenuOpen}
+          onClose={() => setIsMobileMenuOpen(false)}
+          onOpenLocation={() => setIsLocationModalOpen(true)}
+          currentPincode={deliveryLocation.pincode}
+          currentCity={deliveryLocation.city}
+        />
       )}
     </>
   );
 };
+
+export default Navbar;

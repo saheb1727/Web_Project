@@ -13,6 +13,7 @@ import {
   Mail,
   HelpCircle,
   FileText,
+  MapPin,
 } from "lucide-react";
 import { categories } from "@/data/categories";
 import { useWishlist } from "@/context/WishlistContext";
@@ -21,9 +22,18 @@ import { useCart } from "@/context/CartContext";
 interface MobileMenuProps {
   isOpen: boolean;
   onClose: () => void;
+  onOpenLocation?: () => void;
+  currentPincode?: string;
+  currentCity?: string;
 }
 
-export const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
+export const MobileMenu: React.FC<MobileMenuProps> = ({
+  isOpen,
+  onClose,
+  onOpenLocation,
+  currentPincode = "201301",
+  currentCity = "Noida NCR",
+}) => {
   const { wishlistCount } = useWishlist();
   const { totalItems } = useCart();
 
@@ -79,7 +89,32 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
         </div>
 
         {/* Navigation Content */}
-        <div className="flex-1 overflow-y-auto p-4 space-y-6">
+        <div className="flex-1 overflow-y-auto p-4 space-y-5">
+          {/* Delivery Location Pill for Mobile */}
+          {onOpenLocation && (
+            <button
+              type="button"
+              onClick={() => {
+                onClose();
+                onOpenLocation();
+              }}
+              className="w-full flex items-center justify-between p-3 rounded-2xl bg-slate-50 hover:bg-slate-100 border border-slate-200 text-left transition-colors cursor-pointer"
+            >
+              <div className="flex items-center gap-2.5 min-w-0">
+                <div className="w-8 h-8 rounded-lg bg-[var(--color-accent-soft)] flex items-center justify-center text-[#F95738] shrink-0">
+                  <MapPin className="w-4 h-4" />
+                </div>
+                <div className="min-w-0">
+                  <div className="text-[10px] text-slate-400 font-medium">Deliver to</div>
+                  <div className="text-xs font-bold text-[#1E1B4B] truncate">
+                    {currentCity} • {currentPincode}
+                  </div>
+                </div>
+              </div>
+              <span className="text-[11px] font-bold text-[#F95738] shrink-0">Change</span>
+            </button>
+          )}
+
           {/* Quick Action Pills */}
           <div className="grid grid-cols-2 gap-2">
             <Link
