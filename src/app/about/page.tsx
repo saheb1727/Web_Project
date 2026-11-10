@@ -25,9 +25,9 @@ export default function AboutPage() {
   return (
     <div className="bg-slate-50 min-h-screen pb-16">
       {/* Hero Header */}
-      <div className="bg-[#142344] text-white py-20 relative overflow-hidden">
+      <div className="bg-[#1E1B4B] text-white py-20 relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center max-w-3xl">
-          <span className="text-xs font-bold text-[#FF4D24] uppercase tracking-wider block mb-2">
+          <span className="text-xs font-bold text-[#F95738] uppercase tracking-wider block mb-2">
             Our Mission & Craftsmanship
           </span>
           <h1 className="text-4xl sm:text-5xl font-black tracking-tight leading-tight mb-4">
@@ -44,7 +44,7 @@ export default function AboutPage() {
         <div className="bg-white rounded-3xl p-6 sm:p-8 shadow-xl border border-slate-200/80 grid grid-cols-2 lg:grid-cols-4 gap-6 text-center">
           {stats.map((s, i) => (
             <div key={i} className="p-3">
-              <div className="text-3xl sm:text-4xl font-black text-[#142344] mb-1">
+              <div className="text-3xl sm:text-4xl font-black text-[#1E1B4B] mb-1">
                 {s.value}
               </div>
               <div className="text-xs font-bold text-slate-500 uppercase tracking-wider">
@@ -57,10 +57,10 @@ export default function AboutPage() {
         {/* Story Section */}
         <div className="mt-16 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           <div className="lg:col-span-6 space-y-4">
-            <span className="text-xs font-bold text-[#FF4D24] uppercase tracking-wider block">
+            <span className="text-xs font-bold text-[#F95738] uppercase tracking-wider block">
               The MyPrintHub Difference
             </span>
-            <h2 className="text-3xl font-black text-[#142344] tracking-tight">
+            <h2 className="text-3xl font-black text-[#1E1B4B] tracking-tight">
               Why We Invented the Rare-Earth Magnetic Badge
             </h2>
             <p className="text-sm text-slate-600 leading-relaxed">
@@ -72,15 +72,15 @@ export default function AboutPage() {
 
             <div className="space-y-2 pt-2 text-xs font-semibold text-slate-800">
               <div className="flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-[#FF4D24]" />
+                <CheckCircle2 className="w-4 h-4 text-[#F95738]" />
                 <span>Zero Pinholes on suits, blazers, and luxury fabrics</span>
               </div>
               <div className="flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-[#FF4D24]" />
+                <CheckCircle2 className="w-4 h-4 text-[#F95738]" />
                 <span>100% Super-Combed 180-380 GSM Cotton with bio-wash</span>
               </div>
               <div className="flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-[#FF4D24]" />
+                <CheckCircle2 className="w-4 h-4 text-[#F95738]" />
                 <span>Zero Minimum Order Quantity on all apparel and badges</span>
               </div>
             </div>
@@ -99,7 +99,7 @@ export default function AboutPage() {
         {/* Core Pillars */}
         <div className="mt-20">
           <div className="text-center max-w-xl mx-auto mb-12">
-            <h3 className="text-2xl sm:text-3xl font-black text-[#142344]">
+            <h3 className="text-2xl sm:text-3xl font-black text-[#1E1B4B]">
               Our Guiding Principles
             </h3>
             <p className="text-xs text-slate-500 mt-1">
@@ -109,30 +109,30 @@ export default function AboutPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="p-6 rounded-3xl bg-white border border-slate-200/80 shadow-xs space-y-3">
-              <div className="w-12 h-12 rounded-2xl bg-[#FF4D24]/10 text-[#FF4D24] flex items-center justify-center">
+              <div className="w-12 h-12 rounded-2xl bg-[#F95738]/10 text-[#F95738] flex items-center justify-center">
                 <Award className="w-6 h-6" />
               </div>
-              <h4 className="text-base font-bold text-[#142344]">Print Perfection Guarantee</h4>
+              <h4 className="text-base font-bold text-[#1E1B4B]">Print Perfection Guarantee</h4>
               <p className="text-xs text-slate-600 leading-relaxed">
                 If your order arrives with any misprint, color discrepancy, or defective stitching, we replace it immediately with priority courier shipping.
               </p>
             </div>
 
             <div className="p-6 rounded-3xl bg-white border border-slate-200/80 shadow-xs space-y-3">
-              <div className="w-12 h-12 rounded-2xl bg-[#142344] text-[#FF4D24] flex items-center justify-center">
+              <div className="w-12 h-12 rounded-2xl bg-[#1E1B4B] text-[#F95738] flex items-center justify-center">
                 <Cpu className="w-6 h-6" />
               </div>
-              <h4 className="text-base font-bold text-[#142344]">Industrial Micro-Drop Tech</h4>
+              <h4 className="text-base font-bold text-[#1E1B4B]">Industrial Micro-Drop Tech</h4>
               <p className="text-xs text-slate-600 leading-relaxed">
                 We print with non-toxic, eco-friendly Oeko-Tex certified inks that withstand 50+ wash cycles without fading, cracking, or flaking.
               </p>
             </div>
 
             <div className="p-6 rounded-3xl bg-white border border-slate-200/80 shadow-xs space-y-3">
-              <div className="w-12 h-12 rounded-2xl bg-[#FF4D24]/10 text-[#FF4D24] flex items-center justify-center">
+              <div className="w-12 h-12 rounded-2xl bg-[#F95738]/10 text-[#F95738] flex items-center justify-center">
                 <Heart className="w-6 h-6" />
               </div>
-              <h4 className="text-base font-bold text-[#142344]">No MOQ Democratization</h4>
+              <h4 className="text-base font-bold text-[#1E1B4B]">No MOQ Democratization</h4>
               <p className="text-xs text-slate-600 leading-relaxed">
                 Whether you need 1 custom hoodie for a birthday gift or 5,000 badges for a national medical conference, every customer receives VIP care.
               </p>
@@ -141,7 +141,7 @@ export default function AboutPage() {
         </div>
 
         {/* CTA */}
-        <div className="mt-20 p-8 sm:p-12 rounded-3xl bg-[#142344] text-white text-center shadow-xl relative overflow-hidden">
+        <div className="mt-20 p-8 sm:p-12 rounded-3xl bg-[#1E1B4B] text-white text-center shadow-xl relative overflow-hidden">
           <h3 className="text-2xl sm:text-3xl font-black mb-3">
             Ready to bring your brand to life?
           </h3>
@@ -150,7 +150,7 @@ export default function AboutPage() {
           </p>
           <Link
             href="/products"
-            className="inline-flex items-center gap-2 px-8 py-3.5 bg-[#FF4D24] hover:bg-[#E03C14] text-white font-bold rounded-xl shadow-lg transition-all text-sm"
+            className="inline-flex items-center gap-2 px-8 py-3.5 bg-[#F95738] hover:bg-[#E03A1B] text-white font-bold rounded-xl shadow-lg transition-all text-sm"
           >
             <span>Start Customizing Today</span>
             <ArrowRight className="w-4 h-4" />

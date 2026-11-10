@@ -9,7 +9,6 @@ import {
   User,
   Menu,
   Printer,
-  Palette,
   IdCard,
   Shirt,
   Flame,
@@ -17,7 +16,6 @@ import {
 } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 import { useWishlist } from "@/context/WishlistContext";
-import { useTheme } from "@/context/ThemeContext";
 import { SearchModal } from "@/components/ui/SearchModal";
 import { MobileMenu } from "./MobileMenu";
 
@@ -41,7 +39,6 @@ const CapIcon: React.FC<{ className?: string }> = ({ className = "w-4 h-4" }) =>
 export const Navbar: React.FC = () => {
   const { totalItems } = useCart();
   const { wishlistCount } = useWishlist();
-  const { themeConfig, setIsPaletteModalOpen } = useTheme();
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -121,31 +118,8 @@ export const Navbar: React.FC = () => {
               })}
             </nav>
 
-            {/* Right Icons: Search, Palette Switcher, Account, Wishlist, Cart */}
+            {/* Right Icons: Search, Account, Wishlist, Cart */}
             <div className="flex items-center gap-2 sm:gap-3 text-slate-700">
-              {/* Palette Switcher Button */}
-              <button
-                type="button"
-                onClick={() => setIsPaletteModalOpen(true)}
-                className="hidden sm:flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl border border-slate-200 bg-slate-50 hover:bg-slate-100 hover:border-slate-300 transition-all text-xs font-bold text-slate-700 cursor-pointer"
-                title="Change Color Palette"
-              >
-                <div className="flex items-center -space-x-1">
-                  <span
-                    className="w-3 h-3 rounded-full border border-white"
-                    style={{ backgroundColor: themeConfig.primaryColor }}
-                  />
-                  <span
-                    className="w-3 h-3 rounded-full border border-white"
-                    style={{ backgroundColor: themeConfig.accentColor }}
-                  />
-                </div>
-                <Palette className="w-3.5 h-3.5 text-amber-500" />
-                <span className="hidden md:inline text-[11px] font-semibold text-slate-600">
-                  Colors
-                </span>
-              </button>
-
               {/* Search Icon */}
               <button
                 onClick={() => setIsSearchOpen(true)}

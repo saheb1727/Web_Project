@@ -96,7 +96,7 @@ export const HeroSection: React.FC = () => {
         particleCount: 50,
         spread: 60,
         origin: { y: 0.7 },
-        colors: ["#142344", "#FF4D24", "#FFD700"],
+        colors: ["#1E1B4B", "#F95738", "#FFD700"],
       });
     } catch {
       // ignore

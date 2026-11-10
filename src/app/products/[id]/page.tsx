@@ -50,11 +50,11 @@ export default function ProductDetailPage() {
   if (!product) {
     return (
       <div className="min-h-[60vh] flex flex-col items-center justify-center p-6 text-center">
-        <h2 className="text-2xl font-black text-[#142344] mb-2">Product Not Found</h2>
+        <h2 className="text-2xl font-black text-[#1E1B4B] mb-2">Product Not Found</h2>
         <p className="text-xs text-slate-500 mb-6">The requested product could not be found.</p>
         <Link
           href="/products"
-          className="px-6 py-2.5 bg-[#FF4D24] text-white text-xs font-bold rounded-xl shadow-md hover:bg-[#E03C14]"
+          className="px-6 py-2.5 bg-[#F95738] text-white text-xs font-bold rounded-xl shadow-md hover:bg-[#E03A1B]"
         >
           Back to Catalog
         </Link>
@@ -109,11 +109,11 @@ export default function ProductDetailPage() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Breadcrumb Navigation */}
         <nav className="flex items-center gap-2 text-xs text-slate-500 mb-6">
-          <Link href="/" className="hover:text-[#142344]">Home</Link>
+          <Link href="/" className="hover:text-[#1E1B4B]">Home</Link>
           <ChevronRight className="w-3.5 h-3.5" />
-          <Link href="/products" className="hover:text-[#142344]">Products</Link>
+          <Link href="/products" className="hover:text-[#1E1B4B]">Products</Link>
           <ChevronRight className="w-3.5 h-3.5" />
-          <Link href={`/category/${product.categorySlug}`} className="hover:text-[#142344]">
+          <Link href={`/category/${product.categorySlug}`} className="hover:text-[#1E1B4B]">
             {product.category}
           </Link>
           <ChevronRight className="w-3.5 h-3.5" />
@@ -137,12 +137,12 @@ export default function ProductDetailPage() {
               {/* Badges */}
               <div className="absolute top-4 left-4 flex flex-col gap-1.5 z-10">
                 {product.badgeText && (
-                  <span className="px-3 py-1 text-xs font-bold uppercase tracking-wider bg-[#142344] text-white rounded-md shadow-md">
+                  <span className="px-3 py-1 text-xs font-bold uppercase tracking-wider bg-[#1E1B4B] text-white rounded-md shadow-md">
                     {product.badgeText}
                   </span>
                 )}
                 {product.isNew && (
-                  <span className="px-3 py-1 text-xs font-bold uppercase tracking-wider bg-[#FF4D24] text-white rounded-md shadow-md">
+                  <span className="px-3 py-1 text-xs font-bold uppercase tracking-wider bg-[#F95738] text-white rounded-md shadow-md">
                     New Arrival
                   </span>
                 )}
@@ -153,8 +153,8 @@ export default function ProductDetailPage() {
                 onClick={() => toggleWishlist(product.id, product.name)}
                 className={`absolute top-4 right-4 p-2.5 rounded-xl backdrop-blur-md transition-all shadow-md z-10 ${
                   inWishlist
-                    ? "bg-[#FF4D24] text-white"
-                    : "bg-white/80 hover:bg-white text-slate-600 hover:text-[#FF4D24]"
+                    ? "bg-[#F95738] text-white"
+                    : "bg-white/80 hover:bg-white text-slate-600 hover:text-[#F95738]"
                 }`}
                 aria-label="Wishlist toggle"
               >
@@ -171,7 +171,7 @@ export default function ProductDetailPage() {
                     onClick={() => setSelectedImage(img)}
                     className={`relative w-20 h-20 rounded-xl overflow-hidden border-2 transition-all shrink-0 bg-white ${
                       (selectedImage || product.image) === img
-                        ? "border-[#FF4D24] shadow-md ring-2 ring-[#FF4D24]/20"
+                        ? "border-[#F95738] shadow-md ring-2 ring-[#F95738]/20"
                         : "border-slate-200 hover:border-slate-400"
                     }`}
                   >
@@ -184,11 +184,11 @@ export default function ProductDetailPage() {
             {/* Guarantees Box */}
             <div className="p-4 rounded-2xl bg-white border border-slate-200 space-y-3 text-xs text-slate-600">
               <div className="flex items-center gap-3">
-                <ShieldCheck className="w-5 h-5 text-[#FF4D24] shrink-0" />
+                <ShieldCheck className="w-5 h-5 text-[#F95738] shrink-0" />
                 <span><strong>Print Perfection Guarantee:</strong> Free reprint if damaged or misprinted.</span>
               </div>
               <div className="flex items-center gap-3">
-                <Truck className="w-5 h-5 text-[#FF4D24] shrink-0" />
+                <Truck className="w-5 h-5 text-[#F95738] shrink-0" />
                 <span><strong>Pan-India Express:</strong> Dispatches within 24-48 business hours.</span>
               </div>
             </div>
@@ -199,12 +199,12 @@ export default function ProductDetailPage() {
             <div>
               {/* Category, Rating, Share */}
               <div className="flex items-center justify-between mb-2">
-                <span className="text-xs font-bold text-[#FF4D24] uppercase tracking-wider">
+                <span className="text-xs font-bold text-[#F95738] uppercase tracking-wider">
                   {product.category}
                 </span>
                 <button
                   onClick={handleShare}
-                  className="flex items-center gap-1.5 text-xs font-semibold text-slate-500 hover:text-[#142344] transition-colors"
+                  className="flex items-center gap-1.5 text-xs font-semibold text-slate-500 hover:text-[#1E1B4B] transition-colors"
                 >
                   <Share2 className="w-3.5 h-3.5" />
                   <span>Share</span>
@@ -212,7 +212,7 @@ export default function ProductDetailPage() {
               </div>
 
               {/* Title */}
-              <h1 className="text-2xl sm:text-3xl font-black text-[#142344] tracking-tight leading-tight">
+              <h1 className="text-2xl sm:text-3xl font-black text-[#1E1B4B] tracking-tight leading-tight">
                 {product.name}
               </h1>
 
@@ -239,13 +239,13 @@ export default function ProductDetailPage() {
                   Unit Price (for {quantity} {quantity === 1 ? "pc" : "pcs"})
                 </span>
                 <div className="flex items-baseline gap-2">
-                  <span className="text-3xl sm:text-4xl font-black text-[#142344]">
+                  <span className="text-3xl sm:text-4xl font-black text-[#1E1B4B]">
                     ₹{unitPrice}
                   </span>
                   <span className="text-sm text-slate-400 line-through">
                     ₹{product.originalPrice}
                   </span>
-                  <span className="text-xs font-bold text-[#FF4D24] bg-[#FF4D24]/10 px-2 py-0.5 rounded">
+                  <span className="text-xs font-bold text-[#F95738] bg-[#F95738]/10 px-2 py-0.5 rounded">
                     {Math.round(((product.originalPrice - unitPrice) / product.originalPrice) * 100)}% OFF
                   </span>
                 </div>
@@ -253,7 +253,7 @@ export default function ProductDetailPage() {
 
               <div className="text-right">
                 <span className="text-xs text-slate-400 font-semibold block">Total Estimated Price</span>
-                <span className="text-xl sm:text-2xl font-black text-[#FF4D24]">
+                <span className="text-xl sm:text-2xl font-black text-[#F95738]">
                   ₹{totalPrice.toLocaleString()}
                 </span>
                 {totalSavings > 0 && (
@@ -275,7 +275,7 @@ export default function ProductDetailPage() {
             {product.colors && product.colors.length > 0 && (
               <div>
                 <label className="text-xs font-bold text-slate-800 block mb-2">
-                  Color / Finish: <span className="text-[#FF4D24] font-semibold">{selectedColor}</span>
+                  Color / Finish: <span className="text-[#F95738] font-semibold">{selectedColor}</span>
                 </label>
                 <div className="flex flex-wrap items-center gap-2.5">
                   {product.colors.map((c) => (
@@ -285,7 +285,7 @@ export default function ProductDetailPage() {
                       onClick={() => setSelectedColor(c.name)}
                       className={`flex items-center gap-2 px-3 py-1.5 rounded-xl border text-xs font-semibold transition-all ${
                         selectedColor === c.name
-                          ? "bg-[#142344] text-white border-[#142344] shadow-xs"
+                          ? "bg-[#1E1B4B] text-white border-[#1E1B4B] shadow-xs"
                           : "bg-white text-slate-700 border-slate-200 hover:border-slate-300"
                       }`}
                     >
@@ -305,7 +305,7 @@ export default function ProductDetailPage() {
               <div>
                 <div className="flex items-center justify-between mb-2">
                   <label className="text-xs font-bold text-slate-800">
-                    Size / Dimensions: <span className="text-[#FF4D24] font-semibold">{selectedSize}</span>
+                    Size / Dimensions: <span className="text-[#F95738] font-semibold">{selectedSize}</span>
                   </label>
                   <span className="text-[11px] text-slate-500 cursor-pointer hover:underline">
                     Size Chart Guide
@@ -319,7 +319,7 @@ export default function ProductDetailPage() {
                       onClick={() => setSelectedSize(s)}
                       className={`px-4 py-2 rounded-xl text-xs font-bold border transition-all ${
                         selectedSize === s
-                          ? "bg-[#142344] text-white border-[#142344] shadow-xs"
+                          ? "bg-[#1E1B4B] text-white border-[#1E1B4B] shadow-xs"
                           : "bg-white text-slate-700 border-slate-200 hover:border-slate-300"
                       }`}
                     >
@@ -350,7 +350,7 @@ export default function ProductDetailPage() {
                     min="1"
                     value={quantity}
                     onChange={(e) => setQuantity(Math.max(1, parseInt(e.target.value) || 1))}
-                    className="w-14 text-center font-bold text-sm bg-transparent focus:outline-none text-[#142344]"
+                    className="w-14 text-center font-bold text-sm bg-transparent focus:outline-none text-[#1E1B4B]"
                   />
                   <button
                     type="button"
@@ -363,7 +363,7 @@ export default function ProductDetailPage() {
                 </div>
 
                 <div className="text-xs text-slate-500">
-                  Tier: <strong className="text-[#FF4D24]">₹{unitPrice}/pc</strong> (Increases discount automatically with volume)
+                  Tier: <strong className="text-[#F95738]">₹{unitPrice}/pc</strong> (Increases discount automatically with volume)
                 </div>
               </div>
             </div>
@@ -387,7 +387,7 @@ export default function ProductDetailPage() {
               <button
                 type="button"
                 onClick={handleAddToCart}
-                className="w-full sm:flex-1 py-4 bg-[#FF4D24] hover:bg-[#E03C14] text-white font-bold rounded-2xl shadow-lg shadow-[#FF4D24]/25 transition-all flex items-center justify-center gap-2 text-base active:scale-98"
+                className="w-full sm:flex-1 py-4 bg-[#F95738] hover:bg-[#E03A1B] text-white font-bold rounded-2xl shadow-lg shadow-[#F95738]/25 transition-all flex items-center justify-center gap-2 text-base active:scale-98"
               >
                 <ShoppingBag className="w-5 h-5" />
                 <span>Add {quantity} to Cart (₹{totalPrice.toLocaleString()})</span>
@@ -396,10 +396,10 @@ export default function ProductDetailPage() {
               <button
                 type="button"
                 onClick={handleBuyNow}
-                className="w-full sm:w-auto px-8 py-4 bg-[#142344] hover:bg-[#0D1830] text-white font-bold rounded-2xl shadow-md transition-all flex items-center justify-center gap-2 text-base active:scale-98"
+                className="w-full sm:w-auto px-8 py-4 bg-[#1E1B4B] hover:bg-[#110E38] text-white font-bold rounded-2xl shadow-md transition-all flex items-center justify-center gap-2 text-base active:scale-98"
               >
                 <span>Instant Checkout</span>
-                <ArrowRight className="w-4 h-4 text-[#FF4D24]" />
+                <ArrowRight className="w-4 h-4 text-[#F95738]" />
               </button>
             </div>
           </div>
@@ -412,7 +412,7 @@ export default function ProductDetailPage() {
               onClick={() => setActiveTab("features")}
               className={`text-sm font-bold pb-2 transition-all relative ${
                 activeTab === "features"
-                  ? "text-[#142344] border-b-2 border-[#FF4D24]"
+                  ? "text-[#1E1B4B] border-b-2 border-[#F95738]"
                   : "text-slate-400 hover:text-slate-600"
               }`}
             >
@@ -422,7 +422,7 @@ export default function ProductDetailPage() {
               onClick={() => setActiveTab("specs")}
               className={`text-sm font-bold pb-2 transition-all relative ${
                 activeTab === "specs"
-                  ? "text-[#142344] border-b-2 border-[#FF4D24]"
+                  ? "text-[#1E1B4B] border-b-2 border-[#F95738]"
                   : "text-slate-400 hover:text-slate-600"
               }`}
             >
@@ -432,7 +432,7 @@ export default function ProductDetailPage() {
               onClick={() => setActiveTab("shipping")}
               className={`text-sm font-bold pb-2 transition-all relative ${
                 activeTab === "shipping"
-                  ? "text-[#142344] border-b-2 border-[#FF4D24]"
+                  ? "text-[#1E1B4B] border-b-2 border-[#F95738]"
                   : "text-slate-400 hover:text-slate-600"
               }`}
             >
@@ -447,7 +447,7 @@ export default function ProductDetailPage() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
                   {product.features.map((feat, i) => (
                     <div key={i} className="flex items-center gap-2 text-xs font-semibold text-slate-800">
-                      <CheckCircle2 className="w-4 h-4 text-[#FF4D24] shrink-0" />
+                      <CheckCircle2 className="w-4 h-4 text-[#F95738] shrink-0" />
                       <span>{feat}</span>
                     </div>
                   ))}
@@ -496,12 +496,12 @@ export default function ProductDetailPage() {
         {relatedProducts.length > 0 && (
           <div className="mt-16">
             <div className="flex items-center justify-between mb-8">
-              <h2 className="text-2xl font-black text-[#142344]">
+              <h2 className="text-2xl font-black text-[#1E1B4B]">
                 You May Also Like
               </h2>
               <Link
                 href={`/category/${product.categorySlug}`}
-                className="text-xs font-bold text-[#FF4D24] hover:underline flex items-center gap-1"
+                className="text-xs font-bold text-[#F95738] hover:underline flex items-center gap-1"
               >
                 More in {product.category} →
               </Link>

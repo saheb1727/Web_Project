@@ -21,12 +21,12 @@ export const BulkPricingTable: React.FC<BulkPricingTableProps> = ({
     <div className="bg-slate-50 rounded-2xl p-4 sm:p-5 border border-slate-200">
       <div className="flex items-center justify-between mb-3">
         <div className="flex items-center gap-2">
-          <Tag className="w-4 h-4 text-[#FF4D24]" />
+          <Tag className="w-4 h-4 text-[#F95738]" />
           <h4 className="text-sm font-bold text-slate-900">
             Tiered Wholesale Pricing
           </h4>
         </div>
-        <span className="text-xs text-[#FF4D24] font-bold bg-[#FF4D24]/10 px-2.5 py-0.5 rounded-md">
+        <span className="text-xs text-[#F95738] font-bold bg-[#F95738]/10 px-2.5 py-0.5 rounded-md">
           Instant Bulk Discounts
         </span>
       </div>
@@ -46,12 +46,12 @@ export const BulkPricingTable: React.FC<BulkPricingTableProps> = ({
               onClick={() => onSelectTier && onSelectTier(tier.minQty)}
               className={`p-3 rounded-xl border text-left transition-all relative ${
                 isActive
-                  ? "bg-[#142344] text-white border-[#142344] shadow-md ring-2 ring-[#FF4D24]/40"
+                  ? "bg-[#1E1B4B] text-white border-[#1E1B4B] shadow-md ring-2 ring-[#F95738]/40"
                   : "bg-white hover:bg-slate-100 text-slate-800 border-slate-200"
               }`}
             >
               {isActive && (
-                <div className="absolute top-2 right-2 w-4 h-4 rounded-md bg-[#FF4D24] flex items-center justify-center text-white">
+                <div className="absolute top-2 right-2 w-4 h-4 rounded-md bg-[#F95738] flex items-center justify-center text-white">
                   <Check className="w-2.5 h-2.5 stroke-[3]" />
                 </div>
               )}
@@ -70,7 +70,7 @@ export const BulkPricingTable: React.FC<BulkPricingTableProps> = ({
               </div>
               <div
                 className={`text-[10px] font-bold mt-0.5 ${
-                  isActive ? "text-[#FF4D24]" : "text-emerald-600"
+                  isActive ? "text-[#F95738]" : "text-emerald-600"
                 }`}
               >
                 {tier.savings}

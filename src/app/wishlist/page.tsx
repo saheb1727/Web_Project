@@ -28,11 +28,11 @@ export default function WishlistPage() {
     <div className="bg-slate-50 min-h-screen py-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-8">
-          <div className="flex items-center gap-2 text-xs font-bold text-[#FF4D24] uppercase tracking-wider mb-1">
-            <Heart className="w-4 h-4 fill-[#FF4D24]" />
+          <div className="flex items-center gap-2 text-xs font-bold text-[#F95738] uppercase tracking-wider mb-1">
+            <Heart className="w-4 h-4 fill-[#F95738]" />
             <span>Saved Merchandise</span>
           </div>
-          <h1 className="text-3xl sm:text-4xl font-black text-[#142344] tracking-tight">
+          <h1 className="text-3xl sm:text-4xl font-black text-[#1E1B4B] tracking-tight">
             My Wishlist ({wishlistProducts.length})
           </h1>
           <p className="text-xs sm:text-sm text-slate-500 mt-1">
@@ -68,7 +68,7 @@ export default function WishlistPage() {
                   {/* Info */}
                   <div className="p-4 sm:p-5">
                     <div className="flex items-center justify-between text-xs mb-1">
-                      <span className="text-[#FF4D24] font-bold uppercase tracking-wider text-[10px]">
+                      <span className="text-[#F95738] font-bold uppercase tracking-wider text-[10px]">
                         {product.category}
                       </span>
                       <div className="flex items-center gap-1 text-amber-500 font-bold text-xs">
@@ -78,13 +78,13 @@ export default function WishlistPage() {
                     </div>
 
                     <Link href={`/products/${product.id}`}>
-                      <h3 className="font-bold text-sm text-[#142344] hover:text-[#FF4D24] transition-colors line-clamp-2 leading-snug">
+                      <h3 className="font-bold text-sm text-[#1E1B4B] hover:text-[#F95738] transition-colors line-clamp-2 leading-snug">
                         {product.name}
                       </h3>
                     </Link>
 
                     <div className="mt-3 flex items-baseline gap-2">
-                      <span className="text-lg font-black text-[#142344]">
+                      <span className="text-lg font-black text-[#1E1B4B]">
                         ₹{product.price}
                       </span>
                       <span className="text-xs text-slate-400 line-through">
@@ -98,9 +98,9 @@ export default function WishlistPage() {
                 <div className="p-4 pt-0">
                   <button
                     onClick={() => handleMoveToCart(product)}
-                    className="w-full py-2.5 bg-[#142344] hover:bg-[#0D1830] text-white text-xs font-bold rounded-xl shadow-sm transition-all flex items-center justify-center gap-2 group"
+                    className="w-full py-2.5 bg-[#1E1B4B] hover:bg-[#110E38] text-white text-xs font-bold rounded-xl shadow-sm transition-all flex items-center justify-center gap-2 group"
                   >
-                    <ShoppingBag className="w-4 h-4 text-[#FF4D24]" />
+                    <ShoppingBag className="w-4 h-4 text-[#F95738]" />
                     <span>Move to Cart</span>
                   </button>
                 </div>
@@ -112,7 +112,7 @@ export default function WishlistPage() {
             <div className="w-16 h-16 rounded-2xl bg-red-50 text-red-400 flex items-center justify-center mx-auto mb-4">
               <Heart className="w-8 h-8" />
             </div>
-            <h2 className="text-xl font-black text-[#142344] mb-1">
+            <h2 className="text-xl font-black text-[#1E1B4B] mb-1">
               Your wishlist is empty
             </h2>
             <p className="text-xs text-slate-500 mb-6 max-w-xs mx-auto">
@@ -120,10 +120,10 @@ export default function WishlistPage() {
             </p>
             <Link
               href="/products"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-[#142344] hover:bg-[#0D1830] text-white text-xs font-bold rounded-xl shadow-md transition-all"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-[#1E1B4B] hover:bg-[#110E38] text-white text-xs font-bold rounded-xl shadow-md transition-all"
             >
               <span>Explore All Products</span>
-              <ArrowRight className="w-3.5 h-3.5 text-[#FF4D24]" />
+              <ArrowRight className="w-3.5 h-3.5 text-[#F95738]" />
             </Link>
           </div>
         )}

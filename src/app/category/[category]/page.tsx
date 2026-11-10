@@ -29,11 +29,11 @@ export default function CategoryPage() {
   if (!category) {
     return (
       <div className="min-h-[60vh] flex flex-col items-center justify-center p-6 text-center">
-        <h2 className="text-2xl font-black text-[#142344] mb-2">Category Not Found</h2>
+        <h2 className="text-2xl font-black text-[#1E1B4B] mb-2">Category Not Found</h2>
         <p className="text-xs text-slate-500 mb-6">The requested category does not exist.</p>
         <Link
           href="/products"
-          className="px-6 py-2.5 bg-[#FF4D24] text-white text-xs font-bold rounded-xl shadow-md hover:bg-[#E03C14]"
+          className="px-6 py-2.5 bg-[#F95738] text-white text-xs font-bold rounded-xl shadow-md hover:bg-[#E03A1B]"
         >
           Browse All Products
         </Link>
@@ -44,7 +44,7 @@ export default function CategoryPage() {
   return (
     <div className="bg-slate-50 min-h-screen pb-16">
       {/* Category Hero Banner */}
-      <div className="relative bg-[#142344] text-white py-16 overflow-hidden">
+      <div className="relative bg-[#1E1B4B] text-white py-16 overflow-hidden">
         <div className="absolute inset-0 opacity-20">
           <Image
             src={category.image}
@@ -65,7 +65,7 @@ export default function CategoryPage() {
 
           <div className="max-w-2xl">
             {category.badge && (
-              <span className="inline-block px-3 py-1 rounded-full bg-[#FF4D24] text-white text-xs font-bold uppercase tracking-wider mb-3">
+              <span className="inline-block px-3 py-1 rounded-full bg-[#F95738] text-white text-xs font-bold uppercase tracking-wider mb-3">
                 {category.badge}
               </span>
             )}
@@ -83,7 +83,7 @@ export default function CategoryPage() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10">
         <div className="bg-white rounded-2xl p-4 border border-slate-200 mb-8 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="text-xs font-bold text-slate-600">
-            Showing <strong className="text-[#142344]">{categoryProducts.length}</strong> items in{" "}
+            Showing <strong className="text-[#1E1B4B]">{categoryProducts.length}</strong> items in{" "}
             {category.name}
           </div>
 
@@ -92,7 +92,7 @@ export default function CategoryPage() {
             <select
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value)}
-              className="text-xs font-bold p-2 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none text-[#142344]"
+              className="text-xs font-bold p-2 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none text-[#1E1B4B]"
             >
               <option value="featured">Featured First</option>
               <option value="price-low">Price: Low to High</option>
@@ -112,7 +112,7 @@ export default function CategoryPage() {
         ) : (
           <div className="bg-white rounded-3xl p-12 text-center border border-slate-200 max-w-md mx-auto my-8">
             <Package className="w-12 h-12 text-slate-300 mx-auto mb-3" />
-            <h3 className="text-base font-bold text-[#142344] mb-1">
+            <h3 className="text-base font-bold text-[#1E1B4B] mb-1">
               No products found in this category yet
             </h3>
             <p className="text-xs text-slate-500 mb-4">
@@ -120,7 +120,7 @@ export default function CategoryPage() {
             </p>
             <Link
               href="/products"
-              className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#FF4D24] text-white text-xs font-bold rounded-xl"
+              className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#F95738] text-white text-xs font-bold rounded-xl"
             >
               <ArrowLeft className="w-4 h-4" />
               <span>Back to All Products</span>

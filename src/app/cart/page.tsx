@@ -82,7 +82,7 @@ export default function CartPage() {
         particleCount: 100,
         spread: 80,
         origin: { y: 0.6 },
-        colors: ["#142344", "#FF4D24", "#10B981", "#FFD700"],
+        colors: ["#1E1B4B", "#F95738", "#10B981", "#FFD700"],
       });
     } catch {
       // ignore
@@ -101,7 +101,7 @@ export default function CartPage() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Title */}
         <div className="mb-8">
-          <h1 className="text-3xl sm:text-4xl font-black text-[#142344] tracking-tight">
+          <h1 className="text-3xl sm:text-4xl font-black text-[#1E1B4B] tracking-tight">
             Shopping Cart
           </h1>
           <p className="text-xs sm:text-sm text-slate-500 mt-1">
@@ -116,8 +116,8 @@ export default function CartPage() {
               {/* Free shipping progress alert */}
               <div className="p-4 rounded-2xl bg-white border border-slate-200/80 shadow-2xs space-y-2">
                 <div className="flex items-center justify-between text-xs font-bold">
-                  <span className="flex items-center gap-1.5 text-[#142344]">
-                    <Truck className="w-4 h-4 text-[#FF4D24]" />
+                  <span className="flex items-center gap-1.5 text-[#1E1B4B]">
+                    <Truck className="w-4 h-4 text-[#F95738]" />
                     {freeShippingRemaining === 0 ? (
                       <span className="text-emerald-600 flex items-center gap-1">
                         <Sparkles className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
@@ -125,7 +125,7 @@ export default function CartPage() {
                       </span>
                     ) : (
                       <span>
-                        Add <strong className="text-[#FF4D24]">₹{freeShippingRemaining}</strong> more to get FREE Express Shipping
+                        Add <strong className="text-[#F95738]">₹{freeShippingRemaining}</strong> more to get FREE Express Shipping
                       </span>
                     )}
                   </span>
@@ -133,7 +133,7 @@ export default function CartPage() {
                 </div>
                 <div className="w-full h-2 rounded-md bg-slate-100 overflow-hidden">
                   <div
-                    className="h-full bg-gradient-to-r from-[#FF4D24] to-emerald-500 rounded-md transition-all duration-500"
+                    className="h-full bg-gradient-to-r from-[#F95738] to-emerald-500 rounded-md transition-all duration-500"
                     style={{ width: `${freeShippingProgress}%` }}
                   />
                 </div>
@@ -153,7 +153,7 @@ export default function CartPage() {
                       />
                       {item.customImage && (
                         <div className="absolute inset-0 bg-black/40 flex items-center justify-center p-2">
-                          <span className="text-[10px] font-bold text-white bg-[#FF4D24] px-1.5 py-0.5 rounded">
+                          <span className="text-[10px] font-bold text-white bg-[#F95738] px-1.5 py-0.5 rounded">
                             Custom Logo
                           </span>
                         </div>
@@ -162,11 +162,11 @@ export default function CartPage() {
 
                     {/* Details */}
                     <div className="flex-1 min-w-0">
-                      <span className="text-[10px] font-bold text-[#FF4D24] uppercase tracking-wider">
+                      <span className="text-[10px] font-bold text-[#F95738] uppercase tracking-wider">
                         {item.product.category}
                       </span>
                       <Link href={`/products/${item.product.id}`}>
-                        <h3 className="text-sm sm:text-base font-bold text-[#142344] hover:text-[#FF4D24] transition-colors truncate">
+                        <h3 className="text-sm sm:text-base font-bold text-[#1E1B4B] hover:text-[#F95738] transition-colors truncate">
                           {item.product.name}
                         </h3>
                       </Link>
@@ -190,7 +190,7 @@ export default function CartPage() {
                         )}
                       </div>
 
-                      <div className="text-xs font-semibold text-[#142344] mt-2">
+                      <div className="text-xs font-semibold text-[#1E1B4B] mt-2">
                         Unit Price: <span className="font-bold">₹{item.unitPrice}</span>
                       </div>
                     </div>
@@ -206,7 +206,7 @@ export default function CartPage() {
                         >
                           <Minus className="w-3 h-3" />
                         </button>
-                        <span className="w-10 text-center font-bold text-xs text-[#142344]">
+                        <span className="w-10 text-center font-bold text-xs text-[#1E1B4B]">
                           {item.quantity}
                         </span>
                         <button
@@ -220,7 +220,7 @@ export default function CartPage() {
 
                       {/* Item Total */}
                       <div className="text-right min-w-20">
-                        <div className="text-base font-black text-[#142344]">
+                        <div className="text-base font-black text-[#1E1B4B]">
                           ₹{(item.unitPrice * item.quantity).toLocaleString()}
                         </div>
                       </div>
@@ -242,7 +242,7 @@ export default function CartPage() {
               <div className="flex items-center justify-between pt-2">
                 <Link
                   href="/products"
-                  className="text-xs font-bold text-[#FF4D24] hover:underline flex items-center gap-1"
+                  className="text-xs font-bold text-[#F95738] hover:underline flex items-center gap-1"
                 >
                   ← Continue Shopping
                 </Link>
@@ -260,7 +260,7 @@ export default function CartPage() {
               {/* Coupon Form */}
               <div className="bg-white rounded-3xl p-5 border border-slate-200/80 shadow-xs space-y-3">
                 <div className="flex items-center gap-2 text-xs font-bold text-slate-800">
-                  <Tag className="w-4 h-4 text-[#FF4D24]" />
+                  <Tag className="w-4 h-4 text-[#F95738]" />
                   <span>Have a Promo Code?</span>
                 </div>
 
@@ -290,11 +290,11 @@ export default function CartPage() {
                       value={couponInput}
                       onChange={(e) => setCouponInput(e.target.value)}
                       placeholder="Try: PRINT15 or BULK25"
-                      className="flex-1 px-3 py-2 text-xs uppercase bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-[#142344]"
+                      className="flex-1 px-3 py-2 text-xs uppercase bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-[#1E1B4B]"
                     />
                     <button
                       type="submit"
-                      className="px-4 py-2 bg-[#142344] hover:bg-[#0D1830] text-white text-xs font-bold rounded-xl transition-colors"
+                      className="px-4 py-2 bg-[#1E1B4B] hover:bg-[#110E38] text-white text-xs font-bold rounded-xl transition-colors"
                     >
                       Apply
                     </button>
@@ -304,7 +304,7 @@ export default function CartPage() {
 
               {/* Order Calculation */}
               <div className="bg-white rounded-3xl p-6 border border-slate-200/80 shadow-xs space-y-4">
-                <h3 className="text-base font-black text-[#142344] border-b border-slate-100 pb-3">
+                <h3 className="text-base font-black text-[#1E1B4B] border-b border-slate-100 pb-3">
                   Order Summary
                 </h3>
 
@@ -343,7 +343,7 @@ export default function CartPage() {
                     <span className="text-xs text-slate-400 uppercase font-bold tracking-wider block">
                       Total Payable
                     </span>
-                    <span className="text-2xl font-black text-[#142344]">
+                    <span className="text-2xl font-black text-[#1E1B4B]">
                       ₹{total.toLocaleString()}
                     </span>
                   </div>
@@ -355,7 +355,7 @@ export default function CartPage() {
                 <button
                   type="button"
                   onClick={() => setIsCheckoutOpen(true)}
-                  className="w-full py-4 bg-[#FF4D24] hover:bg-[#E03C14] text-white font-bold rounded-2xl shadow-lg shadow-[#FF4D24]/25 transition-all flex items-center justify-center gap-2 text-sm active:scale-98"
+                  className="w-full py-4 bg-[#F95738] hover:bg-[#E03A1B] text-white font-bold rounded-2xl shadow-lg shadow-[#F95738]/25 transition-all flex items-center justify-center gap-2 text-sm active:scale-98"
                 >
                   <ShoppingBag className="w-4 h-4" />
                   <span>Proceed to Checkout</span>
@@ -373,7 +373,7 @@ export default function CartPage() {
             <div className="w-20 h-20 rounded-3xl bg-slate-100 flex items-center justify-center text-slate-400 mx-auto mb-4">
               <ShoppingBag className="w-10 h-10 text-slate-300" />
             </div>
-            <h2 className="text-2xl font-black text-[#142344] mb-2">
+            <h2 className="text-2xl font-black text-[#1E1B4B] mb-2">
               Your cart is empty
             </h2>
             <p className="text-xs sm:text-sm text-slate-500 mb-8 max-w-sm mx-auto">
@@ -381,7 +381,7 @@ export default function CartPage() {
             </p>
             <Link
               href="/products"
-              className="inline-flex items-center gap-2 px-8 py-3.5 bg-[#FF4D24] hover:bg-[#E03C14] text-white font-bold rounded-xl shadow-lg shadow-[#FF4D24]/20 transition-all text-sm"
+              className="inline-flex items-center gap-2 px-8 py-3.5 bg-[#F95738] hover:bg-[#E03A1B] text-white font-bold rounded-xl shadow-lg shadow-[#F95738]/20 transition-all text-sm"
             >
               <span>Explore Custom Products</span>
               <ArrowRight className="w-4 h-4" />
@@ -397,11 +397,11 @@ export default function CartPage() {
             {/* Modal Header */}
             <div className="p-5 border-b border-slate-100 flex items-center justify-between bg-slate-50">
               <div className="flex items-center gap-2">
-                <div className="w-8 h-8 rounded-lg bg-[#142344] text-[#FF4D24] flex items-center justify-center font-bold text-xs">
+                <div className="w-8 h-8 rounded-lg bg-[#1E1B4B] text-[#F95738] flex items-center justify-center font-bold text-xs">
                   MPH
                 </div>
                 <div>
-                  <h3 className="font-bold text-sm text-[#142344]">Express Doorstep Checkout</h3>
+                  <h3 className="font-bold text-sm text-[#1E1B4B]">Express Doorstep Checkout</h3>
                   <p className="text-[11px] text-slate-500">Order Total: ₹{total.toLocaleString()}</p>
                 </div>
               </div>
@@ -419,12 +419,12 @@ export default function CartPage() {
                 <div className="w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto">
                   <CheckCircle2 className="w-10 h-10" />
                 </div>
-                <h3 className="text-2xl font-black text-[#142344]">
+                <h3 className="text-2xl font-black text-[#1E1B4B]">
                   Order Placed Successfully!
                 </h3>
                 <p className="text-xs text-slate-600 max-w-md mx-auto">
                   Thank you, <strong>{formData.fullName || "Customer"}</strong>! Your order ID is{" "}
-                  <span className="font-mono font-bold text-[#FF4D24]">{orderId}</span>.
+                  <span className="font-mono font-bold text-[#F95738]">{orderId}</span>.
                   A digital proof and tracking link will be sent to your email.
                 </p>
                 <div className="pt-4">
@@ -433,7 +433,7 @@ export default function CartPage() {
                       setIsCheckoutOpen(false);
                       setIsOrderPlaced(false);
                     }}
-                    className="px-8 py-3 bg-[#142344] text-white text-xs font-bold rounded-xl shadow-md hover:bg-[#0D1830]"
+                    className="px-8 py-3 bg-[#1E1B4B] text-white text-xs font-bold rounded-xl shadow-md hover:bg-[#110E38]"
                   >
                     Close & Return to Home
                   </button>
@@ -452,7 +452,7 @@ export default function CartPage() {
                       value={formData.fullName}
                       onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
                       placeholder="e.g. Vikram Malhotra"
-                      className="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-[#142344]"
+                      className="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-[#1E1B4B]"
                     />
                   </div>
                   <div>
@@ -465,7 +465,7 @@ export default function CartPage() {
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                       placeholder="10-digit mobile number"
-                      className="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-[#142344]"
+                      className="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-[#1E1B4B]"
                     />
                   </div>
                 </div>
@@ -480,7 +480,7 @@ export default function CartPage() {
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     placeholder="example@company.com"
-                    className="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-[#142344]"
+                    className="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-[#1E1B4B]"
                   />
                 </div>
 
@@ -494,7 +494,7 @@ export default function CartPage() {
                     value={formData.address}
                     onChange={(e) => setFormData({ ...formData, address: e.target.value })}
                     placeholder="Office / Flat / Building, Street, Area"
-                    className="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-[#142344]"
+                    className="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-[#1E1B4B]"
                   />
                 </div>
 
@@ -552,11 +552,11 @@ export default function CartPage() {
                           onClick={() => setFormData({ ...formData, paymentMethod: opt.id })}
                           className={`p-3 rounded-xl border text-left flex flex-col justify-between transition-all ${
                             isSelected
-                              ? "bg-[#142344] text-white border-[#142344] shadow-xs"
+                              ? "bg-[#1E1B4B] text-white border-[#1E1B4B] shadow-xs"
                               : "bg-slate-50 text-slate-700 border-slate-200 hover:bg-slate-100"
                           }`}
                         >
-                          <Icon className={`w-4 h-4 mb-2 ${isSelected ? "text-[#FF4D24]" : "text-slate-500"}`} />
+                          <Icon className={`w-4 h-4 mb-2 ${isSelected ? "text-[#F95738]" : "text-slate-500"}`} />
                           <span className="text-[11px] font-bold">{opt.label}</span>
                         </button>
                       );
@@ -567,11 +567,11 @@ export default function CartPage() {
                 {/* Modal Footer */}
                 <div className="pt-4 border-t border-slate-100 flex items-center justify-between">
                   <div className="text-xs text-slate-500">
-                    Total: <strong className="text-sm font-black text-[#142344]">₹{total.toLocaleString()}</strong>
+                    Total: <strong className="text-sm font-black text-[#1E1B4B]">₹{total.toLocaleString()}</strong>
                   </div>
                   <button
                     type="submit"
-                    className="px-6 py-3 bg-[#FF4D24] hover:bg-[#E03C14] text-white text-xs font-bold rounded-xl shadow-lg transition-all"
+                    className="px-6 py-3 bg-[#F95738] hover:bg-[#E03A1B] text-white text-xs font-bold rounded-xl shadow-lg transition-all"
                   >
                     Confirm & Place Order
                   </button>

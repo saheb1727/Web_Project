@@ -92,11 +92,11 @@ export default function TrackOrderPage() {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-10">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FF4D24]/10 text-[#FF4D24] text-xs font-bold uppercase tracking-wider mb-2">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#F95738]/10 text-[#F95738] text-xs font-bold uppercase tracking-wider mb-2">
             <Truck className="w-4 h-4" />
             <span>Live Courier Tracking</span>
           </div>
-          <h1 className="text-3xl sm:text-4xl font-black text-[#142344] tracking-tight">
+          <h1 className="text-3xl sm:text-4xl font-black text-[#1E1B4B] tracking-tight">
             Track Your Custom Order
           </h1>
           <p className="text-xs sm:text-sm text-slate-500 mt-1 max-w-md mx-auto">
@@ -116,7 +116,7 @@ export default function TrackOrderPage() {
                 value={orderInput}
                 onChange={(e) => setOrderInput(e.target.value)}
                 placeholder="e.g. MPH-582910"
-                className="w-full px-4 py-2.5 text-xs bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-[#142344] uppercase font-mono"
+                className="w-full px-4 py-2.5 text-xs bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-[#1E1B4B] uppercase font-mono"
               />
             </div>
 
@@ -129,14 +129,14 @@ export default function TrackOrderPage() {
                 value={phoneInput}
                 onChange={(e) => setPhoneInput(e.target.value)}
                 placeholder="10-digit registered mobile"
-                className="w-full px-4 py-2.5 text-xs bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-[#142344]"
+                className="w-full px-4 py-2.5 text-xs bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-[#1E1B4B]"
               />
             </div>
 
             <div className="sm:col-span-2 flex items-end">
               <button
                 type="submit"
-                className="w-full py-2.5 bg-[#FF4D24] hover:bg-[#E03C14] text-white text-xs font-bold rounded-xl shadow-md transition-colors flex items-center justify-center gap-1.5"
+                className="w-full py-2.5 bg-[#F95738] hover:bg-[#E03A1B] text-white text-xs font-bold rounded-xl shadow-md transition-colors flex items-center justify-center gap-1.5"
               >
                 <Search className="w-3.5 h-3.5" />
                 <span>Track</span>
@@ -178,7 +178,7 @@ export default function TrackOrderPage() {
         {isSearched && (
           <div className="space-y-6 animate-in fade-in duration-300">
             {/* Status Summary Banner */}
-            <div className="p-6 rounded-3xl bg-[#142344] text-white shadow-xl border border-[#273B66] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            <div className="p-6 rounded-3xl bg-[#1E1B4B] text-white shadow-xl border border-[#273B66] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
               <div>
                 <span className="text-xs text-slate-300 uppercase tracking-wider font-bold">
                   Order #{orderInput.toUpperCase() || "MPH-789214"}
@@ -194,7 +194,7 @@ export default function TrackOrderPage() {
                 </h3>
                 <div className="flex items-center gap-2 mt-2 text-xs text-slate-300">
                   <span className="flex items-center gap-1">
-                    <MapPin className="w-3.5 h-3.5 text-[#FF4D24]" />
+                    <MapPin className="w-3.5 h-3.5 text-[#F95738]" />
                     Destination: Bengaluru, Karnataka
                   </span>
                   <span>•</span>
@@ -206,7 +206,7 @@ export default function TrackOrderPage() {
                 <span className="text-[10px] text-slate-300 uppercase font-bold block">
                   Estimated Arrival
                 </span>
-                <span className="text-sm font-black text-[#FF4D24]">
+                <span className="text-sm font-black text-[#F95738]">
                   Tomorrow, by 6:00 PM
                 </span>
               </div>
@@ -214,7 +214,7 @@ export default function TrackOrderPage() {
 
             {/* Step Timeline */}
             <div className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-xs">
-              <h4 className="text-base font-black text-[#142344] mb-6">
+              <h4 className="text-base font-black text-[#1E1B4B] mb-6">
                 Live Production & Courier Milestones
               </h4>
 
@@ -227,7 +227,7 @@ export default function TrackOrderPage() {
                         st.completed
                           ? "bg-emerald-500 ring-4 ring-emerald-100"
                           : st.active
-                          ? "bg-[#FF4D24] ring-4 ring-[#FF4D24]/20 animate-pulse"
+                          ? "bg-[#F95738] ring-4 ring-[#F95738]/20 animate-pulse"
                           : "bg-slate-300"
                       }`}
                     >
@@ -241,7 +241,7 @@ export default function TrackOrderPage() {
                     <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1">
                       <h5
                         className={`text-sm font-bold ${
-                          st.completed || st.active ? "text-[#142344]" : "text-slate-400"
+                          st.completed || st.active ? "text-[#1E1B4B]" : "text-slate-400"
                         }`}
                       >
                         {st.title}
@@ -262,7 +262,7 @@ export default function TrackOrderPage() {
             {/* Need Assistance Card */}
             <div className="p-6 rounded-3xl bg-slate-100 border border-slate-200/80 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-[#142344] text-[#FF4D24] flex items-center justify-center shrink-0">
+                <div className="w-10 h-10 rounded-xl bg-[#1E1B4B] text-[#F95738] flex items-center justify-center shrink-0">
                   <PhoneCall className="w-5 h-5" />
                 </div>
                 <div>
@@ -272,7 +272,7 @@ export default function TrackOrderPage() {
               </div>
               <Link
                 href="/contact"
-                className="px-5 py-2.5 bg-[#142344] hover:bg-[#0D1830] text-white font-bold rounded-xl whitespace-nowrap transition-colors"
+                className="px-5 py-2.5 bg-[#1E1B4B] hover:bg-[#110E38] text-white font-bold rounded-xl whitespace-nowrap transition-colors"
               >
                 Contact Support Desk
               </Link>

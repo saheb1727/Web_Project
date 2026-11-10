@@ -74,7 +74,7 @@ export const ProductCustomizer: React.FC<ProductCustomizerProps> = ({
       {/* Header */}
       <div className="flex items-center justify-between border-b border-slate-100 pb-3">
         <div className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-lg bg-[#FF4D24]/10 flex items-center justify-center text-[#FF4D24]">
+          <div className="w-8 h-8 rounded-lg bg-[#F95738]/10 flex items-center justify-center text-[#F95738]">
             <Sparkles className="w-4 h-4" />
           </div>
           <div>
@@ -136,8 +136,8 @@ export const ProductCustomizer: React.FC<ProductCustomizerProps> = ({
           )}
 
           {!customImage && !customText && (
-            <div className="border-2 border-dashed border-[#FF4D24]/60 bg-white/70 backdrop-blur-xs rounded-xl p-3 text-center pointer-events-auto">
-              <Eye className="w-5 h-5 text-[#FF4D24] mx-auto mb-1 animate-bounce" />
+            <div className="border-2 border-dashed border-[#F95738]/60 bg-white/70 backdrop-blur-xs rounded-xl p-3 text-center pointer-events-auto">
+              <Eye className="w-5 h-5 text-[#F95738] mx-auto mb-1 animate-bounce" />
               <p className="text-xs font-bold text-slate-800">
                 Design Placement Area
               </p>
@@ -155,7 +155,7 @@ export const ProductCustomizer: React.FC<ProductCustomizerProps> = ({
         <div className="p-4 rounded-xl bg-slate-50 border border-slate-200/80 space-y-3">
           <div className="flex items-center justify-between">
             <label className="text-xs font-bold text-slate-800 flex items-center gap-1.5">
-              <ImageIcon className="w-3.5 h-3.5 text-[#FF4D24]" />
+              <ImageIcon className="w-3.5 h-3.5 text-[#F95738]" />
               Upload Logo / Design
             </label>
             {customImage && (
@@ -180,10 +180,10 @@ export const ProductCustomizer: React.FC<ProductCustomizerProps> = ({
 
           <label
             htmlFor="logo-upload"
-            className="flex flex-col items-center justify-center p-4 border-2 border-dashed border-slate-300 hover:border-[#FF4D24] rounded-xl cursor-pointer bg-white transition-colors group"
+            className="flex flex-col items-center justify-center p-4 border-2 border-dashed border-slate-300 hover:border-[#F95738] rounded-xl cursor-pointer bg-white transition-colors group"
           >
-            <Upload className="w-5 h-5 text-slate-400 group-hover:text-[#FF4D24] mb-1 transition-colors" />
-            <span className="text-xs font-bold text-slate-700 group-hover:text-[#142344]">
+            <Upload className="w-5 h-5 text-slate-400 group-hover:text-[#F95738] mb-1 transition-colors" />
+            <span className="text-xs font-bold text-slate-700 group-hover:text-[#1E1B4B]">
               {customImage ? "Change Artwork" : "Choose Image (PNG, JPG, SVG)"}
             </span>
             <span className="text-[10px] text-slate-400 mt-0.5">
@@ -205,7 +205,7 @@ export const ProductCustomizer: React.FC<ProductCustomizerProps> = ({
                 max="140"
                 value={logoScale}
                 onChange={(e) => setLogoScale(Number(e.target.value))}
-                className="w-full accent-[#FF4D24]"
+                className="w-full accent-[#F95738]"
               />
             </div>
           )}
@@ -214,7 +214,7 @@ export const ProductCustomizer: React.FC<ProductCustomizerProps> = ({
         {/* 2. Custom Text */}
         <div className="p-4 rounded-xl bg-slate-50 border border-slate-200/80 space-y-3">
           <label className="text-xs font-bold text-slate-800 flex items-center gap-1.5">
-            <Type className="w-3.5 h-3.5 text-[#FF4D24]" />
+            <Type className="w-3.5 h-3.5 text-[#F95738]" />
             Add Custom Text / Name
           </label>
 
@@ -224,7 +224,7 @@ export const ProductCustomizer: React.FC<ProductCustomizerProps> = ({
             onChange={handleTextChange}
             placeholder="e.g. Vikram Sharma, HR Manager"
             maxLength={40}
-            className="w-full px-3 py-2 text-xs bg-white border border-slate-300 rounded-lg focus:outline-none focus:border-[#142344] focus:ring-1 focus:ring-[#142344]"
+            className="w-full px-3 py-2 text-xs bg-white border border-slate-300 rounded-lg focus:outline-none focus:border-[#1E1B4B] focus:ring-1 focus:ring-[#1E1B4B]"
           />
 
           {/* Typography and color options */}
@@ -253,14 +253,14 @@ export const ProductCustomizer: React.FC<ProductCustomizerProps> = ({
                   { name: "White", hex: "#FFFFFF" },
                   { name: "Gold", hex: "#D4AF37" },
                   { name: "Black", hex: "#000000" },
-                  { name: "Orange", hex: "#FF4D24" },
+                  { name: "Orange", hex: "#F95738" },
                 ].map((color) => (
                   <button
                     key={color.hex}
                     type="button"
                     onClick={() => setTextColor(color.hex)}
                     className={`w-6 h-6 rounded-full border shadow-2xs transition-transform ${
-                      textColor === color.hex ? "scale-110 ring-2 ring-[#FF4D24]" : ""
+                      textColor === color.hex ? "scale-110 ring-2 ring-[#F95738]" : ""
                     }`}
                     style={{ backgroundColor: color.hex }}
                     title={color.name}

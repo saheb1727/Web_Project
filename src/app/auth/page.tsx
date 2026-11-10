@@ -52,14 +52,14 @@ export default function AuthPage() {
       <div className="sm:mx-auto sm:w-full sm:max-w-md text-center">
         {/* Brand Logo */}
         <Link href="/" className="inline-flex items-center gap-2 mb-4 group">
-          <div className="w-10 h-10 rounded-xl bg-[#142344] text-[#FF4D24] flex items-center justify-center shadow-md">
+          <div className="w-10 h-10 rounded-xl bg-[#1E1B4B] text-[#F95738] flex items-center justify-center shadow-md">
             <Printer className="w-6 h-6" />
           </div>
-          <span className="text-2xl font-black text-[#142344]">
-            MyPrintHub<span className="text-[#FF4D24]">.in</span>
+          <span className="text-2xl font-black text-[#1E1B4B]">
+            MyPrintHub<span className="text-[#F95738]">.in</span>
           </span>
         </Link>
-        <h2 className="text-2xl font-black text-[#142344] tracking-tight">
+        <h2 className="text-2xl font-black text-[#1E1B4B] tracking-tight">
           {activeTab === "login" ? "Sign in to your account" : "Create a new account"}
         </h2>
         <p className="text-xs text-slate-500 mt-1">
@@ -76,7 +76,7 @@ export default function AuthPage() {
               onClick={() => setActiveTab("login")}
               className={`flex-1 py-2 rounded-xl text-xs font-bold transition-all ${
                 activeTab === "login"
-                  ? "bg-white text-[#142344] shadow-xs"
+                  ? "bg-white text-[#1E1B4B] shadow-xs"
                   : "text-slate-500 hover:text-slate-700"
               }`}
             >
@@ -87,7 +87,7 @@ export default function AuthPage() {
               onClick={() => setActiveTab("signup")}
               className={`flex-1 py-2 rounded-xl text-xs font-bold transition-all ${
                 activeTab === "signup"
-                  ? "bg-white text-[#142344] shadow-xs"
+                  ? "bg-white text-[#1E1B4B] shadow-xs"
                   : "text-slate-500 hover:text-slate-700"
               }`}
             >
@@ -121,7 +121,7 @@ export default function AuthPage() {
                       value={name}
                       onChange={(e) => setName(e.target.value)}
                       placeholder="e.g. Vikram Sharma"
-                      className="w-full pl-9 pr-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-[#142344]"
+                      className="w-full pl-9 pr-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-[#1E1B4B]"
                     />
                   </div>
                 </div>
@@ -138,7 +138,7 @@ export default function AuthPage() {
                       value={phone}
                       onChange={(e) => setPhone(e.target.value)}
                       placeholder="10-digit mobile"
-                      className="w-full pl-9 pr-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-[#142344]"
+                      className="w-full pl-9 pr-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-[#1E1B4B]"
                     />
                   </div>
                 </div>
@@ -157,7 +157,7 @@ export default function AuthPage() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="name@company.com"
-                  className="w-full pl-9 pr-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-[#142344]"
+                  className="w-full pl-9 pr-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-[#1E1B4B]"
                 />
               </div>
             </div>
@@ -168,7 +168,7 @@ export default function AuthPage() {
                   Password
                 </label>
                 {activeTab === "login" && (
-                  <span className="text-[11px] text-[#FF4D24] font-semibold cursor-pointer hover:underline">
+                  <span className="text-[11px] text-[#F95738] font-semibold cursor-pointer hover:underline">
                     Forgot Password?
                   </span>
                 )}
@@ -181,7 +181,7 @@ export default function AuthPage() {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="••••••••"
-                  className="w-full pl-9 pr-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-[#142344]"
+                  className="w-full pl-9 pr-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-[#1E1B4B]"
                 />
               </div>
             </div>
@@ -189,7 +189,7 @@ export default function AuthPage() {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="w-full py-3 bg-[#FF4D24] hover:bg-[#E03C14] text-white text-xs font-bold rounded-xl shadow-lg shadow-[#FF4D24]/20 transition-all flex items-center justify-center gap-2 active:scale-98 disabled:opacity-70"
+              className="w-full py-3 bg-[#F95738] hover:bg-[#E03A1B] text-white text-xs font-bold rounded-xl shadow-lg shadow-[#F95738]/20 transition-all flex items-center justify-center gap-2 active:scale-98 disabled:opacity-70"
             >
               <span>{isSubmitting ? "Please wait..." : activeTab === "login" ? "Sign In" : "Register Account"}</span>
               <ArrowRight className="w-4 h-4" />

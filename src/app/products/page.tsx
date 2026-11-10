@@ -52,10 +52,10 @@ export default function ProductsPage() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Page Header */}
         <div className="mb-8">
-          <div className="text-xs font-bold text-[#FF4D24] uppercase tracking-wider mb-1">
+          <div className="text-xs font-bold text-[var(--color-accent)] uppercase tracking-wider mb-1">
             Complete Catalog
           </div>
-          <h1 className="text-3xl sm:text-4xl font-black text-[#142344] tracking-tight">
+          <h1 className="text-3xl sm:text-4xl font-black text-[var(--color-primary)] tracking-tight">
             All Custom Merchandise
           </h1>
           <p className="text-sm text-slate-500 mt-1 max-w-2xl">
@@ -73,12 +73,12 @@ export default function ProductsPage() {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search by name, fabric, specs..."
-              className="w-full pl-9 pr-4 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-[#142344]"
+              className="w-full pl-9 pr-4 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-slate-400"
             />
             {searchQuery && (
               <button
                 onClick={() => setSearchQuery("")}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600"
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 cursor-pointer"
               >
                 <X className="w-3.5 h-3.5" />
               </button>
@@ -89,9 +89,9 @@ export default function ProductsPage() {
           <div className="hidden lg:flex items-center gap-1.5 overflow-x-auto max-w-xl scrollbar-none">
             <button
               onClick={() => setSelectedCategory("all")}
-              className={`px-3 py-1.5 rounded-lg text-xs font-bold whitespace-nowrap transition-all ${
+              className={`px-3 py-1.5 rounded-lg text-xs font-bold whitespace-nowrap transition-all cursor-pointer ${
                 selectedCategory === "all"
-                  ? "bg-[#142344] text-white shadow-2xs"
+                  ? "bg-[var(--color-primary)] text-white shadow-2xs"
                   : "bg-slate-100 text-slate-600 hover:bg-slate-200"
               }`}
             >
@@ -101,9 +101,9 @@ export default function ProductsPage() {
               <button
                 key={c.id}
                 onClick={() => setSelectedCategory(c.slug)}
-                className={`px-3 py-1.5 rounded-lg text-xs font-bold whitespace-nowrap transition-all ${
+                className={`px-3 py-1.5 rounded-lg text-xs font-bold whitespace-nowrap transition-all cursor-pointer ${
                   selectedCategory === c.slug
-                    ? "bg-[#142344] text-white shadow-2xs"
+                    ? "bg-[var(--color-primary)] text-white shadow-2xs"
                     : "bg-slate-100 text-slate-600 hover:bg-slate-200"
                 }`}
               >
@@ -119,7 +119,7 @@ export default function ProductsPage() {
               <select
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value)}
-                className="text-xs font-bold p-2 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none text-[#142344]"
+                className="text-xs font-bold p-2 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none text-[var(--color-primary)] cursor-pointer"
               >
                 <option value="featured">Featured First</option>
                 <option value="popular">Most Popular</option>
@@ -131,9 +131,9 @@ export default function ProductsPage() {
 
             <button
               onClick={() => setIsFilterDrawerOpen(!isFilterDrawerOpen)}
-              className="lg:hidden p-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl text-xs font-bold flex items-center gap-1.5"
+              className="lg:hidden p-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl text-xs font-bold flex items-center gap-1.5 cursor-pointer"
             >
-              <SlidersHorizontal className="w-4 h-4 text-[#FF4D24]" />
+              <SlidersHorizontal className="w-4 h-4 text-[var(--color-accent)]" />
               <span>Filters</span>
             </button>
           </div>
@@ -143,10 +143,10 @@ export default function ProductsPage() {
         {isFilterDrawerOpen && (
           <div className="lg:hidden mb-6 p-5 bg-white rounded-2xl border border-slate-200 shadow-lg space-y-4">
             <div className="flex items-center justify-between border-b border-slate-100 pb-3">
-              <span className="font-bold text-sm text-[#142344]">Filter Products</span>
+              <span className="font-bold text-sm text-[var(--color-primary)]">Filter Products</span>
               <button
                 onClick={resetFilters}
-                className="text-xs text-[#FF4D24] font-bold flex items-center gap-1"
+                className="text-xs text-[var(--color-accent)] font-bold flex items-center gap-1 cursor-pointer"
               >
                 <RotateCcw className="w-3 h-3" /> Reset
               </button>
@@ -180,7 +180,8 @@ export default function ProductsPage() {
                 step="50"
                 value={maxPrice}
                 onChange={(e) => setMaxPrice(Number(e.target.value))}
-                className="w-full accent-[#FF4D24]"
+                className="w-full"
+                style={{ accentColor: "var(--color-accent)" }}
               />
             </div>
           </div>
@@ -189,13 +190,13 @@ export default function ProductsPage() {
         {/* Product Count & Active Filters Indicator */}
         <div className="flex items-center justify-between mb-6">
           <div className="text-xs font-bold text-slate-500">
-            Showing <strong className="text-[#142344]">{filteredProducts.length}</strong> products
+            Showing <strong className="text-[var(--color-primary)]">{filteredProducts.length}</strong> products
           </div>
 
           {(selectedCategory !== "all" || searchQuery || maxPrice < 1000) && (
             <button
               onClick={resetFilters}
-              className="text-xs font-bold text-[#FF4D24] hover:text-[#E03C14] flex items-center gap-1 transition-colors"
+              className="text-xs font-bold text-[var(--color-accent)] hover:opacity-85 flex items-center gap-1 transition-opacity cursor-pointer"
             >
               <RotateCcw className="w-3.5 h-3.5" />
               <span>Clear All Filters</span>
@@ -215,7 +216,7 @@ export default function ProductsPage() {
             <div className="w-16 h-16 rounded-2xl bg-slate-100 flex items-center justify-center text-slate-400 mx-auto mb-4">
               <Package className="w-8 h-8" />
             </div>
-            <h3 className="text-lg font-bold text-[#142344] mb-1">
+            <h3 className="text-lg font-bold text-[var(--color-primary)] mb-1">
               No matching merchandise found
             </h3>
             <p className="text-xs text-slate-500 mb-6">
@@ -223,7 +224,7 @@ export default function ProductsPage() {
             </p>
             <button
               onClick={resetFilters}
-              className="px-6 py-2.5 bg-[#142344] hover:bg-[#0D1830] text-white text-xs font-bold rounded-xl shadow-md transition-colors"
+              className="px-6 py-2.5 bg-[var(--color-primary)] hover:opacity-90 text-white text-xs font-bold rounded-xl shadow-md transition-opacity cursor-pointer"
             >
               Reset Filters
             </button>
@@ -233,4 +234,3 @@ export default function ProductsPage() {
     </div>
   );
 }
-

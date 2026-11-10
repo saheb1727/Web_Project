@@ -44,11 +44,11 @@ export default function ContactPage() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center max-w-2xl mx-auto mb-12">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FF4D24]/10 text-[#FF4D24] text-xs font-bold uppercase tracking-wider mb-2">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#F95738]/10 text-[#F95738] text-xs font-bold uppercase tracking-wider mb-2">
             <MessageCircle className="w-4 h-4" />
             <span>Dedicated Customer Care</span>
           </div>
-          <h1 className="text-3xl sm:text-5xl font-black text-[#142344] tracking-tight">
+          <h1 className="text-3xl sm:text-5xl font-black text-[#1E1B4B] tracking-tight">
             We&apos;re Here to Help You Print
           </h1>
           <p className="text-sm text-slate-500 mt-2">
@@ -61,13 +61,13 @@ export default function ContactPage() {
           <div className="lg:col-span-5 space-y-6">
             {/* Quick Contact Card */}
             <div className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/80 shadow-xs space-y-6">
-              <h3 className="text-lg font-black text-[#142344] border-b border-slate-100 pb-3">
+              <h3 className="text-lg font-black text-[#1E1B4B] border-b border-slate-100 pb-3">
                 Direct Contact Channels
               </h3>
 
               <div className="space-y-4 text-xs">
                 <div className="flex items-start gap-3.5">
-                  <div className="w-10 h-10 rounded-xl bg-[#142344] text-[#FF4D24] flex items-center justify-center shrink-0">
+                  <div className="w-10 h-10 rounded-xl bg-[#1E1B4B] text-[#F95738] flex items-center justify-center shrink-0">
                     <Phone className="w-5 h-5" />
                   </div>
                   <div>
@@ -89,7 +89,7 @@ export default function ContactPage() {
                 </div>
 
                 <div className="flex items-start gap-3.5">
-                  <div className="w-10 h-10 rounded-xl bg-[#FF4D24]/10 text-[#FF4D24] flex items-center justify-center shrink-0">
+                  <div className="w-10 h-10 rounded-xl bg-[#F95738]/10 text-[#F95738] flex items-center justify-center shrink-0">
                     <Mail className="w-5 h-5" />
                   </div>
                   <div>
@@ -103,8 +103,8 @@ export default function ContactPage() {
 
             {/* Office Hubs */}
             <div className="bg-white rounded-3xl p-6 border border-slate-200/80 shadow-xs space-y-4">
-              <h4 className="text-sm font-bold text-[#142344] flex items-center gap-2">
-                <Building className="w-4 h-4 text-[#FF4D24]" />
+              <h4 className="text-sm font-bold text-[#1E1B4B] flex items-center gap-2">
+                <Building className="w-4 h-4 text-[#F95738]" />
                 <span>Manufacturing & Dispatch Facilities</span>
               </h4>
 
@@ -131,10 +131,10 @@ export default function ContactPage() {
           <div className="lg:col-span-7">
             <div className="bg-white rounded-3xl p-6 sm:p-10 border border-slate-200 shadow-xl space-y-6">
               <div className="border-b border-slate-100 pb-4">
-                <span className="text-xs font-bold text-[#FF4D24] uppercase tracking-wider block mb-1">
+                <span className="text-xs font-bold text-[#F95738] uppercase tracking-wider block mb-1">
                   Custom & Bulk Inquiries
                 </span>
-                <h3 className="text-2xl font-black text-[#142344]">
+                <h3 className="text-2xl font-black text-[#1E1B4B]">
                   Request an Instant Quotation
                 </h3>
                 <p className="text-xs text-slate-500 mt-1">
@@ -155,7 +155,7 @@ export default function ContactPage() {
                   </p>
                   <button
                     onClick={() => setIsSubmitted(false)}
-                    className="mt-4 px-6 py-2.5 bg-[#142344] text-white text-xs font-bold rounded-xl shadow-md hover:bg-[#0D1830]"
+                    className="mt-4 px-6 py-2.5 bg-[#1E1B4B] text-white text-xs font-bold rounded-xl shadow-md hover:bg-[#110E38]"
                   >
                     Send Another Message
                   </button>
@@ -173,7 +173,7 @@ export default function ContactPage() {
                         value={formData.name}
                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                         placeholder="e.g. Ananya Deshmukh"
-                        className="w-full px-3 py-2.5 text-xs bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-[#142344]"
+                        className="w-full px-3 py-2.5 text-xs bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-[#1E1B4B]"
                       />
                     </div>
                     <div>
@@ -186,7 +186,7 @@ export default function ContactPage() {
                         value={formData.phone}
                         onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                         placeholder="10-digit mobile number"
-                        className="w-full px-3 py-2.5 text-xs bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-[#142344]"
+                        className="w-full px-3 py-2.5 text-xs bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-[#1E1B4B]"
                       />
                     </div>
                   </div>
@@ -202,7 +202,7 @@ export default function ContactPage() {
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                         placeholder="ananya@company.com"
-                        className="w-full px-3 py-2.5 text-xs bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-[#142344]"
+                        className="w-full px-3 py-2.5 text-xs bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-[#1E1B4B]"
                       />
                     </div>
                     <div>
@@ -214,7 +214,7 @@ export default function ContactPage() {
                         value={formData.company}
                         onChange={(e) => setFormData({ ...formData, company: e.target.value })}
                         placeholder="e.g. Acme Tech Innovations"
-                        className="w-full px-3 py-2.5 text-xs bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-[#142344]"
+                        className="w-full px-3 py-2.5 text-xs bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-[#1E1B4B]"
                       />
                     </div>
                   </div>
@@ -264,13 +264,13 @@ export default function ContactPage() {
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                       placeholder="Mention your logo colors, delivery city, or any special packaging preferences..."
-                      className="w-full px-3 py-2.5 text-xs bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-[#142344]"
+                      className="w-full px-3 py-2.5 text-xs bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-[#1E1B4B]"
                     />
                   </div>
 
                   <button
                     type="submit"
-                    className="w-full py-3.5 bg-[#FF4D24] hover:bg-[#E03C14] text-white text-xs font-bold rounded-xl shadow-lg shadow-[#FF4D24]/20 transition-all flex items-center justify-center gap-2 active:scale-98"
+                    className="w-full py-3.5 bg-[#F95738] hover:bg-[#E03A1B] text-white text-xs font-bold rounded-xl shadow-lg shadow-[#F95738]/20 transition-all flex items-center justify-center gap-2 active:scale-98"
                   >
                     <Send className="w-4 h-4" />
                     <span>Submit Quotation Request</span>

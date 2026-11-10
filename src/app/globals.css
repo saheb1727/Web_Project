@@ -1,59 +1,14 @@
 @import "tailwindcss";
 
 :root {
-  --color-primary: #142344;
-  --color-primary-dark: #0A1324;
-  --color-accent: #FF4D24;
-  --color-accent-hover: #E0370E;
-  --color-accent-soft: #FFF3F0;
-  --color-accent-border: #FFD6CC;
-  --background: #FFFFFF;
-  --foreground: #0F172A;
-}
-
-[data-theme="sunset-navy"] {
-  --color-primary: #142344;
-  --color-primary-dark: #0A1324;
-  --color-accent: #FF4D24;
-  --color-accent-hover: #E0370E;
-  --color-accent-soft: #FFF3F0;
-  --color-accent-border: #FFD6CC;
-}
-
-[data-theme="emerald-gold"] {
-  --color-primary: #064E3B;
-  --color-primary-dark: #022C22;
-  --color-accent: #D97706;
-  --color-accent-hover: #B45309;
-  --color-accent-soft: #FEF3C7;
-  --color-accent-border: #FDE68A;
-}
-
-[data-theme="midnight-cyan"] {
-  --color-primary: #0B132B;
-  --color-primary-dark: #050814;
-  --color-accent: #0284C7;
-  --color-accent-hover: #0369A1;
-  --color-accent-soft: #F0F9FF;
-  --color-accent-border: #BAE6FD;
-}
-
-[data-theme="crimson-black"] {
-  --color-primary: #18181B;
-  --color-primary-dark: #09090B;
-  --color-accent: #E11D48;
-  --color-accent-hover: #BE123C;
-  --color-accent-soft: #FFF1F2;
-  --color-accent-border: #FECDD3;
-}
-
-[data-theme="royal-purple"] {
   --color-primary: #1E1B4B;
   --color-primary-dark: #110E38;
   --color-accent: #F95738;
   --color-accent-hover: #E03A1B;
   --color-accent-soft: #FFF5F3;
   --color-accent-border: #FFDDD6;
+  --background: #FFFFFF;
+  --foreground: #0F172A;
 }
 
 html {
@@ -87,7 +42,7 @@ body {
   background: #94A3B8;
 }
 
-/* Dynamic theme helper classes */
+/* Regal Indigo & Coral Flame Theme Utility Helpers */
 .theme-bg-primary {
   background-color: var(--color-primary) !important;
 }
