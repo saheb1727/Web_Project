@@ -1,18 +1,20 @@
-"use client";
-
 import React from "react";
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import {
-  ShieldCheck,
   Cpu,
-  Layers,
   Heart,
   Award,
-  Sparkles,
   ArrowRight,
   CheckCircle2,
 } from "lucide-react";
+
+export const metadata: Metadata = {
+  title: "About Our Factory & Quality Guarantee | MyPrintHub.in",
+  description:
+    "Learn about MyPrintHub's 10,000 sq ft manufacturing hub in Noida NCR, Japanese UV DTF printing technology, neodymium magnetic badges, and zero minimum order policy.",
+};
 
 export default function AboutPage() {
   const stats = [
@@ -91,6 +93,7 @@ export default function AboutPage() {
               src="https://images.unsplash.com/photo-1581655353564-df123a1eb820?auto=format&fit=crop&w=1000&q=80"
               alt="MyPrintHub Factory & Printing Facility"
               fill
+              sizes="(max-width: 1024px) 100vw, 50vw"
               className="object-cover"
             />
           </div>
@@ -150,7 +153,7 @@ export default function AboutPage() {
           </p>
           <Link
             href="/products"
-            className="inline-flex items-center gap-2 px-8 py-3.5 bg-[#F95738] hover:bg-[#E03A1B] text-white font-bold rounded-xl shadow-lg transition-all text-sm"
+            className="inline-flex items-center gap-2 px-8 py-3.5 bg-[#F95738] hover:bg-[#E03A1B] text-white font-bold rounded-xl shadow-lg transition-all text-sm cursor-pointer"
           >
             <span>Start Customizing Today</span>
             <ArrowRight className="w-4 h-4" />
@@ -160,4 +163,3 @@ export default function AboutPage() {
     </div>
   );
 }
-

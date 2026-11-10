@@ -21,7 +21,6 @@ import {
 } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 import { useToast } from "@/context/ToastContext";
-import confetti from "canvas-confetti";
 
 export default function CartPage() {
   const {
@@ -65,7 +64,7 @@ export default function CartPage() {
     setCouponInput("");
   };
 
-  const handlePlaceOrder = (e: React.FormEvent) => {
+  const handlePlaceOrder = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.fullName || !formData.phone || !formData.address || !formData.pincode) {
       showToast("Please fill in all mandatory delivery fields", "error");
@@ -78,6 +77,7 @@ export default function CartPage() {
     clearCart();
 
     try {
+      const confetti = (await import("canvas-confetti")).default;
       confetti({
         particleCount: 100,
         spread: 80,

@@ -50,6 +50,7 @@ export default function CategoryPage() {
             src={category.image}
             alt={category.name}
             fill
+            sizes="100vw"
             className="object-cover blur-xs"
           />
         </div>

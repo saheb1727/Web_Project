@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { ToastProvider } from "@/context/ToastContext";
 import { WishlistProvider } from "@/context/WishlistContext";
@@ -9,8 +9,19 @@ import { Footer } from "@/components/layout/Footer";
 import { Star } from "lucide-react";
 import Link from "next/link";
 
+export const viewport: Viewport = {
+  themeColor: "#1E1B4B",
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+};
+
 export const metadata: Metadata = {
-  title: "MyPrintHub.in | Custom Printing, Magnetic Badges & Premium Merch",
+  metadataBase: new URL("https://myprinthub.in"),
+  title: {
+    default: "MyPrintHub.in | Custom Printing, Magnetic Badges & Premium Merch",
+    template: "%s | MyPrintHub.in",
+  },
   description:
     "India's premier on-demand custom printing platform. Neodymium magnetic name badges, bio-washed cotton t-shirts, 380 GSM fleece hoodies, and corporate welcome kits with zero minimum orders.",
   keywords: [
@@ -21,6 +32,27 @@ export const metadata: Metadata = {
     "custom caps embroidery",
     "myprinthub",
   ],
+  authors: [{ name: "MyPrintHub.in" }],
+  creator: "MyPrintHub.in",
+  openGraph: {
+    type: "website",
+    locale: "en_IN",
+    url: "https://myprinthub.in",
+    siteName: "MyPrintHub.in",
+    title: "MyPrintHub.in | Custom Printing, Magnetic Badges & Premium Merch",
+    description:
+      "India's premier on-demand custom printing hub. 24-48h dispatch, zero minimum orders, and direct factory pricing.",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "MyPrintHub.in | Custom Printing, Magnetic Badges & Premium Merch",
+    description:
+      "India's premier on-demand custom printing hub. 24-48h dispatch, zero minimum orders, and direct factory pricing.",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({
@@ -28,6 +60,50 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://myprinthub.in/#organization",
+        "name": "MyPrintHub.in",
+        "url": "https://myprinthub.in",
+        "logo": "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=300&q=80",
+        "description":
+          "India's premier on-demand custom printing platform for executive magnetic badges, bio-washed apparel, and corporate welcome kits.",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Sector 62",
+          "addressLocality": "Noida",
+          "addressRegion": "Uttar Pradesh",
+          "postalCode": "201309",
+          "addressCountry": "IN",
+        },
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": "+91-9876543210",
+          "contactType": "customer service",
+          "areaServed": "IN",
+          "availableLanguage": ["English", "Hindi"],
+        },
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://myprinthub.in/#website",
+        "url": "https://myprinthub.in",
+        "name": "MyPrintHub.in",
+        "publisher": {
+          "@id": "https://myprinthub.in/#organization",
+        },
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://myprinthub.in/products?search={search_term_string}",
+          "query-input": "required name=search_term_string",
+        },
+      },
+    ],
+  };
+
   return (
     <html lang="en" className="h-full antialiased">
       <head>
@@ -38,8 +114,16 @@ export default function RootLayout({
           crossOrigin="anonymous"
         />
         <link
+          rel="dns-prefetch"
+          href="https://images.unsplash.com"
+        />
+        <link
           href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap"
           rel="stylesheet"
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
       <body className="min-h-full flex flex-col font-sans bg-white text-[#0F172A]">

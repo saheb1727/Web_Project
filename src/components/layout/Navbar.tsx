@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
+import dynamic from "next/dynamic";
 import {
   Search,
   Heart,
@@ -16,8 +17,17 @@ import {
 } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 import { useWishlist } from "@/context/WishlistContext";
-import { SearchModal } from "@/components/ui/SearchModal";
-import { MobileMenu } from "./MobileMenu";
+
+// Dynamically import modals to reduce initial JavaScript bundle
+const SearchModal = dynamic(
+  () => import("@/components/ui/SearchModal").then((mod) => mod.SearchModal),
+  { ssr: false }
+);
+
+const MobileMenu = dynamic(
+  () => import("./MobileMenu").then((mod) => mod.MobileMenu),
+  { ssr: false }
+);
 
 // Clean vector Cap SVG icon
 const CapIcon: React.FC<{ className?: string }> = ({ className = "w-4 h-4" }) => (
@@ -101,7 +111,7 @@ export const Navbar: React.FC = () => {
               </div>
             </Link>
 
-            {/* Center Navigation Links (Using clean vector SVG icons, zero emojis) */}
+            {/* Center Navigation Links */}
             <nav className="hidden lg:flex items-center gap-6 xl:gap-8">
               {navLinks.map((link) => {
                 const Icon = link.icon;
@@ -174,11 +184,15 @@ export const Navbar: React.FC = () => {
         </div>
       </header>
 
-      {/* Search Modal */}
-      <SearchModal isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} />
+      {/* Conditionally rendered lazy search modal */}
+      {isSearchOpen && (
+        <SearchModal isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} />
+      )}
 
-      {/* Mobile Menu */}
-      <MobileMenu isOpen={isMobileMenuOpen} onClose={() => setIsMobileMenuOpen(false)} />
+      {/* Conditionally rendered lazy mobile drawer */}
+      {isMobileMenuOpen && (
+        <MobileMenu isOpen={isMobileMenuOpen} onClose={() => setIsMobileMenuOpen(false)} />
+      )}
     </>
   );
 };

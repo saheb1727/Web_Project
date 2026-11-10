@@ -131,6 +131,7 @@ export default function ProductDetailPage() {
                 alt={product.name}
                 fill
                 priority
+                sizes="(max-width: 1024px) 100vw, 500px"
                 className="object-cover"
               />
 
@@ -175,7 +176,7 @@ export default function ProductDetailPage() {
                         : "border-slate-200 hover:border-slate-400"
                     }`}
                   >
-                    <Image src={img} alt="" fill className="object-cover" />
+                    <Image src={img} alt="" fill sizes="80px" className="object-cover" />
                   </button>
                 ))}
               </div>

@@ -18,7 +18,6 @@ import {
   X,
 } from "lucide-react";
 import { useToast } from "@/context/ToastContext";
-import confetti from "canvas-confetti";
 import { gsap } from "@/lib/gsap";
 
 export const HeroSection: React.FC = () => {
@@ -86,12 +85,13 @@ export const HeroSection: React.FC = () => {
     return () => ctx.revert();
   }, []);
 
-  const handleCopyCode = () => {
+  const handleCopyCode = async () => {
     navigator.clipboard.writeText("SPECIAL15");
     setCopied(true);
     showToast("Coupon SPECIAL15 copied to clipboard!", "success");
 
     try {
+      const confetti = (await import("canvas-confetti")).default;
       confetti({
         particleCount: 50,
         spread: 60,
