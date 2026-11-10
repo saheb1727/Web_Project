@@ -135,10 +135,10 @@ export default function RootLayout({
               <main className="flex-1">{children}</main>
               <Footer />
 
-              {/* Floating Reviews Side Tab (Matching Reference Screenshot) */}
+              {/* Floating Reviews Side Tab (Hidden on mobile to prevent content overlap) */}
               <Link
                 href="/#testimonials"
-                className="fixed right-0 top-1/2 -translate-y-1/2 z-40 bg-[var(--color-primary)] hover:bg-[var(--color-accent)] text-white px-2.5 py-4 rounded-l-xl shadow-xl flex flex-col items-center gap-1.5 transition-colors cursor-pointer group"
+                className="hidden md:flex fixed right-0 top-1/2 -translate-y-1/2 z-40 bg-[var(--color-primary)] hover:bg-[var(--color-accent)] text-white px-2.5 py-4 rounded-l-xl shadow-xl flex-col items-center gap-1.5 transition-colors cursor-pointer group"
                 title="Read Customer Reviews"
               >
                 <Star className="w-3.5 h-3.5 text-[var(--color-accent)] group-hover:text-white fill-[var(--color-accent)] group-hover:fill-white" />
