@@ -2,7 +2,7 @@
 
 import React from "react";
 import { TieredPrice } from "@/types";
-import { Check, Tag } from "lucide-react";
+import { Check, Sparkles } from "lucide-react";
 
 interface BulkPricingTableProps {
   tieredPricing: TieredPrice[];
@@ -18,15 +18,13 @@ export const BulkPricingTable: React.FC<BulkPricingTableProps> = ({
   if (!tieredPricing || tieredPricing.length === 0) return null;
 
   return (
-    <div className="bg-slate-50 rounded-2xl p-3 sm:p-4 border border-slate-200">
-      <div className="flex items-center justify-between mb-2">
-        <div className="flex items-center gap-1.5">
-          <Tag className="w-3.5 h-3.5 text-[#F95738]" />
-          <h4 className="text-xs sm:text-sm font-bold text-slate-900">
-            Wholesale Volume Tiers
-          </h4>
+    <div className="space-y-2">
+      <div className="flex items-center justify-between text-xs">
+        <div className="flex items-center gap-1.5 font-bold text-slate-900">
+          <Sparkles className="w-3.5 h-3.5 text-[#F95738]" />
+          <span>Wholesale Volume Discounts</span>
         </div>
-        <span className="text-[10px] sm:text-xs text-[#F95738] font-bold bg-[#F95738]/10 px-2 py-0.5 rounded-md">
+        <span className="text-[11px] font-semibold text-[#F95738] bg-[#F95738]/10 px-2 py-0.5 rounded-full">
           Save Up To 55%
         </span>
       </div>
@@ -44,32 +42,26 @@ export const BulkPricingTable: React.FC<BulkPricingTableProps> = ({
               key={idx}
               type="button"
               onClick={() => onSelectTier && onSelectTier(tier.minQty)}
-              className={`p-2.5 sm:p-3 rounded-xl border text-left transition-all relative active:scale-98 cursor-pointer ${
+              className={`p-3 rounded-xl border text-left transition-all duration-150 relative active:scale-97 cursor-pointer ${
                 isActive
-                  ? "bg-[#1E1B4B] text-white border-[#1E1B4B] shadow-md ring-2 ring-[#F95738]/40"
-                  : "bg-white hover:bg-slate-100 text-slate-800 border-slate-200"
+                  ? "bg-white border-[#1E1B4B] shadow-sm ring-2 ring-[#1E1B4B]/15"
+                  : "bg-slate-50/70 hover:bg-white text-slate-700 border-slate-200/80 hover:border-slate-300"
               }`}
             >
               {isActive && (
-                <div className="absolute top-2 right-2 w-3.5 h-3.5 rounded-md bg-[#F95738] flex items-center justify-center text-white">
+                <div className="absolute top-2.5 right-2.5 w-4 h-4 rounded-full bg-[#1E1B4B] text-white flex items-center justify-center">
                   <Check className="w-2.5 h-2.5 stroke-[3]" />
                 </div>
               )}
-              <div
-                className={`text-[10px] sm:text-[11px] font-bold uppercase tracking-wider ${
-                  isActive ? "text-slate-300" : "text-slate-500"
-                }`}
-              >
+              <div className="text-[11px] font-semibold text-slate-500">
                 {label}
               </div>
-              <div className="text-sm sm:text-base font-black mt-0.5 leading-tight">
-                ₹{tier.price}
-                <span className={`text-[10px] font-normal ml-0.5 ${isActive ? "text-slate-300" : "text-slate-400"}`}>
-                  /pc
-                </span>
+              <div className="text-base font-black text-[#1E1B4B] mt-0.5 leading-tight flex items-baseline gap-0.5">
+                <span>₹{tier.price}</span>
+                <span className="text-[10px] font-normal text-slate-400">/pc</span>
               </div>
               <div
-                className={`text-[9px] sm:text-[10px] font-bold mt-0.5 ${
+                className={`text-[10px] font-bold mt-1 inline-block ${
                   isActive ? "text-[#F95738]" : "text-emerald-600"
                 }`}
               >
@@ -82,3 +74,5 @@ export const BulkPricingTable: React.FC<BulkPricingTableProps> = ({
     </div>
   );
 };
+
+export default BulkPricingTable;

@@ -208,15 +208,15 @@ export default function ProductDetailPage() {
                 ))}
               </div>
 
-              {/* Top Left Badges */}
-              <div className="absolute top-3 left-3 flex flex-col gap-1 z-10 pointer-events-none">
+              {/* Top Left Badges (Clean Frosted Glass Pill) */}
+              <div className="absolute top-3 left-3 flex flex-col gap-1.5 z-10 pointer-events-none">
                 {product.badgeText && (
-                  <span className="px-2.5 py-0.5 sm:py-1 text-[10px] sm:text-xs font-bold uppercase tracking-wider bg-[#1E1B4B] text-white rounded-md shadow-sm">
+                  <span className="px-3 py-1 text-[11px] font-extrabold uppercase tracking-wider bg-white/95 backdrop-blur-md text-[#1E1B4B] border border-slate-200/80 rounded-full shadow-xs">
                     {product.badgeText}
                   </span>
                 )}
                 {product.isNew && (
-                  <span className="px-2.5 py-0.5 sm:py-1 text-[10px] sm:text-xs font-bold uppercase tracking-wider bg-[#F95738] text-white rounded-md shadow-sm">
+                  <span className="px-3 py-1 text-[11px] font-extrabold uppercase tracking-wider bg-[#F95738] text-white rounded-full shadow-xs">
                     New Arrival
                   </span>
                 )}
@@ -279,15 +279,19 @@ export default function ProductDetailPage() {
               </div>
             )}
 
-            {/* Compact Trust Guarantees Bar */}
-            <div className="p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-white border border-slate-200/90 shadow-2xs grid grid-cols-2 gap-2 text-[11px] text-slate-600">
-              <div className="flex items-center gap-2">
-                <ShieldCheck className="w-4 h-4 text-[#F95738] shrink-0" />
-                <span className="font-semibold text-slate-800">Print Guarantee</span>
+            {/* Professional Reassurance Badges */}
+            <div className="p-3 sm:p-3.5 rounded-2xl bg-slate-50/80 border border-slate-200/80 grid grid-cols-3 gap-2 text-center text-[11px] text-slate-700">
+              <div className="flex flex-col items-center gap-1 p-1">
+                <ShieldCheck className="w-4 h-4 text-[#F95738]" />
+                <span className="font-bold leading-tight">100% Quality</span>
               </div>
-              <div className="flex items-center gap-2">
-                <Truck className="w-4 h-4 text-[#F95738] shrink-0" />
-                <span className="font-semibold text-slate-800">24-48h Dispatch</span>
+              <div className="flex flex-col items-center gap-1 p-1 border-x border-slate-200/80">
+                <Truck className="w-4 h-4 text-[#F95738]" />
+                <span className="font-bold leading-tight">24–48h Dispatch</span>
+              </div>
+              <div className="flex flex-col items-center gap-1 p-1">
+                <Sparkles className="w-4 h-4 text-[#F95738]" />
+                <span className="font-bold leading-tight">Digital Proof</span>
               </div>
             </div>
           </div>
@@ -336,56 +340,65 @@ export default function ProductDetailPage() {
               </div>
             </div>
 
-            {/* Compact Pricing Box */}
-            <div className="p-3.5 sm:p-4 rounded-xl sm:rounded-2xl bg-white border border-slate-200/90 shadow-2xs flex items-center justify-between gap-3">
-              <div>
-                <div className="flex items-baseline gap-2">
-                  <span className="text-2xl sm:text-3xl font-black text-[#1E1B4B]">
-                    ₹{unitPrice}
-                  </span>
-                  <span className="text-xs sm:text-sm text-slate-400 line-through">
-                    ₹{product.originalPrice}
-                  </span>
-                  {discountPercent > 0 && (
-                    <span className="text-[10px] font-extrabold text-[#F95738] bg-[#F95738]/10 px-1.5 py-0.5 rounded">
-                      {discountPercent}% OFF
+            {/* Unified Pricing & Bulk Volume Discount Matrix */}
+            <div className="p-4 sm:p-5 rounded-2xl bg-gradient-to-b from-slate-50/70 to-white border border-slate-200/90 shadow-2xs space-y-4">
+              {/* Unit Price & Dynamic Total */}
+              <div className="flex flex-wrap items-end justify-between gap-3 pb-3 border-b border-slate-200/60">
+                <div>
+                  <div className="flex items-baseline gap-2.5">
+                    <span className="text-3xl sm:text-4xl font-black text-[#1E1B4B] tracking-tight">
+                      ₹{unitPrice}
                     </span>
+                    <span className="text-sm text-slate-400 line-through font-medium">
+                      ₹{product.originalPrice}
+                    </span>
+                    {discountPercent > 0 && (
+                      <span className="text-xs font-black text-[#F95738] bg-[#F95738]/10 px-2 py-0.5 rounded-full">
+                        {discountPercent}% OFF
+                      </span>
+                    )}
+                  </div>
+                  <div className="text-xs text-slate-500 mt-1 font-medium flex items-center gap-1.5">
+                    <span>Base unit price</span>
+                    <span className="text-slate-300">•</span>
+                    <span className="text-emerald-700 font-semibold">Taxes included</span>
+                  </div>
+                </div>
+
+                <div className="text-right">
+                  <div className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider">
+                    Total ({quantity} {quantity === 1 ? "unit" : "units"})
+                  </div>
+                  <div className="text-xl sm:text-2xl font-black text-[#1E1B4B]">
+                    ₹{totalPrice.toLocaleString()}
+                  </div>
+                  {totalSavings > 0 && (
+                    <div className="text-xs font-bold text-emerald-600">
+                      You save ₹{totalSavings.toLocaleString()}
+                    </div>
                   )}
                 </div>
-                <div className="text-[10px] text-slate-500 mt-0.5">
-                  Unit price for {quantity} {quantity === 1 ? "piece" : "pieces"}
-                </div>
               </div>
 
-              <div className="text-right border-l border-slate-100 pl-3">
-                <span className="text-[10px] text-slate-400 font-semibold block leading-none">
-                  Total
-                </span>
-                <span className="text-lg sm:text-xl font-black text-[#F95738]">
-                  ₹{totalPrice.toLocaleString()}
-                </span>
-                {totalSavings > 0 && (
-                  <span className="text-[10px] text-emerald-600 font-bold block">
-                    Save ₹{totalSavings.toLocaleString()}
-                  </span>
-                )}
-              </div>
+              {/* Wholesale Volume Tiers */}
+              <BulkPricingTable
+                tieredPricing={product.tieredPricing}
+                currentQuantity={quantity}
+                onSelectTier={(minQty) => setQuantity(minQty)}
+              />
             </div>
 
-            {/* Wholesale Tier Table */}
-            <BulkPricingTable
-              tieredPricing={product.tieredPricing}
-              currentQuantity={quantity}
-              onSelectTier={(minQty) => setQuantity(minQty)}
-            />
-
-            {/* Color / Finish Selection */}
+            {/* Color / Finish Selection (Sleek Swatch Selector) */}
             {product.colors && product.colors.length > 0 && (
-              <div>
-                <div className="flex items-center justify-between mb-1.5">
-                  <label className="text-xs font-bold text-slate-800">
-                    Color / Finish: <span className="text-[#F95738] font-semibold">{selectedColor}</span>
-                  </label>
+              <div className="space-y-2">
+                <div className="flex items-center justify-between text-xs">
+                  <span className="font-bold text-slate-900">
+                    Color / Finish:{" "}
+                    <span className="text-[#1E1B4B] font-extrabold">{selectedColor}</span>
+                  </span>
+                  <span className="text-slate-400 font-medium">
+                    {product.colors.length} choices available
+                  </span>
                 </div>
                 <div className="flex flex-wrap items-center gap-2">
                   {product.colors.map((c) => {
@@ -395,14 +408,16 @@ export default function ProductDetailPage() {
                         key={c.name}
                         type="button"
                         onClick={() => setSelectedColor(c.name)}
-                        className={`min-h-[38px] flex items-center gap-2 px-3 py-1.5 rounded-xl border text-xs font-semibold transition-all active:scale-95 cursor-pointer ${
+                        className={`flex items-center gap-2 px-3 py-1.5 rounded-xl text-xs font-bold border transition-all active:scale-95 cursor-pointer ${
                           isSelected
-                            ? "bg-[#1E1B4B] text-white border-[#1E1B4B] shadow-xs"
-                            : "bg-white text-slate-700 border-slate-200 hover:border-slate-300"
+                            ? "bg-white text-[#1E1B4B] border-[#1E1B4B] shadow-sm ring-2 ring-[#1E1B4B]/15"
+                            : "bg-slate-50/70 hover:bg-white text-slate-700 border-slate-200/80 hover:border-slate-300"
                         }`}
                       >
                         <span
-                          className="w-3.5 h-3.5 rounded-full border border-black/10 shrink-0"
+                          className={`w-3.5 h-3.5 rounded-full border border-black/15 shrink-0 transition-transform ${
+                            isSelected ? "scale-110 shadow-xs" : ""
+                          }`}
                           style={{ backgroundColor: c.hex }}
                         />
                         <span>{c.name}</span>
@@ -413,14 +428,15 @@ export default function ProductDetailPage() {
               </div>
             )}
 
-            {/* Size / Dimension Selection */}
+            {/* Size / Dimension Selection (Segmented Control) */}
             {product.sizes && product.sizes.length > 0 && (
-              <div>
-                <div className="flex items-center justify-between mb-1.5">
-                  <label className="text-xs font-bold text-slate-800">
-                    Size: <span className="text-[#F95738] font-semibold">{selectedSize}</span>
-                  </label>
-                  <span className="text-[11px] text-slate-500 font-medium">Standard Indian Fit</span>
+              <div className="space-y-2">
+                <div className="flex items-center justify-between text-xs">
+                  <span className="font-bold text-slate-900">
+                    Selected Size:{" "}
+                    <span className="text-[#1E1B4B] font-extrabold">{selectedSize}</span>
+                  </span>
+                  <span className="text-slate-400 font-medium">Standard Fit</span>
                 </div>
                 <div className="flex flex-wrap items-center gap-2">
                   {product.sizes.map((s) => {
@@ -430,10 +446,10 @@ export default function ProductDetailPage() {
                         key={s}
                         type="button"
                         onClick={() => setSelectedSize(s)}
-                        className={`min-w-[42px] min-h-[38px] px-3 py-1.5 rounded-xl text-xs font-bold border transition-all active:scale-95 cursor-pointer ${
+                        className={`min-w-[48px] px-3.5 py-1.5 rounded-xl text-xs font-bold border transition-all active:scale-95 cursor-pointer ${
                           isSelected
-                            ? "bg-[#1E1B4B] text-white border-[#1E1B4B] shadow-xs"
-                            : "bg-white text-slate-700 border-slate-200 hover:border-slate-300"
+                            ? "bg-[#1E1B4B] text-white border-[#1E1B4B] shadow-sm ring-2 ring-[#1E1B4B]/15"
+                            : "bg-slate-50/70 hover:bg-white text-slate-700 border-slate-200/80 hover:border-slate-300"
                         }`}
                       >
                         {s}
@@ -444,40 +460,59 @@ export default function ProductDetailPage() {
               </div>
             )}
 
-            {/* Quantity Selector */}
-            <div className="flex items-center justify-between gap-4 py-1">
-              <div>
-                <label className="text-xs font-bold text-slate-800 block">
-                  Quantity
-                </label>
-                <span className="text-[10px] text-slate-400">
-                  Bulk tier applies automatically
-                </span>
+            {/* Quantity Selector & Main Action Controls */}
+            <div className="space-y-3 pt-1">
+              <div className="flex items-center justify-between text-xs">
+                <span className="font-bold text-slate-900">Quantity</span>
+                <span className="text-slate-400">Live tiered pricing applied</span>
               </div>
 
-              <div className="flex items-center bg-white border border-slate-200 rounded-xl shadow-2xs p-1">
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+                {/* Stepper */}
+                <div className="flex items-center justify-between sm:justify-start border border-slate-200 rounded-xl bg-slate-50/70 p-1 shrink-0">
+                  <button
+                    type="button"
+                    onClick={() => setQuantity((q) => Math.max(1, q - 1))}
+                    className="w-9 h-9 rounded-lg bg-white flex items-center justify-center text-slate-700 hover:text-[#1E1B4B] shadow-2xs transition-colors active:scale-90 cursor-pointer border border-slate-200/60"
+                    aria-label="Decrease quantity"
+                  >
+                    <Minus className="w-3.5 h-3.5" />
+                  </button>
+                  <input
+                    type="number"
+                    min="1"
+                    value={quantity}
+                    onChange={(e) => setQuantity(Math.max(1, parseInt(e.target.value) || 1))}
+                    className="w-14 text-center font-black text-sm bg-transparent focus:outline-none text-[#1E1B4B]"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setQuantity((q) => q + 1)}
+                    className="w-9 h-9 rounded-lg bg-white flex items-center justify-center text-slate-700 hover:text-[#1E1B4B] shadow-2xs transition-colors active:scale-90 cursor-pointer border border-slate-200/60"
+                    aria-label="Increase quantity"
+                  >
+                    <Plus className="w-3.5 h-3.5" />
+                  </button>
+                </div>
+
+                {/* Primary Add to Cart */}
                 <button
                   type="button"
-                  onClick={() => setQuantity((q) => Math.max(1, q - 1))}
-                  className="w-8 h-8 rounded-lg flex items-center justify-center text-slate-600 hover:bg-slate-100 transition-colors active:scale-90 cursor-pointer"
-                  aria-label="Decrease quantity"
+                  onClick={handleAddToCart}
+                  className="flex-1 h-11 px-5 bg-[#F95738] hover:bg-[#E03A1B] text-white font-bold rounded-xl shadow-md shadow-[#F95738]/20 transition-all flex items-center justify-center gap-2 text-sm active:scale-98 cursor-pointer"
                 >
-                  <Minus className="w-3.5 h-3.5" />
+                  <ShoppingBag className="w-4 h-4" />
+                  <span>Add {quantity} to Cart • ₹{totalPrice.toLocaleString()}</span>
                 </button>
-                <input
-                  type="number"
-                  min="1"
-                  value={quantity}
-                  onChange={(e) => setQuantity(Math.max(1, parseInt(e.target.value) || 1))}
-                  className="w-12 text-center font-bold text-sm bg-transparent focus:outline-none text-[#1E1B4B]"
-                />
+
+                {/* Buy Now Button */}
                 <button
                   type="button"
-                  onClick={() => setQuantity((q) => q + 1)}
-                  className="w-8 h-8 rounded-lg flex items-center justify-center text-slate-600 hover:bg-slate-100 transition-colors active:scale-90 cursor-pointer"
-                  aria-label="Increase quantity"
+                  onClick={handleBuyNow}
+                  className="h-11 px-6 bg-[#1E1B4B] hover:bg-[#110E38] text-white font-bold rounded-xl shadow-xs transition-all flex items-center justify-center gap-2 text-sm active:scale-98 cursor-pointer shrink-0"
                 >
-                  <Plus className="w-3.5 h-3.5" />
+                  <span>Buy Now</span>
+                  <ArrowRight className="w-4 h-4 text-[#F95738]" />
                 </button>
               </div>
             </div>
@@ -495,27 +530,6 @@ export default function ProductDetailPage() {
                 }}
               />
             )}
-
-            {/* Desktop Action Buttons */}
-            <div className="hidden sm:flex items-center gap-3 pt-2">
-              <button
-                type="button"
-                onClick={handleAddToCart}
-                className="flex-1 py-3.5 bg-[#F95738] hover:bg-[#E03A1B] text-white font-bold rounded-xl shadow-lg shadow-[#F95738]/25 transition-all flex items-center justify-center gap-2 text-sm active:scale-98 cursor-pointer"
-              >
-                <ShoppingBag className="w-4 h-4" />
-                <span>Add {quantity} to Cart (₹{totalPrice.toLocaleString()})</span>
-              </button>
-
-              <button
-                type="button"
-                onClick={handleBuyNow}
-                className="px-6 py-3.5 bg-[#1E1B4B] hover:bg-[#110E38] text-white font-bold rounded-xl shadow-md transition-all flex items-center justify-center gap-2 text-sm active:scale-98 cursor-pointer"
-              >
-                <span>Buy Now</span>
-                <ArrowRight className="w-4 h-4 text-[#F95738]" />
-              </button>
-            </div>
           </div>
         </div>
 
