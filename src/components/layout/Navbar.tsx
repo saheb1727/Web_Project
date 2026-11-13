@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import dynamic from "next/dynamic";
@@ -11,15 +11,23 @@ import {
   User,
   Menu,
   Printer,
+  ChevronDown,
+  ArrowRight,
+  Sparkles,
+  ShieldCheck,
+  Flame,
+  Briefcase,
+  Truck,
+  MessageSquare,
   IdCard,
   Shirt,
-  Flame,
-  Gift,
-  MapPin,
+  Coffee,
+  Layers,
 } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 import { useWishlist } from "@/context/WishlistContext";
 import { useAuth } from "@/context/AuthContext";
+import { categories } from "@/data/categories";
 
 // Dynamically import modals to reduce initial JavaScript bundle
 const SearchModal = dynamic(
@@ -32,12 +40,7 @@ const MobileMenu = dynamic(
   { ssr: false }
 );
 
-const LocationModal = dynamic(
-  () => import("@/components/ui/LocationModal").then((mod) => mod.LocationModal),
-  { ssr: false }
-);
-
-// Clean vector Cap SVG icon
+// Clean vector Cap SVG icon for headwear
 const CapIcon: React.FC<{ className?: string }> = ({ className = "w-4 h-4" }) => (
   <svg
     className={className}
@@ -54,203 +57,367 @@ const CapIcon: React.FC<{ className?: string }> = ({ className = "w-4 h-4" }) =>
   </svg>
 );
 
+// Map categories to high-clarity icons
+const getCategoryIcon = (slug: string) => {
+  switch (slug) {
+    case "magnetic-badges":
+      return IdCard;
+    case "custom-t-shirts":
+      return Shirt;
+    case "hoodies-sweatshirts":
+      return Sparkles;
+    case "custom-caps":
+      return CapIcon;
+    case "drinkware-mugs":
+      return Coffee;
+    case "corporate-kits":
+      return Briefcase;
+    default:
+      return Layers;
+  }
+};
+
 export const Navbar: React.FC = () => {
   const { totalItems } = useCart();
   const { wishlistCount } = useWishlist();
   const { user, isLoggedIn } = useAuth();
   const pathname = usePathname();
+
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isLocationModalOpen, setIsLocationModalOpen] = useState(false);
+  const [isProductsOpen, setIsProductsOpen] = useState(false);
 
-  // Delivery Location state (defaults to Noida NCR factory base)
-  const [deliveryLocation, setDeliveryLocation] = useState({
-    pincode: "201301",
-    city: "Noida NCR",
-  });
+  const dropdownRef = useRef<HTMLDivElement>(null);
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
+  // Close dropdown on route change
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      const saved = localStorage.getItem("myprinthub_delivery_location");
-      if (saved) {
-        try {
-          const parsed = JSON.parse(saved);
-          if (parsed.pincode && parsed.city) {
-            setDeliveryLocation(parsed);
-          }
-        } catch {
-          // ignore parsing error
-        }
+    setIsProductsOpen(false);
+  }, [pathname]);
+
+  // Close dropdown on outside click or ESC key
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
+        setIsProductsOpen(false);
       }
-    }
+    };
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setIsProductsOpen(false);
+        setIsSearchOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("keydown", handleKeyDown);
+    };
   }, []);
 
-  const handleSaveLocation = (pincode: string, city: string) => {
-    const loc = { pincode, city };
-    setDeliveryLocation(loc);
-    if (typeof window !== "undefined") {
-      localStorage.setItem("myprinthub_delivery_location", JSON.stringify(loc));
+  const handleMouseEnter = () => {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+      timeoutRef.current = null;
     }
+    setIsProductsOpen(true);
   };
 
-  const navLinks = [
-    {
-      label: "Magnetic Badge",
-      href: "/category/magnetic-badges",
-      icon: IdCard,
-    },
-    {
-      label: "T-Shirts",
-      href: "/category/custom-t-shirts",
-      icon: Shirt,
-    },
-    {
-      label: "Best Seller",
-      href: "/products",
-      icon: Flame,
-    },
-    {
-      label: "Caps",
-      href: "/category/custom-caps",
-      icon: CapIcon,
-    },
-    {
-      label: "Corporate Gifts",
-      href: "/category/corporate-kits",
-      icon: Gift,
-    },
-  ];
+  const handleMouseLeave = () => {
+    timeoutRef.current = setTimeout(() => {
+      setIsProductsOpen(false);
+    }, 150);
+  };
+
+  const isProductsActive =
+    pathname.startsWith("/category") || pathname === "/products";
 
   return (
     <>
-      <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200/90 shadow-2xs">
+      <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200/80 shadow-2xs transition-all">
         <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16 sm:h-20 gap-2 sm:gap-4">
-            {/* Mobile Hamburger Button */}
-            <div className="flex items-center lg:hidden shrink-0">
+          <div className="flex items-center justify-between h-16 sm:h-20 gap-2 sm:gap-4 lg:gap-6">
+            
+            {/* Left: Mobile Hamburger & Brand Identity */}
+            <div className="flex items-center gap-2 sm:gap-4 shrink-0">
+              {/* Mobile Hamburger Trigger */}
               <button
+                type="button"
                 onClick={() => setIsMobileMenuOpen(true)}
-                className="p-1.5 sm:p-2 text-slate-700 hover:text-[var(--color-primary)] rounded-lg transition-colors cursor-pointer active:bg-slate-100"
-                aria-label="Open mobile navigation"
+                className="lg:hidden p-2 text-slate-700 hover:text-[var(--color-primary)] rounded-xl transition-colors cursor-pointer active:bg-slate-100"
+                aria-label="Open navigation menu"
               >
                 <Menu className="w-5 h-5 sm:w-6 sm:h-6" />
               </button>
-            </div>
 
-            {/* Brand Logo & Tagline */}
-            <div className="flex items-center gap-3 sm:gap-4 shrink-0">
-              <Link href="/" className="flex items-center gap-2 sm:gap-2.5 group">
-                <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-[var(--color-primary)] text-[var(--color-accent)] flex items-center justify-center font-black shadow-sm group-hover:scale-105 transition-transform">
-                  <Printer className="w-4 h-4 sm:w-5 sm:h-5 text-[var(--color-accent)]" />
+              {/* Brand Logo & Tagline */}
+              <Link href="/" className="flex items-center gap-2.5 sm:gap-3 group py-1">
+                <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-[var(--color-primary)] text-[var(--color-accent)] flex items-center justify-center font-black shadow-sm group-hover:scale-105 transition-transform shrink-0">
+                  <Printer className="w-5 h-5 text-[var(--color-accent)]" />
                 </div>
                 <div className="flex flex-col">
-                  <span className="font-black text-lg sm:text-2xl tracking-tight text-[var(--color-primary)] leading-none">
+                  <span className="font-black text-xl sm:text-2xl tracking-tight text-[var(--color-primary)] leading-none">
                     MyPrintHub<span className="text-[var(--color-accent)]">.in</span>
                   </span>
-                  <span className="hidden sm:block text-[10px] font-medium text-slate-500 tracking-normal mt-0.5">
-                    Your Brand. Your Style. Your Print.
+                  <span className="hidden sm:block text-[10px] font-semibold text-slate-400 tracking-wide mt-1 uppercase">
+                    Your Brand • Your Style • Your Print
                   </span>
                 </div>
               </Link>
-
-              {/* Delivery Pincode Locator (Desktop Expanded Pill) */}
-              <button
-                type="button"
-                onClick={() => setIsLocationModalOpen(true)}
-                className="hidden xl:flex items-center gap-2 px-3 py-1.5 rounded-xl bg-slate-50 hover:bg-slate-100 border border-slate-200/90 text-xs font-semibold text-slate-700 transition-colors cursor-pointer group shrink-0"
-                title="Change delivery location"
-              >
-                <div className="w-7 h-7 rounded-lg bg-[var(--color-accent-soft)] flex items-center justify-center text-[#F95738] shrink-0 group-hover:scale-105 transition-transform">
-                  <MapPin className="w-3.5 h-3.5" />
-                </div>
-                <div className="flex flex-col text-left leading-tight">
-                  <span className="text-[9px] text-slate-400 font-medium">Deliver to</span>
-                  <span className="text-xs font-bold text-[#1E1B4B] truncate max-w-[110px]">
-                    {deliveryLocation.city} {deliveryLocation.pincode}
-                  </span>
-                </div>
-              </button>
             </div>
 
-            {/* Center Navigation Links (with Active Page / Route Locator) */}
-            <nav className="hidden lg:flex items-center gap-2 xl:gap-3">
-              {navLinks.map((link) => {
-                const Icon = link.icon;
-                const isActive =
-                  pathname === link.href ||
-                  (link.href.startsWith("/category") && pathname.startsWith(link.href));
-
-                return (
-                  <Link
-                    key={link.label}
-                    href={link.href}
-                    className={`flex items-center gap-1.5 text-sm font-semibold transition-all py-1.5 px-2.5 xl:px-3 rounded-xl group cursor-pointer ${
-                      isActive
-                        ? "text-[#F95738] bg-[#F95738]/10 font-bold shadow-2xs"
-                        : "text-slate-800 hover:text-[var(--color-accent)] hover:bg-slate-50"
+            {/* Center: Precision Navigation with Products Mega Dropdown */}
+            <nav className="hidden lg:flex items-center gap-1 xl:gap-2">
+              
+              {/* Products Mega Dropdown Trigger */}
+              <div
+                ref={dropdownRef}
+                className="relative"
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
+              >
+                <button
+                  type="button"
+                  onClick={() => setIsProductsOpen((prev) => !prev)}
+                  className={`flex items-center gap-1.5 text-sm font-semibold transition-all py-2 px-3 rounded-xl cursor-pointer ${
+                    isProductsOpen || isProductsActive
+                      ? "text-[#F95738] bg-[#F95738]/10 font-bold shadow-2xs"
+                      : "text-slate-800 hover:text-[var(--color-accent)] hover:bg-slate-50"
+                  }`}
+                  aria-expanded={isProductsOpen}
+                  aria-haspopup="true"
+                >
+                  <Layers
+                    className={`w-4 h-4 transition-colors ${
+                      isProductsOpen || isProductsActive
+                        ? "text-[#F95738]"
+                        : "text-slate-500"
                     }`}
+                  />
+                  <span>Products</span>
+                  <ChevronDown
+                    className={`w-3.5 h-3.5 transition-transform duration-200 ${
+                      isProductsOpen ? "rotate-180 text-[#F95738]" : "text-slate-400"
+                    }`}
+                  />
+                </button>
+
+                {/* Dropdown Menu Panel */}
+                {isProductsOpen && (
+                  <div
+                    className="absolute top-full left-0 mt-2 w-[620px] bg-white/98 backdrop-blur-xl border border-slate-200/90 rounded-2xl shadow-2xl p-5 z-50 animate-in fade-in slide-in-from-top-2 duration-150"
+                    role="menu"
                   >
-                    <Icon
-                      className={`w-4 h-4 transition-colors shrink-0 ${
-                        isActive
-                          ? "text-[#F95738]"
-                          : "text-slate-500 group-hover:text-[var(--color-accent)]"
-                      }`}
-                    />
-                    <span>{link.label}</span>
-                  </Link>
-                );
-              })}
+                    {/* Header Strip */}
+                    <div className="flex items-center justify-between pb-3.5 mb-3.5 border-b border-slate-100">
+                      <div>
+                        <div className="text-xs font-black uppercase tracking-wider text-slate-400 flex items-center gap-1.5">
+                          <span>Product Catalog</span>
+                          <span className="text-[10px] font-bold px-1.5 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200/60">
+                            Zero MOQ
+                          </span>
+                        </div>
+                        <p className="text-xs text-slate-500 font-medium mt-0.5">
+                          Direct factory manufacturing with 24-48h dispatch
+                        </p>
+                      </div>
+                      <Link
+                        href="/products"
+                        onClick={() => setIsProductsOpen(false)}
+                        className="text-xs font-bold text-[#F95738] hover:text-[#d84326] flex items-center gap-1 transition-colors group/link"
+                      >
+                        <span>View All Products</span>
+                        <ArrowRight className="w-3.5 h-3.5 group-hover/link:translate-x-0.5 transition-transform" />
+                      </Link>
+                    </div>
+
+                    {/* 2-Column Grid of Categories */}
+                    <div className="grid grid-cols-2 gap-2.5">
+                      {categories.map((cat) => {
+                        const Icon = getCategoryIcon(cat.slug);
+                        const isCurrent = pathname === `/category/${cat.slug}`;
+
+                        return (
+                          <Link
+                            key={cat.id}
+                            href={`/category/${cat.slug}`}
+                            onClick={() => setIsProductsOpen(false)}
+                            className={`flex items-start gap-3 p-2.5 rounded-xl border transition-all group/item ${
+                              isCurrent
+                                ? "bg-[#F95738]/5 border-[#F95738]/30 shadow-2xs"
+                                : "hover:bg-slate-50 border-transparent hover:border-slate-200/80"
+                            }`}
+                          >
+                            <div
+                              className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 transition-colors ${
+                                isCurrent
+                                  ? "bg-[#F95738] text-white"
+                                  : "bg-slate-100 text-[#1E1B4B] group-hover/item:bg-[#F95738]/10 group-hover/item:text-[#F95738]"
+                              }`}
+                            >
+                              <Icon className="w-5 h-5" />
+                            </div>
+                            <div className="min-w-0 flex-1">
+                              <div className="flex items-center gap-1.5">
+                                <span
+                                  className={`text-sm font-bold truncate transition-colors ${
+                                    isCurrent
+                                      ? "text-[#F95738]"
+                                      : "text-[#1E1B4B] group-hover/item:text-[#F95738]"
+                                  }`}
+                                >
+                                  {cat.name}
+                                </span>
+                                {cat.badge && (
+                                  <span className="text-[9px] font-bold px-1.5 py-0.2 rounded bg-slate-100 text-slate-600 group-hover/item:bg-[#F95738]/15 group-hover/item:text-[#F95738] shrink-0 transition-colors">
+                                    {cat.badge}
+                                  </span>
+                                )}
+                              </div>
+                              <p className="text-[11px] text-slate-500 line-clamp-1 mt-0.5">
+                                {cat.description}
+                              </p>
+                            </div>
+                          </Link>
+                        );
+                      })}
+                    </div>
+
+                    {/* Bottom Promo & Enterprise Strip */}
+                    <div className="mt-4 pt-3.5 border-t border-slate-100 flex items-center justify-between text-xs bg-slate-50/80 -mx-5 -mb-5 p-3.5 rounded-b-2xl px-5">
+                      <div className="flex items-center gap-2 text-slate-600">
+                        <ShieldCheck className="w-4 h-4 text-emerald-600 shrink-0" />
+                        <span className="font-semibold text-[11px]">
+                          100% Quality Guarantee • Custom Pantone Matches
+                        </span>
+                      </div>
+                      <Link
+                        href="/contact"
+                        onClick={() => setIsProductsOpen(false)}
+                        className="text-[11px] font-bold text-[#1E1B4B] hover:text-[#F95738] transition-colors"
+                      >
+                        Enterprise Inquiries →
+                      </Link>
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              {/* Best Sellers Link */}
+              <Link
+                href="/products"
+                className={`flex items-center gap-1.5 text-sm font-semibold transition-all py-2 px-3 rounded-xl cursor-pointer ${
+                  pathname === "/products" && !isProductsOpen
+                    ? "text-[#F95738] bg-[#F95738]/10 font-bold"
+                    : "text-slate-800 hover:text-[var(--color-accent)] hover:bg-slate-50"
+                }`}
+              >
+                <Flame className="w-4 h-4 text-slate-500 hover:text-[var(--color-accent)] shrink-0" />
+                <span>Best Sellers</span>
+              </Link>
+
+              {/* Corporate & Bulk Link */}
+              <Link
+                href="/category/corporate-kits"
+                className={`flex items-center gap-1.5 text-sm font-semibold transition-all py-2 px-3 rounded-xl cursor-pointer ${
+                  pathname === "/category/corporate-kits"
+                    ? "text-[#F95738] bg-[#F95738]/10 font-bold"
+                    : "text-slate-800 hover:text-[var(--color-accent)] hover:bg-slate-50"
+                }`}
+              >
+                <Briefcase className="w-4 h-4 text-slate-500 hover:text-[var(--color-accent)] shrink-0" />
+                <span>Corporate & Bulk</span>
+              </Link>
+
+              {/* Track Order Link */}
+              <Link
+                href="/track"
+                className={`flex items-center gap-1.5 text-sm font-semibold transition-all py-2 px-3 rounded-xl cursor-pointer ${
+                  pathname === "/track"
+                    ? "text-[#F95738] bg-[#F95738]/10 font-bold"
+                    : "text-slate-800 hover:text-[var(--color-accent)] hover:bg-slate-50"
+                }`}
+              >
+                <Truck className="w-4 h-4 text-slate-500 hover:text-[var(--color-accent)] shrink-0" />
+                <span>Track Order</span>
+              </Link>
+
+              {/* Custom Quote / Contact Link */}
+              <Link
+                href="/contact"
+                className={`flex items-center gap-1.5 text-sm font-semibold transition-all py-2 px-3 rounded-xl cursor-pointer ${
+                  pathname === "/contact"
+                    ? "text-[#F95738] bg-[#F95738]/10 font-bold"
+                    : "text-slate-800 hover:text-[var(--color-accent)] hover:bg-slate-50"
+                }`}
+              >
+                <MessageSquare className="w-4 h-4 text-slate-500 hover:text-[var(--color-accent)] shrink-0" />
+                <span>Custom Quote</span>
+              </Link>
             </nav>
 
-            {/* Right Icons: Locator, Search, Account, Wishlist, Cart */}
-            <div className="flex items-center gap-1 sm:gap-1.5 text-slate-700 shrink-0">
-              {/* Compact Locator Button (Tablet & Mobile) */}
+            {/* Right: Integrated Search, Account, Wishlist & Cart */}
+            <div className="flex items-center gap-1.5 sm:gap-2.5 shrink-0">
+              
+              {/* Integrated Search Trigger Pill (Medium & Desktop) */}
               <button
                 type="button"
-                onClick={() => setIsLocationModalOpen(true)}
-                className="flex xl:hidden p-2 hover:text-[var(--color-accent)] transition-colors cursor-pointer rounded-lg active:bg-slate-100"
-                aria-label="Delivery location"
-                title={`Deliver to ${deliveryLocation.city} (${deliveryLocation.pincode})`}
+                onClick={() => setIsSearchOpen(true)}
+                className="hidden md:flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-100 hover:bg-slate-200/80 border border-slate-200/80 text-slate-500 hover:text-slate-800 transition-all text-xs cursor-pointer group w-44 lg:w-48 xl:w-56"
+                aria-label="Search merchandise"
+                title="Search custom products (⌘K)"
               >
-                <MapPin className="w-5 h-5 stroke-[1.8] text-[#F95738]" />
+                <Search className="w-3.5 h-3.5 text-slate-400 group-hover:text-[#F95738] transition-colors shrink-0" />
+                <span className="truncate text-slate-500 group-hover:text-slate-700 font-medium">
+                  Search products...
+                </span>
+                <kbd className="hidden xl:inline-flex items-center px-1.5 py-0.5 text-[10px] font-semibold text-slate-400 bg-white rounded border border-slate-200 ml-auto shadow-2xs">
+                  ⌘K
+                </kbd>
               </button>
 
-              {/* Search Icon */}
+              {/* Compact Search Icon (Mobile Only) */}
               <button
+                type="button"
                 onClick={() => setIsSearchOpen(true)}
-                className="p-2 hover:text-[var(--color-accent)] transition-colors cursor-pointer rounded-lg active:bg-slate-100"
+                className="flex md:hidden p-2 text-slate-700 hover:text-[var(--color-accent)] transition-colors cursor-pointer rounded-xl active:bg-slate-100"
                 aria-label="Search merchandise"
-                title="Search (⌘K)"
               >
                 <Search className="w-5 h-5 stroke-[1.8]" />
               </button>
 
-              {/* Account Icon (Desktop & Tablet) */}
+              {/* User Account Button */}
               <Link
                 href="/auth"
-                className="hidden sm:flex items-center gap-1.5 p-1.5 sm:px-2.5 sm:py-1.5 hover:text-[var(--color-accent)] transition-colors rounded-xl hover:bg-slate-50 text-slate-700"
+                className="flex items-center gap-1.5 p-1.5 sm:px-2.5 sm:py-1.5 hover:text-[var(--color-accent)] transition-colors rounded-xl hover:bg-slate-50 text-slate-700 cursor-pointer"
                 aria-label="My Account"
                 title={isLoggedIn && user ? `Account: ${user.name}` : "Sign In / Register"}
               >
                 {isLoggedIn && user ? (
-                  <div className="w-6 h-6 rounded-full bg-[#1E1B4B] text-white flex items-center justify-center text-[10px] font-bold shadow-2xs">
+                  <div className="w-7 h-7 rounded-full bg-[#1E1B4B] text-white flex items-center justify-center text-xs font-bold shadow-2xs">
                     {user.name[0].toUpperCase()}
                   </div>
                 ) : (
                   <User className="w-5 h-5 stroke-[1.8]" />
                 )}
-                {isLoggedIn && user && (
-                  <span className="text-xs font-bold text-slate-800 hidden md:inline truncate max-w-[80px]">
+                {isLoggedIn && user ? (
+                  <span className="text-xs font-bold text-slate-800 hidden xl:inline truncate max-w-[80px]">
                     {user.name.split(" ")[0]}
+                  </span>
+                ) : (
+                  <span className="text-xs font-semibold text-slate-700 hidden xl:inline">
+                    Sign In
                   </span>
                 )}
               </Link>
 
-              {/* Wishlist Icon */}
+              {/* Wishlist Button */}
               <Link
                 href="/wishlist"
-                className="relative p-2 hover:text-[var(--color-accent)] transition-colors rounded-lg"
+                className="relative p-2 text-slate-700 hover:text-[var(--color-accent)] hover:bg-slate-50 transition-colors rounded-xl cursor-pointer"
                 aria-label="Wishlist"
                 title="Wishlist"
               >
@@ -262,21 +429,27 @@ export const Navbar: React.FC = () => {
                 )}
               </Link>
 
-              {/* Cart Icon */}
+              {/* High-Conversion Cart Pill */}
               <Link
                 href="/cart"
-                className="relative p-2 hover:text-[var(--color-accent)] transition-colors rounded-lg"
+                className="flex items-center gap-2 px-3 sm:px-3.5 py-1.5 rounded-xl bg-[#1E1B4B] hover:bg-[#120F38] text-white transition-all shadow-xs group cursor-pointer shrink-0"
                 aria-label="Shopping Cart"
-                title="Cart"
+                title="View Shopping Cart"
               >
-                <ShoppingBag className="w-5 h-5 stroke-[1.8]" />
-                {totalItems > 0 && (
-                  <span className="absolute top-1 right-1 min-w-[16px] h-4 px-1 bg-[var(--color-accent)] text-white text-[10px] font-bold rounded-full flex items-center justify-center leading-none">
-                    {totalItems}
-                  </span>
-                )}
+                <div className="relative">
+                  <ShoppingBag className="w-4 h-4 text-white group-hover:scale-105 transition-transform" />
+                  {totalItems > 0 && (
+                    <span className="absolute -top-2 -right-2.5 min-w-[16px] h-4 px-1 bg-[var(--color-accent)] text-white text-[9px] font-extrabold rounded-full flex items-center justify-center leading-none ring-2 ring-[#1E1B4B]">
+                      {totalItems}
+                    </span>
+                  )}
+                </div>
+                <span className="text-xs font-bold text-white tracking-wide">
+                  Cart
+                </span>
               </Link>
             </div>
+
           </div>
         </div>
       </header>
@@ -286,25 +459,11 @@ export const Navbar: React.FC = () => {
         <SearchModal isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} />
       )}
 
-      {/* Lazy Delivery Location Modal */}
-      {isLocationModalOpen && (
-        <LocationModal
-          isOpen={isLocationModalOpen}
-          onClose={() => setIsLocationModalOpen(false)}
-          currentPincode={deliveryLocation.pincode}
-          currentCity={deliveryLocation.city}
-          onSaveLocation={handleSaveLocation}
-        />
-      )}
-
       {/* Lazy Mobile Drawer */}
       {isMobileMenuOpen && (
         <MobileMenu
           isOpen={isMobileMenuOpen}
           onClose={() => setIsMobileMenuOpen(false)}
-          onOpenLocation={() => setIsLocationModalOpen(true)}
-          currentPincode={deliveryLocation.pincode}
-          currentCity={deliveryLocation.city}
         />
       )}
     </>
