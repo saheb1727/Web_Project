@@ -18,13 +18,22 @@ export const WishlistProvider: React.FC<{ children: React.ReactNode }> = ({ chil
   const { showToast } = useToast();
 
   useEffect(() => {
-    try {
-      const stored = localStorage.getItem("myprinthub_wishlist");
-      if (stored) {
-        setWishlist(JSON.parse(stored));
+    if (typeof window !== "undefined") {
+      try {
+        const stored = localStorage.getItem("myprinthub_wishlist");
+        if (stored && typeof stored === "string" && stored.trim().length > 0) {
+          try {
+            const parsed = JSON.parse(stored);
+            if (Array.isArray(parsed)) {
+              setWishlist(parsed);
+            }
+          } catch {
+            localStorage.removeItem("myprinthub_wishlist");
+          }
+        }
+      } catch {
+        // Fallback
       }
-    } catch (e) {
-      console.error("Failed to load wishlist from localStorage", e);
     }
     setIsLoaded(true);
   }, []);

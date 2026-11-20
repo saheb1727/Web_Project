@@ -69,24 +69,40 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   useEffect(() => {
     if (typeof window !== "undefined") {
-      const savedUser = localStorage.getItem("myprinthub_user");
-      const savedOrders = localStorage.getItem("myprinthub_orders");
-
-      if (savedUser) {
-        try {
-          setUser(JSON.parse(savedUser));
-        } catch {
-          // ignore
+      try {
+        const savedUser = localStorage.getItem("myprinthub_user");
+        if (savedUser && typeof savedUser === "string" && savedUser.trim().length > 0) {
+          try {
+            const parsed = JSON.parse(savedUser);
+            if (parsed && typeof parsed === "object") {
+              setUser(parsed);
+            }
+          } catch {
+            localStorage.removeItem("myprinthub_user");
+          }
         }
+      } catch {
+        // Ignore
       }
 
-      if (savedOrders) {
-        try {
-          setOrders(JSON.parse(savedOrders));
-        } catch {
+      try {
+        const savedOrders = localStorage.getItem("myprinthub_orders");
+        if (savedOrders && typeof savedOrders === "string" && savedOrders.trim().length > 0) {
+          try {
+            const parsed = JSON.parse(savedOrders);
+            if (Array.isArray(parsed)) {
+              setOrders(parsed);
+            } else {
+              setOrders(DEMO_ORDERS);
+            }
+          } catch {
+            localStorage.removeItem("myprinthub_orders");
+            setOrders(DEMO_ORDERS);
+          }
+        } else {
           setOrders(DEMO_ORDERS);
         }
-      } else {
+      } catch {
         setOrders(DEMO_ORDERS);
       }
     }

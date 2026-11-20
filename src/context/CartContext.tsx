@@ -52,17 +52,38 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
   };
 
   useEffect(() => {
-    try {
-      const stored = localStorage.getItem("myprinthub_cart");
-      const storedCoupon = localStorage.getItem("myprinthub_coupon");
-      if (stored) {
-        setItems(JSON.parse(stored));
+    if (typeof window !== "undefined") {
+      try {
+        const stored = localStorage.getItem("myprinthub_cart");
+        if (stored && typeof stored === "string" && stored.trim().length > 0) {
+          try {
+            const parsed = JSON.parse(stored);
+            if (Array.isArray(parsed)) {
+              setItems(parsed);
+            }
+          } catch {
+            localStorage.removeItem("myprinthub_cart");
+          }
+        }
+      } catch {
+        // Fallback
       }
-      if (storedCoupon) {
-        setCoupon(JSON.parse(storedCoupon));
+
+      try {
+        const storedCoupon = localStorage.getItem("myprinthub_coupon");
+        if (storedCoupon && typeof storedCoupon === "string" && storedCoupon.trim().length > 0) {
+          try {
+            const parsed = JSON.parse(storedCoupon);
+            if (parsed && typeof parsed === "object") {
+              setCoupon(parsed);
+            }
+          } catch {
+            localStorage.removeItem("myprinthub_coupon");
+          }
+        }
+      } catch {
+        // Fallback
       }
-    } catch (e) {
-      console.error("Failed to load cart from localStorage", e);
     }
     setIsLoaded(true);
   }, []);

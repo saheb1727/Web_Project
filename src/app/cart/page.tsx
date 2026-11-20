@@ -133,9 +133,12 @@ export default function CartPage() {
       });
 
       if (res.ok) {
-        const data = await res.json();
-        if (data.order?.orderId) {
-          finalOrderId = data.order.orderId;
+        const text = await res.text();
+        if (text && text.trim().length > 0) {
+          const data = JSON.parse(text);
+          if (data?.order?.orderId) {
+            finalOrderId = data.order.orderId;
+          }
         }
       }
     } catch {

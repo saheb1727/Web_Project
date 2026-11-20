@@ -48,9 +48,12 @@ export default function ContactPage() {
       });
 
       if (res.ok) {
-        const data = await res.json();
-        if (data.ticketId) {
-          assignedTicket = data.ticketId;
+        const text = await res.text();
+        if (text && text.trim().length > 0) {
+          const data = JSON.parse(text);
+          if (data?.ticketId) {
+            assignedTicket = data.ticketId;
+          }
         }
       }
     } catch {

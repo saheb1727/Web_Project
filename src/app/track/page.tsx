@@ -96,14 +96,17 @@ function TrackOrderContent() {
 
       const res = await fetch(url);
       if (res.ok) {
-        const data = await res.json();
-        if (data.order) {
-          setFetchedOrder(data.order);
-          setIsSearched(true);
-          setIsLoading(false);
-          setActiveStage(data.order.timeline?.filter((t: { completed: boolean }) => t.completed).length || 2);
-          showToast(`Live order details loaded for ${cleanId}`, "success");
-          return;
+        const text = await res.text();
+        if (text && text.trim().length > 0) {
+          const data = JSON.parse(text);
+          if (data?.order) {
+            setFetchedOrder(data.order);
+            setIsSearched(true);
+            setIsLoading(false);
+            setActiveStage(data.order.timeline?.filter((t: { completed: boolean }) => t.completed).length || 2);
+            showToast(`Live order details loaded for ${cleanId}`, "success");
+            return;
+          }
         }
       }
     } catch {
@@ -114,10 +117,12 @@ function TrackOrderContent() {
     if (typeof window !== "undefined") {
       try {
         const local = localStorage.getItem("myprinthub_orders");
-        if (local) {
-          const list = JSON.parse(local);
-          const found = list.find((o: { orderId: string }) => o.orderId.toUpperCase() === cleanId);
-          if (found) {
+        if (local && typeof local === "string" && local.trim().length > 0) {
+          try {
+            const list = JSON.parse(local);
+            if (Array.isArray(list)) {
+              const found = list.find((o: { orderId: string }) => o.orderId && o.orderId.toUpperCase() === cleanId);
+              if (found) {
             setFetchedOrder({
               orderId: found.orderId,
               customer: {
@@ -161,6 +166,10 @@ function TrackOrderContent() {
         // ignore
       }
     }
+  } catch {
+    // ignore
+  }
+}
 
     // Default simulation if not found in DB or local storage
     setFetchedOrder(null);
