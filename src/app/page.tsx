@@ -3,6 +3,7 @@ import { BrandTrustMarquee } from "@/components/home/BrandTrustMarquee";
 import { CategoryGrid } from "@/components/home/CategoryGrid";
 import { VolumeDiscountCalculator } from "@/components/home/VolumeDiscountCalculator";
 import { FeaturedProducts } from "@/components/home/FeaturedProducts";
+import { StudioReelsSection } from "@/components/home/StudioReelsSection";
 import { WhyChooseUs } from "@/components/home/WhyChooseUs";
 import { HowItWorks } from "@/components/home/HowItWorks";
 import { EnterpriseInquirySection } from "@/components/home/EnterpriseInquirySection";
@@ -27,7 +28,10 @@ export default function Home() {
       {/* 5. Trending & Best Sellers Showcase */}
       <FeaturedProducts />
 
-      {/* 6. Why Choose MyPrintHub: Factory Engineering & Technical Pillars */}
+      {/* 6. Studio Production Reels: Craftsmanship in Motion */}
+      <StudioReelsSection />
+
+      {/* 7. Why Choose MyPrintHub: Factory Engineering & Technical Pillars */}
       <WhyChooseUs />
 
       {/* 7. Effortless 4-Step Production Process */}

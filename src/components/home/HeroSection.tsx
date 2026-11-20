@@ -161,10 +161,10 @@ export const HeroSection: React.FC = () => {
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
-            
+
             {/* Left Column: Heading, Subtitle, Coupon, CTAs, Social Proof (6 cols) */}
             <div className="lg:col-span-6 xl:col-span-6 space-y-6">
-              
+
               {/* 1. Live Factory Floor Indicator */}
               <div className="hero-badge-pill inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-100 border border-slate-200 text-xs font-semibold text-slate-700 shadow-2xs">
                 <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
@@ -276,7 +276,7 @@ export const HeroSection: React.FC = () => {
             {/* Right Column: Interactive Merch Spotlight Stage (6 cols) */}
             <div className="lg:col-span-6 xl:col-span-6">
               <div className="hero-stage-container bg-white rounded-3xl border border-slate-200 shadow-2xl p-4 sm:p-6 overflow-hidden">
-                
+
                 {/* Stage Category Selectors */}
                 <div className="flex items-center gap-1.5 overflow-x-auto pb-3 mb-4 border-b border-slate-100 scrollbar-none">
                   {spotlightItems.map((item) => (
@@ -284,11 +284,10 @@ export const HeroSection: React.FC = () => {
                       key={item.id}
                       type="button"
                       onClick={() => setActiveSpotlight(item)}
-                      className={`px-3 py-1.5 rounded-xl text-xs font-bold whitespace-nowrap transition-all cursor-pointer ${
-                        activeSpotlight.id === item.id
+                      className={`px-3 py-1.5 rounded-xl text-xs font-bold whitespace-nowrap transition-all cursor-pointer ${activeSpotlight.id === item.id
                           ? "bg-[#1E1B4B] text-white shadow-xs"
                           : "bg-slate-100 text-slate-600 hover:bg-slate-200/80"
-                      }`}
+                        }`}
                     >
                       {item.category}
                     </button>
@@ -367,21 +366,18 @@ export const HeroSection: React.FC = () => {
             </div>
 
             <div className="p-6 space-y-4 text-white text-center">
-              <div className="relative aspect-video rounded-2xl overflow-hidden bg-slate-900 border border-white/10 flex items-center justify-center">
-                <Image
-                  src="https://images.unsplash.com/photo-1581655353564-df123a1eb820?auto=format&fit=crop&w=800&q=80"
-                  alt="Factory Floor"
-                  fill
-                  sizes="800px"
-                  className="object-cover opacity-60"
+              <div className="relative aspect-video rounded-2xl overflow-hidden bg-black border border-white/10 flex items-center justify-center shadow-inner">
+                <video
+                  src="/videos/reel-2.mp4"
+                  controls
+                  autoPlay
+                  playsInline
+                  className="w-full h-full object-contain"
                 />
-                <div className="relative z-10 flex flex-col items-center">
-                  <div className="w-16 h-16 rounded-full bg-[#F95738] text-white flex items-center justify-center shadow-xl mb-3">
-                    <Play className="w-7 h-7 fill-white ml-1" />
-                  </div>
-                  <span className="text-sm font-bold">10,000 Sq. Ft. Manufacturing & Laser Lab</span>
-                  <span className="text-xs text-slate-300">Hosir, Kargil Colony, Kanke, Ranchi-834006</span>
-                </div>
+              </div>
+              <div className="text-left">
+                <span className="text-sm font-bold block text-white">Manufacturing Lab & Assembly Studio</span>
+                <span className="text-xs text-slate-300">Hosir, Kargil Colony, Kanke, Ranchi-834006</span>
               </div>
 
               <div className="grid grid-cols-3 gap-3 text-xs text-left">

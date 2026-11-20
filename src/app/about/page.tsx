@@ -88,14 +88,18 @@ export default function AboutPage() {
             </div>
           </div>
 
-          <div className="lg:col-span-6 relative aspect-4/3 rounded-3xl overflow-hidden shadow-2xl border border-slate-200">
-            <Image
-              src="https://images.unsplash.com/photo-1581655353564-df123a1eb820?auto=format&fit=crop&w=1000&q=80"
-              alt="MyPrintHub Factory & Printing Facility"
-              fill
-              sizes="(max-width: 1024px) 100vw, 50vw"
-              className="object-cover"
+          <div className="lg:col-span-6 relative aspect-4/3 rounded-3xl overflow-hidden shadow-2xl border border-slate-200 bg-black group">
+            <video
+              src="/videos/reel-1.mp4"
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="w-full h-full object-cover"
             />
+            <div className="absolute top-4 left-4 bg-black/60 backdrop-blur-md px-3 py-1 rounded-full text-white text-xs font-bold border border-white/20">
+              Live Printing Studio • Ranchi Hub
+            </div>
           </div>
         </div>
 
