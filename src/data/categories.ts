@@ -2,13 +2,31 @@ import { Category } from "@/types";
 
 export const categories: Category[] = [
   {
-    id: "badges",
-    name: "Magnetic Badges",
-    slug: "magnetic-badges",
-    description: "Premium laser-cut metallic & acrylic name badges with strong neodymium magnet fasteners.",
-    image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80",
+    id: "frames",
+    name: "Custom Photo Frames",
+    slug: "custom-photo-frames",
+    description: "Anniversary calendar frames, relationship love story timelines, and birthday collage memory frames with UV protective glass finish.",
+    image: "/images/products/anniversary-calendar-frame.jpg",
     itemCount: 18,
-    badge: "Trending",
+    badge: "Trending Gift",
+  },
+  {
+    id: "personalized",
+    name: "Personalized Gifts & LED Lamps",
+    slug: "personalized-gifts",
+    description: "Laser-engraved 3D acrylic heart night lamps, luxury 4-in-1 leather gift sets, and 24K floating gold foil pens.",
+    image: "/images/products/led-acrylic-heart-lamp.jpg",
+    itemCount: 24,
+    badge: "New Launch",
+  },
+  {
+    id: "badges",
+    name: "Magnetic & Pin Badges",
+    slug: "magnetic-badges",
+    description: "Zero-pinhole metallic magnetic name badges and high-gloss wedding event button badges (Ladki Wale / Ladke Wale).",
+    image: "/images/products/wedding-pin-badges.jpg",
+    itemCount: 22,
+    badge: "Best Seller",
   },
   {
     id: "tshirts",
@@ -17,7 +35,7 @@ export const categories: Category[] = [
     description: "100% Super-combed cotton & dry-fit tees with durable DTF and screen printing.",
     image: "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=800&q=80",
     itemCount: 42,
-    badge: "Best Seller",
+    badge: "Hot Deal",
   },
   {
     id: "hoodies",
@@ -37,6 +55,15 @@ export const categories: Category[] = [
     itemCount: 16,
   },
   {
+    id: "corporate",
+    name: "Corporate Kits & ID Cards",
+    slug: "corporate-kits",
+    description: "Personalized 4-in-1 leather hampers, 24K gold pens, RFID cards, lanyards, and executive diaries.",
+    image: "/images/products/executive-leather-gift-set.jpg",
+    itemCount: 30,
+    badge: "Bulk Deals",
+  },
+  {
     id: "drinkware",
     name: "Drinkware & Ceramic Mugs",
     slug: "drinkware-mugs",
@@ -45,14 +72,4 @@ export const categories: Category[] = [
     itemCount: 20,
     badge: "Popular Gift",
   },
-  {
-    id: "corporate",
-    name: "Corporate Kits & ID Cards",
-    slug: "corporate-kits",
-    description: "Satin finish lanyards, RFID smart cards, engraved metal pens, and hardbound executive diaries.",
-    image: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=800&q=80",
-    itemCount: 30,
-    badge: "Bulk Deals",
-  },
 ];
-

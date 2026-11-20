@@ -1,0 +1,346 @@
+"use client";
+
+import React, { useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import {
+  Sparkles,
+  ArrowRight,
+  Maximize2,
+  X,
+  Heart,
+  CheckCircle2,
+  Camera,
+} from "lucide-react";
+
+interface GalleryPhoto {
+  id: string;
+  title: string;
+  category: "frames" | "gifts" | "badges" | "leather";
+  categoryLabel: string;
+  image: string;
+  tag: string;
+  productLink: string;
+  productName: string;
+  priceNote: string;
+  description: string;
+}
+
+export const WorkshopGallery: React.FC = () => {
+  const [activeFilter, setActiveFilter] = useState<string>("all");
+  const [selectedImage, setSelectedImage] = useState<GalleryPhoto | null>(null);
+
+  const photos: GalleryPhoto[] = [
+    {
+      id: "photo-1",
+      title: "Customized Anniversary Calendar Keepsake Frame",
+      category: "frames",
+      categoryLabel: "Photo Frames",
+      image: "/images/products/anniversary-calendar-frame.jpg",
+      tag: "Customer Favorite",
+      productLink: "/products/prod-frame-1",
+      productName: "Anniversary & Memory Calendar Frame",
+      priceNote: "₹499 (Free Personalization)",
+      description: "Custom December anniversary calendar with heart marker on wedding date and photo memories.",
+    },
+    {
+      id: "photo-2",
+      title: "Laser Engraved 3D LED Acrylic Heart Lamp",
+      category: "gifts",
+      categoryLabel: "LED Lamps",
+      image: "/images/products/led-acrylic-heart-lamp.jpg",
+      tag: "Valentine Special",
+      productLink: "/products/prod-lamp-1",
+      productName: "3D LED Acrylic Heart Lamp",
+      priceNote: "₹699 (Warm Ambient LED)",
+      description: "Precision laser engraved optical acrylic with couple calligraphy script on solid wood base.",
+    },
+    {
+      id: "photo-3",
+      title: "Personalized Birthday Milestone & Sibling Frame",
+      category: "frames",
+      categoryLabel: "Photo Frames",
+      image: "/images/products/birthday-memory-frame.jpg",
+      tag: "Birthday Keepsake",
+      productLink: "/products/prod-frame-3",
+      productName: "Birthday Milestone Memory Frame",
+      priceNote: "₹499 (Matte Glass Finish)",
+      description: "Custom sister birthday photo frame with November calendar marker and emotional quote.",
+    },
+    {
+      id: "photo-4",
+      title: "Executive 4-in-1 Personalized Leather Gift Hamper",
+      category: "leather",
+      categoryLabel: "Leather & Pens",
+      image: "/images/products/executive-leather-gift-set.jpg",
+      tag: "Executive Hamper",
+      productLink: "/products/prod-leather-1",
+      productName: "Executive 4-in-1 Leather Gift Set",
+      priceNote: "₹999 (Luxury Boxed)",
+      description: "Includes custom passport cover, wallet, eyewear pouch, and keychain with engraved brass nameplates.",
+    },
+    {
+      id: "photo-5",
+      title: "Floating 24K Gold Foil Laser Engraved Pens",
+      category: "leather",
+      categoryLabel: "Leather & Pens",
+      image: "/images/products/gold-foil-engraved-pens.jpg",
+      tag: "Teacher Appreciation",
+      productLink: "/products/prod-pen-1",
+      productName: "24K Floating Gold Foil Pen",
+      priceNote: "₹199 / pc (Wholesale Tier)",
+      description: "Liquid-suspended 24K gold foil flakes with permanent fiber laser engraved recipient names.",
+    },
+    {
+      id: "photo-6",
+      title: "Customized Glossy Wedding Pin Badges (Ladki Wale)",
+      category: "badges",
+      categoryLabel: "Badges & Keychains",
+      image: "/images/products/wedding-pin-badges.jpg",
+      tag: "Wedding Special",
+      productLink: "/products/prod-badge-btn-1",
+      productName: "Custom Event Pin Badges",
+      priceNote: "₹39 / pc (Bulk Tier)",
+      description: "58mm high-gloss cartoon caricature pin badges for wedding sangeet, mehendi, and barati.",
+    },
+    {
+      id: "photo-7",
+      title: "Our Love Story Milestone Timeline Wall Frame",
+      category: "frames",
+      categoryLabel: "Photo Frames",
+      image: "/images/products/love-story-timeline-frame.jpg",
+      tag: "Milestone Wall Art",
+      productLink: "/products/prod-frame-2",
+      productName: "Love Story Milestone Frame",
+      priceNote: "₹549 (A3 / A4 Sizes)",
+      description: "Timeline collage marking First Met, Engagement, and Marriage dates with heart photo grid.",
+    },
+    {
+      id: "photo-8",
+      title: "Bulk Personalized Quote & Teacher Keychains",
+      category: "badges",
+      categoryLabel: "Badges & Keychains",
+      image: "/images/products/custom-quote-keychains.jpg",
+      tag: "Bulk Saver",
+      productLink: "/products/prod-keychain-1",
+      productName: "Acrylic & Wooden Keychains",
+      priceNote: "₹79 / pc (Wholesale Tier)",
+      description: "Double-sided UV scratch-resistant keychains with inspiring quotes and customized names.",
+    },
+    {
+      id: "photo-9",
+      title: "Baby Milestone & Google Search Father Frame",
+      category: "frames",
+      categoryLabel: "Photo Frames",
+      image: "/images/products/custom-calendar-frame-collection.jpg",
+      tag: "New Design",
+      productLink: "/products/prod-frame-1",
+      productName: "Custom Calendar Frame Collection",
+      priceNote: "₹499 (Multiple Layouts)",
+      description: "Creative Google search theme and 12-month baby milestone memory collage frames.",
+    },
+  ];
+
+  const filteredPhotos =
+    activeFilter === "all"
+      ? photos
+      : photos.filter((p) => p.category === activeFilter);
+
+  return (
+    <>
+      <section className="py-20 bg-slate-50/60 border-b border-slate-200/80">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          {/* Header */}
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
+            <div>
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#1E1B4B] text-[#F95738] text-xs font-bold uppercase tracking-wider mb-2">
+                <Camera className="w-3.5 h-3.5" />
+                <span>Real Customer Creations</span>
+              </div>
+              <h2 className="text-3xl sm:text-4xl font-black text-[#1E1B4B] tracking-tight">
+                Fresh from Our Studio Workshop
+              </h2>
+              <p className="text-sm text-slate-500 mt-1 max-w-xl">
+                Real photographs of personalized photo frames, 3D LED lamps, executive hampers, and custom badges crafted for our clients.
+              </p>
+            </div>
+
+            {/* Filter Tabs */}
+            <div className="flex items-center gap-1.5 overflow-x-auto pb-2 scrollbar-none">
+              {[
+                { id: "all", label: "All Items" },
+                { id: "frames", label: "Photo Frames" },
+                { id: "gifts", label: "3D LED Lamps" },
+                { id: "leather", label: "Leather & Pens" },
+                { id: "badges", label: "Badges & Keychains" },
+              ].map((tab) => (
+                <button
+                  key={tab.id}
+                  type="button"
+                  onClick={() => setActiveFilter(tab.id)}
+                  className={`px-3.5 py-1.5 rounded-xl text-xs font-bold whitespace-nowrap transition-all cursor-pointer ${
+                    activeFilter === tab.id
+                      ? "bg-[#1E1B4B] text-white shadow-xs"
+                      : "bg-white text-slate-600 hover:bg-slate-200/80 border border-slate-200"
+                  }`}
+                >
+                  {tab.label}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Masonry / Responsive Photo Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {filteredPhotos.map((photo) => (
+              <div
+                key={photo.id}
+                onClick={() => setSelectedImage(photo)}
+                className="group relative rounded-3xl overflow-hidden bg-white border border-slate-200 shadow-sm hover:shadow-xl hover:border-slate-400 transition-all duration-300 flex flex-col cursor-pointer"
+              >
+                {/* Photo Container */}
+                <div className="relative aspect-4/3 w-full overflow-hidden bg-slate-100">
+                  <Image
+                    src={photo.image}
+                    alt={photo.title}
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+
+                  {/* Gradient Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+
+                  {/* Top Badges */}
+                  <div className="absolute top-3 left-3 flex items-center gap-1.5 z-10">
+                    <span className="px-2.5 py-1 rounded-full bg-white/95 backdrop-blur-md text-[#1E1B4B] text-[10px] font-extrabold shadow-sm">
+                      {photo.categoryLabel}
+                    </span>
+                    <span className="px-2 py-0.5 rounded-full bg-[#F95738] text-white text-[9px] font-black uppercase">
+                      {photo.tag}
+                    </span>
+                  </div>
+
+                  {/* Expand Zoom Icon */}
+                  <div className="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/90 backdrop-blur-md text-slate-800 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity shadow-sm">
+                    <Maximize2 className="w-3.5 h-3.5" />
+                  </div>
+                </div>
+
+                {/* Bottom Meta */}
+                <div className="p-4 sm:p-5 flex-1 flex flex-col justify-between space-y-3 bg-white">
+                  <div>
+                    <h3 className="text-base font-extrabold text-[#1E1B4B] group-hover:text-[#F95738] transition-colors leading-snug">
+                      {photo.title}
+                    </h3>
+                    <p className="text-xs text-slate-500 mt-1 line-clamp-2 leading-relaxed">
+                      {photo.description}
+                    </p>
+                  </div>
+
+                  <div className="pt-3 border-t border-slate-100 flex items-center justify-between">
+                    <div>
+                      <span className="text-[10px] font-semibold text-slate-400 block">Pricing</span>
+                      <span className="text-xs font-black text-[#1E1B4B]">
+                        {photo.priceNote}
+                      </span>
+                    </div>
+
+                    <Link
+                      href={photo.productLink}
+                      onClick={(e) => e.stopPropagation()}
+                      className="px-3.5 py-1.5 bg-[#1E1B4B] hover:bg-[#F95738] text-white text-xs font-bold rounded-xl transition-colors flex items-center gap-1.5"
+                    >
+                      <span>Customize</span>
+                      <ArrowRight className="w-3.5 h-3.5" />
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+        </div>
+      </section>
+
+      {/* Lightbox Modal */}
+      {selectedImage && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md animate-in fade-in duration-200"
+          onClick={() => setSelectedImage(null)}
+        >
+          <div
+            className="relative w-full max-w-3xl bg-white rounded-3xl overflow-hidden shadow-2xl border border-slate-200 flex flex-col md:flex-row max-h-[90vh]"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Close Button */}
+            <button
+              onClick={() => setSelectedImage(null)}
+              className="absolute top-4 right-4 z-20 p-2 rounded-full bg-black/70 hover:bg-[#F95738] text-white transition-colors cursor-pointer"
+              aria-label="Close"
+            >
+              <X className="w-5 h-5" />
+            </button>
+
+            {/* Left: Big Image */}
+            <div className="md:w-3/5 relative aspect-square sm:aspect-auto sm:min-h-[400px] bg-slate-100">
+              <Image
+                src={selectedImage.image}
+                alt={selectedImage.title}
+                fill
+                sizes="(max-width: 768px) 100vw, 60vw"
+                className="object-contain p-4"
+              />
+            </div>
+
+            {/* Right: Info & CTA */}
+            <div className="md:w-2/5 p-6 sm:p-8 flex flex-col justify-between bg-slate-50 overflow-y-auto">
+              <div className="space-y-4">
+                <span className="px-2.5 py-1 rounded-full bg-[#F95738]/10 text-[#F95738] text-xs font-bold">
+                  {selectedImage.categoryLabel}
+                </span>
+
+                <h3 className="text-xl font-black text-[#1E1B4B] tracking-tight">
+                  {selectedImage.title}
+                </h3>
+
+                <p className="text-xs text-slate-600 leading-relaxed">
+                  {selectedImage.description}
+                </p>
+
+                <div className="p-3.5 rounded-2xl bg-white border border-slate-200/80 space-y-1">
+                  <div className="text-[10px] font-bold text-slate-400 uppercase">Product Price</div>
+                  <div className="text-lg font-black text-[#1E1B4B]">{selectedImage.priceNote}</div>
+                  <div className="text-[11px] text-emerald-600 font-bold flex items-center gap-1">
+                    <CheckCircle2 className="w-3.5 h-3.5" />
+                    <span>Free Proof Approval Before Final Production</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="pt-6 space-y-2">
+                <Link
+                  href={selectedImage.productLink}
+                  onClick={() => setSelectedImage(null)}
+                  className="w-full py-3.5 bg-[#F95738] hover:bg-[#e04526] text-white text-xs sm:text-sm font-bold rounded-2xl shadow-lg transition-all flex items-center justify-center gap-2"
+                >
+                  <span>Order Custom {selectedImage.productName}</span>
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
+
+                <button
+                  type="button"
+                  onClick={() => setSelectedImage(null)}
+                  className="w-full py-2 text-xs text-slate-500 hover:text-slate-800 text-center cursor-pointer"
+                >
+                  Close Window
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+    </>
+  );
+};

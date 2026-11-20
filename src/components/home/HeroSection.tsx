@@ -42,6 +42,50 @@ export const HeroSection: React.FC = () => {
   // Spotlight stage items
   const spotlightItems: SpotlightItem[] = [
     {
+      id: "frames",
+      category: "Photo Frames",
+      title: "Anniversary & Memory Calendar Frame",
+      subtitle: "Bespoke photo collage with custom month calendar and special heart date marker.",
+      priceNote: "₹499 • Free Custom Personalization",
+      badge: "Heart Date Marker",
+      tag: "Trending Gift",
+      image: "/images/products/anniversary-calendar-frame.jpg",
+      href: "/products/prod-frame-1",
+    },
+    {
+      id: "lamps",
+      category: "3D LED Lamps",
+      title: "Laser Engraved 3D LED Acrylic Heart Lamp",
+      subtitle: "Optical cast acrylic laser etched with couple names on a warm ambient solid wood base.",
+      priceNote: "₹699 • Warm Golden Glow",
+      badge: "Laser Calligraphy",
+      tag: "Couple Special",
+      image: "/images/products/led-acrylic-heart-lamp.jpg",
+      href: "/products/prod-lamp-1",
+    },
+    {
+      id: "leather",
+      category: "Leather Sets",
+      title: "Executive 4-in-1 Leather Gift Hamper",
+      subtitle: "Personalized passport cover, wallet, eyewear pouch & keychain in luxury black gift box.",
+      priceNote: "₹999 • Luxury 4-Piece Box",
+      badge: "Brass Nameplate",
+      tag: "Executive Gift",
+      image: "/images/products/executive-leather-gift-set.jpg",
+      href: "/products/prod-leather-1",
+    },
+    {
+      id: "pens",
+      category: "24K Gold Pens",
+      title: "Luxury Floating 24K Gold Foil Engraved Pen",
+      subtitle: "Clear chamber with suspended 24K gold foil flakes and permanent laser engraved recipient name.",
+      priceNote: "₹199 • 24K Gold Leaf Flakes",
+      badge: "Fiber Laser Script",
+      tag: "Appreciation",
+      image: "/images/products/gold-foil-engraved-pens.jpg",
+      href: "/products/prod-pen-1",
+    },
+    {
       id: "badges",
       category: "Magnetic Badges",
       title: "Neodymium Magnetic Name Badges",
@@ -51,39 +95,6 @@ export const HeroSection: React.FC = () => {
       tag: "Flagship",
       image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80",
       href: "/products/prod-1",
-    },
-    {
-      id: "tshirts",
-      category: "Custom T-Shirts",
-      title: "100% Bio-Washed Cotton Tees",
-      subtitle: "220 GSM super-combed cotton with ultra-durable high-def DTF print.",
-      priceNote: "₹149/pc (Wholesale) • ₹449 single",
-      badge: "Zero Color Bleed",
-      tag: "Best Seller",
-      image: "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=800&q=80",
-      href: "/products/prod-2",
-    },
-    {
-      id: "hoodies",
-      category: "Winter Hoodies",
-      title: "Heavyweight 380 GSM Fleece Hoodies",
-      subtitle: "Brushed interior fleece with 3D puff embroidery and kangaroo pocket.",
-      priceNote: "₹549/pc (Wholesale) • ₹1,299 single",
-      badge: "Thermal Fleece",
-      tag: "Winter Edition",
-      image: "https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=800&q=80",
-      href: "/products/prod-3",
-    },
-    {
-      id: "caps",
-      category: "Embroidered Caps",
-      title: "6-Panel Cotton Twill Structured Caps",
-      subtitle: "Breathable eyelets with brass buckle adjuster and front 3D embroidery.",
-      priceNote: "₹115/pc (Wholesale) • ₹299 single",
-      badge: "3D Puff Stitched",
-      tag: "Trending",
-      image: "https://images.unsplash.com/photo-1588850561407-ed78c282e89b?auto=format&fit=crop&w=800&q=80",
-      href: "/products/prod-4",
     },
   ];
 
@@ -176,11 +187,11 @@ export const HeroSection: React.FC = () => {
               {/* 2. Executive Headline */}
               <div>
                 <h1 className="hero-main-title text-4xl sm:text-5xl lg:text-[3.25rem] font-black tracking-tight leading-[1.08] text-[#1E1B4B]">
-                  Industrial-Grade <br />
+                  Personalized Gifts & <br />
                   <span className="text-[#F95738]">Custom Merchandise.</span>
                 </h1>
                 <p className="hero-main-desc text-sm sm:text-base text-slate-600 mt-4 font-medium leading-relaxed max-w-xl">
-                  Rare-earth magnetic name badges, 100% bio-washed cotton apparel, and corporate welcome kits manufactured in our Noida NCR facility. Zero minimums, instant digital proofs, and wholesale tier pricing.
+                  Bespoke anniversary calendar photo frames, 3D LED acrylic lamps, executive 4-in-1 leather gift sets, floating 24K gold pens, and zero-pinhole magnetic badges. Zero minimums, instant digital proofs, and direct factory pricing.
                 </p>
               </div>
 

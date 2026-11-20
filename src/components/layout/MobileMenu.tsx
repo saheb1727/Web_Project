@@ -33,12 +33,16 @@ interface MobileMenuProps {
 // Map categories to high-clarity icons
 const getCategoryIcon = (slug: string) => {
   switch (slug) {
+    case "custom-photo-frames":
+      return Heart;
+    case "personalized-gifts":
+      return Sparkles;
     case "magnetic-badges":
       return IdCard;
     case "custom-t-shirts":
       return Shirt;
     case "hoodies-sweatshirts":
-      return Sparkles;
+      return Flame;
     case "drinkware-mugs":
       return Coffee;
     case "corporate-kits":

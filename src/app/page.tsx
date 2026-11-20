@@ -1,9 +1,10 @@
 import { HeroSection } from "@/components/home/HeroSection";
 import { BrandTrustMarquee } from "@/components/home/BrandTrustMarquee";
 import { CategoryGrid } from "@/components/home/CategoryGrid";
-import { VolumeDiscountCalculator } from "@/components/home/VolumeDiscountCalculator";
 import { FeaturedProducts } from "@/components/home/FeaturedProducts";
+import { WorkshopGallery } from "@/components/home/WorkshopGallery";
 import { StudioReelsSection } from "@/components/home/StudioReelsSection";
+import { VolumeDiscountCalculator } from "@/components/home/VolumeDiscountCalculator";
 import { WhyChooseUs } from "@/components/home/WhyChooseUs";
 import { HowItWorks } from "@/components/home/HowItWorks";
 import { EnterpriseInquirySection } from "@/components/home/EnterpriseInquirySection";
@@ -22,28 +23,31 @@ export default function Home() {
       {/* 3. Product Categories Bento Grid Showcase */}
       <CategoryGrid />
 
-      {/* 4. Interactive Bulk Wholesale Savings Calculator */}
-      <VolumeDiscountCalculator />
-
-      {/* 5. Trending & Best Sellers Showcase */}
+      {/* 4. Trending & Best Sellers Showcase */}
       <FeaturedProducts />
+
+      {/* 5. Real Customer Workshop Gallery: Fresh from Our Studio */}
+      <WorkshopGallery />
 
       {/* 6. Studio Production Reels: Craftsmanship in Motion */}
       <StudioReelsSection />
 
-      {/* 7. Why Choose MyPrintHub: Factory Engineering & Technical Pillars */}
+      {/* 7. Interactive Bulk Wholesale Savings Calculator */}
+      <VolumeDiscountCalculator />
+
+      {/* 8. Why Choose MyPrintHub: Factory Engineering & Technical Pillars */}
       <WhyChooseUs />
 
-      {/* 7. Effortless 4-Step Production Process */}
+      {/* 9. Effortless 4-Step Production Process */}
       <HowItWorks />
 
-      {/* 8. Enterprise Custom Inquiry & First Order Voucher (Matches Reference Spec) */}
+      {/* 10. Enterprise Custom Inquiry & First Order Voucher (Matches Reference Spec) */}
       <EnterpriseInquirySection />
 
-      {/* 9. Verified Customer Testimonials */}
+      {/* 11. Verified Customer Testimonials */}
       <Testimonials />
 
-      {/* 10. FAQ Accordion */}
+      {/* 12. FAQ Accordion */}
       <FAQSection />
     </div>
   );

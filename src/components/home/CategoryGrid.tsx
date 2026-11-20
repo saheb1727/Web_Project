@@ -3,7 +3,7 @@
 import React, { useRef, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, Layers, Sparkles, ShieldCheck, Zap } from "lucide-react";
+import { ArrowRight, Layers, Sparkles, Heart, Gift, Award } from "lucide-react";
 import { categories } from "@/data/categories";
 import { gsap } from "@/lib/gsap";
 
@@ -43,13 +43,13 @@ export const CategoryGrid: React.FC = () => {
           <div>
             <div className="flex items-center gap-2 text-xs font-bold text-[#F95738] uppercase tracking-wider mb-2">
               <Layers className="w-4 h-4" />
-              <span>Curated Product Collections</span>
+              <span>Personalized Gifts & Custom Merchandise</span>
             </div>
             <h2 className="text-3xl sm:text-4xl font-black text-[#1E1B4B] tracking-tight">
-              Custom Merch Built For Teams & Brands
+              Curated Collections Built For You
             </h2>
             <p className="text-sm text-slate-500 mt-1 max-w-xl">
-              Engineered with industrial precision in our Noida NCR manufacturing facility with zero minimums.
+              From bespoke anniversary calendar frames and 3D LED lamps to executive leather sets and magnetic badges.
             </p>
           </div>
 
@@ -65,15 +65,15 @@ export const CategoryGrid: React.FC = () => {
         {/* Bento Grid Architecture */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           
-          {/* Card 1: Flagship Magnetic Badges (Featured Spanning 2 Columns on LG) */}
+          {/* Card 1: Custom Photo Frames & Keepsakes (Spanning 2 Columns on LG) */}
           <Link
-            href="/category/magnetic-badges"
+            href="/category/custom-photo-frames"
             className="category-bento-card lg:col-span-2 group relative rounded-3xl overflow-hidden bg-gradient-to-br from-slate-900 via-[#1E1B4B] to-[#110E38] text-white p-6 sm:p-8 flex flex-col justify-between shadow-lg hover:shadow-2xl transition-all duration-300 min-h-[340px]"
           >
-            <div className="absolute top-0 right-0 w-2/3 h-full overflow-hidden opacity-30 lg:opacity-40 pointer-events-none">
+            <div className="absolute top-0 right-0 w-2/3 h-full overflow-hidden opacity-40 lg:opacity-50 pointer-events-none">
               <Image
-                src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80"
-                alt="Magnetic Name Badges"
+                src="/images/products/anniversary-calendar-frame.jpg"
+                alt="Custom Photo Frames"
                 fill
                 sizes="(max-width: 1024px) 100vw, 66vw"
                 className="object-cover group-hover:scale-105 transition-transform duration-700"
@@ -83,64 +83,64 @@ export const CategoryGrid: React.FC = () => {
 
             <div className="relative z-10 max-w-md space-y-3">
               <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#F95738] text-white text-[10px] font-black uppercase tracking-wider shadow-sm">
-                <Sparkles className="w-3 h-3" />
-                <span>Our #1 Flagship Product</span>
+                <Heart className="w-3 h-3 fill-white" />
+                <span>Trending Gift Collection</span>
               </div>
 
               <h3 className="text-2xl sm:text-3xl font-black text-white tracking-tight">
-                Neodymium Magnetic Name Badges
+                Custom Calendar & Milestone Photo Frames
               </h3>
 
               <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
-                Zero pinholes on executive suits and formal shirts. Triple-magnet rare-earth fasteners with 2.5 kg pull strength and laser-cut metallic finish.
+                Heart-marked anniversary calendars, relationship milestone timelines, and baby first-year collages. High-definition photographic prints with anti-glare protective lamination.
               </p>
 
               <div className="flex flex-wrap gap-2 pt-2">
                 <span className="text-[11px] font-bold px-2.5 py-1 rounded-lg bg-white/10 border border-white/15 text-slate-200">
-                  Zero Fabric Damage
+                  Custom Calendar Date
                 </span>
                 <span className="text-[11px] font-bold px-2.5 py-1 rounded-lg bg-white/10 border border-white/15 text-slate-200">
-                  18+ Formats
+                  A4 & A3 Sizes
                 </span>
                 <span className="text-[11px] font-bold px-2.5 py-1 rounded-lg bg-white/10 border border-white/15 text-slate-200">
-                  From ₹28 / pc
+                  From ₹269 / pc
                 </span>
               </div>
             </div>
 
             <div className="relative z-10 pt-6 flex items-center justify-between border-t border-white/15 mt-4">
               <span className="text-xs font-bold text-white flex items-center gap-1 group-hover:text-[#F95738] transition-colors">
-                <span>Customize Badges Now</span>
+                <span>Customize Your Frame Now</span>
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </span>
-              <span className="text-xs font-mono text-slate-400">18 designs</span>
+              <span className="text-xs font-mono text-slate-400">18+ Designs</span>
             </div>
           </Link>
 
-          {/* Card 2: Custom T-Shirts */}
+          {/* Card 2: 3D LED Acrylic Heart Lamps */}
           <Link
-            href="/category/custom-t-shirts"
+            href="/category/personalized-gifts"
             className="category-bento-card group relative rounded-3xl overflow-hidden bg-slate-50 border border-slate-200/90 hover:border-slate-400 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between p-6"
           >
             <div>
               <div className="flex items-center justify-between mb-3">
-                <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800">
-                  Best Seller
+                <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-pink-100 text-pink-800">
+                  Valentine & Anniversary
                 </span>
-                <span className="text-xs text-slate-400 font-bold">42+ styles</span>
+                <span className="text-xs text-slate-400 font-bold">24+ Styles</span>
               </div>
               <h3 className="text-xl font-black text-[#1E1B4B] group-hover:text-[#F95738] transition-colors">
-                Custom Printed T-Shirts
+                3D LED Acrylic Heart Lamps
               </h3>
               <p className="text-xs text-slate-500 mt-1 line-clamp-2">
-                100% Super-combed bio-washed cotton & dry-fit tees with durable DTF and screen printing.
+                Optical cast acrylic laser engraved with custom couple calligraphy names on warm LED wooden base.
               </p>
             </div>
 
-            <div className="relative aspect-16/10 w-full my-4 rounded-2xl overflow-hidden bg-slate-100">
+            <div className="relative aspect-16/10 w-full my-4 rounded-2xl overflow-hidden bg-slate-900">
               <Image
-                src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=600&q=80"
-                alt="Custom T-Shirts"
+                src="/images/products/led-acrylic-heart-lamp.jpg"
+                alt="3D LED Acrylic Heart Lamp"
                 fill
                 sizes="(max-width: 640px) 100vw, 33vw"
                 className="object-cover group-hover:scale-105 transition-transform duration-500"
@@ -148,84 +148,12 @@ export const CategoryGrid: React.FC = () => {
             </div>
 
             <div className="flex items-center justify-between text-xs font-bold text-slate-700 pt-2 border-t border-slate-200/60">
-              <span>From ₹149 / pc</span>
+              <span>From ₹349 / pc</span>
               <ArrowRight className="w-4 h-4 text-[#F95738] group-hover:translate-x-1 transition-transform" />
             </div>
           </Link>
 
-          {/* Card 3: Winter Hoodies */}
-          <Link
-            href="/category/hoodies-sweatshirts"
-            className="category-bento-card group relative rounded-3xl overflow-hidden bg-slate-50 border border-slate-200/90 hover:border-slate-400 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between p-6"
-          >
-            <div>
-              <div className="flex items-center justify-between mb-3">
-                <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-indigo-100 text-indigo-800">
-                  Winter Special
-                </span>
-                <span className="text-xs text-slate-400 font-bold">24+ styles</span>
-              </div>
-              <h3 className="text-xl font-black text-[#1E1B4B] group-hover:text-[#F95738] transition-colors">
-                Hoodies & Sweatshirts
-              </h3>
-              <p className="text-xs text-slate-500 mt-1 line-clamp-2">
-                Heavyweight 380 GSM fleece winter hoodies with high-definition embroidery and custom prints.
-              </p>
-            </div>
-
-            <div className="relative aspect-16/10 w-full my-4 rounded-2xl overflow-hidden bg-slate-100">
-              <Image
-                src="https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=600&q=80"
-                alt="Winter Hoodies"
-                fill
-                sizes="(max-width: 640px) 100vw, 33vw"
-                className="object-cover group-hover:scale-105 transition-transform duration-500"
-              />
-            </div>
-
-            <div className="flex items-center justify-between text-xs font-bold text-slate-700 pt-2 border-t border-slate-200/60">
-              <span>From ₹549 / pc</span>
-              <ArrowRight className="w-4 h-4 text-[#F95738] group-hover:translate-x-1 transition-transform" />
-            </div>
-          </Link>
-
-          {/* Card 4: Custom Embroidered Caps */}
-          <Link
-            href="/category/custom-caps"
-            className="category-bento-card group relative rounded-3xl overflow-hidden bg-slate-50 border border-slate-200/90 hover:border-slate-400 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between p-6"
-          >
-            <div>
-              <div className="flex items-center justify-between mb-3">
-                <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-slate-200 text-slate-800">
-                  Accessories
-                </span>
-                <span className="text-xs text-slate-400 font-bold">16+ styles</span>
-              </div>
-              <h3 className="text-xl font-black text-[#1E1B4B] group-hover:text-[#F95738] transition-colors">
-                Custom Embroidered Caps
-              </h3>
-              <p className="text-xs text-slate-500 mt-1 line-clamp-2">
-                Structured 6-panel cotton twill & breathable trucker caps with 3D puff embroidery.
-              </p>
-            </div>
-
-            <div className="relative aspect-16/10 w-full my-4 rounded-2xl overflow-hidden bg-slate-100">
-              <Image
-                src="https://images.unsplash.com/photo-1588850561407-ed78c282e89b?auto=format&fit=crop&w=600&q=80"
-                alt="Embroidered Caps"
-                fill
-                sizes="(max-width: 640px) 100vw, 33vw"
-                className="object-cover group-hover:scale-105 transition-transform duration-500"
-              />
-            </div>
-
-            <div className="flex items-center justify-between text-xs font-bold text-slate-700 pt-2 border-t border-slate-200/60">
-              <span>From ₹115 / pc</span>
-              <ArrowRight className="w-4 h-4 text-[#F95738] group-hover:translate-x-1 transition-transform" />
-            </div>
-          </Link>
-
-          {/* Card 5: Corporate Kits & Drinkware */}
+          {/* Card 3: Executive 4-in-1 Leather Gift Hampers */}
           <Link
             href="/category/corporate-kits"
             className="category-bento-card group relative rounded-3xl overflow-hidden bg-slate-50 border border-slate-200/90 hover:border-slate-400 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between p-6"
@@ -233,22 +161,22 @@ export const CategoryGrid: React.FC = () => {
             <div>
               <div className="flex items-center justify-between mb-3">
                 <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-amber-100 text-amber-800">
-                  Bulk Enterprise
+                  Executive Hamper
                 </span>
-                <span className="text-xs text-slate-400 font-bold">30+ items</span>
+                <span className="text-xs text-slate-400 font-bold">Luxury Box</span>
               </div>
               <h3 className="text-xl font-black text-[#1E1B4B] group-hover:text-[#F95738] transition-colors">
-                Corporate Welcome Kits
+                4-in-1 Leather Gift Hampers
               </h3>
               <p className="text-xs text-slate-500 mt-1 line-clamp-2">
-                Satin lanyards, RFID cards, laser-engraved metal pens, and executive diaries.
+                Customized passport cover, wallet, eyewear pouch, and keychain with personalized brass nameplates.
               </p>
             </div>
 
             <div className="relative aspect-16/10 w-full my-4 rounded-2xl overflow-hidden bg-slate-100">
               <Image
-                src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=600&q=80"
-                alt="Corporate Kits"
+                src="/images/products/executive-leather-gift-set.jpg"
+                alt="Executive Leather Gift Hamper"
                 fill
                 sizes="(max-width: 640px) 100vw, 33vw"
                 className="object-cover group-hover:scale-105 transition-transform duration-500"
@@ -256,7 +184,79 @@ export const CategoryGrid: React.FC = () => {
             </div>
 
             <div className="flex items-center justify-between text-xs font-bold text-slate-700 pt-2 border-t border-slate-200/60">
-              <span>Wholesale Deals</span>
+              <span>From ₹499 / pc</span>
+              <ArrowRight className="w-4 h-4 text-[#F95738] group-hover:translate-x-1 transition-transform" />
+            </div>
+          </Link>
+
+          {/* Card 4: Floating 24K Gold Pens & Keychains */}
+          <Link
+            href="/category/corporate-kits"
+            className="category-bento-card group relative rounded-3xl overflow-hidden bg-slate-50 border border-slate-200/90 hover:border-slate-400 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between p-6"
+          >
+            <div>
+              <div className="flex items-center justify-between mb-3">
+                <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-yellow-100 text-yellow-800">
+                  24K Gold Flakes
+                </span>
+                <span className="text-xs text-slate-400 font-bold">Appreciation</span>
+              </div>
+              <h3 className="text-xl font-black text-[#1E1B4B] group-hover:text-[#F95738] transition-colors">
+                24K Gold Pens & Keychains
+              </h3>
+              <p className="text-xs text-slate-500 mt-1 line-clamp-2">
+                Floating 24K gold foil laser engraved pens and personalized wooden & acrylic quote keychains.
+              </p>
+            </div>
+
+            <div className="relative aspect-16/10 w-full my-4 rounded-2xl overflow-hidden bg-slate-100">
+              <Image
+                src="/images/products/gold-foil-engraved-pens.jpg"
+                alt="24K Floating Gold Pens"
+                fill
+                sizes="(max-width: 640px) 100vw, 33vw"
+                className="object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+            </div>
+
+            <div className="flex items-center justify-between text-xs font-bold text-slate-700 pt-2 border-t border-slate-200/60">
+              <span>From ₹75 / pc</span>
+              <ArrowRight className="w-4 h-4 text-[#F95738] group-hover:translate-x-1 transition-transform" />
+            </div>
+          </Link>
+
+          {/* Card 5: Magnetic Badges & Wedding Pin Badges */}
+          <Link
+            href="/category/magnetic-badges"
+            className="category-bento-card group relative rounded-3xl overflow-hidden bg-slate-50 border border-slate-200/90 hover:border-slate-400 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between p-6"
+          >
+            <div>
+              <div className="flex items-center justify-between mb-3">
+                <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800">
+                  Zero Pinholes
+                </span>
+                <span className="text-xs text-slate-400 font-bold">Events & Teams</span>
+              </div>
+              <h3 className="text-xl font-black text-[#1E1B4B] group-hover:text-[#F95738] transition-colors">
+                Magnetic & Wedding Badges
+              </h3>
+              <p className="text-xs text-slate-500 mt-1 line-clamp-2">
+                Neodymium magnetic metallic name badges and glossy wedding pin badges (Ladki Wale / Ladke Wale).
+              </p>
+            </div>
+
+            <div className="relative aspect-16/10 w-full my-4 rounded-2xl overflow-hidden bg-slate-100">
+              <Image
+                src="/images/products/wedding-pin-badges.jpg"
+                alt="Custom Wedding & Magnetic Badges"
+                fill
+                sizes="(max-width: 640px) 100vw, 33vw"
+                className="object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+            </div>
+
+            <div className="flex items-center justify-between text-xs font-bold text-slate-700 pt-2 border-t border-slate-200/60">
+              <span>From ₹16 / pc</span>
               <ArrowRight className="w-4 h-4 text-[#F95738] group-hover:translate-x-1 transition-transform" />
             </div>
           </Link>

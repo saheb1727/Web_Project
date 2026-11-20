@@ -13,17 +13,23 @@ export const FeaturedProducts: React.FC = () => {
   const gridRef = useRef<HTMLDivElement>(null);
 
   const filterTabs = [
-    { id: "all", label: "All Merch" },
-    { id: "Magnetic Badges", label: "Magnetic Badges" },
-    { id: "Custom T-Shirts", label: "T-Shirts" },
-    { id: "Hoodies & Sweatshirts", label: "Hoodies" },
-    { id: "Drinkware & Ceramic Mugs", label: "Drinkware" },
+    { id: "all", label: "All Products" },
+    { id: "Custom Photo Frames", label: "Photo Frames" },
+    { id: "Personalized Gifts & LED Lamps", label: "LED Lamps & Gifts" },
+    { id: "Corporate Kits & ID Cards", label: "Leather & Pens" },
+    { id: "Magnetic & Pin Badges", label: "Badges" },
+    { id: "Custom T-Shirts", label: "Apparel & Tees" },
   ];
 
   const filteredProducts =
     activeTab === "all"
-      ? products.slice(0, 8)
-      : products.filter((p) => p.category === activeTab);
+      ? products.slice(0, 10)
+      : products.filter(
+          (p) =>
+            p.category === activeTab ||
+            (activeTab === "Magnetic & Pin Badges" &&
+              (p.category === "Magnetic Badges" || p.category === "Magnetic & Pin Badges"))
+        );
 
   // Initial ScrollTrigger entrance
   useEffect(() => {

@@ -60,12 +60,16 @@ const CapIcon: React.FC<{ className?: string }> = ({ className = "w-4 h-4" }) =>
 // Map categories to high-clarity icons
 const getCategoryIcon = (slug: string) => {
   switch (slug) {
+    case "custom-photo-frames":
+      return Heart;
+    case "personalized-gifts":
+      return Sparkles;
     case "magnetic-badges":
       return IdCard;
     case "custom-t-shirts":
       return Shirt;
     case "hoodies-sweatshirts":
-      return Sparkles;
+      return Flame;
     case "custom-caps":
       return CapIcon;
     case "drinkware-mugs":
@@ -208,7 +212,7 @@ export const Navbar: React.FC = () => {
                 {/* Dropdown Menu Panel */}
                 {isProductsOpen && (
                   <div
-                    className="absolute top-full left-0 mt-2 w-[620px] bg-white/98 backdrop-blur-xl border border-slate-200/90 rounded-2xl shadow-2xl p-5 z-50 animate-in fade-in slide-in-from-top-2 duration-150"
+                    className="absolute top-full left-0 mt-2 w-[680px] bg-white/98 backdrop-blur-xl border border-slate-200/90 rounded-2xl shadow-2xl p-5 z-50 animate-in fade-in slide-in-from-top-2 duration-150"
                     role="menu"
                   >
                     {/* Header Strip */}
