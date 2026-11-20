@@ -82,7 +82,7 @@ const getCategoryIcon = (slug: string) => {
 };
 
 export const Navbar: React.FC = () => {
-  const { totalItems } = useCart();
+  const { totalItems, subtotal } = useCart();
   const { wishlistCount } = useWishlist();
   const { user, isLoggedIn } = useAuth();
   const pathname = usePathname();
@@ -143,242 +143,244 @@ export const Navbar: React.FC = () => {
     <>
       <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200/80 shadow-2xs transition-all">
         <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16 sm:h-20 gap-2 sm:gap-4 lg:gap-6">
+          <div className="flex items-center justify-between h-16 sm:h-[68px] gap-2 sm:gap-4 lg:gap-6">
             
-            {/* Left: Mobile Hamburger & Brand Identity */}
-            <div className="flex items-center gap-1.5 sm:gap-4 shrink-0">
+            {/* Zone 1: Brand Anchor (Left) */}
+            <div className="flex items-center gap-1.5 sm:gap-3 shrink-0">
               {/* Mobile Hamburger Trigger */}
               <button
                 type="button"
                 onClick={() => setIsMobileMenuOpen(true)}
-                className="lg:hidden p-1.5 sm:p-2 text-slate-700 hover:text-[var(--color-primary)] rounded-xl transition-colors cursor-pointer active:bg-slate-100"
+                className="lg:hidden p-2 text-slate-700 hover:text-[#0B0F19] rounded-xl hover:bg-slate-100 transition-colors cursor-pointer active:bg-slate-200"
                 aria-label="Open navigation menu"
               >
-                <Menu className="w-5 h-5 sm:w-6 sm:h-6" />
+                <Menu className="w-5 h-5" />
               </button>
 
-              {/* Brand Logo & Tagline */}
-              <Link href="/" className="flex items-center gap-2 sm:gap-3 group py-1">
-                <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-[var(--color-primary)] text-[var(--color-accent)] flex items-center justify-center font-black shadow-sm group-hover:scale-105 transition-transform shrink-0">
-                  <Printer className="w-4 h-4 sm:w-5 sm:h-5 text-[var(--color-accent)]" />
+              {/* Brand Logo & Studio Subtitle */}
+              <Link href="/" className="flex items-center gap-2 sm:gap-2.5 group py-1">
+                <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-[#0B0F19] text-[#FF4D36] flex items-center justify-center font-black shadow-xs ring-1 ring-black/5 group-hover:scale-105 transition-transform shrink-0">
+                  <Printer className="w-4 h-4 text-[#FF4D36]" />
                 </div>
                 <div className="flex flex-col">
-                  <span className="font-black text-lg sm:text-2xl tracking-tight text-[var(--color-primary)] leading-none">
-                    MyPrintHub<span className="text-[var(--color-accent)]">.in</span>
+                  <span className="font-black text-lg sm:text-xl tracking-tight text-[#0B0F19] leading-none">
+                    MyPrintHub<span className="text-[#FF4D36]">.in</span>
                   </span>
-                  <span className="hidden sm:block text-[10px] font-semibold text-slate-400 tracking-wide mt-1 uppercase">
-                    Your Brand • Your Style • Your Print
+                  <span className="hidden sm:block text-[9px] font-bold text-slate-400 tracking-wider uppercase mt-1">
+                    STUDIO PRINT LAB
                   </span>
                 </div>
               </Link>
             </div>
 
-            {/* Center: Precision Navigation with Products Mega Dropdown */}
-            <nav className="hidden lg:flex items-center gap-1 xl:gap-2">
-              
-              {/* Products Mega Dropdown Trigger */}
-              <div
-                ref={dropdownRef}
-                className="relative"
-                onMouseEnter={handleMouseEnter}
-                onMouseLeave={handleMouseLeave}
-              >
-                <button
-                  type="button"
-                  onClick={() => setIsProductsOpen((prev) => !prev)}
-                  className={`flex items-center gap-1.5 text-sm font-semibold transition-all py-2 px-3 rounded-xl cursor-pointer ${
-                    isProductsOpen || isProductsActive
-                      ? "text-[#F95738] bg-[#F95738]/10 font-bold shadow-2xs"
-                      : "text-slate-800 hover:text-[var(--color-accent)] hover:bg-slate-50"
-                  }`}
-                  aria-expanded={isProductsOpen}
-                  aria-haspopup="true"
+            {/* Zone 2: Modern Segmented Navigation Capsule Dock (Center) */}
+            <nav className="hidden lg:flex items-center">
+              <div className="flex items-center gap-1 p-1 bg-slate-100/90 border border-slate-200/80 rounded-full shadow-inner-xs backdrop-blur-sm">
+                
+                {/* Products Mega Dropdown Trigger */}
+                <div
+                  ref={dropdownRef}
+                  className="relative"
+                  onMouseEnter={handleMouseEnter}
+                  onMouseLeave={handleMouseLeave}
                 >
-                  <Layers
-                    className={`w-4 h-4 transition-colors ${
+                  <button
+                    type="button"
+                    onClick={() => setIsProductsOpen((prev) => !prev)}
+                    className={`flex items-center gap-1.5 text-xs font-semibold py-1.5 px-3.5 rounded-full transition-all cursor-pointer ${
                       isProductsOpen || isProductsActive
-                        ? "text-[#F95738]"
-                        : "text-slate-500"
+                        ? "bg-white text-[#0B0F19] shadow-2xs font-bold ring-1 ring-black/5"
+                        : "text-slate-600 hover:text-slate-900 hover:bg-white/60"
                     }`}
-                  />
-                  <span>Products</span>
-                  <ChevronDown
-                    className={`w-3.5 h-3.5 transition-transform duration-200 ${
-                      isProductsOpen ? "rotate-180 text-[#F95738]" : "text-slate-400"
-                    }`}
-                  />
-                </button>
-
-                {/* Dropdown Menu Panel */}
-                {isProductsOpen && (
-                  <div
-                    className="absolute top-full left-0 mt-2 w-[680px] bg-white/98 backdrop-blur-xl border border-slate-200/90 rounded-2xl shadow-2xl p-5 z-50 animate-in fade-in slide-in-from-top-2 duration-150"
-                    role="menu"
+                    aria-expanded={isProductsOpen}
+                    aria-haspopup="true"
                   >
-                    {/* Header Strip */}
-                    <div className="flex items-center justify-between pb-3.5 mb-3.5 border-b border-slate-100">
-                      <div>
-                        <div className="text-xs font-black uppercase tracking-wider text-slate-400 flex items-center gap-1.5">
-                          <span>Product Catalog</span>
-                          <span className="text-[10px] font-bold px-1.5 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200/60">
-                            Zero MOQ
-                          </span>
+                    <Layers
+                      className={`w-3.5 h-3.5 transition-colors ${
+                        isProductsOpen || isProductsActive
+                          ? "text-[#FF4D36]"
+                          : "text-slate-500"
+                      }`}
+                    />
+                    <span>Products</span>
+                    <ChevronDown
+                      className={`w-3 h-3 transition-transform duration-200 ${
+                        isProductsOpen ? "rotate-180 text-[#FF4D36]" : "text-slate-400"
+                      }`}
+                    />
+                  </button>
+
+                  {/* Dropdown Menu Panel */}
+                  {isProductsOpen && (
+                    <div
+                      className="absolute top-full left-0 mt-2.5 w-[680px] bg-white/98 backdrop-blur-xl border border-slate-200/90 rounded-2xl shadow-2xl p-5 z-50 animate-in fade-in slide-in-from-top-2 duration-150"
+                      role="menu"
+                    >
+                      {/* Header Strip */}
+                      <div className="flex items-center justify-between pb-3.5 mb-3.5 border-b border-slate-100">
+                        <div>
+                          <div className="text-xs font-black uppercase tracking-wider text-slate-400 flex items-center gap-1.5">
+                            <span>Product Catalog</span>
+                            <span className="text-[10px] font-bold px-1.5 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200/60">
+                              Zero MOQ
+                            </span>
+                          </div>
+                          <p className="text-xs text-slate-500 font-medium mt-0.5">
+                            Direct factory manufacturing with 24-48h dispatch
+                          </p>
                         </div>
-                        <p className="text-xs text-slate-500 font-medium mt-0.5">
-                          Direct factory manufacturing with 24-48h dispatch
-                        </p>
+                        <Link
+                          href="/products"
+                          onClick={() => setIsProductsOpen(false)}
+                          className="text-xs font-bold text-[#FF4D36] hover:text-[#e0351d] flex items-center gap-1 transition-colors group/link"
+                        >
+                          <span>View All Products</span>
+                          <ArrowRight className="w-3.5 h-3.5 group-hover/link:translate-x-0.5 transition-transform" />
+                        </Link>
                       </div>
-                      <Link
-                        href="/products"
-                        onClick={() => setIsProductsOpen(false)}
-                        className="text-xs font-bold text-[#F95738] hover:text-[#d84326] flex items-center gap-1 transition-colors group/link"
-                      >
-                        <span>View All Products</span>
-                        <ArrowRight className="w-3.5 h-3.5 group-hover/link:translate-x-0.5 transition-transform" />
-                      </Link>
-                    </div>
 
-                    {/* 2-Column Grid of Categories */}
-                    <div className="grid grid-cols-2 gap-2.5">
-                      {categories.map((cat) => {
-                        const Icon = getCategoryIcon(cat.slug);
-                        const isCurrent = pathname === `/category/${cat.slug}`;
+                      {/* 2-Column Grid of Categories */}
+                      <div className="grid grid-cols-2 gap-2.5">
+                        {categories.map((cat) => {
+                          const Icon = getCategoryIcon(cat.slug);
+                          const isCurrent = pathname === `/category/${cat.slug}`;
 
-                        return (
-                          <Link
-                            key={cat.id}
-                            href={`/category/${cat.slug}`}
-                            onClick={() => setIsProductsOpen(false)}
-                            className={`flex items-start gap-3 p-2.5 rounded-xl border transition-all group/item ${
-                              isCurrent
-                                ? "bg-[#F95738]/5 border-[#F95738]/30 shadow-2xs"
-                                : "hover:bg-slate-50 border-transparent hover:border-slate-200/80"
-                            }`}
-                          >
-                            <div
-                              className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 transition-colors ${
+                          return (
+                            <Link
+                              key={cat.id}
+                              href={`/category/${cat.slug}`}
+                              onClick={() => setIsProductsOpen(false)}
+                              className={`flex items-start gap-3 p-2.5 rounded-xl border transition-all group/item ${
                                 isCurrent
-                                  ? "bg-[#F95738] text-white"
-                                  : "bg-slate-100 text-[#1E1B4B] group-hover/item:bg-[#F95738]/10 group-hover/item:text-[#F95738]"
+                                  ? "bg-[#FF4D36]/5 border-[#FF4D36]/30 shadow-2xs"
+                                  : "hover:bg-slate-50 border-transparent hover:border-slate-200/80"
                               }`}
                             >
-                              <Icon className="w-5 h-5" />
-                            </div>
-                            <div className="min-w-0 flex-1">
-                              <div className="flex items-center gap-1.5">
-                                <span
-                                  className={`text-sm font-bold truncate transition-colors ${
-                                    isCurrent
-                                      ? "text-[#F95738]"
-                                      : "text-[#1E1B4B] group-hover/item:text-[#F95738]"
-                                  }`}
-                                >
-                                  {cat.name}
-                                </span>
-                                {cat.badge && (
-                                  <span className="text-[9px] font-bold px-1.5 py-0.2 rounded bg-slate-100 text-slate-600 group-hover/item:bg-[#F95738]/15 group-hover/item:text-[#F95738] shrink-0 transition-colors">
-                                    {cat.badge}
-                                  </span>
-                                )}
+                              <div
+                                className={`w-9 h-9 rounded-xl flex items-center justify-center shrink-0 transition-colors ${
+                                  isCurrent
+                                    ? "bg-[#FF4D36] text-white"
+                                    : "bg-slate-100 text-slate-700 group-hover/item:bg-[#FF4D36]/10 group-hover/item:text-[#FF4D36]"
+                                }`}
+                              >
+                                <Icon className="w-4 h-4" />
                               </div>
-                              <p className="text-[11px] text-slate-500 line-clamp-1 mt-0.5">
-                                {cat.description}
-                              </p>
-                            </div>
-                          </Link>
-                        );
-                      })}
-                    </div>
-
-                    {/* Bottom Promo & Enterprise Strip */}
-                    <div className="mt-4 pt-3.5 border-t border-slate-100 flex items-center justify-between text-xs bg-slate-50/80 -mx-5 -mb-5 p-3.5 rounded-b-2xl px-5">
-                      <div className="flex items-center gap-2 text-slate-600">
-                        <ShieldCheck className="w-4 h-4 text-emerald-600 shrink-0" />
-                        <span className="font-semibold text-[11px]">
-                          100% Quality Guarantee • Custom Pantone Matches
-                        </span>
+                              <div className="min-w-0 flex-1">
+                                <div className="flex items-center gap-1.5">
+                                  <span
+                                    className={`text-xs font-bold truncate transition-colors ${
+                                      isCurrent
+                                        ? "text-[#FF4D36]"
+                                        : "text-slate-900 group-hover/item:text-[#FF4D36]"
+                                    }`}
+                                  >
+                                    {cat.name}
+                                  </span>
+                                  {cat.badge && (
+                                    <span className="text-[9px] font-bold px-1.5 py-0.2 rounded bg-slate-100 text-slate-600 group-hover/item:bg-[#FF4D36]/15 group-hover/item:text-[#FF4D36] shrink-0 transition-colors">
+                                      {cat.badge}
+                                    </span>
+                                  )}
+                                </div>
+                                <p className="text-[11px] text-slate-500 line-clamp-1 mt-0.5">
+                                  {cat.description}
+                                </p>
+                              </div>
+                            </Link>
+                          );
+                        })}
                       </div>
-                      <Link
-                        href="/contact"
-                        onClick={() => setIsProductsOpen(false)}
-                        className="text-[11px] font-bold text-[#1E1B4B] hover:text-[#F95738] transition-colors"
-                      >
-                        Enterprise Inquiries →
-                      </Link>
+
+                      {/* Bottom Promo & Enterprise Strip */}
+                      <div className="mt-4 pt-3.5 border-t border-slate-100 flex items-center justify-between text-xs bg-slate-50/80 -mx-5 -mb-5 p-3.5 rounded-b-2xl px-5">
+                        <div className="flex items-center gap-2 text-slate-600">
+                          <ShieldCheck className="w-4 h-4 text-emerald-600 shrink-0" />
+                          <span className="font-semibold text-[11px]">
+                            100% Quality Guarantee • Custom Pantone Matches
+                          </span>
+                        </div>
+                        <Link
+                          href="/contact"
+                          onClick={() => setIsProductsOpen(false)}
+                          className="text-[11px] font-bold text-slate-900 hover:text-[#FF4D36] transition-colors"
+                        >
+                          Enterprise Inquiries →
+                        </Link>
+                      </div>
                     </div>
-                  </div>
-                )}
+                  )}
+                </div>
+
+                {/* Best Sellers Link */}
+                <Link
+                  href="/products"
+                  className={`flex items-center gap-1.5 text-xs font-semibold py-1.5 px-3.5 rounded-full transition-all cursor-pointer ${
+                    pathname === "/products" && !isProductsOpen
+                      ? "bg-white text-[#0B0F19] shadow-2xs font-bold ring-1 ring-black/5"
+                      : "text-slate-600 hover:text-slate-900 hover:bg-white/60"
+                  }`}
+                >
+                  <Flame className="w-3.5 h-3.5 text-[#FF4D36] shrink-0" />
+                  <span>Best Sellers</span>
+                </Link>
+
+                {/* Corporate & Bulk Link */}
+                <Link
+                  href="/category/corporate-kits"
+                  className={`flex items-center gap-1.5 text-xs font-semibold py-1.5 px-3.5 rounded-full transition-all cursor-pointer ${
+                    pathname === "/category/corporate-kits"
+                      ? "bg-white text-[#0B0F19] shadow-2xs font-bold ring-1 ring-black/5"
+                      : "text-slate-600 hover:text-slate-900 hover:bg-white/60"
+                  }`}
+                >
+                  <Briefcase className="w-3.5 h-3.5 text-slate-500 shrink-0" />
+                  <span>Corporate & Bulk</span>
+                </Link>
+
+                {/* Track Order Link */}
+                <Link
+                  href="/track"
+                  className={`flex items-center gap-1.5 text-xs font-semibold py-1.5 px-3.5 rounded-full transition-all cursor-pointer ${
+                    pathname === "/track"
+                      ? "bg-white text-[#0B0F19] shadow-2xs font-bold ring-1 ring-black/5"
+                      : "text-slate-600 hover:text-slate-900 hover:bg-white/60"
+                  }`}
+                >
+                  <Truck className="w-3.5 h-3.5 text-slate-500 shrink-0" />
+                  <span>Track Order</span>
+                </Link>
+
+                {/* Custom Quote Link */}
+                <Link
+                  href="/contact"
+                  className={`flex items-center gap-1.5 text-xs font-semibold py-1.5 px-3.5 rounded-full transition-all cursor-pointer ${
+                    pathname === "/contact"
+                      ? "bg-white text-[#0B0F19] shadow-2xs font-bold ring-1 ring-black/5"
+                      : "text-slate-600 hover:text-slate-900 hover:bg-white/60"
+                  }`}
+                >
+                  <MessageSquare className="w-3.5 h-3.5 text-slate-500 shrink-0" />
+                  <span>Custom Quote</span>
+                </Link>
               </div>
-
-              {/* Best Sellers Link */}
-              <Link
-                href="/products"
-                className={`flex items-center gap-1.5 text-sm font-semibold transition-all py-2 px-3 rounded-xl cursor-pointer ${
-                  pathname === "/products" && !isProductsOpen
-                    ? "text-[#F95738] bg-[#F95738]/10 font-bold"
-                    : "text-slate-800 hover:text-[var(--color-accent)] hover:bg-slate-50"
-                }`}
-              >
-                <Flame className="w-4 h-4 text-slate-500 hover:text-[var(--color-accent)] shrink-0" />
-                <span>Best Sellers</span>
-              </Link>
-
-              {/* Corporate & Bulk Link */}
-              <Link
-                href="/category/corporate-kits"
-                className={`flex items-center gap-1.5 text-sm font-semibold transition-all py-2 px-3 rounded-xl cursor-pointer ${
-                  pathname === "/category/corporate-kits"
-                    ? "text-[#F95738] bg-[#F95738]/10 font-bold"
-                    : "text-slate-800 hover:text-[var(--color-accent)] hover:bg-slate-50"
-                }`}
-              >
-                <Briefcase className="w-4 h-4 text-slate-500 hover:text-[var(--color-accent)] shrink-0" />
-                <span>Corporate & Bulk</span>
-              </Link>
-
-              {/* Track Order Link */}
-              <Link
-                href="/track"
-                className={`flex items-center gap-1.5 text-sm font-semibold transition-all py-2 px-3 rounded-xl cursor-pointer ${
-                  pathname === "/track"
-                    ? "text-[#F95738] bg-[#F95738]/10 font-bold"
-                    : "text-slate-800 hover:text-[var(--color-accent)] hover:bg-slate-50"
-                }`}
-              >
-                <Truck className="w-4 h-4 text-slate-500 hover:text-[var(--color-accent)] shrink-0" />
-                <span>Track Order</span>
-              </Link>
-
-              {/* Custom Quote / Contact Link */}
-              <Link
-                href="/contact"
-                className={`flex items-center gap-1.5 text-sm font-semibold transition-all py-2 px-3 rounded-xl cursor-pointer ${
-                  pathname === "/contact"
-                    ? "text-[#F95738] bg-[#F95738]/10 font-bold"
-                    : "text-slate-800 hover:text-[var(--color-accent)] hover:bg-slate-50"
-                }`}
-              >
-                <MessageSquare className="w-4 h-4 text-slate-500 hover:text-[var(--color-accent)] shrink-0" />
-                <span>Custom Quote</span>
-              </Link>
             </nav>
 
-            {/* Right: Integrated Search, Account, Wishlist & Cart */}
-            <div className="flex items-center gap-1 sm:gap-2.5 shrink-0">
+            {/* Zone 3: Command & Utility Deck (Right) */}
+            <div className="flex items-center gap-1.5 sm:gap-2.5 shrink-0">
               
-              {/* Integrated Search Trigger Pill (Medium & Desktop) */}
+              {/* Sleek Command Search Trigger Pill (Medium & Desktop) */}
               <button
                 type="button"
                 onClick={() => setIsSearchOpen(true)}
-                className="hidden md:flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-100 hover:bg-slate-200/80 border border-slate-200/80 text-slate-500 hover:text-slate-800 transition-all text-xs cursor-pointer group w-44 lg:w-48 xl:w-56"
+                className="hidden md:flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-100/90 hover:bg-slate-200/80 border border-slate-200/90 text-slate-500 hover:text-slate-800 transition-all text-xs cursor-pointer group w-36 lg:w-44 xl:w-52"
                 aria-label="Search merchandise"
                 title="Search custom products (⌘K)"
               >
-                <Search className="w-3.5 h-3.5 text-slate-400 group-hover:text-[#F95738] transition-colors shrink-0" />
-                <span className="truncate text-slate-500 group-hover:text-slate-700 font-medium">
+                <Search className="w-3.5 h-3.5 text-slate-400 group-hover:text-[#FF4D36] transition-colors shrink-0" />
+                <span className="truncate text-slate-500 group-hover:text-slate-700 font-medium text-xs">
                   Search products...
                 </span>
-                <kbd className="hidden xl:inline-flex items-center px-1.5 py-0.5 text-[10px] font-semibold text-slate-400 bg-white rounded border border-slate-200 ml-auto shadow-2xs">
+                <kbd className="hidden xl:inline-flex items-center px-1.5 py-0.5 text-[10px] font-semibold text-slate-400 bg-white rounded border border-slate-200/80 ml-auto shadow-2xs">
                   ⌘K
                 </kbd>
               </button>
@@ -387,71 +389,74 @@ export const Navbar: React.FC = () => {
               <button
                 type="button"
                 onClick={() => setIsSearchOpen(true)}
-                className="flex md:hidden p-1.5 text-slate-700 hover:text-[var(--color-accent)] transition-colors cursor-pointer rounded-xl active:bg-slate-100"
+                className="flex md:hidden p-2 text-slate-700 hover:text-[#0B0F19] hover:bg-slate-100 rounded-xl transition-colors cursor-pointer"
                 aria-label="Search merchandise"
               >
                 <Search className="w-5 h-5 stroke-[1.8]" />
               </button>
 
-              {/* User Account Button (Hidden on small mobile since it's prominent in the mobile menu drawer) */}
-              <Link
-                href="/auth"
-                className="hidden sm:flex items-center gap-1.5 p-1.5 sm:px-2.5 sm:py-1.5 hover:text-[var(--color-accent)] transition-colors rounded-xl hover:bg-slate-50 text-slate-700 cursor-pointer"
-                aria-label="My Account"
-                title={isLoggedIn && user ? `Account: ${user.name}` : "Sign In / Register"}
-              >
-                {isLoggedIn && user ? (
-                  <div className="w-7 h-7 rounded-full bg-[#1E1B4B] text-white flex items-center justify-center text-xs font-bold shadow-2xs">
-                    {user.name[0].toUpperCase()}
-                  </div>
-                ) : (
-                  <User className="w-5 h-5 stroke-[1.8]" />
-                )}
-                {isLoggedIn && user ? (
-                  <span className="text-xs font-bold text-slate-800 hidden xl:inline truncate max-w-[80px]">
-                    {user.name.split(" ")[0]}
-                  </span>
-                ) : (
-                  <span className="text-xs font-semibold text-slate-700 hidden xl:inline">
-                    Sign In
-                  </span>
-                )}
-              </Link>
+              {/* Hairline Divider (Desktop) */}
+              <div className="hidden lg:block h-4 w-[1px] bg-slate-200" />
 
               {/* Wishlist Button */}
               <Link
                 href="/wishlist"
-                className="relative p-1.5 sm:p-2 text-slate-700 hover:text-[var(--color-accent)] hover:bg-slate-50 transition-colors rounded-xl cursor-pointer"
+                className="relative p-2 rounded-full text-slate-600 hover:text-[#FF4D36] hover:bg-slate-100 transition-colors cursor-pointer"
                 aria-label="Wishlist"
                 title="Wishlist"
               >
-                <Heart className="w-5 h-5 stroke-[1.8]" />
+                <Heart className="w-4 h-4 stroke-[1.8]" />
                 {wishlistCount > 0 && (
-                  <span className="absolute top-0.5 right-0.5 min-w-[15px] h-3.5 px-0.5 bg-[var(--color-accent)] text-white text-[9px] font-bold rounded-full flex items-center justify-center leading-none">
+                  <span className="absolute top-0.5 right-0.5 min-w-[15px] h-3.5 px-0.5 bg-[#FF4D36] text-white text-[9px] font-extrabold rounded-full flex items-center justify-center leading-none ring-1.5 ring-white">
                     {wishlistCount}
                   </span>
                 )}
               </Link>
 
-              {/* High-Conversion Cart Button */}
+              {/* User Account Button */}
+              <Link
+                href="/auth"
+                className="hidden sm:flex items-center gap-1.5 px-2.5 py-1.5 rounded-full text-slate-700 hover:text-slate-900 hover:bg-slate-100 transition-colors text-xs font-semibold cursor-pointer"
+                aria-label="My Account"
+                title={isLoggedIn && user ? `Account: ${user.name}` : "Sign In / Register"}
+              >
+                {isLoggedIn && user ? (
+                  <div className="w-6 h-6 rounded-full bg-[#0B0F19] text-white flex items-center justify-center text-[10px] font-bold shadow-2xs">
+                    {user.name[0].toUpperCase()}
+                  </div>
+                ) : (
+                  <User className="w-4 h-4 stroke-[1.8] text-slate-600" />
+                )}
+                <span className="hidden xl:inline truncate max-w-[75px]">
+                  {isLoggedIn && user ? user.name.split(" ")[0] : "Sign In"}
+                </span>
+              </Link>
+
+              {/* Executive Cart Pill */}
               <Link
                 href="/cart"
-                className="flex items-center gap-1.5 px-2.5 sm:px-3.5 py-1.5 rounded-xl bg-[#1E1B4B] hover:bg-[#120F38] text-white transition-all shadow-xs group cursor-pointer shrink-0"
+                className="flex items-center gap-2 px-3 sm:px-3.5 py-1.5 rounded-full bg-[#0B0F19] hover:bg-[#FF4D36] text-white transition-all shadow-xs hover:shadow-md group cursor-pointer shrink-0"
                 aria-label="Shopping Cart"
                 title="View Shopping Cart"
               >
-                <div className="relative">
-                  <ShoppingBag className="w-4 h-4 text-white group-hover:scale-105 transition-transform" />
+                <div className="relative flex items-center justify-center">
+                  <ShoppingBag className="w-3.5 h-3.5 text-white group-hover:scale-110 transition-transform" />
                   {totalItems > 0 && (
-                    <span className="absolute -top-2 -right-2 min-w-[15px] h-3.5 px-0.5 bg-[var(--color-accent)] text-white text-[9px] font-extrabold rounded-full flex items-center justify-center leading-none ring-2 ring-[#1E1B4B]">
+                    <span className="absolute -top-2 -right-2.5 min-w-[15px] h-3.5 px-0.5 bg-[#FF4D36] text-white text-[9px] font-black rounded-full flex items-center justify-center leading-none ring-1.5 ring-[#0B0F19]">
                       {totalItems}
                     </span>
                   )}
                 </div>
-                <span className="text-xs font-bold text-white tracking-wide hidden sm:inline">
+                <span className="text-xs font-bold text-white tracking-wide">
                   Cart
                 </span>
+                {totalItems > 0 && subtotal > 0 && (
+                  <span className="text-[11px] font-bold text-slate-300 group-hover:text-white pl-1.5 border-l border-white/20 hidden xs:inline">
+                    ₹{subtotal.toLocaleString("en-IN")}
+                  </span>
+                )}
               </Link>
+
             </div>
 
           </div>
