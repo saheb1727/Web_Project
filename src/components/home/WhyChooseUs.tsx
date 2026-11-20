@@ -184,7 +184,7 @@ export const WhyChooseUs: React.FC = () => {
 
               <div className="mt-6 pt-4 border-t border-white/10 text-center">
                 <span className="text-xs text-slate-300">
-                  Trusted by 2,500+ Indian Startups, Colleges & Enterprises
+                  Engineered for Indian Businesses, Events & Gifting Memories
                 </span>
               </div>
             </div>

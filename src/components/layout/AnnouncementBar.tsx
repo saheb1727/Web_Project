@@ -7,10 +7,10 @@ export const AnnouncementBar: React.FC = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const messages = [
-    "Trusted by 81,000+ Customers Across India",
-    "Extra 15% OFF on first order with code SPECIAL15",
-    "Zero Minimum Order Quantity on all Badges & Merch",
-    "Made in our own factory in Noida NCR • 24-48h Dispatch",
+    "In-House Studio Manufacturing • Ranchi & Noida NCR",
+    "Zero Minimum Order Quantity • Order 1 or 1,000 Units",
+    "Express Pan-India Dispatch within 24–48 Hours",
+    "Free Instant Digital Mockup & Proof Before Printing",
   ];
 
   const handlePrev = () => {

@@ -57,7 +57,7 @@ export const CategoryGrid: React.FC = () => {
             href="/products"
             className="inline-flex items-center gap-2 text-xs sm:text-sm font-bold text-[#F95738] hover:text-[#d64023] transition-colors group"
           >
-            <span>Explore All 150+ Products</span>
+            <span>Explore All 56 Custom Products</span>
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
           </Link>
         </div>
