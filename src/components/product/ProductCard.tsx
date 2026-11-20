@@ -107,25 +107,6 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
               {product.name}
             </h3>
           </Link>
-
-          {/* Color Preview Swatches */}
-          {product.colors && product.colors.length > 0 && (
-            <div className="flex items-center gap-1.5 mt-3">
-              {product.colors.slice(0, 4).map((c, i) => (
-                <span
-                  key={i}
-                  className="w-3.5 h-3.5 rounded-full border border-slate-300 shadow-2xs"
-                  style={{ backgroundColor: c.hex }}
-                  title={c.name}
-                />
-              ))}
-              {product.colors.length > 4 && (
-                <span className="text-[10px] text-slate-400 font-medium ml-0.5">
-                  +{product.colors.length - 4}
-                </span>
-              )}
-            </div>
-          )}
         </div>
 
         {/* Pricing & Add to Cart */}
