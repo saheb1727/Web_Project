@@ -699,72 +699,80 @@ export const WorkshopGallery: React.FC = () => {
       {/* Lightbox Modal */}
       {selectedImage && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md animate-in fade-in duration-200"
+          className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-5 md:p-6 bg-black/85 backdrop-blur-md animate-in fade-in duration-200"
           onClick={() => setSelectedImage(null)}
         >
           <div
-            className="relative w-full max-w-3xl bg-white rounded-3xl overflow-hidden shadow-2xl border border-slate-200 flex flex-col md:flex-row max-h-[90vh]"
+            className="relative w-full max-w-4xl bg-white rounded-3xl overflow-hidden shadow-2xl border border-slate-200 flex flex-col md:flex-row max-h-[92vh] sm:max-h-[88vh]"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Close Button */}
             <button
               onClick={() => setSelectedImage(null)}
-              className="absolute top-4 right-4 z-20 p-2 rounded-full bg-black/70 hover:bg-[#F95738] text-white transition-colors cursor-pointer"
+              className="absolute top-3 right-3 sm:top-4 sm:right-4 z-30 w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-slate-900/80 hover:bg-[#F95738] text-white flex items-center justify-center backdrop-blur-md shadow-md transition-colors cursor-pointer"
               aria-label="Close"
             >
-              <X className="w-5 h-5" />
+              <X className="w-4 h-4 sm:w-5 sm:h-5" />
             </button>
 
-            {/* Left: Big Image */}
-            <div className="md:w-3/5 relative aspect-square sm:aspect-auto sm:min-h-[400px] bg-slate-100">
+            {/* Left: Studio Product Image Viewport */}
+            <div className="w-full md:w-1/2 relative bg-slate-950 flex items-center justify-center shrink-0 min-h-[220px] sm:min-h-[280px] md:min-h-[440px] max-h-[35vh] md:max-h-none overflow-hidden">
               <Image
                 src={selectedImage.image}
                 alt={selectedImage.title}
                 fill
-                sizes="(max-width: 768px) 100vw, 60vw"
-                className="object-contain p-4"
+                priority
+                sizes="(max-width: 768px) 100vw, 50vw"
+                className="object-contain p-3 sm:p-5"
               />
+              <div className="absolute bottom-3 left-3 px-2.5 py-1 rounded-lg bg-black/70 backdrop-blur-md text-white text-[10px] font-bold shadow-xs">
+                Real Studio Order Sample
+              </div>
             </div>
 
-            {/* Right: Info & CTA */}
-            <div className="md:w-2/5 p-6 sm:p-8 flex flex-col justify-between bg-slate-50 overflow-y-auto">
-              <div className="space-y-4">
-                <span className="px-2.5 py-1 rounded-full bg-[#F95738]/10 text-[#F95738] text-xs font-bold">
+            {/* Right: Info, Price & Actions */}
+            <div className="w-full md:w-1/2 p-5 sm:p-7 flex flex-col justify-between bg-white overflow-y-auto">
+              <div className="space-y-3 sm:space-y-4">
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#F95738]/10 text-[#F95738] text-xs font-bold w-fit">
                   {selectedImage.categoryLabel}
                 </span>
 
-                <h3 className="text-xl font-black text-[#1E1B4B] tracking-tight">
+                <h3 className="text-lg sm:text-xl md:text-2xl font-black text-[#1E1B4B] tracking-tight leading-snug break-words">
                   {selectedImage.title}
                 </h3>
 
-                <p className="text-xs text-slate-600 leading-relaxed">
+                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
                   {selectedImage.description}
                 </p>
 
-                <div className="p-3.5 rounded-2xl bg-white border border-slate-200/80 space-y-1">
-                  <div className="text-[10px] font-bold text-slate-400 uppercase">Product Price</div>
-                  <div className="text-lg font-black text-[#1E1B4B]">{selectedImage.priceNote}</div>
-                  <div className="text-[11px] text-emerald-600 font-bold flex items-center gap-1">
-                    <CheckCircle2 className="w-3.5 h-3.5" />
+                <div className="p-3.5 sm:p-4 rounded-2xl bg-slate-50 border border-slate-200/90 space-y-1.5">
+                  <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">
+                    Product Price
+                  </div>
+                  <div className="text-lg sm:text-xl font-black text-[#1E1B4B]">
+                    {selectedImage.priceNote}
+                  </div>
+                  <div className="text-xs text-emerald-600 font-bold flex items-center gap-1.5 pt-0.5">
+                    <CheckCircle2 className="w-4 h-4 shrink-0" />
                     <span>Free Proof Approval Before Final Production</span>
                   </div>
                 </div>
               </div>
 
-              <div className="pt-6 space-y-2">
+              <div className="pt-5 sm:pt-6 space-y-2.5">
                 <Link
                   href={selectedImage.productLink}
                   onClick={() => setSelectedImage(null)}
-                  className="w-full py-3.5 bg-[#F95738] hover:bg-[#e04526] text-white text-xs sm:text-sm font-bold rounded-2xl shadow-lg transition-all flex items-center justify-center gap-2"
+                  className="w-full px-4 py-3.5 bg-[#F95738] hover:bg-[#e04526] text-white text-xs sm:text-sm font-bold rounded-2xl shadow-lg transition-all flex items-center justify-center gap-2 text-center leading-normal active:scale-98 cursor-pointer group"
                 >
-                  <span>Order Custom {selectedImage.productName}</span>
-                  <ArrowRight className="w-4 h-4" />
+                  <span>Customize {selectedImage.productName}</span>
+                  <ArrowRight className="w-4 h-4 shrink-0 group-hover:translate-x-0.5 transition-transform" />
                 </Link>
 
                 <button
                   type="button"
                   onClick={() => setSelectedImage(null)}
-                  className="w-full py-2 text-xs text-slate-500 hover:text-slate-800 text-center cursor-pointer"
+                  className="w-full py-2 text-xs font-semibold text-slate-500 hover:text-slate-800 text-center transition-colors cursor-pointer"
                 >
                   Close Window
                 </button>
