@@ -1,5 +1,4 @@
 import { HeroSection } from "@/components/home/HeroSection";
-import { BrandTrustMarquee } from "@/components/home/BrandTrustMarquee";
 import { CategoryGrid } from "@/components/home/CategoryGrid";
 import { FeaturedProducts } from "@/components/home/FeaturedProducts";
 import { WorkshopGallery } from "@/components/home/WorkshopGallery";
@@ -19,9 +18,6 @@ export default function Home() {
 
       {/* 1. Hero Section: Panoramic Studio Bento Showcase with Live Keepsake Switcher */}
       <HeroSection />
-
-      {/* 1.5. Infinite GSAP Brand Trust Marquee */}
-      <BrandTrustMarquee />
 
       {/* 2. Product Categories Bento Grid Showcase */}
       <CategoryGrid />
