@@ -183,7 +183,7 @@ export const ProductCustomizer: React.FC<ProductCustomizerProps> = ({
 
       {/* Customizer Control Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-        
+
         {/* 1. Upload Logo Box */}
         <div className="p-3.5 rounded-xl bg-slate-50/80 border border-slate-200/80 space-y-2.5">
           <div className="flex items-center justify-between">
@@ -292,9 +292,8 @@ export const ProductCustomizer: React.FC<ProductCustomizerProps> = ({
                     key={color.hex}
                     type="button"
                     onClick={() => handleColorChange(color.hex)}
-                    className={`w-5 h-5 rounded-full border shadow-2xs transition-transform cursor-pointer ${
-                      textColor === color.hex ? "scale-115 ring-2 ring-[#FF4D36]" : ""
-                    }`}
+                    className={`w-5 h-5 rounded-full border shadow-2xs transition-transform cursor-pointer ${textColor === color.hex ? "scale-115 ring-2 ring-[#FF4D36]" : ""
+                      }`}
                     style={{ backgroundColor: color.hex }}
                     title={color.name}
                   />

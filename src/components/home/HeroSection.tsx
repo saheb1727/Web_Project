@@ -35,7 +35,6 @@ interface KeepsakeItem {
 export const HeroSection: React.FC = () => {
   const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
   const heroRef = useRef<HTMLElement>(null);
-  const cardStageRef = useRef<HTMLDivElement>(null);
   const keepsakePreviewRef = useRef<HTMLDivElement>(null);
 
   // Curated keepsake spotlight items for the main hero card
@@ -84,31 +83,6 @@ export const HeroSection: React.FC = () => {
   const [activeKeepsakeIndex, setActiveKeepsakeIndex] = useState(0);
   const currentKeepsake = keepsakeItems[activeKeepsakeIndex];
 
-  // 3D Perspective Tilt on Mouse Movement
-  const handleStageMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!cardStageRef.current) return;
-    const rect = cardStageRef.current.getBoundingClientRect();
-    const x = (e.clientX - rect.left) / rect.width - 0.5;
-    const y = (e.clientY - rect.top) / rect.height - 0.5;
-    gsap.to(cardStageRef.current, {
-      rotateY: x * 8,
-      rotateX: -y * 8,
-      transformPerspective: 900,
-      ease: "power1.out",
-      duration: 0.4,
-    });
-  };
-
-  const handleStageMouseLeave = () => {
-    if (!cardStageRef.current) return;
-    gsap.to(cardStageRef.current, {
-      rotateY: 0,
-      rotateX: 0,
-      ease: "power2.out",
-      duration: 0.6,
-    });
-  };
-
   // Animate preview on keepsake change
   useEffect(() => {
     if (keepsakePreviewRef.current) {
@@ -120,12 +94,12 @@ export const HeroSection: React.FC = () => {
     }
   }, [activeKeepsakeIndex]);
 
-  // Master Hero GSAP Animations (Cinematic Timeline + Continuous Physics)
+  // Master Hero GSAP Animations (Clean Staggered Entrance)
   useEffect(() => {
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
 
-      // Staggered Entrance
+      // Staggered Entrance with all transforms cleared upon completion
       tl.fromTo(
         ".hero-badge-pill",
         { opacity: 0, scale: 0.9, y: -15 },
@@ -151,14 +125,14 @@ export const HeroSection: React.FC = () => {
         )
         .fromTo(
           ".hero-bento-card-main",
-          { opacity: 0, scale: 0.96, y: 30 },
-          { opacity: 1, scale: 1, y: 0, duration: 0.7, ease: "power3.out", clearProps: "all" },
+          { opacity: 0, scale: 0.96, y: 20 },
+          { opacity: 1, scale: 1, y: 0, duration: 0.6, ease: "power3.out", clearProps: "all" },
           "-=0.3"
         )
         .fromTo(
           ".hero-bento-card-secondary",
-          { opacity: 0, y: 25 },
-          { opacity: 1, y: 0, duration: 0.6, stagger: 0.12, ease: "power3.out", clearProps: "all" },
+          { opacity: 0, y: 20 },
+          { opacity: 1, y: 0, duration: 0.5, stagger: 0.1, ease: "power3.out", clearProps: "all" },
           "-=0.4"
         )
         .fromTo(
@@ -167,24 +141,6 @@ export const HeroSection: React.FC = () => {
           { opacity: 1, y: 0, duration: 0.5, clearProps: "all" },
           "-=0.2"
         );
-
-      // Continuous Idle Floating Physics (Micro-levitation)
-      gsap.to(".hero-bento-card-main", {
-        y: -6,
-        duration: 3.5,
-        yoyo: true,
-        repeat: -1,
-        ease: "sine.inOut",
-      });
-
-      gsap.to(".hero-bento-card-secondary", {
-        y: -4,
-        duration: 4,
-        stagger: 0.5,
-        yoyo: true,
-        repeat: -1,
-        ease: "sine.inOut",
-      });
 
       // Ambient Orbs Breathing
       gsap.to(".hero-ambient-orb-1", {
@@ -283,11 +239,8 @@ export const HeroSection: React.FC = () => {
           {/* Panoramic Bento Grid Showcase (3 Real Products Simultaneously) */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
             
-            {/* Bento Card 1: Curated Keepsakes Stage (7 Cols on LG) with 3D Tilt */}
+            {/* Bento Card 1: Curated Keepsakes Stage (7 Cols on LG) */}
             <div
-              ref={cardStageRef}
-              onMouseMove={handleStageMouseMove}
-              onMouseLeave={handleStageMouseLeave}
               className="hero-bento-card-main lg:col-span-7 bg-white rounded-3xl border border-slate-200 shadow-xl p-5 sm:p-6 flex flex-col justify-between text-[#0B0F19] transition-all duration-300 hover:shadow-2xl hover:border-slate-300"
             >
               
