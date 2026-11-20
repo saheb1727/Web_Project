@@ -24,6 +24,7 @@ import {
   Check,
   Award,
   Zap,
+  Building2,
 } from "lucide-react";
 import { products } from "@/data/products";
 import { testimonials } from "@/data/testimonials";
@@ -31,7 +32,7 @@ import { useCart } from "@/context/CartContext";
 import { useWishlist } from "@/context/WishlistContext";
 import { useToast } from "@/context/ToastContext";
 import { BulkPricingTable } from "@/components/product/BulkPricingTable";
-import { ProductCustomizer } from "@/components/product/ProductCustomizer";
+import { ProductCustomizer, CustomizationData } from "@/components/product/ProductCustomizer";
 import { ProductCard } from "@/components/product/ProductCard";
 
 export default function ProductDetailPage() {
@@ -49,8 +50,14 @@ export default function ProductDetailPage() {
   const [selectedColor, setSelectedColor] = useState<string>(product?.colors[0]?.name || "");
   const [selectedSize, setSelectedSize] = useState<string>(product?.sizes ? product.sizes[0] : "");
   const [quantity, setQuantity] = useState<number>(product?.minQuantity || 1);
-  const [customImage, setCustomImage] = useState<string | undefined>(undefined);
-  const [customText, setCustomText] = useState<string | undefined>(undefined);
+  const [customData, setCustomData] = useState<CustomizationData>({
+    customImage: undefined,
+    customText: "",
+    logoScale: 80,
+    fontFamily: "sans-serif",
+    textColor: "#FFFFFF",
+    textPlacement: "center",
+  });
 
   // Accordion section states (mobile-first collapsible)
   const [openAccordions, setOpenAccordions] = useState<Record<string, boolean>>({
@@ -108,8 +115,8 @@ export default function ProductDetailPage() {
       quantity,
       selectedColor,
       selectedSize: selectedSize || undefined,
-      customText,
-      customImage,
+      customText: customData.customText || undefined,
+      customImage: customData.customImage || undefined,
     });
   };
 
@@ -180,16 +187,16 @@ export default function ProductDetailPage() {
         </nav>
 
         {/* Product Main Container */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10">
-          {/* Left Column: Swipeable Image Gallery & Trust Badges (5 cols) */}
-          <div className="lg:col-span-5 space-y-3 sm:space-y-4">
-            {/* Mobile Swipeable / Desktop Gallery Box */}
-            <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden bg-white border border-slate-200/80 shadow-xs sm:shadow-md">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
+          {/* Left Column: Sticky Live Visual Stage with Custom Mockup & Studio Reassurance (6 cols) */}
+          <div className="lg:col-span-6 xl:col-span-6 lg:sticky lg:top-24 lg:self-start space-y-4">
+            {/* Main Stage Gallery & Live Customizer Box */}
+            <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden bg-white border border-slate-200/90 shadow-md">
               {/* Scroll-Snap Swipeable Container */}
               <div
                 ref={galleryRef}
                 onScroll={handleScrollGallery}
-                className="flex overflow-x-auto snap-x snap-mandatory scrollbar-none touch-pan-x aspect-square max-h-[360px] sm:max-h-none w-full"
+                className="flex overflow-x-auto snap-x snap-mandatory scrollbar-none touch-pan-x aspect-square max-h-[460px] sm:max-h-none w-full relative"
               >
                 {galleryImages.map((img, idx) => (
                   <div
@@ -201,22 +208,66 @@ export default function ProductDetailPage() {
                       alt={`${product.name} - view ${idx + 1}`}
                       fill
                       priority={idx === 0}
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 500px"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 600px"
                       className="object-cover"
                     />
                   </div>
                 ))}
+
+                {/* Live Customization Overlays directly on the Stage! */}
+                <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none p-8 z-10">
+                  {customData.customImage && (
+                    <div
+                      className="relative transition-all duration-200 shadow-md"
+                      style={{
+                        width: `${customData.logoScale || 80}px`,
+                        height: `${customData.logoScale || 80}px`,
+                      }}
+                    >
+                      <Image
+                        src={customData.customImage}
+                        alt="Custom Logo"
+                        fill
+                        className="object-contain drop-shadow-lg"
+                      />
+                    </div>
+                  )}
+
+                  {customData.customText && (
+                    <div
+                      className="mt-3 text-center font-bold px-3.5 py-1.5 rounded-lg bg-black/60 backdrop-blur-xs transition-all shadow-lg max-w-xs truncate"
+                      style={{
+                        fontFamily: customData.fontFamily || "sans-serif",
+                        color: customData.textColor || "#FFFFFF",
+                        fontSize: "14px",
+                      }}
+                    >
+                      {customData.customText}
+                    </div>
+                  )}
+
+                  {product.customizable && !customData.customImage && !customData.customText && (
+                    <div className="border border-dashed border-[#FF4D36]/80 bg-white/85 backdrop-blur-xs rounded-xl px-3 py-2 text-center pointer-events-none shadow-xs">
+                      <p className="text-[11px] font-black text-[#0B0F19]">
+                        Design Placement Area
+                      </p>
+                      <p className="text-[10px] text-slate-500 font-medium">
+                        {product.printArea || "Laser & UV Customization Zone"}
+                      </p>
+                    </div>
+                  )}
+                </div>
               </div>
 
               {/* Top Left Badges (Clean Frosted Glass Pill) */}
               <div className="absolute top-3 left-3 flex flex-col gap-1.5 z-10 pointer-events-none">
                 {product.badgeText && (
-                  <span className="px-3 py-1 text-[11px] font-extrabold uppercase tracking-wider bg-white/95 backdrop-blur-md text-[#1E1B4B] border border-slate-200/80 rounded-full shadow-xs">
+                  <span className="px-3 py-1 text-[11px] font-extrabold uppercase tracking-wider bg-white/95 backdrop-blur-md text-[#0B0F19] border border-slate-200/80 rounded-full shadow-xs">
                     {product.badgeText}
                   </span>
                 )}
                 {product.isNew && (
-                  <span className="px-3 py-1 text-[11px] font-extrabold uppercase tracking-wider bg-[#F95738] text-white rounded-full shadow-xs">
+                  <span className="px-3 py-1 text-[11px] font-extrabold uppercase tracking-wider bg-[#FF4D36] text-white rounded-full shadow-xs">
                     New Arrival
                   </span>
                 )}
@@ -233,8 +284,8 @@ export default function ProductDetailPage() {
                   onClick={() => toggleWishlist(product.id, product.name)}
                   className={`p-2 rounded-xl backdrop-blur-md transition-all shadow-sm cursor-pointer ${
                     inWishlist
-                      ? "bg-[#F95738] text-white"
-                      : "bg-white/90 hover:bg-white text-slate-700 hover:text-[#F95738]"
+                      ? "bg-[#FF4D36] text-white"
+                      : "bg-white/90 hover:bg-white text-slate-700 hover:text-[#FF4D36]"
                   }`}
                   aria-label={inWishlist ? "Remove from wishlist" : "Add to wishlist"}
                 >
@@ -250,7 +301,7 @@ export default function ProductDetailPage() {
                       key={i}
                       className={`transition-all rounded-full ${
                         selectedImageIndex === i
-                          ? "w-4 h-1.5 bg-[#F95738]"
+                          ? "w-4 h-1.5 bg-[#FF4D36]"
                           : "w-1.5 h-1.5 bg-slate-300"
                       }`}
                     />
@@ -269,7 +320,7 @@ export default function ProductDetailPage() {
                     onClick={() => selectImage(idx)}
                     className={`relative w-14 h-14 sm:w-16 sm:h-16 rounded-xl overflow-hidden border-2 transition-all shrink-0 bg-white cursor-pointer ${
                       selectedImageIndex === idx
-                        ? "border-[#F95738] shadow-sm ring-2 ring-[#F95738]/20"
+                        ? "border-[#FF4D36] shadow-sm ring-2 ring-[#FF4D36]/20"
                         : "border-slate-200 hover:border-slate-300 opacity-70 hover:opacity-100"
                     }`}
                   >
@@ -279,25 +330,40 @@ export default function ProductDetailPage() {
               </div>
             )}
 
-            {/* Professional Reassurance Badges */}
-            <div className="p-3 sm:p-3.5 rounded-2xl bg-slate-50/80 border border-slate-200/80 grid grid-cols-3 gap-2 text-center text-[11px] text-slate-700">
-              <div className="flex flex-col items-center gap-1 p-1">
-                <ShieldCheck className="w-4 h-4 text-[#F95738]" />
-                <span className="font-bold leading-tight">100% Quality</span>
+            {/* Studio Engineering & Craftsmanship Reassurance Card */}
+            <div className="p-4 rounded-2xl bg-white border border-slate-200/90 shadow-2xs space-y-3">
+              <div className="flex items-center justify-between text-xs">
+                <span className="font-bold text-[#0B0F19] flex items-center gap-1.5">
+                  <Building2 className="w-4 h-4 text-[#FF4D36]" />
+                  In-House Studio Manufacturing
+                </span>
+                <span className="text-[10px] font-bold text-slate-400 uppercase">
+                  Ranchi & Noida Lab
+                </span>
               </div>
-              <div className="flex flex-col items-center gap-1 p-1 border-x border-slate-200/80">
-                <Truck className="w-4 h-4 text-[#F95738]" />
-                <span className="font-bold leading-tight">24–48h Dispatch</span>
-              </div>
-              <div className="flex flex-col items-center gap-1 p-1">
-                <Sparkles className="w-4 h-4 text-[#F95738]" />
-                <span className="font-bold leading-tight">Digital Proof</span>
+              <div className="grid grid-cols-2 gap-2 text-left">
+                <div className="p-2.5 rounded-xl bg-slate-50 border border-slate-200/60">
+                  <div className="text-[11px] font-black text-[#0B0F19]">1,200 DPI Precision</div>
+                  <div className="text-[10px] text-slate-500">Japanese UV DTF & Laser</div>
+                </div>
+                <div className="p-2.5 rounded-xl bg-slate-50 border border-slate-200/60">
+                  <div className="text-[11px] font-black text-[#0B0F19]">Zero Minimum MOQ</div>
+                  <div className="text-[10px] text-slate-500">Order 1 or 1,000 units</div>
+                </div>
+                <div className="p-2.5 rounded-xl bg-slate-50 border border-slate-200/60">
+                  <div className="text-[11px] font-black text-[#0B0F19]">Free Digital Proof</div>
+                  <div className="text-[10px] text-slate-500">Approved before production</div>
+                </div>
+                <div className="p-2.5 rounded-xl bg-slate-50 border border-slate-200/60">
+                  <div className="text-[11px] font-black text-[#0B0F19]">24–48h Dispatch</div>
+                  <div className="text-[10px] text-slate-500">Express padded shipping</div>
+                </div>
               </div>
             </div>
           </div>
 
-          {/* Right Column: Compact Details, Options & Checkout Controls (7 cols) */}
-          <div className="lg:col-span-7 space-y-4 sm:space-y-5">
+          {/* Right Column: Compact Details, Options, Customizer & Checkout (6 cols) */}
+          <div className="lg:col-span-6 xl:col-span-6 space-y-4 sm:space-y-5">
             {/* Header: Category, Share, Title & Ratings */}
             <div>
               <div className="flex items-center justify-between gap-2 mb-1">
@@ -460,6 +526,18 @@ export default function ProductDetailPage() {
               </div>
             )}
 
+            {/* Interactive Customizer Controls (Feeds directly into the Sticky Live Stage on the left) */}
+            {product.customizable && (
+              <ProductCustomizer
+                product={product}
+                hidePreview={true}
+                selectedColorHex={
+                  product.colors.find((c) => c.name === selectedColor)?.hex || "#FFFFFF"
+                }
+                onCustomizationChange={setCustomData}
+              />
+            )}
+
             {/* Quantity Selector & Main Action Controls */}
             <div className="space-y-3 pt-1">
               <div className="flex items-center justify-between text-xs">
@@ -473,7 +551,7 @@ export default function ProductDetailPage() {
                   <button
                     type="button"
                     onClick={() => setQuantity((q) => Math.max(1, q - 1))}
-                    className="w-9 h-9 rounded-lg bg-white flex items-center justify-center text-slate-700 hover:text-[#1E1B4B] shadow-2xs transition-colors active:scale-90 cursor-pointer border border-slate-200/60"
+                    className="w-9 h-9 rounded-lg bg-white flex items-center justify-center text-slate-700 hover:text-[#0B0F19] shadow-2xs transition-colors active:scale-90 cursor-pointer border border-slate-200/60"
                     aria-label="Decrease quantity"
                   >
                     <Minus className="w-3.5 h-3.5" />
@@ -483,12 +561,12 @@ export default function ProductDetailPage() {
                     min="1"
                     value={quantity}
                     onChange={(e) => setQuantity(Math.max(1, parseInt(e.target.value) || 1))}
-                    className="w-14 text-center font-black text-sm bg-transparent focus:outline-none text-[#1E1B4B]"
+                    className="w-14 text-center font-black text-sm bg-transparent focus:outline-none text-[#0B0F19]"
                   />
                   <button
                     type="button"
                     onClick={() => setQuantity((q) => q + 1)}
-                    className="w-9 h-9 rounded-lg bg-white flex items-center justify-center text-slate-700 hover:text-[#1E1B4B] shadow-2xs transition-colors active:scale-90 cursor-pointer border border-slate-200/60"
+                    className="w-9 h-9 rounded-lg bg-white flex items-center justify-center text-slate-700 hover:text-[#0B0F19] shadow-2xs transition-colors active:scale-90 cursor-pointer border border-slate-200/60"
                     aria-label="Increase quantity"
                   >
                     <Plus className="w-3.5 h-3.5" />
@@ -499,7 +577,7 @@ export default function ProductDetailPage() {
                 <button
                   type="button"
                   onClick={handleAddToCart}
-                  className="flex-1 h-11 px-5 bg-[#F95738] hover:bg-[#E03A1B] text-white font-bold rounded-xl shadow-md shadow-[#F95738]/20 transition-all flex items-center justify-center gap-2 text-sm active:scale-98 cursor-pointer"
+                  className="flex-1 h-11 px-5 bg-gradient-to-r from-[#FF4D36] to-[#FF6B4A] hover:from-[#E0351D] hover:to-[#FF4D36] text-white font-bold rounded-xl shadow-md shadow-[#FF4D36]/20 transition-all flex items-center justify-center gap-2 text-sm active:scale-98 cursor-pointer"
                 >
                   <ShoppingBag className="w-4 h-4" />
                   <span>Add {quantity} to Cart • ₹{totalPrice.toLocaleString()}</span>
@@ -509,27 +587,13 @@ export default function ProductDetailPage() {
                 <button
                   type="button"
                   onClick={handleBuyNow}
-                  className="h-11 px-6 bg-[#1E1B4B] hover:bg-[#110E38] text-white font-bold rounded-xl shadow-xs transition-all flex items-center justify-center gap-2 text-sm active:scale-98 cursor-pointer shrink-0"
+                  className="h-11 px-6 bg-[#0B0F19] hover:bg-slate-800 text-white font-bold rounded-xl shadow-xs transition-all flex items-center justify-center gap-2 text-sm active:scale-98 cursor-pointer shrink-0"
                 >
                   <span>Buy Now</span>
-                  <ArrowRight className="w-4 h-4 text-[#F95738]" />
+                  <ArrowRight className="w-4 h-4 text-[#FF4D36]" />
                 </button>
               </div>
             </div>
-
-            {/* Interactive Live Mockup Customizer */}
-            {product.customizable && (
-              <ProductCustomizer
-                product={product}
-                selectedColorHex={
-                  product.colors.find((c) => c.name === selectedColor)?.hex || "#FFFFFF"
-                }
-                onCustomizationChange={({ customImage, customText }) => {
-                  setCustomImage(customImage);
-                  setCustomText(customText);
-                }}
-              />
-            )}
           </div>
         </div>
 
