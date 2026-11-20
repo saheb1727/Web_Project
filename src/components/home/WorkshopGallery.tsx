@@ -16,7 +16,7 @@ import {
 interface GalleryPhoto {
   id: string;
   title: string;
-  category: "frames" | "gifts" | "badges" | "leather";
+  category: "frames" | "gifts" | "badges" | "leather" | "drinkware";
   categoryLabel: string;
   image: string;
   tag: string;
@@ -178,7 +178,7 @@ export const WorkshopGallery: React.FC = () => {
     {
       id: "photo-13",
       title: "Dual-Tone Inner & Handle Ceramic Sublimation Mugs",
-      category: "gifts",
+      category: "drinkware",
       categoryLabel: "Drinkware",
       image: "/images/products/dual-tone-ceramic-mugs.jpg",
       tag: "Vibrant Colors",
@@ -550,7 +550,7 @@ export const WorkshopGallery: React.FC = () => {
     {
       id: "photo-44",
       title: "Executive 3-Piece 500ml Thermal Flask & Cup Gift Set (SG 21)",
-      category: "leather",
+      category: "drinkware",
       categoryLabel: "Drinkware Set",
       image: "/images/products/vacuum-flask-cup-gift-set.jpg",
       tag: "6 Color Variants",
@@ -582,7 +582,7 @@ export const WorkshopGallery: React.FC = () => {
     <>
       <section className="py-20 bg-slate-50/60 border-b border-slate-200/80 w-full max-w-full overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
+
           {/* Header */}
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
             <div>
@@ -601,21 +601,21 @@ export const WorkshopGallery: React.FC = () => {
             {/* Filter Tabs */}
             <div className="flex items-center gap-1.5 overflow-x-auto pb-2 scrollbar-none w-full max-w-full">
               {[
-                { id: "all", label: "All Items" },
-                { id: "frames", label: "Photo Frames" },
-                { id: "gifts", label: "3D LED Lamps" },
-                { id: "leather", label: "Leather & Pens" },
-                { id: "badges", label: "Badges & Keychains" },
+                { id: "all", label: "All Items (45)" },
+                { id: "frames", label: "Photo Frames (18)" },
+                { id: "gifts", label: "3D LED Lamps & Gifts (11)" },
+                { id: "leather", label: "Corporate Kits & Leather (8)" },
+                { id: "badges", label: "Badges & Keychains (6)" },
+                { id: "drinkware", label: "Drinkware & Flasks (2)" },
               ].map((tab) => (
                 <button
                   key={tab.id}
                   type="button"
                   onClick={() => setActiveFilter(tab.id)}
-                  className={`px-3.5 py-1.5 rounded-xl text-xs font-bold whitespace-nowrap transition-all cursor-pointer ${
-                    activeFilter === tab.id
-                      ? "bg-[#1E1B4B] text-white shadow-xs"
-                      : "bg-white text-slate-600 hover:bg-slate-200/80 border border-slate-200"
-                  }`}
+                  className={`px-3.5 py-1.5 rounded-xl text-xs font-bold whitespace-nowrap transition-all cursor-pointer ${activeFilter === tab.id
+                    ? "bg-[#1E1B4B] text-white shadow-xs"
+                    : "bg-white text-slate-600 hover:bg-slate-200/80 border border-slate-200"
+                    }`}
                 >
                   {tab.label}
                 </button>

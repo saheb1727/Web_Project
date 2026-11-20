@@ -2,8 +2,19 @@
 
 import React, { useState, useRef, useEffect } from "react";
 import Link from "next/link";
-import { ArrowRight, Flame } from "lucide-react";
+import {
+  ArrowRight,
+  Flame,
+  Heart,
+  Sparkles,
+  Briefcase,
+  IdCard,
+  Coffee,
+  Shirt,
+  Layers,
+} from "lucide-react";
 import { products } from "@/data/products";
+import { categories } from "@/data/categories";
 import { ProductCard } from "@/components/product/ProductCard";
 import { gsap } from "@/lib/gsap";
 
@@ -12,25 +23,78 @@ export const FeaturedProducts: React.FC = () => {
   const sectionRef = useRef<HTMLElement>(null);
   const gridRef = useRef<HTMLDivElement>(null);
 
-  const filterTabs = [
-    { id: "all", label: "All Products" },
-    { id: "Custom Photo Frames", label: "Photo Frames" },
-    { id: "Personalized Gifts & LED Lamps", label: "Gifts & Cushions" },
-    { id: "Corporate Kits & ID Cards", label: "Leather & Pens" },
-    { id: "Drinkware & Ceramic Mugs", label: "Dual-Tone Mugs" },
-    { id: "Magnetic & Pin Badges", label: "Badges" },
-    { id: "Custom Caps", label: "Caps" },
+  // Clean category definitions for category-wise presentation
+  const categorySections = [
+    {
+      id: "frames",
+      slug: "custom-photo-frames",
+      name: "Custom Photo Frames & Keepsakes",
+      shortLabel: "Photo Frames (14)",
+      badge: "Trending Keepsakes",
+      icon: Heart,
+      description: "Anniversary calendar frames, backlit LED engagement frames, and milestone collages.",
+      products: products.filter((p) => p.categorySlug === "custom-photo-frames"),
+    },
+    {
+      id: "personalized",
+      slug: "personalized-gifts",
+      name: "Personalized Gifts & 3D LED Lamps",
+      shortLabel: "Gifts & Lamps (12)",
+      badge: "Romantic & Keepsakes",
+      icon: Sparkles,
+      description: "Laser engraved 3D acrylic lamps, photo cushions, couple mangalsutras, and dual-side wallets.",
+      products: products.filter((p) => p.categorySlug === "personalized-gifts"),
+    },
+    {
+      id: "corporate",
+      slug: "corporate-kits",
+      name: "Corporate Kits, Executive Hampers & Luxury Sets",
+      shortLabel: "Corporate Kits (9)",
+      badge: "B2B & Executive",
+      icon: Briefcase,
+      description: "OnePlus Buddha wellness hampers, 3-in-1 welcome sets, 4-in-1 leather sets, and doctor Caduceus sets.",
+      products: products.filter((p) => p.categorySlug === "corporate-kits"),
+    },
+    {
+      id: "badges",
+      slug: "magnetic-badges",
+      name: "Magnetic & Event Pin Badges",
+      shortLabel: "Badges & Pins (8)",
+      badge: "Zero Pinholes",
+      icon: IdCard,
+      description: "Neodymium metallic corporate badges, Haldi floral badges, and wedding celebration button pins.",
+      products: products.filter((p) => p.categorySlug === "magnetic-badges"),
+    },
+    {
+      id: "drinkware",
+      slug: "drinkware-mugs",
+      name: "Drinkware, Travel Flasks & Ceramic Mugs",
+      shortLabel: "Drinkware & Mugs (4)",
+      badge: "12h Hot / 24h Cold",
+      icon: Coffee,
+      description: "3-piece SG21 travel flask & handle cup gift sets and dishwasher-safe dual-tone inner ceramic mugs.",
+      products: products.filter((p) => p.categorySlug === "drinkware-mugs"),
+    },
+    {
+      id: "apparel",
+      slug: "custom-caps",
+      name: "Custom Caps & Premium Apparel",
+      shortLabel: "Caps & Apparel (9)",
+      badge: "Bio-Washed & Fleece",
+      icon: Shirt,
+      description: "Personalized script caps, 3D puff embroidery, 100% bio-washed tees, and heavyweight 380 GSM hoodies.",
+      products: products.filter(
+        (p) =>
+          p.categorySlug === "custom-caps" ||
+          p.categorySlug === "custom-t-shirts" ||
+          p.categorySlug === "hoodies-sweatshirts"
+      ),
+    },
   ];
 
-  const filteredProducts =
-    activeTab === "all"
-      ? products.slice(0, 12)
-      : products.filter(
-          (p) =>
-            p.category === activeTab ||
-            (activeTab === "Magnetic & Pin Badges" &&
-              (p.category === "Magnetic Badges" || p.category === "Magnetic & Pin Badges"))
-        );
+  // Specific single category list when tab is selected
+  const activeCategory = categorySections.find((c) => c.slug === activeTab);
+  const filteredProducts = activeCategory ? activeCategory.products : [];
 
   // Initial ScrollTrigger entrance
   useEffect(() => {
@@ -46,7 +110,7 @@ export const FeaturedProducts: React.FC = () => {
           },
           opacity: 1,
           y: 0,
-          stagger: 0.06,
+          stagger: 0.05,
           duration: 0.5,
           ease: "power2.out",
           clearProps: "all",
@@ -70,18 +134,19 @@ export const FeaturedProducts: React.FC = () => {
   return (
     <section ref={sectionRef} className="py-16 bg-slate-50 border-b border-slate-200 w-full max-w-full overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
         {/* Section Header */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-4">
           <div>
             <div className="flex items-center gap-2 text-xs font-bold text-[var(--color-accent)] uppercase tracking-wider mb-2">
               <Flame className="w-4 h-4" />
-              <span>Trending & Best Sellers</span>
+              <span>Category-Wise Product Catalog</span>
             </div>
             <h2 className="text-3xl sm:text-4xl font-black text-[var(--color-primary)] tracking-tight">
-              Top Custom Products
+              Explore Our Custom Collections
             </h2>
-            <p className="text-sm text-slate-500 mt-1">
-              Engineered with industrial precision and ready for your personalized branding.
+            <p className="text-sm text-slate-500 mt-1 max-w-xl">
+              Organized category-wise from custom anniversary frames and 3D LED lamps to corporate kits and event badges.
             </p>
           </div>
 
@@ -94,42 +159,150 @@ export const FeaturedProducts: React.FC = () => {
           </Link>
         </div>
 
-        {/* Filter Tabs */}
-        <div className="flex items-center gap-2 overflow-x-auto pb-4 mb-6 scrollbar-none w-full max-w-full">
-          {filterTabs.map((tab) => (
+        {/* Category Navigation Tabs */}
+        <div className="flex items-center gap-2 overflow-x-auto pb-4 mb-8 scrollbar-none w-full max-w-full">
+          <button
+            type="button"
+            onClick={() => setActiveTab("all")}
+            className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold whitespace-nowrap transition-all cursor-pointer ${
+              activeTab === "all"
+                ? "bg-[var(--color-primary)] text-white shadow-md scale-102"
+                : "bg-white text-slate-600 hover:bg-slate-200/80 border border-slate-200"
+            }`}
+          >
+            All Categories ({products.length})
+          </button>
+
+          {categorySections.map((sec) => (
             <button
-              key={tab.id}
-              onClick={() => setActiveTab(tab.id)}
+              key={sec.slug}
+              type="button"
+              onClick={() => setActiveTab(sec.slug)}
               className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold whitespace-nowrap transition-all cursor-pointer ${
-                activeTab === tab.id
+                activeTab === sec.slug
                   ? "bg-[var(--color-primary)] text-white shadow-md scale-102"
                   : "bg-white text-slate-600 hover:bg-slate-200/80 border border-slate-200"
               }`}
             >
-              {tab.label}
+              {sec.shortLabel}
             </button>
           ))}
         </div>
 
-        {/* Product Cards Grid */}
-        <div ref={gridRef} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {filteredProducts.map((product) => (
-            <div key={product.id} className="featured-product-card">
-              <ProductCard product={product} />
+        {/* View 1: When a specific category is selected, display ALL products of that category */}
+        {activeTab !== "all" && activeCategory && (
+          <div>
+            {/* Category Header Banner */}
+            <div className="bg-white rounded-2xl p-5 border border-slate-200/80 mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4 shadow-2xs">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-xl bg-[#1E1B4B] text-[#F95738] flex items-center justify-center shrink-0">
+                  <activeCategory.icon className="w-5 h-5" />
+                </div>
+                <div>
+                  <div className="flex items-center gap-2">
+                    <h3 className="text-lg sm:text-xl font-black text-[#1E1B4B]">
+                      {activeCategory.name}
+                    </h3>
+                    <span className="px-2 py-0.5 rounded-full bg-[#F95738]/10 text-[#F95738] text-[10px] font-bold">
+                      {activeCategory.badge}
+                    </span>
+                  </div>
+                  <p className="text-xs text-slate-500 mt-0.5">
+                    {activeCategory.description}
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-3 shrink-0">
+                <span className="text-xs font-bold text-slate-500">
+                  Showing <strong>{activeCategory.products.length}</strong> Products
+                </span>
+                <Link
+                  href={`/category/${activeCategory.slug}`}
+                  className="px-3.5 py-1.5 bg-[#F95738] hover:bg-[#e04526] text-white text-xs font-bold rounded-xl transition-colors flex items-center gap-1.5"
+                >
+                  <span>Category Page</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </Link>
+              </div>
             </div>
-          ))}
-        </div>
+
+            {/* Grid of All Products in Category */}
+            <div ref={gridRef} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {filteredProducts.map((product) => (
+                <div key={product.id} className="featured-product-card">
+                  <ProductCard product={product} />
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* View 2: When "All Categories" is selected, display products organized Category-by-Category in Shelves */}
+        {activeTab === "all" && (
+          <div className="space-y-12">
+            {categorySections.map((sec) => {
+              const Icon = sec.icon;
+              return (
+                <div key={sec.slug} className="space-y-5">
+                  {/* Category Shelf Header */}
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-3 border-b border-slate-200/90 gap-2">
+                    <div className="flex items-center gap-2.5">
+                      <div className="w-8 h-8 rounded-xl bg-[#1E1B4B] text-[#F95738] flex items-center justify-center shrink-0 shadow-2xs">
+                        <Icon className="w-4 h-4" />
+                      </div>
+                      <div>
+                        <div className="flex items-center gap-2">
+                          <h3 className="text-lg sm:text-xl font-black text-[#1E1B4B] tracking-tight">
+                            {sec.name}
+                          </h3>
+                          <span className="hidden sm:inline-block px-2 py-0.5 rounded-full bg-slate-100 text-slate-600 text-[10px] font-bold">
+                            {sec.products.length} items
+                          </span>
+                        </div>
+                        <p className="text-xs text-slate-500 line-clamp-1 mt-0.5">
+                          {sec.description}
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="flex items-center gap-2 shrink-0">
+                      <button
+                        type="button"
+                        onClick={() => setActiveTab(sec.slug)}
+                        className="text-xs font-bold text-[#F95738] hover:text-[#d84024] flex items-center gap-1 cursor-pointer transition-colors"
+                      >
+                        <span>View All ({sec.products.length})</span>
+                        <ArrowRight className="w-3.5 h-3.5" />
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* 4-Item Preview Grid */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    {sec.products.slice(0, 4).map((product) => (
+                      <div key={product.id} className="featured-product-card">
+                        <ProductCard product={product} />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        )}
 
         {/* Bottom CTA Card */}
-        <div className="mt-12 text-center">
+        <div className="mt-14 text-center">
           <Link
             href="/products"
             className="inline-flex items-center gap-2 px-8 py-3.5 bg-[var(--color-primary)] hover:opacity-90 text-white text-sm font-bold rounded-xl shadow-lg transition-all"
           >
-            <span>Browse All {products.length}+ Products & Corporate Kits</span>
+            <span>Browse Complete {products.length}+ Product Catalog</span>
             <ArrowRight className="w-4 h-4 text-[var(--color-accent)]" />
           </Link>
         </div>
+
       </div>
     </section>
   );

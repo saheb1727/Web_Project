@@ -10,6 +10,7 @@ import {
   X,
   RotateCcw,
   Package,
+  ArrowRight,
 } from "lucide-react";
 
 export default function ProductsPage() {
@@ -204,13 +205,55 @@ export default function ProductsPage() {
           )}
         </div>
 
-        {/* Product Grid */}
+        {/* Product Grid: Category-wise Shelves or Filtered Results */}
         {filteredProducts.length > 0 ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {filteredProducts.map((product) => (
-              <ProductCard key={product.id} product={product} />
-            ))}
-          </div>
+          selectedCategory === "all" && !searchQuery && maxPrice >= 2000 ? (
+            <div className="space-y-12">
+              {categories.map((cat) => {
+                const catItems = filteredProducts.filter((p) => p.categorySlug === cat.slug);
+                if (catItems.length === 0) return null;
+                return (
+                  <div key={cat.slug} id={cat.slug} className="space-y-4">
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-3 border-b border-slate-200 gap-2">
+                      <div>
+                        <div className="flex items-center gap-2">
+                          <h2 className="text-xl sm:text-2xl font-black text-[#1E1B4B]">
+                            {cat.name}
+                          </h2>
+                          <span className="px-2 py-0.5 rounded-full bg-[#1E1B4B]/10 text-[#1E1B4B] text-[10px] font-bold">
+                            {catItems.length} items
+                          </span>
+                        </div>
+                        <p className="text-xs text-slate-500 line-clamp-1 mt-0.5">
+                          {cat.description}
+                        </p>
+                      </div>
+
+                      <button
+                        onClick={() => setSelectedCategory(cat.slug)}
+                        className="text-xs font-bold text-[#F95738] hover:text-[#d84024] flex items-center gap-1 cursor-pointer transition-colors shrink-0"
+                      >
+                        <span>Filter only {cat.name}</span>
+                        <ArrowRight className="w-3.5 h-3.5" />
+                      </button>
+                    </div>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                      {catItems.map((product) => (
+                        <ProductCard key={product.id} product={product} />
+                      ))}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {filteredProducts.map((product) => (
+                <ProductCard key={product.id} product={product} />
+              ))}
+            </div>
+          )
         ) : (
           <div className="bg-white rounded-3xl p-12 text-center border border-slate-200 max-w-md mx-auto my-12">
             <div className="w-16 h-16 rounded-2xl bg-slate-100 flex items-center justify-center text-slate-400 mx-auto mb-4">
