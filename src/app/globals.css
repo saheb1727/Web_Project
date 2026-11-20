@@ -13,6 +13,9 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
+  max-width: 100vw;
+  width: 100%;
 }
 
 body {
@@ -20,7 +23,15 @@ body {
   color: #0F172A;
   font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
   overflow-x: hidden;
+  max-width: 100vw;
+  width: 100%;
+  position: relative;
   letter-spacing: -0.01em;
+}
+
+/* Guard against rogue horizontal overflow across all major containers */
+#__next, main, header, footer, section {
+  max-width: 100vw;
 }
 
 /* Custom scrollbars */

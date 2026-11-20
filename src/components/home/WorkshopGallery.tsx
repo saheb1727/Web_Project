@@ -544,7 +544,7 @@ export const WorkshopGallery: React.FC = () => {
 
   return (
     <>
-      <section className="py-20 bg-slate-50/60 border-b border-slate-200/80">
+      <section className="py-20 bg-slate-50/60 border-b border-slate-200/80 w-full max-w-full overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           {/* Header */}
@@ -563,7 +563,7 @@ export const WorkshopGallery: React.FC = () => {
             </div>
 
             {/* Filter Tabs */}
-            <div className="flex items-center gap-1.5 overflow-x-auto pb-2 scrollbar-none">
+            <div className="flex items-center gap-1.5 overflow-x-auto pb-2 scrollbar-none w-full max-w-full">
               {[
                 { id: "all", label: "All Items" },
                 { id: "frames", label: "Photo Frames" },

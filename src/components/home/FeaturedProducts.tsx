@@ -68,7 +68,7 @@ export const FeaturedProducts: React.FC = () => {
   }, [activeTab]);
 
   return (
-    <section ref={sectionRef} className="py-16 bg-slate-50 border-b border-slate-200">
+    <section ref={sectionRef} className="py-16 bg-slate-50 border-b border-slate-200 w-full max-w-full overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-4">
@@ -95,7 +95,7 @@ export const FeaturedProducts: React.FC = () => {
         </div>
 
         {/* Filter Tabs */}
-        <div className="flex items-center gap-2 overflow-x-auto pb-4 mb-6 scrollbar-none">
+        <div className="flex items-center gap-2 overflow-x-auto pb-4 mb-6 scrollbar-none w-full max-w-full">
           {filterTabs.map((tab) => (
             <button
               key={tab.id}

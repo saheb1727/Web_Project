@@ -146,24 +146,24 @@ export const Navbar: React.FC = () => {
           <div className="flex items-center justify-between h-16 sm:h-20 gap-2 sm:gap-4 lg:gap-6">
             
             {/* Left: Mobile Hamburger & Brand Identity */}
-            <div className="flex items-center gap-2 sm:gap-4 shrink-0">
+            <div className="flex items-center gap-1.5 sm:gap-4 shrink-0">
               {/* Mobile Hamburger Trigger */}
               <button
                 type="button"
                 onClick={() => setIsMobileMenuOpen(true)}
-                className="lg:hidden p-2 text-slate-700 hover:text-[var(--color-primary)] rounded-xl transition-colors cursor-pointer active:bg-slate-100"
+                className="lg:hidden p-1.5 sm:p-2 text-slate-700 hover:text-[var(--color-primary)] rounded-xl transition-colors cursor-pointer active:bg-slate-100"
                 aria-label="Open navigation menu"
               >
                 <Menu className="w-5 h-5 sm:w-6 sm:h-6" />
               </button>
 
               {/* Brand Logo & Tagline */}
-              <Link href="/" className="flex items-center gap-2.5 sm:gap-3 group py-1">
-                <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-[var(--color-primary)] text-[var(--color-accent)] flex items-center justify-center font-black shadow-sm group-hover:scale-105 transition-transform shrink-0">
-                  <Printer className="w-5 h-5 text-[var(--color-accent)]" />
+              <Link href="/" className="flex items-center gap-2 sm:gap-3 group py-1">
+                <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-[var(--color-primary)] text-[var(--color-accent)] flex items-center justify-center font-black shadow-sm group-hover:scale-105 transition-transform shrink-0">
+                  <Printer className="w-4 h-4 sm:w-5 sm:h-5 text-[var(--color-accent)]" />
                 </div>
                 <div className="flex flex-col">
-                  <span className="font-black text-xl sm:text-2xl tracking-tight text-[var(--color-primary)] leading-none">
+                  <span className="font-black text-lg sm:text-2xl tracking-tight text-[var(--color-primary)] leading-none">
                     MyPrintHub<span className="text-[var(--color-accent)]">.in</span>
                   </span>
                   <span className="hidden sm:block text-[10px] font-semibold text-slate-400 tracking-wide mt-1 uppercase">
@@ -364,7 +364,7 @@ export const Navbar: React.FC = () => {
             </nav>
 
             {/* Right: Integrated Search, Account, Wishlist & Cart */}
-            <div className="flex items-center gap-1.5 sm:gap-2.5 shrink-0">
+            <div className="flex items-center gap-1 sm:gap-2.5 shrink-0">
               
               {/* Integrated Search Trigger Pill (Medium & Desktop) */}
               <button
@@ -387,16 +387,16 @@ export const Navbar: React.FC = () => {
               <button
                 type="button"
                 onClick={() => setIsSearchOpen(true)}
-                className="flex md:hidden p-2 text-slate-700 hover:text-[var(--color-accent)] transition-colors cursor-pointer rounded-xl active:bg-slate-100"
+                className="flex md:hidden p-1.5 text-slate-700 hover:text-[var(--color-accent)] transition-colors cursor-pointer rounded-xl active:bg-slate-100"
                 aria-label="Search merchandise"
               >
                 <Search className="w-5 h-5 stroke-[1.8]" />
               </button>
 
-              {/* User Account Button */}
+              {/* User Account Button (Hidden on small mobile since it's prominent in the mobile menu drawer) */}
               <Link
                 href="/auth"
-                className="flex items-center gap-1.5 p-1.5 sm:px-2.5 sm:py-1.5 hover:text-[var(--color-accent)] transition-colors rounded-xl hover:bg-slate-50 text-slate-700 cursor-pointer"
+                className="hidden sm:flex items-center gap-1.5 p-1.5 sm:px-2.5 sm:py-1.5 hover:text-[var(--color-accent)] transition-colors rounded-xl hover:bg-slate-50 text-slate-700 cursor-pointer"
                 aria-label="My Account"
                 title={isLoggedIn && user ? `Account: ${user.name}` : "Sign In / Register"}
               >
@@ -421,34 +421,34 @@ export const Navbar: React.FC = () => {
               {/* Wishlist Button */}
               <Link
                 href="/wishlist"
-                className="relative p-2 text-slate-700 hover:text-[var(--color-accent)] hover:bg-slate-50 transition-colors rounded-xl cursor-pointer"
+                className="relative p-1.5 sm:p-2 text-slate-700 hover:text-[var(--color-accent)] hover:bg-slate-50 transition-colors rounded-xl cursor-pointer"
                 aria-label="Wishlist"
                 title="Wishlist"
               >
                 <Heart className="w-5 h-5 stroke-[1.8]" />
                 {wishlistCount > 0 && (
-                  <span className="absolute top-1 right-1 min-w-[16px] h-4 px-1 bg-[var(--color-accent)] text-white text-[10px] font-bold rounded-full flex items-center justify-center leading-none">
+                  <span className="absolute top-0.5 right-0.5 min-w-[15px] h-3.5 px-0.5 bg-[var(--color-accent)] text-white text-[9px] font-bold rounded-full flex items-center justify-center leading-none">
                     {wishlistCount}
                   </span>
                 )}
               </Link>
 
-              {/* High-Conversion Cart Pill */}
+              {/* High-Conversion Cart Button */}
               <Link
                 href="/cart"
-                className="flex items-center gap-2 px-3 sm:px-3.5 py-1.5 rounded-xl bg-[#1E1B4B] hover:bg-[#120F38] text-white transition-all shadow-xs group cursor-pointer shrink-0"
+                className="flex items-center gap-1.5 px-2.5 sm:px-3.5 py-1.5 rounded-xl bg-[#1E1B4B] hover:bg-[#120F38] text-white transition-all shadow-xs group cursor-pointer shrink-0"
                 aria-label="Shopping Cart"
                 title="View Shopping Cart"
               >
                 <div className="relative">
                   <ShoppingBag className="w-4 h-4 text-white group-hover:scale-105 transition-transform" />
                   {totalItems > 0 && (
-                    <span className="absolute -top-2 -right-2.5 min-w-[16px] h-4 px-1 bg-[var(--color-accent)] text-white text-[9px] font-extrabold rounded-full flex items-center justify-center leading-none ring-2 ring-[#1E1B4B]">
+                    <span className="absolute -top-2 -right-2 min-w-[15px] h-3.5 px-0.5 bg-[var(--color-accent)] text-white text-[9px] font-extrabold rounded-full flex items-center justify-center leading-none ring-2 ring-[#1E1B4B]">
                       {totalItems}
                     </span>
                   )}
                 </div>
-                <span className="text-xs font-bold text-white tracking-wide">
+                <span className="text-xs font-bold text-white tracking-wide hidden sm:inline">
                   Cart
                 </span>
               </Link>

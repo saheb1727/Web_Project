@@ -190,7 +190,7 @@ export const StudioReelsSection: React.FC = () => {
 
   return (
     <>
-      <section className="py-20 bg-gradient-to-b from-white via-slate-50/70 to-white border-b border-slate-200/80 overflow-hidden">
+      <section className="py-20 bg-gradient-to-b from-white via-slate-50/70 to-white border-b border-slate-200/80 overflow-hidden w-full max-w-full">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           {/* Section Header */}

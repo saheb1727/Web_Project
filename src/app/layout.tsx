@@ -127,14 +127,14 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className="min-h-full flex flex-col font-sans bg-white text-[#0F172A]">
+      <body className="min-h-full flex flex-col font-sans bg-white text-[#0F172A] overflow-x-hidden w-full max-w-full">
         <ToastProvider>
           <AuthProvider>
             <WishlistProvider>
               <CartProvider>
                 <AnnouncementBar />
                 <Navbar />
-                <main className="flex-1">{children}</main>
+                <main className="flex-1 w-full max-w-full overflow-x-hidden">{children}</main>
                 <Footer />
 
                 {/* Floating Reviews Side Tab (Hidden on mobile to prevent content overlap) */}

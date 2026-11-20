@@ -197,9 +197,9 @@ export const HeroSection: React.FC = () => {
 
               {/* 2. Executive Headline */}
               <div>
-                <h1 className="hero-main-title text-4xl sm:text-5xl lg:text-[3.25rem] font-black tracking-tight leading-[1.08] text-[#1E1B4B]">
-                  Personalized Gifts & <br />
-                  <span className="text-[#F95738]">Custom Merchandise.</span>
+                <h1 className="hero-main-title text-3xl sm:text-5xl lg:text-[3.25rem] font-black tracking-tight leading-[1.1] text-[#1E1B4B] break-words">
+                  Personalized Gifts &{" "}
+                  <span className="text-[#F95738] block sm:inline">Custom Merchandise.</span>
                 </h1>
                 <p className="hero-main-desc text-sm sm:text-base text-slate-600 mt-4 font-medium leading-relaxed max-w-xl">
                   Bespoke anniversary calendar photo frames, 3D LED acrylic lamps, executive 4-in-1 leather gift sets, floating 24K gold pens, and zero-pinhole magnetic badges. Zero minimums, instant digital proofs, and direct factory pricing.
@@ -207,7 +207,7 @@ export const HeroSection: React.FC = () => {
               </div>
 
               {/* 3. 1-Click First Order Coupon Bar */}
-              <div className="hero-coupon-card p-3 rounded-2xl bg-indigo-50/70 border border-indigo-100/90 flex items-center justify-between gap-3 max-w-lg shadow-2xs">
+              <div className="hero-coupon-card p-3 rounded-2xl bg-indigo-50/70 border border-indigo-100/90 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2.5 sm:gap-3 max-w-lg shadow-2xs w-full">
                 <div className="flex items-center gap-2.5 min-w-0">
                   <div className="w-8 h-8 rounded-xl bg-[#F95738] text-white flex items-center justify-center shrink-0 shadow-2xs font-bold text-xs">
                     %
@@ -225,7 +225,7 @@ export const HeroSection: React.FC = () => {
                 <button
                   type="button"
                   onClick={handleCopyCode}
-                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-dashed border-[#F95738] bg-white text-[#F95738] font-mono font-bold text-xs hover:bg-slate-50 transition-colors shrink-0 cursor-pointer shadow-2xs"
+                  className="flex items-center justify-center gap-1.5 px-3 py-2 sm:py-1.5 rounded-xl border border-dashed border-[#F95738] bg-white text-[#F95738] font-mono font-bold text-xs hover:bg-slate-50 transition-colors shrink-0 cursor-pointer shadow-2xs w-full sm:w-auto"
                 >
                   <span>SPECIAL15</span>
                   {copied ? (
@@ -237,11 +237,11 @@ export const HeroSection: React.FC = () => {
               </div>
 
               {/* 4. Action CTAs */}
-              <div className="hero-cta-group flex flex-wrap items-center gap-3 pt-1">
+              <div className="hero-cta-group flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-1 w-full sm:w-auto">
                 {/* Primary CTA */}
                 <Link
                   href="/products"
-                  className="px-6 py-3.5 bg-[#F95738] hover:bg-[#e04526] text-white text-xs sm:text-sm font-bold rounded-2xl shadow-lg transition-all flex items-center gap-2 group cursor-pointer active:scale-98"
+                  className="px-6 py-3.5 bg-[#F95738] hover:bg-[#e04526] text-white text-xs sm:text-sm font-bold rounded-2xl shadow-lg transition-all flex items-center justify-center gap-2 group cursor-pointer active:scale-98 w-full sm:w-auto"
                 >
                   <span>Explore Best Sellers</span>
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -251,7 +251,7 @@ export const HeroSection: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => setIsVideoModalOpen(true)}
-                  className="px-5 py-3.5 bg-white hover:bg-slate-50 text-[#1E1B4B] text-xs sm:text-sm font-bold rounded-2xl border border-slate-200 shadow-2xs transition-all flex items-center gap-2.5 cursor-pointer active:scale-98"
+                  className="px-5 py-3.5 bg-white hover:bg-slate-50 text-[#1E1B4B] text-xs sm:text-sm font-bold rounded-2xl border border-slate-200 shadow-2xs transition-all flex items-center justify-center gap-2.5 cursor-pointer active:scale-98 w-full sm:w-auto"
                 >
                   <div className="w-6 h-6 rounded-full bg-[#1E1B4B] text-white flex items-center justify-center shrink-0">
                     <Play className="w-3 h-3 fill-white ml-0.5" />
@@ -296,11 +296,11 @@ export const HeroSection: React.FC = () => {
             </div>
 
             {/* Right Column: Interactive Merch Spotlight Stage (6 cols) */}
-            <div className="lg:col-span-6 xl:col-span-6">
-              <div className="hero-stage-container bg-white rounded-3xl border border-slate-200 shadow-2xl p-4 sm:p-6 overflow-hidden">
+            <div className="lg:col-span-6 xl:col-span-6 w-full max-w-full overflow-hidden">
+              <div className="hero-stage-container w-full max-w-full bg-white rounded-3xl border border-slate-200 shadow-2xl p-4 sm:p-6 overflow-hidden">
 
                 {/* Stage Category Selectors */}
-                <div className="flex items-center gap-1.5 overflow-x-auto pb-3 mb-4 border-b border-slate-100 scrollbar-none">
+                <div className="flex items-center gap-1.5 overflow-x-auto pb-3 mb-4 border-b border-slate-100 scrollbar-none w-full max-w-full">
                   {spotlightItems.map((item) => (
                     <button
                       key={item.id}

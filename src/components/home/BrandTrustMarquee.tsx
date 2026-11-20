@@ -16,7 +16,7 @@ export const BrandTrustMarquee: React.FC = () => {
   ];
 
   return (
-    <section className="py-6 bg-slate-50/80 border-b border-slate-200/80 overflow-hidden">
+    <section className="py-6 bg-slate-50/80 border-b border-slate-200/80 overflow-hidden w-full max-w-full">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row items-center justify-between gap-4">
           
@@ -27,7 +27,7 @@ export const BrandTrustMarquee: React.FC = () => {
           </div>
 
           {/* Brands Row */}
-          <div className="flex flex-wrap items-center justify-center md:justify-end gap-x-6 gap-y-2 text-xs font-black text-slate-600 tracking-tight">
+          <div className="flex flex-wrap items-center justify-center md:justify-end gap-x-3 sm:gap-x-6 gap-y-2 text-xs font-black text-slate-600 tracking-tight">
             {brands.map((b, idx) => (
               <div
                 key={idx}
