@@ -338,7 +338,7 @@ export default function ProductDetailPage() {
                   In-House Studio Manufacturing
                 </span>
                 <span className="text-[10px] font-bold text-slate-400 uppercase">
-                  Ranchi & Noida Lab
+                  Ranchi Studio Lab
                 </span>
               </div>
               <div className="grid grid-cols-2 gap-2 text-left">

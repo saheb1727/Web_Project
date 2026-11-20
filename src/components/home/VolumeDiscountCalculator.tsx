@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import {
   Calculator,
@@ -11,6 +11,7 @@ import {
   Truck,
   Sparkles,
 } from "lucide-react";
+import { gsap } from "@/lib/gsap";
 
 interface ProductOption {
   id: string;
@@ -21,6 +22,8 @@ interface ProductOption {
 }
 
 export const VolumeDiscountCalculator: React.FC = () => {
+  const sectionRef = useRef<HTMLElement>(null);
+
   const products: ProductOption[] = [
     {
       id: "badges",
@@ -87,17 +90,60 @@ export const VolumeDiscountCalculator: React.FC = () => {
   const totalSaved = originalTotal - discountedTotal;
   const savingsPercent = Math.round((totalSaved / originalTotal) * 100);
 
+  // GSAP Smooth Animated Numerical Counter
+  const [animatedTotal, setAnimatedTotal] = useState(discountedTotal);
+  const [animatedSaved, setAnimatedSaved] = useState(totalSaved);
+  const counterRef = useRef({ total: discountedTotal, saved: totalSaved });
+
+  useEffect(() => {
+    gsap.to(counterRef.current, {
+      total: discountedTotal,
+      saved: totalSaved,
+      duration: 0.45,
+      ease: "power2.out",
+      onUpdate: () => {
+        setAnimatedTotal(Math.round(counterRef.current.total));
+        setAnimatedSaved(Math.round(counterRef.current.saved));
+      },
+    });
+  }, [discountedTotal, totalSaved]);
+
+  // ScrollTrigger Entrance
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        ".calc-card-container",
+        { opacity: 0, y: 30, scale: 0.97 },
+        {
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 80%",
+            once: true,
+          },
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          duration: 0.7,
+          ease: "power3.out",
+          clearProps: "all",
+        }
+      );
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section className="py-16 bg-gradient-to-b from-white via-indigo-50/20 to-white border-b border-slate-200">
+    <section ref={sectionRef} className="py-16 bg-gradient-to-b from-white via-indigo-50/20 to-white border-b border-slate-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Heading */}
         <div className="text-center max-w-2xl mx-auto mb-10">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#F95738]/10 text-[#F95738] text-xs font-bold uppercase tracking-wider mb-2">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#FF4D36]/10 text-[#FF4D36] text-xs font-bold uppercase tracking-wider mb-2">
             <Calculator className="w-3.5 h-3.5" />
             <span>Direct Factory Wholesale Pricing</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-black text-[#1E1B4B] tracking-tight">
+          <h2 className="text-3xl sm:text-4xl font-black text-[#0B0F19] tracking-tight">
             Interactive Bulk Savings Calculator
           </h2>
           <p className="text-sm text-slate-500 mt-2">
@@ -106,7 +152,7 @@ export const VolumeDiscountCalculator: React.FC = () => {
         </div>
 
         {/* Calculator Interactive Box */}
-        <div className="max-w-4xl mx-auto bg-white rounded-3xl border border-slate-200 shadow-xl overflow-hidden">
+        <div className="calc-card-container max-w-4xl mx-auto bg-white rounded-3xl border border-slate-200 shadow-xl overflow-hidden">
           
           {/* Product Tabs */}
           <div className="grid grid-cols-2 sm:grid-cols-4 border-b border-slate-100 bg-slate-50/70 p-2 gap-1.5">
@@ -117,7 +163,7 @@ export const VolumeDiscountCalculator: React.FC = () => {
                 onClick={() => setSelectedProduct(p)}
                 className={`py-2.5 px-3 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer ${
                   selectedProduct.id === p.id
-                    ? "bg-white text-[#1E1B4B] shadow-sm border border-slate-200/90"
+                    ? "bg-white text-[#0B0F19] shadow-sm border border-slate-200/90 font-extrabold"
                     : "text-slate-600 hover:text-slate-900 hover:bg-white/60"
                 }`}
               >
@@ -136,7 +182,7 @@ export const VolumeDiscountCalculator: React.FC = () => {
                   <span className="text-xs font-bold text-slate-500 uppercase tracking-wider">
                     Select Order Quantity
                   </span>
-                  <span className="text-xl font-black text-[#1E1B4B]">
+                  <span className="text-xl font-black text-[#0B0F19]">
                     {quantity} <span className="text-xs font-semibold text-slate-400">units</span>
                   </span>
                 </div>
@@ -149,7 +195,7 @@ export const VolumeDiscountCalculator: React.FC = () => {
                   step="5"
                   value={quantity}
                   onChange={(e) => setQuantity(Number(e.target.value))}
-                  className="w-full h-2.5 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-[#F95738]"
+                  className="w-full h-2.5 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-[#FF4D36]"
                 />
               </div>
 
@@ -162,7 +208,7 @@ export const VolumeDiscountCalculator: React.FC = () => {
                     onClick={() => setQuantity(qty)}
                     className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
                       quantity === qty
-                        ? "bg-[#1E1B4B] text-white shadow-xs"
+                        ? "bg-[#0B0F19] text-white shadow-xs"
                         : "bg-slate-100 text-slate-700 hover:bg-slate-200"
                     }`}
                   >
@@ -180,14 +226,14 @@ export const VolumeDiscountCalculator: React.FC = () => {
                       key={idx}
                       className={`p-2.5 rounded-xl border text-center transition-all ${
                         isActive
-                          ? "bg-[#F95738]/5 border-[#F95738] ring-1 ring-[#F95738]"
+                          ? "bg-[#FF4D36]/10 border-[#FF4D36] ring-1 ring-[#FF4D36]"
                           : "bg-slate-50 border-slate-200/70"
                       }`}
                     >
                       <div className="text-[10px] font-bold text-slate-400 uppercase">
                         {tier.minQty}-{tier.maxQty} pcs
                       </div>
-                      <div className="text-xs font-black text-[#1E1B4B] mt-0.5">
+                      <div className="text-xs font-black text-[#0B0F19] mt-0.5">
                         ₹{tier.price}/pc
                       </div>
                       <span className="text-[9px] font-bold text-emerald-600 block mt-0.5">
@@ -206,7 +252,7 @@ export const VolumeDiscountCalculator: React.FC = () => {
             </div>
 
             {/* Right Column: Price Output Card (5 cols) */}
-            <div className="md:col-span-5 bg-gradient-to-br from-[#1E1B4B] to-[#110E38] text-white p-6 rounded-2xl shadow-xl flex flex-col justify-between space-y-5">
+            <div className="md:col-span-5 bg-gradient-to-br from-[#0B0F19] to-slate-900 text-white p-6 rounded-2xl shadow-xl flex flex-col justify-between space-y-5">
               
               <div>
                 <div className="flex items-center justify-between text-xs text-slate-300 pb-3 border-b border-white/10">
@@ -215,7 +261,7 @@ export const VolumeDiscountCalculator: React.FC = () => {
                     <span className="line-through text-slate-400 text-xs">
                       ₹{selectedProduct.basePrice}
                     </span>
-                    <span className="text-base font-extrabold text-[#F95738]">
+                    <span className="text-base font-extrabold text-[#FF4D36]">
                       ₹{unitPrice}
                     </span>
                     <span className="text-[10px] text-slate-400">/ pc</span>
@@ -225,17 +271,17 @@ export const VolumeDiscountCalculator: React.FC = () => {
                 <div className="py-4 space-y-1">
                   <div className="text-xs text-slate-300 font-medium">Estimated Order Total</div>
                   <div className="text-3xl font-black text-white tracking-tight">
-                    ₹{discountedTotal.toLocaleString("en-IN")}
+                    ₹{animatedTotal.toLocaleString("en-IN")}
                   </div>
                   <div className="flex items-center gap-1 text-xs text-emerald-400 font-bold mt-1">
                     <TrendingDown className="w-3.5 h-3.5" />
-                    <span>You save ₹{totalSaved.toLocaleString("en-IN")} ({savingsPercent}%)</span>
+                    <span>You save ₹{animatedSaved.toLocaleString("en-IN")} ({savingsPercent}%)</span>
                   </div>
                 </div>
 
                 <div className="space-y-1.5 pt-2 text-[11px] text-slate-300">
                   <div className="flex items-center gap-2">
-                    <Truck className="w-3.5 h-3.5 text-[#F95738]" />
+                    <Truck className="w-3.5 h-3.5 text-[#FF4D36]" />
                     <span>Free BlueDart Express Air Pan-India</span>
                   </div>
                   <div className="flex items-center gap-2">
@@ -248,7 +294,7 @@ export const VolumeDiscountCalculator: React.FC = () => {
               {/* Action Link */}
               <Link
                 href={`/category/${selectedProduct.slug}`}
-                className="w-full py-3 bg-[#F95738] hover:bg-[#e04526] text-white text-xs font-bold rounded-xl shadow-lg transition-all flex items-center justify-center gap-2 cursor-pointer group"
+                className="w-full py-3 bg-[#FF4D36] hover:bg-[#e0351d] text-white text-xs font-bold rounded-xl shadow-lg transition-all flex items-center justify-center gap-2 cursor-pointer group"
               >
                 <span>Customize {selectedProduct.name}</span>
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -264,3 +310,4 @@ export const VolumeDiscountCalculator: React.FC = () => {
   );
 };
 
+export default VolumeDiscountCalculator;

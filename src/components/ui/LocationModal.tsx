@@ -24,7 +24,7 @@ export const LocationModal: React.FC<LocationModalProps> = ({
   const inputRef = useRef<HTMLInputElement>(null);
 
   const popularHubs = [
-    { city: "Noida NCR", pincode: "201301", state: "Uttar Pradesh", speed: "24h Dispatch" },
+    { city: "Ranchi Hub", pincode: "834001", state: "Jharkhand", speed: "24h Dispatch" },
     { city: "New Delhi", pincode: "110001", state: "Delhi", speed: "24-48h Delivery" },
     { city: "Mumbai", pincode: "400001", state: "Maharashtra", speed: "2-3 Days" },
     { city: "Bengaluru", pincode: "560001", state: "Karnataka", speed: "2-3 Days" },
@@ -213,7 +213,7 @@ export const LocationModal: React.FC<LocationModalProps> = ({
           <div className="p-3 rounded-xl bg-slate-50 border border-slate-200/80 flex items-center gap-3 text-xs text-slate-600">
             <Truck className="w-4 h-4 text-[#F95738] shrink-0" />
             <div className="text-[11px] leading-tight">
-              <strong>Factory Direct:</strong> Dispatched from Noida NCR manufacturing floor within 24–48 hours across India.
+              <strong>Factory Direct:</strong> Dispatched from our Ranchi studio lab floor within 24–48 hours across India.
             </div>
           </div>
         </div>

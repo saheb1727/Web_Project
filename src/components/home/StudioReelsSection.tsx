@@ -16,6 +16,7 @@ import {
   ShieldCheck,
   Video,
 } from "lucide-react";
+import { gsap } from "@/lib/gsap";
 
 interface StudioReel {
   id: string;
@@ -118,6 +119,41 @@ export const StudioReelsSection: React.FC = () => {
   });
 
   const videoRefs = useRef<{ [key: string]: HTMLVideoElement | null }>({});
+  const sectionRef = useRef<HTMLElement>(null);
+
+  // GSAP ScrollTrigger Entrance for Reels
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 80%",
+          once: true,
+        },
+      });
+
+      tl.fromTo(
+        ".studio-reel-header",
+        { opacity: 0, y: 20 },
+        { opacity: 1, y: 0, duration: 0.6, ease: "power2.out", clearProps: "all" }
+      ).fromTo(
+        ".studio-reel-card",
+        { opacity: 0, y: 40, scale: 0.94 },
+        {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          stagger: 0.08,
+          duration: 0.7,
+          ease: "power3.out",
+          clearProps: "all",
+        },
+        "-=0.3"
+      );
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
 
   // Auto-play muted loop on mount using IntersectionObserver
   useEffect(() => {
@@ -190,17 +226,17 @@ export const StudioReelsSection: React.FC = () => {
 
   return (
     <>
-      <section className="py-20 bg-gradient-to-b from-white via-slate-50/70 to-white border-b border-slate-200/80 overflow-hidden w-full max-w-full">
+      <section ref={sectionRef} className="py-20 bg-gradient-to-b from-white via-slate-50/70 to-white border-b border-slate-200/80 overflow-hidden w-full max-w-full">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           {/* Section Header */}
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+          <div className="studio-reel-header flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
             <div>
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#F95738]/10 text-[#F95738] text-xs font-bold uppercase tracking-wider mb-2">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#FF4D36]/10 text-[#FF4D36] text-xs font-bold uppercase tracking-wider mb-2">
                 <Video className="w-3.5 h-3.5" />
                 <span>Ranchi Workshop & Production Studio</span>
               </div>
-              <h2 className="text-3xl sm:text-4xl font-black text-[#1E1B4B] tracking-tight">
+              <h2 className="text-3xl sm:text-4xl font-black text-[#0B0F19] tracking-tight">
                 Craftsmanship in Motion
               </h2>
               <p className="text-sm text-slate-500 mt-1 max-w-xl">
@@ -226,7 +262,7 @@ export const StudioReelsSection: React.FC = () => {
                 <div
                   key={reel.id}
                   onClick={() => setActiveModalIndex(idx)}
-                  className="group relative rounded-3xl overflow-hidden bg-slate-900 border border-slate-200 shadow-md hover:shadow-2xl transition-all duration-300 cursor-pointer flex flex-col aspect-9/14 sm:aspect-9/13"
+                  className="studio-reel-card group relative rounded-3xl overflow-hidden bg-slate-900 border border-slate-200 shadow-md hover:shadow-2xl transition-all duration-300 cursor-pointer flex flex-col aspect-9/14 sm:aspect-9/13"
                 >
                   {/* Video Player */}
                   <video

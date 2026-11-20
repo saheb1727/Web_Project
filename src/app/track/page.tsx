@@ -127,9 +127,9 @@ function TrackOrderContent() {
               },
               shippingAddress: {
                 address: "Registered Delivery Address",
-                city: "Noida NCR",
-                state: "Uttar Pradesh",
-                pincode: "201301",
+                city: "Ranchi",
+                state: "Jharkhand",
+                pincode: "834001",
               },
               items: [
                 {

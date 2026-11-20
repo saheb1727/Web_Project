@@ -107,8 +107,8 @@ export default function CartPage() {
           },
           shippingAddress: {
             address: formData.address,
-            city: formData.city || "Noida",
-            state: formData.state || "Uttar Pradesh",
+            city: formData.city || "Ranchi",
+            state: formData.state || "Jharkhand",
             pincode: formData.pincode,
           },
           items: items.map((it) => ({

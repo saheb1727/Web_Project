@@ -13,7 +13,7 @@ import {
 export const metadata: Metadata = {
   title: "About Our Factory & Quality Guarantee | MyPrintHub.in",
   description:
-    "Learn about MyPrintHub's 10,000 sq ft manufacturing hub in Noida NCR, Japanese UV DTF printing technology, neodymium magnetic badges, and zero minimum order policy.",
+    "Learn about MyPrintHub's state-of-the-art manufacturing hub in Ranchi, Japanese UV DTF printing technology, neodymium magnetic badges, and zero minimum order policy.",
 };
 
 export default function AboutPage() {
@@ -69,7 +69,7 @@ export default function AboutPage() {
               Traditional pin-backed badges ruin expensive formal shirts, lab coats, and tailored blazers. We engineered our signature brushed metallic name badges with a triple-point neodymium magnetic system that holds firmly with zero fabric punctures.
             </p>
             <p className="text-sm text-slate-600 leading-relaxed">
-              From our factory in Noida NCR, we operate Japanese Mimaki UV Direct-to-Film printers and fiber laser engravers that reproduce your brand pantones with micrometer accuracy.
+              From our studio lab in Ranchi, we operate Japanese Mimaki UV Direct-to-Film printers and fiber laser engravers that reproduce your brand pantones with micrometer accuracy.
             </p>
 
             <div className="space-y-2 pt-2 text-xs font-semibold text-slate-800">

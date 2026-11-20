@@ -7,7 +7,7 @@ export const AnnouncementBar: React.FC = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const messages = [
-    "In-House Studio Manufacturing • Ranchi & Noida NCR",
+    "In-House Studio Manufacturing • Ranchi Studio Lab",
     "Zero Minimum Order Quantity • Order 1 or 1,000 Units",
     "Express Pan-India Dispatch within 24–48 Hours",
     "Free Instant Digital Mockup & Proof Before Printing",

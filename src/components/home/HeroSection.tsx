@@ -44,6 +44,8 @@ export const HeroSection: React.FC = () => {
 
   const heroRef = useRef<HTMLElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const cardStageRef = useRef<HTMLDivElement>(null);
+  const keepsakePreviewRef = useRef<HTMLDivElement>(null);
 
   const availableReels = [
     { src: "/videos/reel-2.mp4", label: "Laser & Magnetic Studio" },
@@ -118,33 +120,126 @@ export const HeroSection: React.FC = () => {
     }
   };
 
+  // 3D Perspective Tilt on Mouse Movement
+  const handleStageMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!cardStageRef.current) return;
+    const rect = cardStageRef.current.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width - 0.5;
+    const y = (e.clientY - rect.top) / rect.height - 0.5;
+    gsap.to(cardStageRef.current, {
+      rotateY: x * 10,
+      rotateX: -y * 10,
+      transformPerspective: 900,
+      ease: "power1.out",
+      duration: 0.4,
+    });
+  };
+
+  const handleStageMouseLeave = () => {
+    if (!cardStageRef.current) return;
+    gsap.to(cardStageRef.current, {
+      rotateY: 0,
+      rotateX: 0,
+      ease: "power2.out",
+      duration: 0.6,
+    });
+  };
+
+  // Animate preview on keepsake change
+  useEffect(() => {
+    if (keepsakePreviewRef.current) {
+      gsap.fromTo(
+        keepsakePreviewRef.current,
+        { opacity: 0.35, scale: 0.96 },
+        { opacity: 1, scale: 1, duration: 0.45, ease: "power2.out", clearProps: "all" }
+      );
+    }
+  }, [activeKeepsakeIndex]);
+
+  // Master Hero GSAP Animations (Cinematic Timeline + Continuous Physics)
   useEffect(() => {
     const ctx = gsap.context(() => {
-      const tl = gsap.timeline({ defaults: { ease: "power2.out" } });
+      const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
 
+      // Staggered Entrance
       tl.fromTo(
-        ".hero-header-block",
-        { opacity: 0, y: 15 },
-        { opacity: 1, y: 0, duration: 0.6, clearProps: "all" }
+        ".hero-badge-pill",
+        { opacity: 0, scale: 0.9, y: -15 },
+        { opacity: 1, scale: 1, y: 0, duration: 0.7, ease: "back.out(1.7)", clearProps: "all" }
       )
         .fromTo(
+          ".hero-title-main",
+          { opacity: 0, y: 25 },
+          { opacity: 1, y: 0, duration: 0.8, clearProps: "all" },
+          "-=0.4"
+        )
+        .fromTo(
+          ".hero-subtitle-text",
+          { opacity: 0, y: 15 },
+          { opacity: 1, y: 0, duration: 0.6, clearProps: "all" },
+          "-=0.4"
+        )
+        .fromTo(
+          ".hero-cta-btn",
+          { opacity: 0, scale: 0.92, y: 15 },
+          { opacity: 1, scale: 1, y: 0, duration: 0.5, stagger: 0.1, ease: "back.out(1.4)", clearProps: "all" },
+          "-=0.3"
+        )
+        .fromTo(
           ".hero-bento-card-main",
-          { opacity: 0, scale: 0.98, y: 20 },
-          { opacity: 1, scale: 1, y: 0, duration: 0.6, clearProps: "all" },
+          { opacity: 0, scale: 0.96, y: 30 },
+          { opacity: 1, scale: 1, y: 0, duration: 0.7, ease: "power3.out", clearProps: "all" },
           "-=0.3"
         )
         .fromTo(
           ".hero-bento-card-secondary",
-          { opacity: 0, y: 20 },
-          { opacity: 1, y: 0, duration: 0.5, stagger: 0.15, clearProps: "all" },
+          { opacity: 0, y: 25 },
+          { opacity: 1, y: 0, duration: 0.6, stagger: 0.12, ease: "power3.out", clearProps: "all" },
           "-=0.4"
         )
         .fromTo(
           ".hero-guarantee-bar",
-          { opacity: 0, y: 12 },
+          { opacity: 0, y: 15 },
           { opacity: 1, y: 0, duration: 0.5, clearProps: "all" },
           "-=0.2"
         );
+
+      // Continuous Idle Floating Physics (Micro-levitation)
+      gsap.to(".hero-bento-card-main", {
+        y: -6,
+        duration: 3.5,
+        yoyo: true,
+        repeat: -1,
+        ease: "sine.inOut",
+      });
+
+      gsap.to(".hero-bento-card-secondary", {
+        y: -4,
+        duration: 4,
+        stagger: 0.5,
+        yoyo: true,
+        repeat: -1,
+        ease: "sine.inOut",
+      });
+
+      // Ambient Orbs Breathing
+      gsap.to(".hero-ambient-orb-1", {
+        scale: 1.25,
+        opacity: 0.25,
+        duration: 6,
+        yoyo: true,
+        repeat: -1,
+        ease: "sine.inOut",
+      });
+
+      gsap.to(".hero-ambient-orb-2", {
+        scale: 1.3,
+        opacity: 0.22,
+        duration: 7,
+        yoyo: true,
+        repeat: -1,
+        ease: "sine.inOut",
+      });
     }, heroRef);
 
     return () => ctx.revert();
@@ -177,8 +272,8 @@ export const HeroSection: React.FC = () => {
         </div>
 
         {/* Ambient Subtle Glow Orbs */}
-        <div className="absolute -top-32 -right-32 w-96 h-96 bg-[#FF4D36]/15 rounded-full blur-3xl pointer-events-none z-10" />
-        <div className="absolute top-1/2 -left-32 w-96 h-96 bg-[#6366F1]/15 rounded-full blur-3xl pointer-events-none z-10" />
+        <div className="hero-ambient-orb-1 absolute -top-32 -right-32 w-96 h-96 bg-[#FF4D36]/15 rounded-full blur-3xl pointer-events-none z-10" />
+        <div className="hero-ambient-orb-2 absolute top-1/2 -left-32 w-96 h-96 bg-[#6366F1]/15 rounded-full blur-3xl pointer-events-none z-10" />
 
         {/* =========================================================================
             2. FOREGROUND CONTENT & BENTO SHOWCASE (z-20)
@@ -189,17 +284,17 @@ export const HeroSection: React.FC = () => {
           <div className="hero-header-block text-center max-w-3xl mx-auto space-y-4">
             
             {/* Live Studio Status Pill */}
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs font-semibold text-white shadow-lg">
+            <div className="hero-badge-pill inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs font-semibold text-white shadow-lg">
               <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse ring-4 ring-emerald-400/30" />
               <span className="font-bold text-white">In-House Studio Manufacturing</span>
               <span className="text-white/40">•</span>
-              <span>Ranchi & Noida</span>
+              <span>Ranchi Studio Hub</span>
               <span className="text-white/40">•</span>
               <span className="text-[#FF4D36] font-bold">24–48h Dispatch</span>
             </div>
 
             {/* Bold Grand Headline with Glowing Gradient */}
-            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-[1.08] break-words drop-shadow-md">
+            <h1 className="hero-title-main text-3xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-[1.08] break-words drop-shadow-md">
               Bespoke Custom Gifts & Merch.{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FF4D36] via-[#FF6E52] to-[#FFA07A] block sm:inline">
                 Handcrafted With Zero Minimums.
@@ -207,7 +302,7 @@ export const HeroSection: React.FC = () => {
             </h1>
 
             {/* Subtitle */}
-            <p className="text-sm sm:text-base text-slate-200 font-medium leading-relaxed max-w-2xl mx-auto drop-shadow-sm">
+            <p className="hero-subtitle-text text-sm sm:text-base text-slate-200 font-medium leading-relaxed max-w-2xl mx-auto drop-shadow-sm">
               Order 1 unique personalized keepsake or 1,000 corporate welcome kits. Direct in-house factory manufacturing, instant digital proofs, and Japanese 1,200 DPI precision.
             </p>
 
@@ -215,7 +310,7 @@ export const HeroSection: React.FC = () => {
             <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
               <Link
                 href="/products"
-                className="px-6 py-3.5 bg-gradient-to-r from-[#FF4D36] to-[#FF6B4A] hover:from-[#E0351D] hover:to-[#FF4D36] text-white text-xs sm:text-sm font-black rounded-2xl shadow-xl shadow-[#FF4D36]/30 hover:shadow-2xl hover:shadow-[#FF4D36]/40 transition-all flex items-center justify-center gap-2 group cursor-pointer active:scale-98"
+                className="hero-cta-btn px-6 py-3.5 bg-gradient-to-r from-[#FF4D36] to-[#FF6B4A] hover:from-[#E0351D] hover:to-[#FF4D36] text-white text-xs sm:text-sm font-black rounded-2xl shadow-xl shadow-[#FF4D36]/30 hover:shadow-2xl hover:shadow-[#FF4D36]/40 transition-all flex items-center justify-center gap-2 group cursor-pointer active:scale-98"
               >
                 <span>Explore All 56 Products</span>
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -223,14 +318,14 @@ export const HeroSection: React.FC = () => {
 
               <Link
                 href="/contact"
-                className="px-5 py-3.5 bg-white/10 hover:bg-white/20 text-white text-xs sm:text-sm font-bold rounded-2xl border border-white/20 backdrop-blur-md shadow-xs transition-all flex items-center justify-center gap-2 cursor-pointer active:scale-98"
+                className="hero-cta-btn px-5 py-3.5 bg-white/10 hover:bg-white/20 text-white text-xs sm:text-sm font-bold rounded-2xl border border-white/20 backdrop-blur-md shadow-xs transition-all flex items-center justify-center gap-2 cursor-pointer active:scale-98"
               >
                 <MessageCircle className="w-4 h-4 text-emerald-400" />
                 <span>Custom Bulk Inquiry</span>
               </Link>
 
               {/* Cover Video Controls (Audio Toggle & Play/Pause) */}
-              <div className="flex items-center gap-1.5 bg-white/10 backdrop-blur-md border border-white/20 p-1 rounded-2xl">
+              <div className="hero-video-controls flex items-center gap-1.5 bg-white/10 backdrop-blur-md border border-white/20 p-1 rounded-2xl">
                 <button
                   type="button"
                   onClick={togglePlay}
@@ -285,8 +380,13 @@ export const HeroSection: React.FC = () => {
           {/* Panoramic Glassmorphism Bento Grid Showcase Floating Over Video */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
             
-            {/* Bento Card 1: Curated Keepsakes Stage (7 Cols on LG) */}
-            <div className="hero-bento-card-main lg:col-span-7 bg-white/10 backdrop-blur-xl rounded-3xl border border-white/20 shadow-2xl p-5 sm:p-6 flex flex-col justify-between text-white">
+            {/* Bento Card 1: Curated Keepsakes Stage (7 Cols on LG) with 3D Tilt */}
+            <div
+              ref={cardStageRef}
+              onMouseMove={handleStageMouseMove}
+              onMouseLeave={handleStageMouseLeave}
+              className="hero-bento-card-main lg:col-span-7 bg-white/10 backdrop-blur-xl rounded-3xl border border-white/20 shadow-2xl p-5 sm:p-6 flex flex-col justify-between text-white transition-shadow duration-300 hover:shadow-[0_20px_50px_rgba(255,77,54,0.15)]"
+            >
               
               {/* Card Header with Interactive Tab Switcher */}
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-white/15">
@@ -324,7 +424,10 @@ export const HeroSection: React.FC = () => {
               </div>
 
               {/* Viewport for Active Keepsake */}
-              <div className="relative aspect-16/10 w-full rounded-2xl overflow-hidden bg-black/50 my-4 border border-white/15 group">
+              <div
+                ref={keepsakePreviewRef}
+                className="relative aspect-16/10 w-full rounded-2xl overflow-hidden bg-black/50 my-4 border border-white/15 group"
+              >
                 <Image
                   key={currentKeepsake.id}
                   src={currentKeepsake.image}
@@ -499,7 +602,7 @@ export const HeroSection: React.FC = () => {
                 </div>
                 <div>
                   <div className="text-xs font-black text-white">In-House Studio</div>
-                  <div className="text-[11px] text-slate-300 font-medium">Ranchi & Noida production</div>
+                  <div className="text-[11px] text-slate-300 font-medium">Ranchi Studio production</div>
                 </div>
               </div>
 

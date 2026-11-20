@@ -1,4 +1,5 @@
 import { HeroSection } from "@/components/home/HeroSection";
+import { BrandTrustMarquee } from "@/components/home/BrandTrustMarquee";
 import { CategoryGrid } from "@/components/home/CategoryGrid";
 import { FeaturedProducts } from "@/components/home/FeaturedProducts";
 import { WorkshopGallery } from "@/components/home/WorkshopGallery";
@@ -8,12 +9,19 @@ import { WhyChooseUs } from "@/components/home/WhyChooseUs";
 import { HowItWorks } from "@/components/home/HowItWorks";
 import { EnterpriseInquirySection } from "@/components/home/EnterpriseInquirySection";
 import { FAQSection } from "@/components/home/FAQSection";
+import { ScrollProgressBar } from "@/components/ui/ScrollProgressBar";
 
 export default function Home() {
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen relative">
+      {/* GSAP Scroll Progress Bar */}
+      <ScrollProgressBar />
+
       {/* 1. Hero Section: Panoramic Studio Bento Showcase with Live Keepsake Switcher */}
       <HeroSection />
+
+      {/* 1.5. Infinite GSAP Brand Trust Marquee */}
+      <BrandTrustMarquee />
 
       {/* 2. Product Categories Bento Grid Showcase */}
       <CategoryGrid />

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -12,6 +12,7 @@ import {
   CheckCircle2,
   Camera,
 } from "lucide-react";
+import { gsap } from "@/lib/gsap";
 
 interface GalleryPhoto {
   id: string;
@@ -29,6 +30,42 @@ interface GalleryPhoto {
 export const WorkshopGallery: React.FC = () => {
   const [activeFilter, setActiveFilter] = useState<string>("all");
   const [selectedImage, setSelectedImage] = useState<GalleryPhoto | null>(null);
+  const sectionRef = useRef<HTMLElement>(null);
+  const gridRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        ".workshop-photo-card",
+        { opacity: 0, y: 35, scale: 0.96 },
+        {
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 80%",
+            once: true,
+          },
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          stagger: 0.04,
+          duration: 0.6,
+          ease: "power2.out",
+          clearProps: "all",
+        }
+      );
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
+  useEffect(() => {
+    if (!gridRef.current) return;
+    gsap.fromTo(
+      gridRef.current.children,
+      { opacity: 0, y: 15, scale: 0.97 },
+      { opacity: 1, y: 0, scale: 1, stagger: 0.03, duration: 0.35, ease: "power2.out", clearProps: "all" }
+    );
+  }, [activeFilter]);
 
   const photos: GalleryPhoto[] = [
     {
@@ -580,17 +617,17 @@ export const WorkshopGallery: React.FC = () => {
 
   return (
     <>
-      <section className="py-20 bg-slate-50/60 border-b border-slate-200/80 w-full max-w-full overflow-hidden">
+      <section ref={sectionRef} className="py-20 bg-slate-50/60 border-b border-slate-200/80 w-full max-w-full overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
           {/* Header */}
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
             <div>
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#1E1B4B] text-[#F95738] text-xs font-bold uppercase tracking-wider mb-2">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#0B0F19] text-[#FF4D36] text-xs font-bold uppercase tracking-wider mb-2">
                 <Camera className="w-3.5 h-3.5" />
                 <span>Real Customer Creations</span>
               </div>
-              <h2 className="text-3xl sm:text-4xl font-black text-[#1E1B4B] tracking-tight">
+              <h2 className="text-3xl sm:text-4xl font-black text-[#0B0F19] tracking-tight">
                 Fresh from Our Studio Workshop
               </h2>
               <p className="text-sm text-slate-500 mt-1 max-w-xl">
@@ -613,7 +650,7 @@ export const WorkshopGallery: React.FC = () => {
                   type="button"
                   onClick={() => setActiveFilter(tab.id)}
                   className={`px-3.5 py-1.5 rounded-xl text-xs font-bold whitespace-nowrap transition-all cursor-pointer ${activeFilter === tab.id
-                    ? "bg-[#1E1B4B] text-white shadow-xs"
+                    ? "bg-[#0B0F19] text-white shadow-xs"
                     : "bg-white text-slate-600 hover:bg-slate-200/80 border border-slate-200"
                     }`}
                 >
@@ -624,12 +661,12 @@ export const WorkshopGallery: React.FC = () => {
           </div>
 
           {/* Masonry / Responsive Photo Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div ref={gridRef} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredPhotos.map((photo) => (
               <div
                 key={photo.id}
                 onClick={() => setSelectedImage(photo)}
-                className="group relative rounded-3xl overflow-hidden bg-white border border-slate-200 shadow-sm hover:shadow-xl hover:border-slate-400 transition-all duration-300 flex flex-col cursor-pointer"
+                className="workshop-photo-card group relative rounded-3xl overflow-hidden bg-white border border-slate-200 shadow-sm hover:shadow-xl hover:border-slate-400 transition-all duration-300 flex flex-col cursor-pointer"
               >
                 {/* Photo Container */}
                 <div className="relative aspect-4/3 w-full overflow-hidden bg-slate-100">
@@ -646,10 +683,10 @@ export const WorkshopGallery: React.FC = () => {
 
                   {/* Top Badges */}
                   <div className="absolute top-3 left-3 flex items-center gap-1.5 z-10">
-                    <span className="px-2.5 py-1 rounded-full bg-white/95 backdrop-blur-md text-[#1E1B4B] text-[10px] font-extrabold shadow-sm">
+                    <span className="px-2.5 py-1 rounded-full bg-white/95 backdrop-blur-md text-[#0B0F19] text-[10px] font-extrabold shadow-sm">
                       {photo.categoryLabel}
                     </span>
-                    <span className="px-2 py-0.5 rounded-full bg-[#F95738] text-white text-[9px] font-black uppercase">
+                    <span className="px-2 py-0.5 rounded-full bg-[#FF4D36] text-white text-[9px] font-black uppercase">
                       {photo.tag}
                     </span>
                   </div>
@@ -663,7 +700,7 @@ export const WorkshopGallery: React.FC = () => {
                 {/* Bottom Meta */}
                 <div className="p-4 sm:p-5 flex-1 flex flex-col justify-between space-y-3 bg-white">
                   <div>
-                    <h3 className="text-base font-extrabold text-[#1E1B4B] group-hover:text-[#F95738] transition-colors leading-snug">
+                    <h3 className="text-base font-extrabold text-[#0B0F19] group-hover:text-[#FF4D36] transition-colors leading-snug">
                       {photo.title}
                     </h3>
                     <p className="text-xs text-slate-500 mt-1 line-clamp-2 leading-relaxed">
@@ -674,7 +711,7 @@ export const WorkshopGallery: React.FC = () => {
                   <div className="pt-3 border-t border-slate-100 flex items-center justify-between">
                     <div>
                       <span className="text-[10px] font-semibold text-slate-400 block">Pricing</span>
-                      <span className="text-xs font-black text-[#1E1B4B]">
+                      <span className="text-xs font-black text-[#0B0F19]">
                         {photo.priceNote}
                       </span>
                     </div>
@@ -682,7 +719,7 @@ export const WorkshopGallery: React.FC = () => {
                     <Link
                       href={photo.productLink}
                       onClick={(e) => e.stopPropagation()}
-                      className="px-3.5 py-1.5 bg-[#1E1B4B] hover:bg-[#F95738] text-white text-xs font-bold rounded-xl transition-colors flex items-center gap-1.5"
+                      className="px-3.5 py-1.5 bg-[#0B0F19] hover:bg-[#FF4D36] text-white text-xs font-bold rounded-xl transition-colors flex items-center gap-1.5"
                     >
                       <span>Customize</span>
                       <ArrowRight className="w-3.5 h-3.5" />
@@ -709,7 +746,7 @@ export const WorkshopGallery: React.FC = () => {
             {/* Close Button */}
             <button
               onClick={() => setSelectedImage(null)}
-              className="absolute top-3 right-3 sm:top-4 sm:right-4 z-30 w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-slate-900/80 hover:bg-[#F95738] text-white flex items-center justify-center backdrop-blur-md shadow-md transition-colors cursor-pointer"
+              className="absolute top-3 right-3 sm:top-4 sm:right-4 z-30 w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-slate-900/80 hover:bg-[#FF4D36] text-white flex items-center justify-center backdrop-blur-md shadow-md transition-colors cursor-pointer"
               aria-label="Close"
             >
               <X className="w-4 h-4 sm:w-5 sm:h-5" />
@@ -733,11 +770,11 @@ export const WorkshopGallery: React.FC = () => {
             {/* Right: Info, Price & Actions */}
             <div className="w-full md:w-1/2 p-5 sm:p-7 flex flex-col justify-between bg-white overflow-y-auto">
               <div className="space-y-3 sm:space-y-4">
-                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#F95738]/10 text-[#F95738] text-xs font-bold w-fit">
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FF4D36]/10 text-[#FF4D36] text-xs font-bold w-fit">
                   {selectedImage.categoryLabel}
                 </span>
 
-                <h3 className="text-lg sm:text-xl md:text-2xl font-black text-[#1E1B4B] tracking-tight leading-snug break-words">
+                <h3 className="text-lg sm:text-xl md:text-2xl font-black text-[#0B0F19] tracking-tight leading-snug break-words">
                   {selectedImage.title}
                 </h3>
 
@@ -749,7 +786,7 @@ export const WorkshopGallery: React.FC = () => {
                   <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">
                     Product Price
                   </div>
-                  <div className="text-lg sm:text-xl font-black text-[#1E1B4B]">
+                  <div className="text-lg sm:text-xl font-black text-[#0B0F19]">
                     {selectedImage.priceNote}
                   </div>
                   <div className="text-xs text-emerald-600 font-bold flex items-center gap-1.5 pt-0.5">
@@ -763,7 +800,7 @@ export const WorkshopGallery: React.FC = () => {
                 <Link
                   href={selectedImage.productLink}
                   onClick={() => setSelectedImage(null)}
-                  className="w-full px-4 py-3.5 bg-[#F95738] hover:bg-[#e04526] text-white text-xs sm:text-sm font-bold rounded-2xl shadow-lg transition-all flex items-center justify-center gap-2 text-center leading-normal active:scale-98 cursor-pointer group"
+                  className="w-full px-4 py-3.5 bg-[#FF4D36] hover:bg-[#e0351d] text-white text-xs sm:text-sm font-bold rounded-2xl shadow-lg transition-all flex items-center justify-center gap-2 text-center leading-normal active:scale-98 cursor-pointer group"
                 >
                   <span>Customize {selectedImage.productName}</span>
                   <ArrowRight className="w-4 h-4 shrink-0 group-hover:translate-x-0.5 transition-transform" />

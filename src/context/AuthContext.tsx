@@ -103,10 +103,10 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       company: "Malhotra Technologies Pvt. Ltd.",
       gstNumber: "07AAACM1234F1Z5",
       savedAddress: {
-        address: "Flat 402, Lotus Boulevard, Sector 100",
-        city: "Noida",
-        state: "Uttar Pradesh",
-        pincode: "201304",
+        address: "Main Road, Kanke Road",
+        city: "Ranchi",
+        state: "Jharkhand",
+        pincode: "834001",
       },
       joinedDate: "October 2026",
     };
