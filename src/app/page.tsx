@@ -1,4 +1,3 @@
-import { CategoryQuickRail } from "@/components/home/CategoryQuickRail";
 import { HeroSection } from "@/components/home/HeroSection";
 import { CategoryGrid } from "@/components/home/CategoryGrid";
 import { FeaturedProducts } from "@/components/home/FeaturedProducts";
@@ -13,37 +12,34 @@ import { FAQSection } from "@/components/home/FAQSection";
 export default function Home() {
   return (
     <div className="flex flex-col min-h-screen">
-      {/* 1. Quick Category Navigation Rail: Immediate visual entry to all product lines */}
-      <CategoryQuickRail />
-
-      {/* 2. Hero Section: Panoramic Studio Bento Showcase with Live Keepsake Switcher */}
+      {/* 1. Hero Section: Panoramic Studio Bento Showcase with Live Keepsake Switcher */}
       <HeroSection />
 
-      {/* 3. Product Categories Bento Grid Showcase */}
+      {/* 2. Product Categories Bento Grid Showcase */}
       <CategoryGrid />
 
-      {/* 4. Category Shelves & Curated Product Hubs */}
+      {/* 3. Category Shelves & Curated Product Hubs */}
       <FeaturedProducts />
 
-      {/* 5. Real Customer Workshop Gallery: Fresh from Our Studio Floor */}
+      {/* 4. Real Customer Workshop Gallery: Fresh from Our Studio Floor */}
       <WorkshopGallery />
 
-      {/* 6. Studio Production Reels: Craftsmanship in Motion */}
+      {/* 5. Studio Production Reels: Craftsmanship in Motion */}
       <StudioReelsSection />
 
-      {/* 7. Interactive Bulk Wholesale Savings Calculator */}
+      {/* 6. Interactive Bulk Wholesale Savings Calculator */}
       <VolumeDiscountCalculator />
 
-      {/* 8. Why Choose MyPrintHub: Factory Engineering & Technical Pillars */}
+      {/* 7. Why Choose MyPrintHub: Factory Engineering & Technical Pillars */}
       <WhyChooseUs />
 
-      {/* 9. Effortless 4-Step Production Process */}
+      {/* 8. Effortless 4-Step Production Process */}
       <HowItWorks />
 
-      {/* 10. Enterprise Custom Inquiry Support */}
+      {/* 9. Enterprise Custom Inquiry Support */}
       <EnterpriseInquirySection />
 
-      {/* 11. FAQ Accordion */}
+      {/* 10. FAQ Accordion */}
       <FAQSection />
     </div>
   );
