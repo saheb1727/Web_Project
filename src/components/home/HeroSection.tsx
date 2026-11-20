@@ -5,6 +5,9 @@ import Link from "next/link";
 import Image from "next/image";
 import {
   Play,
+  Pause,
+  Volume2,
+  VolumeX,
   ArrowRight,
   Building2,
   X,
@@ -13,9 +16,9 @@ import {
   Heart,
   Briefcase,
   Coffee,
-  ShieldCheck,
   Truck,
   MessageCircle,
+  Video,
 } from "lucide-react";
 import { gsap } from "@/lib/gsap";
 
@@ -35,7 +38,18 @@ interface KeepsakeItem {
 
 export const HeroSection: React.FC = () => {
   const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(true);
+  const [isMuted, setIsMuted] = useState(true);
+  const [activeReelIndex, setActiveReelIndex] = useState(0);
+
   const heroRef = useRef<HTMLElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  const availableReels = [
+    { src: "/videos/reel-2.mp4", label: "Laser & Magnetic Studio" },
+    { src: "/videos/reel-1.mp4", label: "1200 DPI UV Printing" },
+    { src: "/videos/reel-5.mp4", label: "Laser Rotary Engraving" },
+  ];
 
   // Curated keepsake spotlight items for the main hero card
   const keepsakeItems: KeepsakeItem[] = [
@@ -83,6 +97,27 @@ export const HeroSection: React.FC = () => {
   const [activeKeepsakeIndex, setActiveKeepsakeIndex] = useState(0);
   const currentKeepsake = keepsakeItems[activeKeepsakeIndex];
 
+  // Toggle video playback
+  const togglePlay = () => {
+    if (videoRef.current) {
+      if (isPlaying) {
+        videoRef.current.pause();
+        setIsPlaying(false);
+      } else {
+        videoRef.current.play();
+        setIsPlaying(true);
+      }
+    }
+  };
+
+  // Toggle video audio
+  const toggleMute = () => {
+    if (videoRef.current) {
+      videoRef.current.muted = !isMuted;
+      setIsMuted(!isMuted);
+    }
+  };
+
   useEffect(() => {
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({ defaults: { ease: "power2.out" } });
@@ -119,39 +154,68 @@ export const HeroSection: React.FC = () => {
     <>
       <section
         ref={heroRef}
-        className="relative bg-gradient-to-b from-slate-50 via-white to-slate-50/50 pt-8 pb-14 sm:pt-10 sm:pb-16 border-b border-slate-200/80 overflow-hidden"
+        className="relative min-h-[92vh] flex flex-col justify-between overflow-hidden bg-black text-white pt-10 pb-14 sm:pt-14 sm:pb-16 border-b border-white/10"
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+        {/* =========================================================================
+            1. FULL COVER BACKGROUND VIDEO
+            ========================================================================= */}
+        <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none select-none z-0">
+          <video
+            ref={videoRef}
+            key={availableReels[activeReelIndex].src}
+            src={availableReels[activeReelIndex].src}
+            autoPlay
+            loop
+            muted={isMuted}
+            playsInline
+            className="w-full h-full object-cover scale-102 transition-opacity duration-700"
+          />
 
+          {/* Cinematic Dark Vignette & Scrim for Pristine Text Legibility */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/85 via-black/70 to-black/95 z-10" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-transparent via-black/40 to-black/85 z-10" />
+        </div>
+
+        {/* Ambient Subtle Glow Orbs */}
+        <div className="absolute -top-32 -right-32 w-96 h-96 bg-[#FF4D36]/15 rounded-full blur-3xl pointer-events-none z-10" />
+        <div className="absolute top-1/2 -left-32 w-96 h-96 bg-[#6366F1]/15 rounded-full blur-3xl pointer-events-none z-10" />
+
+        {/* =========================================================================
+            2. FOREGROUND CONTENT & BENTO SHOWCASE (z-20)
+            ========================================================================= */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 relative z-20 w-full my-auto">
+          
           {/* Top Hero Header Block */}
           <div className="hero-header-block text-center max-w-3xl mx-auto space-y-4">
-
+            
             {/* Live Studio Status Pill */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-slate-200/90 text-xs font-semibold text-slate-700 shadow-2xs">
-              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-              <span className="font-bold text-[#1E1B4B]">In-House Studio Manufacturing</span>
-              <span className="text-slate-300">•</span>
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs font-semibold text-white shadow-lg">
+              <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse ring-4 ring-emerald-400/30" />
+              <span className="font-bold text-white">In-House Studio Manufacturing</span>
+              <span className="text-white/40">•</span>
               <span>Ranchi & Noida</span>
-              <span className="text-slate-300">•</span>
-              <span className="text-[#F95738] font-bold">24–48h Dispatch</span>
+              <span className="text-white/40">•</span>
+              <span className="text-[#FF4D36] font-bold">24–48h Dispatch</span>
             </div>
 
-            {/* Bold Headline */}
-            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black text-[#1E1B4B] tracking-tight leading-[1.08] break-words">
+            {/* Bold Grand Headline with Glowing Gradient */}
+            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-[1.08] break-words drop-shadow-md">
               Bespoke Custom Gifts & Merch.{" "}
-              <span className="text-[#F95738] block sm:inline">Made In Our Studio.</span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FF4D36] via-[#FF6E52] to-[#FFA07A] block sm:inline">
+                Handcrafted With Zero Minimums.
+              </span>
             </h1>
 
             {/* Subtitle */}
-            <p className="text-sm sm:text-base text-slate-600 font-medium leading-relaxed max-w-2xl mx-auto">
-              Order 1 unique personalized keepsake or 1,000 corporate welcome kits. Direct factory pricing, instant digital proofs, and zero minimum order quantity.
+            <p className="text-sm sm:text-base text-slate-200 font-medium leading-relaxed max-w-2xl mx-auto drop-shadow-sm">
+              Order 1 unique personalized keepsake or 1,000 corporate welcome kits. Direct in-house factory manufacturing, instant digital proofs, and Japanese 1,200 DPI precision.
             </p>
 
-            {/* CTAs Group */}
+            {/* CTAs & Video Controls Bar */}
             <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
               <Link
                 href="/products"
-                className="px-6 py-3.5 bg-[#F95738] hover:bg-[#e04526] text-white text-xs sm:text-sm font-bold rounded-2xl shadow-lg transition-all flex items-center justify-center gap-2 group cursor-pointer active:scale-98"
+                className="px-6 py-3.5 bg-gradient-to-r from-[#FF4D36] to-[#FF6B4A] hover:from-[#E0351D] hover:to-[#FF4D36] text-white text-xs sm:text-sm font-black rounded-2xl shadow-xl shadow-[#FF4D36]/30 hover:shadow-2xl hover:shadow-[#FF4D36]/40 transition-all flex items-center justify-center gap-2 group cursor-pointer active:scale-98"
               >
                 <span>Explore All 56 Products</span>
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -159,59 +223,99 @@ export const HeroSection: React.FC = () => {
 
               <Link
                 href="/contact"
-                className="px-5 py-3.5 bg-white hover:bg-slate-50 text-[#1E1B4B] text-xs sm:text-sm font-bold rounded-2xl border border-slate-200 shadow-2xs transition-all flex items-center justify-center gap-2 cursor-pointer active:scale-98"
+                className="px-5 py-3.5 bg-white/10 hover:bg-white/20 text-white text-xs sm:text-sm font-bold rounded-2xl border border-white/20 backdrop-blur-md shadow-xs transition-all flex items-center justify-center gap-2 cursor-pointer active:scale-98"
               >
-                <MessageCircle className="w-4 h-4 text-emerald-600" />
+                <MessageCircle className="w-4 h-4 text-emerald-400" />
                 <span>Custom Bulk Inquiry</span>
               </Link>
 
-              <button
-                type="button"
-                onClick={() => setIsVideoModalOpen(true)}
-                className="px-4 py-3.5 bg-white hover:bg-slate-50 text-slate-700 text-xs sm:text-sm font-bold rounded-2xl border border-slate-200 shadow-2xs transition-all flex items-center justify-center gap-2 cursor-pointer active:scale-98"
-              >
-                <div className="w-5 h-5 rounded-full bg-[#1E1B4B] text-white flex items-center justify-center shrink-0">
-                  <Play className="w-2.5 h-2.5 fill-white ml-0.5" />
+              {/* Cover Video Controls (Audio Toggle & Play/Pause) */}
+              <div className="flex items-center gap-1.5 bg-white/10 backdrop-blur-md border border-white/20 p-1 rounded-2xl">
+                <button
+                  type="button"
+                  onClick={togglePlay}
+                  className="p-2 rounded-xl hover:bg-white/20 text-white transition-colors cursor-pointer flex items-center gap-1.5 text-xs font-bold"
+                  title={isPlaying ? "Pause Background Video" : "Play Background Video"}
+                >
+                  {isPlaying ? (
+                    <Pause className="w-3.5 h-3.5" />
+                  ) : (
+                    <Play className="w-3.5 h-3.5 fill-white" />
+                  )}
+                  <span className="hidden sm:inline text-[11px]">{isPlaying ? "Pause" : "Play"}</span>
+                </button>
+
+                <button
+                  type="button"
+                  onClick={toggleMute}
+                  className="p-2 rounded-xl hover:bg-white/20 text-white transition-colors cursor-pointer flex items-center gap-1.5 text-xs font-bold"
+                  title={isMuted ? "Unmute Background Sound" : "Mute Background Sound"}
+                >
+                  {isMuted ? (
+                    <VolumeX className="w-3.5 h-3.5 text-slate-300" />
+                  ) : (
+                    <Volume2 className="w-3.5 h-3.5 text-emerald-400" />
+                  )}
+                  <span className="hidden sm:inline text-[11px]">{isMuted ? "Sound Off" : "Sound On"}</span>
+                </button>
+
+                {/* Video Scene Switcher */}
+                <div className="hidden md:flex items-center gap-1 border-l border-white/15 pl-1.5">
+                  {availableReels.map((reel, idx) => (
+                    <button
+                      key={reel.src}
+                      type="button"
+                      onClick={() => setActiveReelIndex(idx)}
+                      className={`px-2 py-1 rounded-lg text-[10px] font-bold transition-all cursor-pointer ${
+                        activeReelIndex === idx
+                          ? "bg-[#FF4D36] text-white shadow-xs"
+                          : "text-slate-300 hover:text-white hover:bg-white/10"
+                      }`}
+                      title={reel.label}
+                    >
+                      Scene {idx + 1}
+                    </button>
+                  ))}
                 </div>
-                <span>Studio Tour (1 min)</span>
-              </button>
+              </div>
             </div>
 
           </div>
 
-          {/* Panoramic Bento Grid Showcase (3 Real Products Simultaneously) */}
+          {/* Panoramic Glassmorphism Bento Grid Showcase Floating Over Video */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
-
-            {/* Bento Card 1: Featured Personalized Keepsakes (7 Cols on LG) */}
-            <div className="hero-bento-card-main lg:col-span-7 bg-white rounded-3xl border border-slate-200 shadow-xl p-5 sm:p-6 flex flex-col justify-between">
-
+            
+            {/* Bento Card 1: Curated Keepsakes Stage (7 Cols on LG) */}
+            <div className="hero-bento-card-main lg:col-span-7 bg-white/10 backdrop-blur-xl rounded-3xl border border-white/20 shadow-2xl p-5 sm:p-6 flex flex-col justify-between text-white">
+              
               {/* Card Header with Interactive Tab Switcher */}
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-slate-100">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-white/15">
                 <div className="flex items-center gap-2">
-                  <div className="w-7 h-7 rounded-lg bg-[#F95738]/10 text-[#F95738] flex items-center justify-center">
-                    <Heart className="w-4 h-4" />
+                  <div className="w-7 h-7 rounded-lg bg-[#FF4D36]/20 text-[#FF4D36] flex items-center justify-center">
+                    <Heart className="w-4 h-4 fill-[#FF4D36]" />
                   </div>
                   <div>
-                    <span className="text-[10px] font-black uppercase tracking-wider text-slate-400 block">
+                    <span className="text-[10px] font-black uppercase tracking-wider text-slate-300 block">
                       Curated Keepsakes
                     </span>
-                    <span className="text-sm font-black text-[#1E1B4B]">
+                    <span className="text-sm font-black text-white">
                       Anniversary, Couples & Family
                     </span>
                   </div>
                 </div>
 
                 {/* Interactive Keepsake Switcher Tabs */}
-                <div className="flex items-center gap-1 bg-slate-100 p-1 rounded-xl overflow-x-auto scrollbar-none">
+                <div className="flex items-center gap-1 bg-black/40 p-1 rounded-xl overflow-x-auto scrollbar-none border border-white/10">
                   {keepsakeItems.map((item, idx) => (
                     <button
                       key={item.id}
                       type="button"
                       onClick={() => setActiveKeepsakeIndex(idx)}
-                      className={`px-2.5 py-1.5 rounded-lg text-xs font-bold whitespace-nowrap transition-all cursor-pointer ${activeKeepsakeIndex === idx
-                        ? "bg-white text-[#1E1B4B] shadow-xs"
-                        : "text-slate-600 hover:text-slate-900"
-                        }`}
+                      className={`px-2.5 py-1.5 rounded-lg text-xs font-bold whitespace-nowrap transition-all cursor-pointer ${
+                        activeKeepsakeIndex === idx
+                          ? "bg-[#FF4D36] text-white shadow-xs"
+                          : "text-slate-300 hover:text-white hover:bg-white/10"
+                      }`}
                     >
                       {item.tabLabel}
                     </button>
@@ -220,7 +324,7 @@ export const HeroSection: React.FC = () => {
               </div>
 
               {/* Viewport for Active Keepsake */}
-              <div className="relative aspect-16/10 w-full rounded-2xl overflow-hidden bg-slate-100 my-4 border border-slate-200/80 group">
+              <div className="relative aspect-16/10 w-full rounded-2xl overflow-hidden bg-black/50 my-4 border border-white/15 group">
                 <Image
                   key={currentKeepsake.id}
                   src={currentKeepsake.image}
@@ -233,33 +337,33 @@ export const HeroSection: React.FC = () => {
 
                 {/* Floating Badges */}
                 <div className="absolute top-3 left-3 flex items-center gap-2">
-                  <span className="px-2.5 py-1 rounded-lg bg-[#1E1B4B]/95 text-white text-[10px] font-bold backdrop-blur-md shadow-sm">
+                  <span className="px-2.5 py-1 rounded-lg bg-black/80 text-white text-[10px] font-bold backdrop-blur-md shadow-sm border border-white/10">
                     {currentKeepsake.tag}
                   </span>
-                  <span className="px-2.5 py-1 rounded-lg bg-white/95 text-slate-800 text-[10px] font-bold backdrop-blur-md shadow-sm">
+                  <span className="px-2.5 py-1 rounded-lg bg-[#FF4D36] text-white text-[10px] font-bold shadow-sm">
                     {currentKeepsake.badge}
                   </span>
                 </div>
 
-                <div className="absolute bottom-3 right-3 bg-white/95 backdrop-blur-md px-2.5 py-1 rounded-lg text-[10px] font-bold text-slate-700 shadow-sm">
+                <div className="absolute bottom-3 right-3 bg-black/80 backdrop-blur-md px-2.5 py-1 rounded-lg text-[10px] font-bold text-white shadow-sm border border-white/10">
                   {currentKeepsake.specs}
                 </div>
               </div>
 
               {/* Keepsake Footer & Direct Action */}
-              <div className="pt-2 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+              <div className="pt-2 flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-t border-white/15">
                 <div>
-                  <h3 className="text-base font-extrabold text-[#1E1B4B]">
+                  <h3 className="text-base font-extrabold text-white">
                     {currentKeepsake.title}
                   </h3>
-                  <p className="text-xs font-bold text-[#F95738] mt-0.5">
+                  <p className="text-xs font-bold text-[#FF4D36] mt-0.5">
                     {currentKeepsake.priceNote}
                   </p>
                 </div>
 
                 <Link
                   href={currentKeepsake.href}
-                  className="inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-[#1E1B4B] hover:bg-[#F95738] text-white text-xs font-bold rounded-xl shadow-xs transition-colors shrink-0 group/btn"
+                  className="inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-[#FF4D36] hover:bg-[#E0351D] text-white text-xs font-bold rounded-xl shadow-lg shadow-[#FF4D36]/25 transition-all shrink-0 group/btn"
                 >
                   <span>Customize Now</span>
                   <ArrowRight className="w-3.5 h-3.5 group-hover/btn:translate-x-0.5 transition-transform" />
@@ -270,14 +374,14 @@ export const HeroSection: React.FC = () => {
 
             {/* Right Column: 2 Secondary Bento Cards (5 Cols on LG) */}
             <div className="lg:col-span-5 flex flex-col gap-6 justify-between">
-
-              {/* Bento Card 2: Corporate & VIP Wellness Hamper (Dark Luxury Theme) */}
+              
+              {/* Bento Card 2: Corporate & VIP Wellness Hamper (Frosted Dark Glass) */}
               <Link
                 href="/products/prod-hamper-oneplus-buddha"
-                className="hero-bento-card-secondary group relative rounded-3xl overflow-hidden bg-gradient-to-br from-slate-900 via-[#1E1B4B] to-[#110E38] text-white p-5 sm:p-6 shadow-xl hover:shadow-2xl transition-all duration-300 flex-1 flex flex-col justify-between border border-slate-800"
+                className="hero-bento-card-secondary group relative rounded-3xl overflow-hidden bg-white/10 backdrop-blur-xl text-white p-5 sm:p-6 shadow-2xl hover:bg-white/15 transition-all duration-300 flex-1 flex flex-col justify-between border border-white/20"
               >
                 {/* Background Image Accent */}
-                <div className="absolute top-0 right-0 w-1/2 h-full overflow-hidden opacity-35 group-hover:opacity-45 transition-opacity pointer-events-none">
+                <div className="absolute top-0 right-0 w-1/2 h-full overflow-hidden opacity-40 group-hover:opacity-55 transition-opacity pointer-events-none">
                   <Image
                     src="/images/products/corporate-oneplus-buddha-hamper.jpg"
                     alt="OnePlus Buddha Wellness Hamper"
@@ -285,44 +389,44 @@ export const HeroSection: React.FC = () => {
                     sizes="300px"
                     className="object-cover group-hover:scale-105 transition-transform duration-700"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-r from-slate-900 via-slate-900/80 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-transparent" />
                 </div>
 
                 <div className="relative z-10 space-y-2 max-w-xs">
-                  <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#F95738] text-white text-[10px] font-black uppercase tracking-wider shadow-sm">
+                  <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#FF4D36] text-white text-[10px] font-black uppercase tracking-wider shadow-sm">
                     <Briefcase className="w-3 h-3" />
                     <span>VIP Corporate Hamper</span>
                   </div>
 
-                  <h3 className="text-lg font-black text-white group-hover:text-[#F95738] transition-colors leading-tight">
+                  <h3 className="text-lg font-black text-white group-hover:text-[#FF4D36] transition-colors leading-tight">
                     OnePlus Buddha Corporate Wellness Hamper
                   </h3>
 
-                  <p className="text-xs text-slate-300 leading-relaxed line-clamp-2">
+                  <p className="text-xs text-slate-200 leading-relaxed line-clamp-2">
                     500ml vacuum bottle with meditating Buddha idol & tea lights in a designer geometric gift box.
                   </p>
                 </div>
 
-                <div className="relative z-10 pt-4 border-t border-white/10 flex items-center justify-between">
+                <div className="relative z-10 pt-4 border-t border-white/15 flex items-center justify-between">
                   <div>
-                    <span className="text-[11px] text-slate-400 block font-medium">Boxed Gift Set</span>
-                    <span className="text-sm font-black text-white">₹899 <span className="text-xs text-slate-400 font-normal">• Zero MOQ</span></span>
+                    <span className="text-[11px] text-slate-300 block font-medium">Boxed Gift Set</span>
+                    <span className="text-sm font-black text-white">₹899 <span className="text-xs text-slate-300 font-normal">• Zero MOQ</span></span>
                   </div>
 
-                  <span className="inline-flex items-center gap-1 text-xs font-bold text-[#F95738] group-hover:translate-x-1 transition-transform">
+                  <span className="inline-flex items-center gap-1 text-xs font-bold text-[#FF4D36] group-hover:translate-x-1 transition-transform">
                     <span>Order Hamper</span>
                     <ArrowRight className="w-3.5 h-3.5" />
                   </span>
                 </div>
               </Link>
 
-              {/* Bento Card 3: SG 21 Travel Drinkware Gift Set (Clean Crisp Theme) */}
+              {/* Bento Card 3: SG 21 Travel Drinkware Gift Set (Frosted Glass) */}
               <Link
                 href="/products/prod-kit-vacuum-flask-cups"
-                className="hero-bento-card-secondary group relative rounded-3xl overflow-hidden bg-white text-[#1E1B4B] p-5 sm:p-6 shadow-xl hover:shadow-2xl transition-all duration-300 flex-1 flex flex-col justify-between border border-slate-200"
+                className="hero-bento-card-secondary group relative rounded-3xl overflow-hidden bg-white/10 backdrop-blur-xl text-white p-5 sm:p-6 shadow-2xl hover:bg-white/15 transition-all duration-300 flex-1 flex flex-col justify-between border border-white/20"
               >
                 {/* Background Image Accent */}
-                <div className="absolute top-0 right-0 w-1/2 h-full overflow-hidden opacity-30 group-hover:opacity-40 transition-opacity pointer-events-none">
+                <div className="absolute top-0 right-0 w-1/2 h-full overflow-hidden opacity-40 group-hover:opacity-55 transition-opacity pointer-events-none">
                   <Image
                     src="/images/products/vacuum-flask-cup-gift-set.jpg"
                     alt="SG 21 Vacuum Flask Set"
@@ -330,31 +434,31 @@ export const HeroSection: React.FC = () => {
                     sizes="300px"
                     className="object-cover group-hover:scale-105 transition-transform duration-700"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-r from-white via-white/80 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-transparent" />
                 </div>
 
                 <div className="relative z-10 space-y-2 max-w-xs">
-                  <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-slate-100 text-[#1E1B4B] text-[10px] font-black uppercase tracking-wider border border-slate-200 shadow-2xs">
-                    <Coffee className="w-3 h-3 text-[#F95738]" />
+                  <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/20 text-white text-[10px] font-black uppercase tracking-wider border border-white/20 shadow-2xs">
+                    <Coffee className="w-3 h-3 text-[#FF4D36]" />
                     <span>Travel Drinkware</span>
                   </div>
 
-                  <h3 className="text-lg font-black text-[#1E1B4B] group-hover:text-[#F95738] transition-colors leading-tight">
+                  <h3 className="text-lg font-black text-white group-hover:text-[#FF4D36] transition-colors leading-tight">
                     Executive 3-Piece Thermal Flask & Cups Set
                   </h3>
 
-                  <p className="text-xs text-slate-600 leading-relaxed line-clamp-2">
+                  <p className="text-xs text-slate-200 leading-relaxed line-clamp-2">
                     500ml double-wall steel vacuum flask with 2 matching insulated steel handle cups.
                   </p>
                 </div>
 
-                <div className="relative z-10 pt-4 border-t border-slate-100 flex items-center justify-between">
+                <div className="relative z-10 pt-4 border-t border-white/15 flex items-center justify-between">
                   <div>
-                    <span className="text-[11px] text-slate-500 block font-medium">12h Hot / 24h Cold</span>
-                    <span className="text-sm font-black text-[#1E1B4B]">₹499 <span className="text-xs text-slate-500 font-normal">• 6 Colors</span></span>
+                    <span className="text-[11px] text-slate-300 block font-medium">12h Hot / 24h Cold</span>
+                    <span className="text-sm font-black text-white">₹499 <span className="text-xs text-slate-300 font-normal">• 6 Colors</span></span>
                   </div>
 
-                  <span className="inline-flex items-center gap-1 text-xs font-bold text-[#F95738] group-hover:translate-x-1 transition-transform">
+                  <span className="inline-flex items-center gap-1 text-xs font-bold text-[#FF4D36] group-hover:translate-x-1 transition-transform">
                     <span>View Flask Set</span>
                     <ArrowRight className="w-3.5 h-3.5" />
                   </span>
@@ -365,47 +469,47 @@ export const HeroSection: React.FC = () => {
 
           </div>
 
-          {/* Bottom Hero Studio Guarantee Bar (4 Clean Pillars) */}
+          {/* Bottom Hero Studio Guarantee Bar (4 Frosted Glass Pillars) */}
           <div className="hero-guarantee-bar pt-4">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-
-              <div className="p-3.5 rounded-2xl bg-white border border-slate-200/80 shadow-2xs flex items-center gap-3">
-                <div className="w-9 h-9 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0">
+              
+              <div className="p-3.5 rounded-2xl bg-white/10 backdrop-blur-md border border-white/15 shadow-lg flex items-center gap-3">
+                <div className="w-9 h-9 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center shrink-0 border border-emerald-500/30">
                   <CheckCircle2 className="w-5 h-5" />
                 </div>
                 <div>
-                  <div className="text-xs font-black text-[#1E1B4B]">Zero Minimum MOQ</div>
-                  <div className="text-[11px] text-slate-500 font-medium">Order 1 or 1,000 units</div>
+                  <div className="text-xs font-black text-white">Zero Minimum MOQ</div>
+                  <div className="text-[11px] text-slate-300 font-medium">Order 1 or 1,000 units</div>
                 </div>
               </div>
 
-              <div className="p-3.5 rounded-2xl bg-white border border-slate-200/80 shadow-2xs flex items-center gap-3">
-                <div className="w-9 h-9 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center shrink-0">
+              <div className="p-3.5 rounded-2xl bg-white/10 backdrop-blur-md border border-white/15 shadow-lg flex items-center gap-3">
+                <div className="w-9 h-9 rounded-xl bg-amber-500/20 text-amber-300 flex items-center justify-center shrink-0 border border-amber-500/30">
                   <Sparkles className="w-5 h-5" />
                 </div>
                 <div>
-                  <div className="text-xs font-black text-[#1E1B4B]">Free Digital Proof</div>
-                  <div className="text-[11px] text-slate-500 font-medium">Mockup approved before print</div>
+                  <div className="text-xs font-black text-white">Free Digital Proof</div>
+                  <div className="text-[11px] text-slate-300 font-medium">Mockup approved before print</div>
                 </div>
               </div>
 
-              <div className="p-3.5 rounded-2xl bg-white border border-slate-200/80 shadow-2xs flex items-center gap-3">
-                <div className="w-9 h-9 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center shrink-0">
+              <div className="p-3.5 rounded-2xl bg-white/10 backdrop-blur-md border border-white/15 shadow-lg flex items-center gap-3">
+                <div className="w-9 h-9 rounded-xl bg-indigo-500/20 text-indigo-300 flex items-center justify-center shrink-0 border border-indigo-500/30">
                   <Building2 className="w-5 h-5" />
                 </div>
                 <div>
-                  <div className="text-xs font-black text-[#1E1B4B]">In-House Manufacturing</div>
-                  <div className="text-[11px] text-slate-500 font-medium">Ranchi & Noida studio labs</div>
+                  <div className="text-xs font-black text-white">In-House Studio</div>
+                  <div className="text-[11px] text-slate-300 font-medium">Ranchi & Noida production</div>
                 </div>
               </div>
 
-              <div className="p-3.5 rounded-2xl bg-white border border-slate-200/80 shadow-2xs flex items-center gap-3">
-                <div className="w-9 h-9 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center shrink-0">
+              <div className="p-3.5 rounded-2xl bg-white/10 backdrop-blur-md border border-white/15 shadow-lg flex items-center gap-3">
+                <div className="w-9 h-9 rounded-xl bg-[#FF4D36]/20 text-[#FF4D36] flex items-center justify-center shrink-0 border border-[#FF4D36]/30">
                   <Truck className="w-5 h-5" />
                 </div>
                 <div>
-                  <div className="text-xs font-black text-[#1E1B4B]">24–48h Dispatch</div>
-                  <div className="text-[11px] text-slate-500 font-medium">Express padded shipping</div>
+                  <div className="text-xs font-black text-white">24–48h Dispatch</div>
+                  <div className="text-[11px] text-slate-300 font-medium">Express padded shipping</div>
                 </div>
               </div>
 
@@ -417,12 +521,12 @@ export const HeroSection: React.FC = () => {
 
       {/* Video Tour Modal */}
       {isVideoModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-xs animate-in fade-in duration-200">
-          <div className="relative w-full max-w-2xl bg-[#1E1B4B] rounded-3xl overflow-hidden shadow-2xl border border-slate-700">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md animate-in fade-in duration-200">
+          <div className="relative w-full max-w-2xl bg-[#0B0F19] rounded-3xl overflow-hidden shadow-2xl border border-slate-800">
             <div className="p-4 border-b border-white/10 flex items-center justify-between text-white">
               <div className="flex items-center gap-2">
-                <Building2 className="w-4 h-4 text-[#F95738]" />
-                <span className="font-bold text-sm">Inside MyPrintHub Factory Floor • Noida NCR</span>
+                <Building2 className="w-4 h-4 text-[#FF4D36]" />
+                <span className="font-bold text-sm">Inside MyPrintHub Factory Studio • Ranchi Lab</span>
               </div>
               <button
                 onClick={() => setIsVideoModalOpen(false)}
@@ -449,22 +553,22 @@ export const HeroSection: React.FC = () => {
 
               <div className="grid grid-cols-3 gap-3 text-xs text-left">
                 <div className="p-2.5 rounded-xl bg-white/5 border border-white/10">
-                  <div className="text-[#F95738] font-bold">UV DTF Printers</div>
+                  <div className="text-[#FF4D36] font-bold">UV DTF Printers</div>
                   <div className="text-[11px] text-slate-300 mt-0.5">Mimaki Japanese 1200 DPI</div>
                 </div>
                 <div className="p-2.5 rounded-xl bg-white/5 border border-white/10">
-                  <div className="text-[#F95738] font-bold">Laser Engravers</div>
+                  <div className="text-[#FF4D36] font-bold">Laser Engravers</div>
                   <div className="text-[11px] text-slate-300 mt-0.5">Fiber laser rotary units</div>
                 </div>
                 <div className="p-2.5 rounded-xl bg-white/5 border border-white/10">
-                  <div className="text-[#F95738] font-bold">Daily Output</div>
-                  <div className="text-[11px] text-slate-300 mt-0.5">In-house quality check</div>
+                  <div className="text-[#FF4D36] font-bold">Quality Check</div>
+                  <div className="text-[11px] text-slate-300 mt-0.5">100% manual inspection</div>
                 </div>
               </div>
 
               <button
                 onClick={() => setIsVideoModalOpen(false)}
-                className="mt-2 px-6 py-2.5 bg-[#F95738] text-white text-xs font-bold rounded-xl hover:opacity-90 transition-opacity cursor-pointer"
+                className="mt-2 px-6 py-2.5 bg-gradient-to-r from-[#FF4D36] to-[#FF6B4A] text-white text-xs font-bold rounded-xl hover:opacity-90 transition-opacity cursor-pointer shadow-md"
               >
                 Close Video Preview
               </button>
