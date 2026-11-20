@@ -15,6 +15,7 @@ import {
   ChevronRight,
   ShieldCheck,
   Video,
+  MoveRight,
 } from "lucide-react";
 import { gsap } from "@/lib/gsap";
 
@@ -245,6 +246,10 @@ export const StudioReelsSection: React.FC = () => {
             </div>
 
             <div className="flex items-center gap-2 text-xs font-bold text-slate-500">
+              <span className="sm:hidden text-[11px] font-bold text-slate-500 flex items-center gap-1.5 bg-slate-100 px-2.5 py-1 rounded-full">
+                <span>Swipe reels</span>
+                <MoveRight className="w-3.5 h-3.5 text-[#FF4D36] animate-pulse" />
+              </span>
               <span className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200/70">
                 <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
                 <span>6 Production Reels</span>
@@ -252,8 +257,8 @@ export const StudioReelsSection: React.FC = () => {
             </div>
           </div>
 
-          {/* Video Reels Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {/* Video Reels: Horizontal Swipeable on Mobile, 3-Col Grid on Desktop */}
+          <div className="flex sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 overflow-x-auto sm:overflow-visible snap-x snap-mandatory pb-3 sm:pb-0 scrollbar-none -mx-4 px-4 sm:mx-0 sm:px-0">
             {reels.map((reel, idx) => {
               const isMuted = mutedStates[reel.id] ?? true;
               const isPlaying = playingStates[reel.id] ?? true;
@@ -262,7 +267,7 @@ export const StudioReelsSection: React.FC = () => {
                 <div
                   key={reel.id}
                   onClick={() => setActiveModalIndex(idx)}
-                  className="studio-reel-card group relative rounded-3xl overflow-hidden bg-slate-900 border border-slate-200 shadow-md hover:shadow-2xl transition-all duration-300 cursor-pointer flex flex-col aspect-9/14 sm:aspect-9/13"
+                  className="studio-reel-card group relative rounded-3xl overflow-hidden bg-slate-900 border border-slate-200 shadow-md hover:shadow-2xl transition-all duration-300 cursor-pointer flex flex-col aspect-9/14 sm:aspect-9/13 w-[250px] sm:w-auto shrink-0 snap-center"
                 >
                   {/* Video Player */}
                   <video

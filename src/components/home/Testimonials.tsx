@@ -52,11 +52,11 @@ export const Testimonials: React.FC = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="flex md:grid md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 overflow-x-auto md:overflow-visible snap-x snap-mandatory pb-3 md:pb-0 scrollbar-none -mx-4 px-4 sm:mx-0 sm:px-0">
           {testimonials.map((t) => (
             <div
               key={t.id}
-              className="testimonial-card bg-white rounded-3xl p-6 border border-slate-200/80 shadow-xs hover:shadow-xl hover:border-slate-400 transition-all duration-300 flex flex-col justify-between"
+              className="testimonial-card bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-6 border border-slate-200/80 shadow-xs hover:shadow-xl hover:border-slate-400 transition-all duration-300 flex flex-col justify-between w-[280px] sm:w-[320px] md:w-auto shrink-0 snap-center"
             >
               <div>
                 {/* Rating stars & Quote Icon */}

@@ -195,15 +195,15 @@ export const FeaturedProducts: React.FC = () => {
             {/* Category Header Banner */}
             <div className="bg-white rounded-2xl p-5 border border-slate-200/80 mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4 shadow-2xs">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-[#1E1B4B] text-[#F95738] flex items-center justify-center shrink-0">
+                <div className="w-10 h-10 rounded-xl bg-[#0B0F19] text-[#FF4D36] flex items-center justify-center shrink-0">
                   <activeCategory.icon className="w-5 h-5" />
                 </div>
                 <div>
                   <div className="flex items-center gap-2">
-                    <h3 className="text-lg sm:text-xl font-black text-[#1E1B4B]">
+                    <h3 className="text-lg sm:text-xl font-black text-[#0B0F19]">
                       {activeCategory.name}
                     </h3>
-                    <span className="px-2 py-0.5 rounded-full bg-[#F95738]/10 text-[#F95738] text-[10px] font-bold">
+                    <span className="px-2 py-0.5 rounded-full bg-[#FF4D36]/10 text-[#FF4D36] text-[10px] font-bold">
                       {activeCategory.badge}
                     </span>
                   </div>
@@ -219,7 +219,7 @@ export const FeaturedProducts: React.FC = () => {
                 </span>
                 <Link
                   href={`/category/${activeCategory.slug}`}
-                  className="px-3.5 py-1.5 bg-[#F95738] hover:bg-[#e04526] text-white text-xs font-bold rounded-xl transition-colors flex items-center gap-1.5"
+                  className="px-3.5 py-1.5 bg-[#FF4D36] hover:bg-[#e0351d] text-white text-xs font-bold rounded-xl transition-colors flex items-center gap-1.5"
                 >
                   <span>Category Page</span>
                   <ArrowRight className="w-3.5 h-3.5" />
@@ -227,8 +227,8 @@ export const FeaturedProducts: React.FC = () => {
               </div>
             </div>
 
-            {/* Grid of All Products in Category */}
-            <div ref={gridRef} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {/* Grid of All Products in Category (2 Columns on Mobile) */}
+            <div ref={gridRef} className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
               {filteredProducts.map((product) => (
                 <div key={product.id} className="featured-product-card">
                   <ProductCard product={product} />
@@ -240,20 +240,20 @@ export const FeaturedProducts: React.FC = () => {
 
         {/* View 2: When "All Categories" is selected, display products organized Category-by-Category in Shelves */}
         {activeTab === "all" && (
-          <div className="space-y-12">
+          <div className="space-y-10 sm:space-y-12">
             {categorySections.map((sec) => {
               const Icon = sec.icon;
               return (
-                <div key={sec.slug} className="space-y-5">
+                <div key={sec.slug} className="space-y-4 sm:space-y-5">
                   {/* Category Shelf Header */}
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-3 border-b border-slate-200/90 gap-2">
                     <div className="flex items-center gap-2.5">
-                      <div className="w-8 h-8 rounded-xl bg-[#1E1B4B] text-[#F95738] flex items-center justify-center shrink-0 shadow-2xs">
+                      <div className="w-8 h-8 rounded-xl bg-[#0B0F19] text-[#FF4D36] flex items-center justify-center shrink-0 shadow-2xs">
                         <Icon className="w-4 h-4" />
                       </div>
                       <div>
                         <div className="flex items-center gap-2">
-                          <h3 className="text-lg sm:text-xl font-black text-[#1E1B4B] tracking-tight">
+                          <h3 className="text-base sm:text-xl font-black text-[#0B0F19] tracking-tight">
                             {sec.name}
                           </h3>
                           <span className="hidden sm:inline-block px-2 py-0.5 rounded-full bg-slate-100 text-slate-600 text-[10px] font-bold">
@@ -270,7 +270,7 @@ export const FeaturedProducts: React.FC = () => {
                       <button
                         type="button"
                         onClick={() => setActiveTab(sec.slug)}
-                        className="text-xs font-bold text-[#F95738] hover:text-[#d84024] flex items-center gap-1 cursor-pointer transition-colors"
+                        className="text-xs font-bold text-[#FF4D36] hover:text-[#d84024] flex items-center gap-1 cursor-pointer transition-colors"
                       >
                         <span>View All ({sec.products.length})</span>
                         <ArrowRight className="w-3.5 h-3.5" />
@@ -278,8 +278,8 @@ export const FeaturedProducts: React.FC = () => {
                     </div>
                   </div>
 
-                  {/* 4-Item Preview Grid */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                  {/* 4-Item Preview Grid (2 Columns on Mobile) */}
+                  <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
                     {sec.products.slice(0, 4).map((product) => (
                       <div key={product.id} className="featured-product-card">
                         <ProductCard product={product} />

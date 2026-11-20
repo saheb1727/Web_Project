@@ -74,33 +74,33 @@ export const HowItWorks: React.FC = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 relative">
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-3.5 sm:gap-8 relative">
           {steps.map((s, idx) => {
             const Icon = s.icon;
             return (
               <div
                 key={idx}
-                className="how-step-card relative bg-slate-50 rounded-3xl p-6 border border-slate-200/80 hover:border-slate-400 shadow-xs hover:shadow-xl transition-all duration-300 flex flex-col justify-between group"
+                className="how-step-card relative bg-slate-50 rounded-2xl sm:rounded-3xl p-4 sm:p-6 border border-slate-200/80 hover:border-slate-400 shadow-xs hover:shadow-xl transition-all duration-300 flex flex-col justify-between group"
               >
                 <div>
-                  <div className="flex items-center justify-between mb-6">
-                    <div className="w-14 h-14 rounded-2xl bg-[var(--color-primary)] text-[var(--color-accent)] flex items-center justify-center shadow-md group-hover:bg-[var(--color-accent)] group-hover:text-white transition-colors">
-                      <Icon className="w-7 h-7" />
+                  <div className="flex items-center justify-between mb-4 sm:mb-6">
+                    <div className="w-10 h-10 sm:w-14 sm:h-14 rounded-xl sm:rounded-2xl bg-[#0B0F19] text-[#FF4D36] flex items-center justify-center shadow-md group-hover:bg-[#FF4D36] group-hover:text-white transition-colors">
+                      <Icon className="w-5 h-5 sm:w-7 sm:h-7" />
                     </div>
-                    <span className="text-3xl font-black text-slate-300 group-hover:text-[var(--color-primary)] transition-colors">
+                    <span className="text-xl sm:text-3xl font-black text-slate-300 group-hover:text-[#0B0F19] transition-colors">
                       {s.step}
                     </span>
                   </div>
 
-                  <h3 className="text-lg font-bold text-[var(--color-primary)] mb-2">
+                  <h3 className="text-xs sm:text-lg font-bold text-[#0B0F19] mb-1 sm:mb-2">
                     {s.title}
                   </h3>
-                  <p className="text-xs text-slate-600 leading-relaxed">
+                  <p className="text-[11px] sm:text-xs text-slate-600 leading-relaxed">
                     {s.desc}
                   </p>
                 </div>
 
-                <div className="mt-6 pt-4 border-t border-slate-200/60 flex items-center text-xs font-bold text-[var(--color-accent)]">
+                <div className="mt-4 sm:mt-6 pt-3 sm:pt-4 border-t border-slate-200/60 flex items-center text-[10px] sm:text-xs font-bold text-[#FF4D36]">
                   <span>Step {s.step}</span>
                 </div>
               </div>

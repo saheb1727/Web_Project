@@ -30,6 +30,7 @@ interface GalleryPhoto {
 export const WorkshopGallery: React.FC = () => {
   const [activeFilter, setActiveFilter] = useState<string>("all");
   const [selectedImage, setSelectedImage] = useState<GalleryPhoto | null>(null);
+  const [showAllPhotos, setShowAllPhotos] = useState<boolean>(false);
   const sectionRef = useRef<HTMLElement>(null);
   const gridRef = useRef<HTMLDivElement>(null);
 
@@ -660,13 +661,13 @@ export const WorkshopGallery: React.FC = () => {
             </div>
           </div>
 
-          {/* Masonry / Responsive Photo Grid */}
-          <div ref={gridRef} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredPhotos.map((photo) => (
+          {/* Masonry / Responsive Photo Grid: 2-column compact on mobile, 3-column on desktop */}
+          <div ref={gridRef} className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">
+            {(showAllPhotos ? filteredPhotos : filteredPhotos.slice(0, 6)).map((photo) => (
               <div
                 key={photo.id}
                 onClick={() => setSelectedImage(photo)}
-                className="workshop-photo-card group relative rounded-3xl overflow-hidden bg-white border border-slate-200 shadow-sm hover:shadow-xl hover:border-slate-400 transition-all duration-300 flex flex-col cursor-pointer"
+                className="workshop-photo-card group relative rounded-2xl sm:rounded-3xl overflow-hidden bg-white border border-slate-200 shadow-sm hover:shadow-xl hover:border-slate-400 transition-all duration-300 flex flex-col cursor-pointer"
               >
                 {/* Photo Container */}
                 <div className="relative aspect-4/3 w-full overflow-hidden bg-slate-100">
@@ -674,7 +675,7 @@ export const WorkshopGallery: React.FC = () => {
                     src={photo.image}
                     alt={photo.title}
                     fill
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    sizes="(max-width: 640px) 50vw, (max-width: 1024px) 50vw, 33vw"
                     className="object-cover group-hover:scale-105 transition-transform duration-500"
                   />
 
@@ -682,36 +683,36 @@ export const WorkshopGallery: React.FC = () => {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
 
                   {/* Top Badges */}
-                  <div className="absolute top-3 left-3 flex items-center gap-1.5 z-10">
-                    <span className="px-2.5 py-1 rounded-full bg-white/95 backdrop-blur-md text-[#0B0F19] text-[10px] font-extrabold shadow-sm">
+                  <div className="absolute top-2 left-2 sm:top-3 sm:left-3 flex items-center gap-1 sm:gap-1.5 z-10">
+                    <span className="px-1.5 sm:px-2.5 py-0.5 sm:py-1 rounded-full bg-white/95 backdrop-blur-md text-[#0B0F19] text-[8px] sm:text-[10px] font-extrabold shadow-sm truncate max-w-[85px] sm:max-w-none">
                       {photo.categoryLabel}
                     </span>
-                    <span className="px-2 py-0.5 rounded-full bg-[#FF4D36] text-white text-[9px] font-black uppercase">
+                    <span className="hidden xs:inline-block px-1.5 sm:px-2 py-0.5 rounded-full bg-[#FF4D36] text-white text-[8px] sm:text-[9px] font-black uppercase">
                       {photo.tag}
                     </span>
                   </div>
 
                   {/* Expand Zoom Icon */}
-                  <div className="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/90 backdrop-blur-md text-slate-800 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity shadow-sm">
-                    <Maximize2 className="w-3.5 h-3.5" />
+                  <div className="absolute top-2 right-2 sm:top-3 sm:right-3 w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-white/90 backdrop-blur-md text-slate-800 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity shadow-sm">
+                    <Maximize2 className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
                   </div>
                 </div>
 
                 {/* Bottom Meta */}
-                <div className="p-4 sm:p-5 flex-1 flex flex-col justify-between space-y-3 bg-white">
+                <div className="p-2.5 sm:p-5 flex-1 flex flex-col justify-between space-y-2 sm:space-y-3 bg-white">
                   <div>
-                    <h3 className="text-base font-extrabold text-[#0B0F19] group-hover:text-[#FF4D36] transition-colors leading-snug">
+                    <h3 className="text-xs sm:text-base font-extrabold text-[#0B0F19] group-hover:text-[#FF4D36] transition-colors leading-snug line-clamp-2">
                       {photo.title}
                     </h3>
-                    <p className="text-xs text-slate-500 mt-1 line-clamp-2 leading-relaxed">
+                    <p className="hidden sm:block text-xs text-slate-500 mt-1 line-clamp-2 leading-relaxed">
                       {photo.description}
                     </p>
                   </div>
 
-                  <div className="pt-3 border-t border-slate-100 flex items-center justify-between">
+                  <div className="pt-2 sm:pt-3 border-t border-slate-100 flex items-center justify-between gap-1">
                     <div>
-                      <span className="text-[10px] font-semibold text-slate-400 block">Pricing</span>
-                      <span className="text-xs font-black text-[#0B0F19]">
+                      <span className="text-[9px] sm:text-[10px] font-semibold text-slate-400 block">Pricing</span>
+                      <span className="text-[10px] sm:text-xs font-black text-[#0B0F19] truncate block max-w-[70px] xs:max-w-none">
                         {photo.priceNote}
                       </span>
                     </div>
@@ -719,16 +720,38 @@ export const WorkshopGallery: React.FC = () => {
                     <Link
                       href={photo.productLink}
                       onClick={(e) => e.stopPropagation()}
-                      className="px-3.5 py-1.5 bg-[#0B0F19] hover:bg-[#FF4D36] text-white text-xs font-bold rounded-xl transition-colors flex items-center gap-1.5"
+                      className="px-2 py-1 sm:px-3.5 sm:py-1.5 bg-[#0B0F19] hover:bg-[#FF4D36] text-white text-[10px] sm:text-xs font-bold rounded-lg sm:rounded-xl transition-colors flex items-center gap-1 shrink-0"
                     >
                       <span>Customize</span>
-                      <ArrowRight className="w-3.5 h-3.5" />
+                      <ArrowRight className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
                     </Link>
                   </div>
                 </div>
               </div>
             ))}
           </div>
+
+          {/* Load More / Expand Toggle */}
+          {filteredPhotos.length > 6 && (
+            <div className="mt-8 sm:mt-12 text-center">
+              <button
+                type="button"
+                onClick={() => setShowAllPhotos(!showAllPhotos)}
+                className="inline-flex items-center gap-2 px-6 py-2.5 sm:py-3 rounded-full bg-white hover:bg-slate-100 text-[#0B0F19] border border-slate-200 text-xs sm:text-sm font-bold shadow-sm transition-all cursor-pointer hover:border-slate-400 active:scale-98"
+              >
+                <span>
+                  {showAllPhotos
+                    ? "Show Fewer Photos"
+                    : `View All ${filteredPhotos.length} Real Studio Creations`}
+                </span>
+                <ArrowRight
+                  className={`w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#FF4D36] transition-transform duration-300 ${
+                    showAllPhotos ? "-rotate-90" : "rotate-90"
+                  }`}
+                />
+              </button>
+            </div>
+          )}
 
         </div>
       </section>
@@ -800,9 +823,9 @@ export const WorkshopGallery: React.FC = () => {
                 <Link
                   href={selectedImage.productLink}
                   onClick={() => setSelectedImage(null)}
-                  className="w-full px-4 py-3.5 bg-[#FF4D36] hover:bg-[#e0351d] text-white text-xs sm:text-sm font-bold rounded-2xl shadow-lg transition-all flex items-center justify-center gap-2 text-center leading-normal active:scale-98 cursor-pointer group"
+                  className="w-full px-4 py-3 sm:py-3.5 bg-[#FF4D36] hover:bg-[#e0351d] text-white text-xs sm:text-sm font-bold rounded-2xl shadow-lg transition-all flex items-center justify-center gap-2 text-center leading-normal active:scale-98 cursor-pointer group"
                 >
-                  <span>Customize {selectedImage.productName}</span>
+                  <span className="truncate">Order Custom {selectedImage.productName}</span>
                   <ArrowRight className="w-4 h-4 shrink-0 group-hover:translate-x-0.5 transition-transform" />
                 </Link>
 

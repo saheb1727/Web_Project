@@ -41,11 +41,11 @@ export default function WishlistPage() {
         </div>
 
         {wishlistProducts.length > 0 ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
             {wishlistProducts.map((product) => (
               <div
                 key={product.id}
-                className="bg-white rounded-3xl border border-slate-200/80 shadow-xs hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col justify-between"
+                className="bg-white rounded-2xl sm:rounded-3xl border border-slate-200/80 shadow-xs hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col justify-between"
               >
                 <div>
                   {/* Image */}
@@ -58,36 +58,36 @@ export default function WishlistPage() {
                     />
                     <button
                       onClick={() => toggleWishlist(product.id, product.name)}
-                      className="absolute top-3 right-3 p-2 bg-white/80 hover:bg-white text-red-500 rounded-xl shadow-xs transition-colors"
+                      className="absolute top-2 right-2 sm:top-3 sm:right-3 p-1.5 sm:p-2 bg-white/80 hover:bg-white text-red-500 rounded-lg sm:rounded-xl shadow-xs transition-colors"
                       title="Remove from wishlist"
                     >
-                      <Trash2 className="w-4 h-4" />
+                      <Trash2 className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                     </button>
                   </div>
 
                   {/* Info */}
-                  <div className="p-4 sm:p-5">
+                  <div className="p-3 sm:p-5">
                     <div className="flex items-center justify-between text-xs mb-1">
-                      <span className="text-[#F95738] font-bold uppercase tracking-wider text-[10px]">
+                      <span className="text-[#FF4D36] font-bold uppercase tracking-wider text-[9px] sm:text-[10px] truncate max-w-[90px]">
                         {product.category}
                       </span>
-                      <div className="flex items-center gap-1 text-amber-500 font-bold text-xs">
+                      <div className="flex items-center gap-0.5 sm:gap-1 text-amber-500 font-bold text-[10px] sm:text-xs">
                         <Star className="w-3 h-3 fill-amber-400 text-amber-400" />
                         <span>{product.rating}</span>
                       </div>
                     </div>
 
                     <Link href={`/products/${product.id}`}>
-                      <h3 className="font-bold text-sm text-[#1E1B4B] hover:text-[#F95738] transition-colors line-clamp-2 leading-snug">
+                      <h3 className="font-bold text-xs sm:text-sm text-[#0B0F19] hover:text-[#FF4D36] transition-colors line-clamp-2 leading-snug">
                         {product.name}
                       </h3>
                     </Link>
 
-                    <div className="mt-3 flex items-baseline gap-2">
-                      <span className="text-lg font-black text-[#1E1B4B]">
+                    <div className="mt-2 sm:mt-3 flex items-baseline gap-1.5 sm:gap-2">
+                      <span className="text-sm sm:text-lg font-black text-[#0B0F19]">
                         ₹{product.price}
                       </span>
-                      <span className="text-xs text-slate-400 line-through">
+                      <span className="text-[10px] sm:text-xs text-slate-400 line-through">
                         ₹{product.originalPrice}
                       </span>
                     </div>
@@ -95,7 +95,7 @@ export default function WishlistPage() {
                 </div>
 
                 {/* Move to Cart button */}
-                <div className="p-4 pt-0">
+                <div className="p-3 sm:p-4 pt-0">
                   <button
                     onClick={() => handleMoveToCart(product)}
                     className="w-full py-2.5 bg-[#1E1B4B] hover:bg-[#110E38] text-white text-xs font-bold rounded-xl shadow-sm transition-all flex items-center justify-center gap-2 group"
