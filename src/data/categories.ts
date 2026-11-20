@@ -23,9 +23,9 @@ export const categories: Category[] = [
     id: "badges",
     name: "Magnetic & Pin Badges",
     slug: "magnetic-badges",
-    description: "Zero-pinhole metallic magnetic name badges and high-gloss wedding event button badges (Ladki Wale / Ladke Wale).",
-    image: "/images/products/wedding-pin-badges.jpg",
-    itemCount: 22,
+    description: "Zero-pinhole metallic magnetic name badges, Haldi floral badges, and wedding/event button badges (Ladki Wale, Ladke Wale, Betiwale).",
+    image: "/images/products/haldi-wedding-pin-badges.jpg",
+    itemCount: 32,
     badge: "Best Seller",
   },
   {
