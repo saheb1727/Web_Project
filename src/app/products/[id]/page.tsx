@@ -603,8 +603,8 @@ export default function ProductDetailPage() {
                   <span className="font-bold text-emerald-600">{product.minQuantity} Piece (Zero MOQ)</span>
                 </div>
                 <div className="py-2 flex justify-between">
-                  <span className="font-semibold text-slate-500">Manufacturing Facility</span>
-                  <span className="font-bold text-slate-800">Plot 42, Sector 62, Noida NCR</span>
+                  <span className="font-semibold text-slate-500">Warehouse & Dispatch</span>
+                  <span className="font-bold text-slate-800">Hosir, Kanke, Ranchi-834006</span>
                 </div>
               </div>
             )}

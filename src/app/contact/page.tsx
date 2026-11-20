@@ -125,27 +125,34 @@ export default function ContactPage() {
               </div>
             </div>
 
-            {/* Office Hubs */}
+            {/* Office & Warehouse Locations */}
             <div className="bg-white rounded-3xl p-6 border border-slate-200/80 shadow-xs space-y-4">
               <h4 className="text-sm font-bold text-[#1E1B4B] flex items-center gap-2">
                 <Building className="w-4 h-4 text-[#F95738]" />
-                <span>Manufacturing & Dispatch Facilities</span>
+                <span>Office & Warehouse Locations</span>
               </h4>
 
               <div className="space-y-3 text-xs text-slate-600">
-                <div className="p-3 rounded-xl bg-slate-50 border border-slate-200/60">
-                  <div className="font-bold text-slate-900">Noida Head Factory (Delhi NCR)</div>
-                  <p className="text-slate-500 mt-0.5">Plot 42, Electronic City, Sector 62, Noida, Uttar Pradesh 201309</p>
+                <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200/70 hover:border-slate-300 transition-colors">
+                  <div className="flex items-center gap-1.5 text-xs font-bold text-slate-900">
+                    <span className="w-2 h-2 rounded-full bg-[#F95738]" />
+                    <span>Address Office 1 (Main Office)</span>
+                  </div>
+                  <p className="text-slate-600 mt-1 font-medium leading-relaxed">
+                    Dangra toli chowk Purulia road, opposite hyderabadi zaika, Ranchi - 834001, Jharkhand
+                  </p>
+                  <span className="text-[10px] text-slate-400 font-semibold mt-1 block">Inquiries, Meetings & Client Consultations</span>
                 </div>
 
-                <div className="p-3 rounded-xl bg-slate-50 border border-slate-200/60">
-                  <div className="font-bold text-slate-900">Bengaluru Fulfillment Center</div>
-                  <p className="text-slate-500 mt-0.5">17th Main Rd, Koramangala 4th Block, Bengaluru, Karnataka 560034</p>
-                </div>
-
-                <div className="p-3 rounded-xl bg-slate-50 border border-slate-200/60">
-                  <div className="font-bold text-slate-900">Mumbai Operations Hub</div>
-                  <p className="text-slate-500 mt-0.5">MIDC Industrial Area, Andheri East, Mumbai, Maharashtra 400069</p>
+                <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200/70 hover:border-slate-300 transition-colors">
+                  <div className="flex items-center gap-1.5 text-xs font-bold text-slate-900">
+                    <span className="w-2 h-2 rounded-full bg-[#1E1B4B]" />
+                    <span>Warehouse Address (Dispatch Hub)</span>
+                  </div>
+                  <p className="text-slate-600 mt-1 font-medium leading-relaxed">
+                    Hosir, kargil colony, Kanke, Ranchi - 834006, Jharkhand
+                  </p>
+                  <span className="text-[10px] text-slate-400 font-semibold mt-1 block">Inventory Storage, Quality Inspection & Courier Dispatch</span>
                 </div>
               </div>
             </div>

@@ -380,7 +380,7 @@ export const HeroSection: React.FC = () => {
                     <Play className="w-7 h-7 fill-white ml-1" />
                   </div>
                   <span className="text-sm font-bold">10,000 Sq. Ft. Manufacturing & Laser Lab</span>
-                  <span className="text-xs text-slate-300">Plot 42, Electronic City, Sector 62, Noida</span>
+                  <span className="text-xs text-slate-300">Hosir, Kargil Colony, Kanke, Ranchi-834006</span>
                 </div>
               </div>
 

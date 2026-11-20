@@ -217,11 +217,11 @@ export default function AuthPage() {
 
                 <div className="text-xs text-slate-600 space-y-1 bg-slate-50 p-3.5 rounded-2xl border border-slate-100">
                   <p className="font-bold text-slate-900">{user.name}</p>
-                  <p>{user.savedAddress?.address || "Plot 42, Electronic City, Sector 62"}</p>
+                  <p>{user.savedAddress?.address || "Dangra toli chowk Purulia road, opposite hyderabadi zaika"}</p>
                   <p>
-                    {user.savedAddress?.city || "Noida"},{" "}
-                    {user.savedAddress?.state || "Uttar Pradesh"} -{" "}
-                    <strong>{user.savedAddress?.pincode || "201301"}</strong>
+                    {user.savedAddress?.city || "Ranchi"},{" "}
+                    {user.savedAddress?.state || "Jharkhand"} -{" "}
+                    <strong>{user.savedAddress?.pincode || "834001"}</strong>
                   </p>
                   <p className="text-slate-400 pt-1 font-mono">{user.phone}</p>
                 </div>

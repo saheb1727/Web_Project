@@ -74,10 +74,10 @@ export default function RootLayout({
           "India's premier on-demand custom printing platform for executive magnetic badges, bio-washed apparel, and corporate welcome kits.",
         "address": {
           "@type": "PostalAddress",
-          "streetAddress": "Sector 62",
-          "addressLocality": "Noida",
-          "addressRegion": "Uttar Pradesh",
-          "postalCode": "201309",
+          "streetAddress": "Dangra toli chowk Purulia road, opposite hyderabadi zaika",
+          "addressLocality": "Ranchi",
+          "addressRegion": "Jharkhand",
+          "postalCode": "834001",
           "addressCountry": "IN",
         },
         "contactPoint": {

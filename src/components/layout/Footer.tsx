@@ -83,12 +83,22 @@ export const Footer: React.FC = () => {
               unbeatable factory-direct tiered pricing.
             </p>
 
-            <div className="space-y-2.5 text-xs text-slate-300 pt-2">
-              <div className="flex items-center gap-2.5">
-                <MapPin className="w-4 h-4 text-[var(--color-accent)] shrink-0" />
-                <span>Sector 62, Noida, NCR Delhi, India - 201309</span>
+            <div className="space-y-3 text-xs text-slate-300 pt-2">
+              <div className="flex items-start gap-2.5">
+                <MapPin className="w-4 h-4 text-[var(--color-accent)] shrink-0 mt-0.5" />
+                <div>
+                  <strong className="text-white font-bold block">Office 1:</strong>
+                  <span>Dangra toli chowk Purulia road, opposite hyderabadi zaika, Ranchi-834001</span>
+                </div>
               </div>
-              <div className="flex items-center gap-2.5">
+              <div className="flex items-start gap-2.5">
+                <MapPin className="w-4 h-4 text-[var(--color-accent)] shrink-0 mt-0.5" />
+                <div>
+                  <strong className="text-white font-bold block">Warehouse:</strong>
+                  <span>Hosir, kargil colony, Kanke, Ranchi-834006</span>
+                </div>
+              </div>
+              <div className="flex items-center gap-2.5 pt-1 border-t border-white/10">
                 <Phone className="w-4 h-4 text-[var(--color-accent)] shrink-0" />
                 <span>+91 98765 43210 / +91 120 4567890</span>
               </div>
