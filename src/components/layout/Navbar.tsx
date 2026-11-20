@@ -449,12 +449,10 @@ export const Navbar: React.FC = () => {
       )}
 
       {/* Lazy Mobile Drawer */}
-      {isMobileMenuOpen && (
-        <MobileMenu
-          isOpen={isMobileMenuOpen}
-          onClose={() => setIsMobileMenuOpen(false)}
-        />
-      )}
+      <MobileMenu
+        isOpen={isMobileMenuOpen}
+        onClose={() => setIsMobileMenuOpen(false)}
+      />
     </>
   );
 };

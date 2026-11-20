@@ -2,6 +2,7 @@
 
 import React, { useEffect } from "react";
 import Link from "next/link";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   X,
   Printer,
@@ -19,7 +20,6 @@ import {
   Sparkles,
   Coffee,
   Layers,
-  ArrowRight,
 } from "lucide-react";
 import { categories } from "@/data/categories";
 import { useWishlist } from "@/context/WishlistContext";
@@ -76,202 +76,263 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
     };
   }, [isOpen, onClose]);
 
-  if (!isOpen) return null;
-
   return (
-    <div className="fixed inset-0 z-50 flex lg:hidden">
-      {/* Backdrop */}
-      <div
-        className="fixed inset-0 bg-black/60 backdrop-blur-xs transition-opacity animate-in fade-in"
-        onClick={onClose}
-      />
-
-      {/* Drawer */}
-      <div className="relative w-full max-w-xs bg-white h-full flex flex-col shadow-2xl z-10 animate-in slide-in-from-left duration-200">
-        
-        {/* Drawer Header */}
-        <div className="p-4 sm:p-5 border-b border-slate-100 flex items-center justify-between bg-slate-50">
-          <Link href="/" onClick={onClose} className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-lg bg-[#0B0F19] flex items-center justify-center text-white shadow-2xs">
-              <Printer className="w-4 h-4 text-[#FF4D36]" />
-            </div>
-            <div className="flex flex-col">
-              <span className="font-extrabold text-lg text-[#0B0F19] leading-none">
-                MyPrintHub<span className="text-[#FF4D36]">.in</span>
-              </span>
-              <span className="text-[9px] font-semibold text-slate-400 uppercase mt-0.5">
-                Custom Merch & Print
-              </span>
-            </div>
-          </Link>
-          <button
+    <AnimatePresence>
+      {isOpen && (
+        <div className="fixed inset-0 z-50 flex lg:hidden">
+          {/* Animated Backdrop */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.25, ease: "easeOut" }}
+            className="fixed inset-0 bg-black/60 backdrop-blur-xs"
             onClick={onClose}
-            className="p-1.5 text-slate-400 hover:text-slate-700 rounded-lg hover:bg-slate-200 transition-colors"
-            aria-label="Close menu"
+          />
+
+          {/* Animated Drawer Panel */}
+          <motion.div
+            initial={{ x: "-100%" }}
+            animate={{ x: "0%" }}
+            exit={{ x: "-100%" }}
+            transition={{
+              type: "spring",
+              damping: 32,
+              stiffness: 320,
+              mass: 0.85,
+            }}
+            className="relative w-full max-w-xs sm:max-w-sm bg-white h-full flex flex-col shadow-2xl z-10"
           >
-            <X className="w-5 h-5" />
-          </button>
-        </div>
-
-        {/* Navigation Content */}
-        <div className="flex-1 overflow-y-auto p-4 space-y-5">
-          
-          {/* Quick Action Pills: Wishlist & User Account */}
-          <div className="grid grid-cols-2 gap-2">
-            <Link
-              href="/wishlist"
-              onClick={onClose}
-              className="flex items-center justify-center gap-2 p-2.5 rounded-xl bg-slate-100 text-slate-700 text-xs font-semibold hover:bg-slate-200 transition-colors"
+            {/* Drawer Header */}
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.08, duration: 0.3 }}
+              className="p-4 sm:p-5 border-b border-slate-100 flex items-center justify-between bg-slate-50"
             >
-              <Heart className="w-4 h-4 text-[#FF4D36]" />
-              <span>Wishlist ({wishlistCount})</span>
-            </Link>
-            <Link
-              href="/auth"
-              onClick={onClose}
-              className="flex items-center justify-center gap-2 p-2.5 rounded-xl bg-slate-100 text-slate-700 text-xs font-semibold hover:bg-slate-200 transition-colors"
-            >
-              <User className="w-4 h-4 text-[#0B0F19]" />
-              <span>Account / Login</span>
-            </Link>
-          </div>
-
-          {/* Quick Shortcuts */}
-          <div className="space-y-1">
-            <Link
-              href="/products"
-              onClick={onClose}
-              className="flex items-center justify-between px-3 py-2 rounded-xl text-sm font-bold text-[#0B0F19] hover:bg-slate-50 transition-colors"
-            >
-              <div className="flex items-center gap-2.5">
-                <Flame className="w-4 h-4 text-[#FF4D36]" />
-                <span>Best Sellers & Deals</span>
-              </div>
-              <span className="text-[10px] font-bold bg-[#FF4D36]/10 text-[#FF4D36] px-2 py-0.5 rounded-full">
-                Hot
-              </span>
-            </Link>
-
-            <Link
-              href="/track"
-              onClick={onClose}
-              className="flex items-center justify-between px-3 py-2 rounded-xl text-sm font-bold text-[#0B0F19] hover:bg-slate-50 transition-colors"
-            >
-              <div className="flex items-center gap-2.5">
-                <Truck className="w-4 h-4 text-slate-600" />
-                <span>Track Your Order</span>
-              </div>
-              <ChevronRight className="w-4 h-4 text-slate-400" />
-            </Link>
-          </div>
-
-          {/* Product Categories Section */}
-          <div>
-            <div className="flex items-center justify-between mb-2 px-2">
-              <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">
-                Product Categories
-              </span>
-              <Link
-                href="/products"
-                onClick={onClose}
-                className="text-[11px] font-bold text-[#FF4D36] hover:underline"
-              >
-                View All
-              </Link>
-            </div>
-            
-            <div className="space-y-1">
-              {categories.map((cat) => {
-                const Icon = getCategoryIcon(cat.slug);
-                return (
-                  <Link
-                    key={cat.id}
-                    href={`/category/${cat.slug}`}
-                    onClick={onClose}
-                    className="flex items-center justify-between px-3 py-2.5 rounded-xl text-sm font-semibold text-slate-700 hover:bg-slate-100 hover:text-[#0B0F19] transition-colors group"
-                  >
-                    <div className="flex items-center gap-2.5 min-w-0">
-                      <div className="w-7 h-7 rounded-lg bg-slate-100 group-hover:bg-[#FF4D36]/10 group-hover:text-[#FF4D36] flex items-center justify-center text-slate-600 transition-colors shrink-0">
-                        <Icon className="w-3.5 h-3.5" />
-                      </div>
-                      <span className="truncate">{cat.name}</span>
-                    </div>
-                    <div className="flex items-center gap-1.5 shrink-0">
-                      {cat.badge && (
-                        <span className="text-[9px] font-bold bg-slate-100 text-slate-600 group-hover:bg-[#FF4D36]/10 group-hover:text-[#FF4D36] px-1.5 py-0.5 rounded transition-colors">
-                          {cat.badge}
-                        </span>
-                      )}
-                      <ChevronRight className="w-4 h-4 text-slate-400" />
-                    </div>
-                  </Link>
-                );
-              })}
-            </div>
-          </div>
-
-          {/* Corporate & Support Pages */}
-          <div>
-            <div className="text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-2 px-2">
-              Enterprise & Services
-            </div>
-            <div className="space-y-1">
-              <Link
-                href="/category/corporate-kits"
-                onClick={onClose}
-                className="flex items-center justify-between px-3 py-2.5 rounded-xl text-sm font-semibold text-slate-700 hover:bg-slate-100 transition-colors"
-              >
-                <div className="flex items-center gap-2">
-                  <Briefcase className="w-4 h-4 text-slate-500" />
-                  <span>Corporate Gifts & Kits</span>
+              <Link href="/" onClick={onClose} className="flex items-center gap-2.5">
+                <div className="w-8 h-8 rounded-lg bg-[#0B0F19] flex items-center justify-center text-white shadow-2xs">
+                  <Printer className="w-4 h-4 text-[#FF4D36]" />
                 </div>
-                <ChevronRight className="w-4 h-4 text-slate-400" />
+                <div className="flex flex-col">
+                  <span className="font-extrabold text-lg text-[#0B0F19] leading-none">
+                    MyPrintHub<span className="text-[#FF4D36]">.in</span>
+                  </span>
+                  <span className="text-[9px] font-semibold text-slate-400 uppercase mt-0.5">
+                    Custom Merch & Print
+                  </span>
+                </div>
               </Link>
-              <Link
-                href="/contact"
+              <button
                 onClick={onClose}
-                className="flex items-center justify-between px-3 py-2.5 rounded-xl text-sm font-semibold text-slate-700 hover:bg-slate-100 transition-colors"
+                className="p-2 text-slate-400 hover:text-slate-700 rounded-lg hover:bg-slate-200 transition-colors cursor-pointer"
+                aria-label="Close menu"
               >
-                <span>Bulk Quotations & Pantone</span>
-                <ChevronRight className="w-4 h-4 text-slate-400" />
-              </Link>
+                <X className="w-5 h-5" />
+              </button>
+            </motion.div>
+
+            {/* Navigation Content */}
+            <div className="flex-1 overflow-y-auto p-4 space-y-5">
+              {/* Quick Action Pills: Wishlist & User Account */}
+              <motion.div
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.12, duration: 0.3 }}
+                className="grid grid-cols-2 gap-2"
+              >
+                <Link
+                  href="/wishlist"
+                  onClick={onClose}
+                  className="flex items-center justify-center gap-2 p-2.5 rounded-xl bg-slate-100 text-slate-700 text-xs font-semibold hover:bg-slate-200 transition-colors"
+                >
+                  <Heart className="w-4 h-4 text-[#FF4D36]" />
+                  <span>Wishlist ({wishlistCount})</span>
+                </Link>
+                <Link
+                  href="/auth"
+                  onClick={onClose}
+                  className="flex items-center justify-center gap-2 p-2.5 rounded-xl bg-slate-100 text-slate-700 text-xs font-semibold hover:bg-slate-200 transition-colors"
+                >
+                  <User className="w-4 h-4 text-[#0B0F19]" />
+                  <span>Account / Login</span>
+                </Link>
+              </motion.div>
+
+              {/* Quick Shortcuts */}
+              <motion.div
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.15, duration: 0.3 }}
+                className="space-y-1"
+              >
+                <Link
+                  href="/products"
+                  onClick={onClose}
+                  className="flex items-center justify-between px-3 py-2.5 rounded-xl text-sm font-bold text-[#0B0F19] hover:bg-slate-50 transition-colors"
+                >
+                  <div className="flex items-center gap-2.5">
+                    <Flame className="w-4 h-4 text-[#FF4D36]" />
+                    <span>Best Sellers & Deals</span>
+                  </div>
+                  <span className="text-[10px] font-bold bg-[#FF4D36]/10 text-[#FF4D36] px-2 py-0.5 rounded-full">
+                    Hot
+                  </span>
+                </Link>
+
+                <Link
+                  href="/track"
+                  onClick={onClose}
+                  className="flex items-center justify-between px-3 py-2.5 rounded-xl text-sm font-bold text-[#0B0F19] hover:bg-slate-50 transition-colors"
+                >
+                  <div className="flex items-center gap-2.5">
+                    <Truck className="w-4 h-4 text-slate-600" />
+                    <span>Track Your Order</span>
+                  </div>
+                  <ChevronRight className="w-4 h-4 text-slate-400" />
+                </Link>
+              </motion.div>
+
+              {/* Product Categories Section */}
+              <div>
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.18 }}
+                  className="flex items-center justify-between mb-2 px-2"
+                >
+                  <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">
+                    Product Categories
+                  </span>
+                  <Link
+                    href="/products"
+                    onClick={onClose}
+                    className="text-[11px] font-bold text-[#FF4D36] hover:underline"
+                  >
+                    View All
+                  </Link>
+                </motion.div>
+
+                <div className="space-y-1">
+                  {categories.map((cat, idx) => {
+                    const Icon = getCategoryIcon(cat.slug);
+                    return (
+                      <motion.div
+                        key={cat.id}
+                        initial={{ opacity: 0, x: -14 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{
+                          delay: 0.2 + idx * 0.03,
+                          duration: 0.28,
+                          ease: [0.16, 1, 0.3, 1],
+                        }}
+                      >
+                        <Link
+                          href={`/category/${cat.slug}`}
+                          onClick={onClose}
+                          className="flex items-center justify-between px-3 py-2.5 rounded-xl text-sm font-semibold text-slate-700 hover:bg-slate-100 hover:text-[#0B0F19] transition-colors group"
+                        >
+                          <div className="flex items-center gap-2.5 min-w-0">
+                            <div className="w-7 h-7 rounded-lg bg-slate-100 group-hover:bg-[#FF4D36]/10 group-hover:text-[#FF4D36] flex items-center justify-center text-slate-600 transition-colors shrink-0">
+                              <Icon className="w-3.5 h-3.5" />
+                            </div>
+                            <span className="truncate">{cat.name}</span>
+                          </div>
+                          <div className="flex items-center gap-1.5 shrink-0">
+                            {cat.badge && (
+                              <span className="text-[9px] font-bold bg-slate-100 text-slate-600 group-hover:bg-[#FF4D36]/10 group-hover:text-[#FF4D36] px-1.5 py-0.5 rounded transition-colors">
+                                {cat.badge}
+                              </span>
+                            )}
+                            <ChevronRight className="w-4 h-4 text-slate-400 group-hover:translate-x-0.5 transition-transform" />
+                          </div>
+                        </Link>
+                      </motion.div>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* Corporate & Support Pages */}
+              <motion.div
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.38, duration: 0.3 }}
+              >
+                <div className="text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-2 px-2">
+                  Enterprise & Services
+                </div>
+                <div className="space-y-1">
+                  <Link
+                    href="/category/corporate-kits"
+                    onClick={onClose}
+                    className="flex items-center justify-between px-3 py-2.5 rounded-xl text-sm font-semibold text-slate-700 hover:bg-slate-100 transition-colors"
+                  >
+                    <div className="flex items-center gap-2">
+                      <Briefcase className="w-4 h-4 text-slate-500" />
+                      <span>Corporate Gifts & Kits</span>
+                    </div>
+                    <ChevronRight className="w-4 h-4 text-slate-400" />
+                  </Link>
+                  <Link
+                    href="/contact"
+                    onClick={onClose}
+                    className="flex items-center justify-between px-3 py-2.5 rounded-xl text-sm font-semibold text-slate-700 hover:bg-slate-100 transition-colors"
+                  >
+                    <span>Bulk Quotations & Pantone</span>
+                    <ChevronRight className="w-4 h-4 text-slate-400" />
+                  </Link>
+                  <Link
+                    href="/about"
+                    onClick={onClose}
+                    className="flex items-center justify-between px-3 py-2.5 rounded-xl text-sm font-semibold text-slate-700 hover:bg-slate-100 transition-colors"
+                  >
+                    <span>About MyPrintHub</span>
+                    <ChevronRight className="w-4 h-4 text-slate-400" />
+                  </Link>
+                </div>
+              </motion.div>
+
+              {/* Direct Support Card */}
+              <motion.div
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.42, duration: 0.3 }}
+                className="p-3.5 rounded-2xl bg-slate-50 border border-slate-200/70 space-y-2 text-xs text-slate-600"
+              >
+                <div className="font-bold text-slate-800 text-xs">Customer Support</div>
+                <div className="flex items-center gap-2">
+                  <PhoneCall className="w-3.5 h-3.5 text-[#FF4D36]" />
+                  <span>+91 98765 43210 (9AM - 8PM)</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Mail className="w-3.5 h-3.5 text-[#FF4D36]" />
+                  <span>support@myprinthub.in</span>
+                </div>
+              </motion.div>
+            </div>
+
+            {/* Drawer Footer with Cart Button */}
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.45, duration: 0.3 }}
+              className="p-4 border-t border-slate-100 bg-white"
+            >
               <Link
-                href="/about"
+                href="/cart"
                 onClick={onClose}
-                className="flex items-center justify-between px-3 py-2.5 rounded-xl text-sm font-semibold text-slate-700 hover:bg-slate-100 transition-colors"
+                className="w-full flex items-center justify-center gap-2 py-3 bg-[#0B0F19] hover:bg-[#FF4D36] text-white font-bold rounded-xl shadow-md transition-all active:scale-98"
               >
-                <span>About MyPrintHub</span>
-                <ChevronRight className="w-4 h-4 text-slate-400" />
+                <ShoppingBag className="w-4 h-4 text-[#FF4D36]" />
+                <span>Go to Cart ({totalItems} items)</span>
               </Link>
-            </div>
-          </div>
-
-          {/* Direct Support Card */}
-          <div className="p-3.5 rounded-2xl bg-slate-50 border border-slate-200/70 space-y-2 text-xs text-slate-600">
-            <div className="font-bold text-slate-800 text-xs">Customer Support</div>
-            <div className="flex items-center gap-2">
-              <PhoneCall className="w-3.5 h-3.5 text-[#FF4D36]" />
-              <span>+91 98765 43210 (9AM - 8PM)</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <Mail className="w-3.5 h-3.5 text-[#FF4D36]" />
-              <span>support@myprinthub.in</span>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         </div>
-
-        {/* Drawer Footer with Cart Button */}
-        <div className="p-4 border-t border-slate-100 bg-white">
-          <Link
-            href="/cart"
-            onClick={onClose}
-            className="w-full flex items-center justify-center gap-2 py-3 bg-[#0B0F19] hover:bg-[#FF4D36] text-white font-bold rounded-xl shadow-md transition-colors"
-          >
-            <ShoppingBag className="w-4 h-4 text-[#FF4D36]" />
-            <span>Go to Cart ({totalItems} items)</span>
-          </Link>
-        </div>
-      </div>
-    </div>
+      )}
+    </AnimatePresence>
   );
 };
+
+export default MobileMenu;
