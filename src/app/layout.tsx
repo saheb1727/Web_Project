@@ -7,8 +7,6 @@ import { AuthProvider } from "@/context/AuthContext";
 import { AnnouncementBar } from "@/components/layout/AnnouncementBar";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
-import { Star } from "lucide-react";
-import Link from "next/link";
 
 export const viewport: Viewport = {
   themeColor: "#1E1B4B",
@@ -136,18 +134,6 @@ export default function RootLayout({
                 <Navbar />
                 <main className="flex-1 w-full max-w-full overflow-x-hidden">{children}</main>
                 <Footer />
-
-                {/* Floating Reviews Side Tab (Hidden on mobile to prevent content overlap) */}
-                <Link
-                  href="/#testimonials"
-                  className="hidden md:flex fixed right-0 top-1/2 -translate-y-1/2 z-40 bg-[var(--color-primary)] hover:bg-[var(--color-accent)] text-white px-2.5 py-4 rounded-l-xl shadow-xl flex-col items-center gap-1.5 transition-colors cursor-pointer group"
-                  title="Read Customer Reviews"
-                >
-                  <Star className="w-3.5 h-3.5 text-[var(--color-accent)] group-hover:text-white fill-[var(--color-accent)] group-hover:fill-white" />
-                  <span className="[writing-mode:vertical-rl] rotate-180 text-[11px] font-bold tracking-widest uppercase">
-                    Reviews
-                  </span>
-                </Link>
               </CartProvider>
             </WishlistProvider>
           </AuthProvider>

@@ -4,21 +4,11 @@ import React, { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import {
-  Copy,
-  Check,
-  Star,
   Play,
   ArrowRight,
-  ShieldCheck,
-  Sparkles,
   Building2,
   X,
-  Truck,
-  Flame,
-  IdCard,
-  Shirt,
 } from "lucide-react";
-import { useToast } from "@/context/ToastContext";
 import { gsap } from "@/lib/gsap";
 
 interface SpotlightItem {
@@ -34,9 +24,7 @@ interface SpotlightItem {
 }
 
 export const HeroSection: React.FC = () => {
-  const [copied, setCopied] = useState(false);
   const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
-  const { showToast } = useToast();
   const heroRef = useRef<HTMLElement>(null);
 
   // Spotlight stage items
@@ -133,12 +121,6 @@ export const HeroSection: React.FC = () => {
           "-=0.3"
         )
         .fromTo(
-          ".hero-coupon-card",
-          { opacity: 0, y: 10 },
-          { opacity: 1, y: 0, duration: 0.45, clearProps: "all" },
-          "-=0.2"
-        )
-        .fromTo(
           ".hero-cta-group",
           { opacity: 0, y: 12 },
           { opacity: 1, y: 0, duration: 0.5, clearProps: "all" },
@@ -154,26 +136,6 @@ export const HeroSection: React.FC = () => {
 
     return () => ctx.revert();
   }, []);
-
-  const handleCopyCode = async () => {
-    navigator.clipboard.writeText("SPECIAL15");
-    setCopied(true);
-    showToast("Coupon SPECIAL15 copied to clipboard!", "success");
-
-    try {
-      const confetti = (await import("canvas-confetti")).default;
-      confetti({
-        particleCount: 50,
-        spread: 60,
-        origin: { y: 0.7 },
-        colors: ["#1E1B4B", "#F95738", "#FFD700"],
-      });
-    } catch {
-      // ignore confetti error
-    }
-
-    setTimeout(() => setCopied(false), 2500);
-  };
 
   return (
     <>
@@ -206,38 +168,8 @@ export const HeroSection: React.FC = () => {
                 </p>
               </div>
 
-              {/* 3. 1-Click First Order Coupon Bar */}
-              <div className="hero-coupon-card p-3 rounded-2xl bg-indigo-50/70 border border-indigo-100/90 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2.5 sm:gap-3 max-w-lg shadow-2xs w-full">
-                <div className="flex items-center gap-2.5 min-w-0">
-                  <div className="w-8 h-8 rounded-xl bg-[#F95738] text-white flex items-center justify-center shrink-0 shadow-2xs font-bold text-xs">
-                    %
-                  </div>
-                  <div className="min-w-0">
-                    <div className="text-xs font-bold text-[#1E1B4B] truncate">
-                      Extra 15% Off Your First Order
-                    </div>
-                    <div className="text-[11px] text-slate-500 truncate">
-                      Valid on custom badges, apparel, & kits
-                    </div>
-                  </div>
-                </div>
-
-                <button
-                  type="button"
-                  onClick={handleCopyCode}
-                  className="flex items-center justify-center gap-1.5 px-3 py-2 sm:py-1.5 rounded-xl border border-dashed border-[#F95738] bg-white text-[#F95738] font-mono font-bold text-xs hover:bg-slate-50 transition-colors shrink-0 cursor-pointer shadow-2xs w-full sm:w-auto"
-                >
-                  <span>SPECIAL15</span>
-                  {copied ? (
-                    <Check className="w-3.5 h-3.5 text-emerald-600" />
-                  ) : (
-                    <Copy className="w-3.5 h-3.5" />
-                  )}
-                </button>
-              </div>
-
-              {/* 4. Action CTAs */}
-              <div className="hero-cta-group flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-1 w-full sm:w-auto">
+              {/* 3. Action CTAs */}
+              <div className="hero-cta-group flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-2 w-full sm:w-auto">
                 {/* Primary CTA */}
                 <Link
                   href="/products"
@@ -258,39 +190,6 @@ export const HeroSection: React.FC = () => {
                   </div>
                   <span>Factory Tour (1 min)</span>
                 </button>
-              </div>
-
-              {/* 5. Live Trust Indicators Bar */}
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-3 border-t border-slate-200/70 max-w-lg">
-                <div className="flex items-center gap-2.5">
-                  <div className="w-8 h-8 rounded-lg bg-amber-50 text-amber-600 flex items-center justify-center shrink-0">
-                    <Star className="w-4 h-4 fill-amber-500 text-amber-500" />
-                  </div>
-                  <div>
-                    <div className="text-xs font-black text-[#1E1B4B]">4.9 / 5.0</div>
-                    <div className="text-[10px] text-slate-500 font-medium">3,400+ Reviews</div>
-                  </div>
-                </div>
-
-                <div className="flex items-center gap-2.5">
-                  <div className="w-8 h-8 rounded-lg bg-indigo-50 text-indigo-700 flex items-center justify-center shrink-0">
-                    <Truck className="w-4 h-4 text-[#1E1B4B]" />
-                  </div>
-                  <div>
-                    <div className="text-xs font-black text-[#1E1B4B]">81,000+</div>
-                    <div className="text-[10px] text-slate-500 font-medium">Dispatched</div>
-                  </div>
-                </div>
-
-                <div className="hidden sm:flex items-center gap-2.5">
-                  <div className="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0">
-                    <ShieldCheck className="w-4 h-4 text-emerald-600" />
-                  </div>
-                  <div>
-                    <div className="text-xs font-black text-[#1E1B4B]">Zero MOQ</div>
-                    <div className="text-[10px] text-slate-500 font-medium">Order 1 or 1,000</div>
-                  </div>
-                </div>
               </div>
 
             </div>
