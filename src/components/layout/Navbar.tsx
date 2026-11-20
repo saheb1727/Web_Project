@@ -17,8 +17,6 @@ import {
   ShieldCheck,
   Flame,
   Briefcase,
-  Truck,
-  MessageSquare,
   IdCard,
   Shirt,
   Coffee,
@@ -142,8 +140,8 @@ export const Navbar: React.FC = () => {
   return (
     <>
       <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200/80 shadow-2xs transition-all">
-        <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16 sm:h-[68px] gap-2 sm:gap-4 lg:gap-6">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-16 sm:h-[72px] gap-3 sm:gap-4 lg:gap-8">
             
             {/* Zone 1: Brand Anchor (Left) */}
             <div className="flex items-center gap-1.5 sm:gap-3 shrink-0">
@@ -173,42 +171,33 @@ export const Navbar: React.FC = () => {
               </Link>
             </div>
 
-            {/* Zone 2: Modern Segmented Navigation Capsule Dock (Center) */}
-            <nav className="hidden lg:flex items-center">
-              <div className="flex items-center gap-1 p-1 bg-slate-100/90 border border-slate-200/80 rounded-full shadow-inner-xs backdrop-blur-sm">
-                
-                {/* Products Mega Dropdown Trigger */}
-                <div
-                  ref={dropdownRef}
-                  className="relative"
-                  onMouseEnter={handleMouseEnter}
-                  onMouseLeave={handleMouseLeave}
+            {/* Zone 2: Spacious Clean Navigation (Center) */}
+            <nav className="hidden lg:flex items-center gap-1 xl:gap-2">
+              {/* Products Mega Dropdown Trigger */}
+              <div
+                ref={dropdownRef}
+                className="relative"
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
+              >
+                <button
+                  type="button"
+                  onClick={() => setIsProductsOpen((prev) => !prev)}
+                  className={`flex items-center gap-1.5 text-sm font-semibold py-2 px-3.5 rounded-xl transition-all cursor-pointer ${
+                    isProductsOpen || isProductsActive
+                      ? "text-[#FF4D36] bg-[#FF4D36]/8 font-bold"
+                      : "text-slate-700 hover:text-[#0B0F19] hover:bg-slate-50"
+                  }`}
+                  aria-expanded={isProductsOpen}
+                  aria-haspopup="true"
                 >
-                  <button
-                    type="button"
-                    onClick={() => setIsProductsOpen((prev) => !prev)}
-                    className={`flex items-center gap-1.5 text-xs font-semibold py-1.5 px-3.5 rounded-full transition-all cursor-pointer ${
-                      isProductsOpen || isProductsActive
-                        ? "bg-white text-[#0B0F19] shadow-2xs font-bold ring-1 ring-black/5"
-                        : "text-slate-600 hover:text-slate-900 hover:bg-white/60"
+                  <span>Products</span>
+                  <ChevronDown
+                    className={`w-3.5 h-3.5 transition-transform duration-200 ${
+                      isProductsOpen ? "rotate-180 text-[#FF4D36]" : "text-slate-400"
                     }`}
-                    aria-expanded={isProductsOpen}
-                    aria-haspopup="true"
-                  >
-                    <Layers
-                      className={`w-3.5 h-3.5 transition-colors ${
-                        isProductsOpen || isProductsActive
-                          ? "text-[#FF4D36]"
-                          : "text-slate-500"
-                      }`}
-                    />
-                    <span>Products</span>
-                    <ChevronDown
-                      className={`w-3 h-3 transition-transform duration-200 ${
-                        isProductsOpen ? "rotate-180 text-[#FF4D36]" : "text-slate-400"
-                      }`}
-                    />
-                  </button>
+                  />
+                </button>
 
                   {/* Dropdown Menu Panel */}
                   {isProductsOpen && (
@@ -314,65 +303,60 @@ export const Navbar: React.FC = () => {
                 {/* Best Sellers Link */}
                 <Link
                   href="/products"
-                  className={`flex items-center gap-1.5 text-xs font-semibold py-1.5 px-3.5 rounded-full transition-all cursor-pointer ${
+                  className={`text-sm font-semibold py-2 px-3.5 rounded-xl transition-all cursor-pointer ${
                     pathname === "/products" && !isProductsOpen
-                      ? "bg-white text-[#0B0F19] shadow-2xs font-bold ring-1 ring-black/5"
-                      : "text-slate-600 hover:text-slate-900 hover:bg-white/60"
+                      ? "text-[#FF4D36] bg-[#FF4D36]/8 font-bold"
+                      : "text-slate-700 hover:text-[#0B0F19] hover:bg-slate-50"
                   }`}
                 >
-                  <Flame className="w-3.5 h-3.5 text-[#FF4D36] shrink-0" />
-                  <span>Best Sellers</span>
+                  Best Sellers
                 </Link>
 
                 {/* Corporate & Bulk Link */}
                 <Link
                   href="/category/corporate-kits"
-                  className={`flex items-center gap-1.5 text-xs font-semibold py-1.5 px-3.5 rounded-full transition-all cursor-pointer ${
+                  className={`text-sm font-semibold py-2 px-3.5 rounded-xl transition-all cursor-pointer ${
                     pathname === "/category/corporate-kits"
-                      ? "bg-white text-[#0B0F19] shadow-2xs font-bold ring-1 ring-black/5"
-                      : "text-slate-600 hover:text-slate-900 hover:bg-white/60"
+                      ? "text-[#FF4D36] bg-[#FF4D36]/8 font-bold"
+                      : "text-slate-700 hover:text-[#0B0F19] hover:bg-slate-50"
                   }`}
                 >
-                  <Briefcase className="w-3.5 h-3.5 text-slate-500 shrink-0" />
-                  <span>Corporate & Bulk</span>
+                  Corporate & Bulk
                 </Link>
 
                 {/* Track Order Link */}
                 <Link
                   href="/track"
-                  className={`flex items-center gap-1.5 text-xs font-semibold py-1.5 px-3.5 rounded-full transition-all cursor-pointer ${
+                  className={`text-sm font-semibold py-2 px-3.5 rounded-xl transition-all cursor-pointer ${
                     pathname === "/track"
-                      ? "bg-white text-[#0B0F19] shadow-2xs font-bold ring-1 ring-black/5"
-                      : "text-slate-600 hover:text-slate-900 hover:bg-white/60"
+                      ? "text-[#FF4D36] bg-[#FF4D36]/8 font-bold"
+                      : "text-slate-700 hover:text-[#0B0F19] hover:bg-slate-50"
                   }`}
                 >
-                  <Truck className="w-3.5 h-3.5 text-slate-500 shrink-0" />
-                  <span>Track Order</span>
+                  Track Order
                 </Link>
 
-                {/* Custom Quote Link */}
+                {/* Custom Quote Link (Visible on xl screens, keeping smaller laptops uncluttered) */}
                 <Link
                   href="/contact"
-                  className={`flex items-center gap-1.5 text-xs font-semibold py-1.5 px-3.5 rounded-full transition-all cursor-pointer ${
+                  className={`hidden xl:inline-flex text-sm font-semibold py-2 px-3.5 rounded-xl transition-all cursor-pointer ${
                     pathname === "/contact"
-                      ? "bg-white text-[#0B0F19] shadow-2xs font-bold ring-1 ring-black/5"
-                      : "text-slate-600 hover:text-slate-900 hover:bg-white/60"
+                      ? "text-[#FF4D36] bg-[#FF4D36]/8 font-bold"
+                      : "text-slate-700 hover:text-[#0B0F19] hover:bg-slate-50"
                   }`}
                 >
-                  <MessageSquare className="w-3.5 h-3.5 text-slate-500 shrink-0" />
-                  <span>Custom Quote</span>
+                  Custom Quote
                 </Link>
-              </div>
             </nav>
 
             {/* Zone 3: Command & Utility Deck (Right) */}
-            <div className="flex items-center gap-1.5 sm:gap-2.5 shrink-0">
+            <div className="flex items-center gap-2 sm:gap-3 shrink-0">
               
               {/* Sleek Command Search Trigger Pill (Medium & Desktop) */}
               <button
                 type="button"
                 onClick={() => setIsSearchOpen(true)}
-                className="hidden md:flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-100/90 hover:bg-slate-200/80 border border-slate-200/90 text-slate-500 hover:text-slate-800 transition-all text-xs cursor-pointer group w-36 lg:w-44 xl:w-52"
+                className="hidden md:flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-100 hover:bg-slate-200/70 border border-slate-200/80 text-slate-500 hover:text-slate-800 transition-all text-xs cursor-pointer group w-36 lg:w-40 xl:w-48"
                 aria-label="Search merchandise"
                 title="Search custom products (⌘K)"
               >
@@ -395,13 +379,10 @@ export const Navbar: React.FC = () => {
                 <Search className="w-5 h-5 stroke-[1.8]" />
               </button>
 
-              {/* Hairline Divider (Desktop) */}
-              <div className="hidden lg:block h-4 w-[1px] bg-slate-200" />
-
               {/* Wishlist Button */}
               <Link
                 href="/wishlist"
-                className="relative p-2 rounded-full text-slate-600 hover:text-[#FF4D36] hover:bg-slate-100 transition-colors cursor-pointer"
+                className="relative p-2 rounded-xl text-slate-600 hover:text-[#FF4D36] hover:bg-slate-100 transition-colors cursor-pointer"
                 aria-label="Wishlist"
                 title="Wishlist"
               >
@@ -416,7 +397,7 @@ export const Navbar: React.FC = () => {
               {/* User Account Button */}
               <Link
                 href="/auth"
-                className="hidden sm:flex items-center gap-1.5 px-2.5 py-1.5 rounded-full text-slate-700 hover:text-slate-900 hover:bg-slate-100 transition-colors text-xs font-semibold cursor-pointer"
+                className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-full text-slate-700 hover:text-slate-900 hover:bg-slate-100 transition-colors text-xs font-semibold cursor-pointer"
                 aria-label="My Account"
                 title={isLoggedIn && user ? `Account: ${user.name}` : "Sign In / Register"}
               >
@@ -435,7 +416,7 @@ export const Navbar: React.FC = () => {
               {/* Executive Cart Pill */}
               <Link
                 href="/cart"
-                className="flex items-center gap-2 px-3 sm:px-3.5 py-1.5 rounded-full bg-[#0B0F19] hover:bg-[#FF4D36] text-white transition-all shadow-xs hover:shadow-md group cursor-pointer shrink-0"
+                className="flex items-center gap-2 px-3.5 sm:px-4 py-2 rounded-full bg-[#0B0F19] hover:bg-[#FF4D36] text-white transition-all shadow-xs hover:shadow-md group cursor-pointer shrink-0"
                 aria-label="Shopping Cart"
                 title="View Shopping Cart"
               >
@@ -456,7 +437,6 @@ export const Navbar: React.FC = () => {
                   </span>
                 )}
               </Link>
-
             </div>
 
           </div>
