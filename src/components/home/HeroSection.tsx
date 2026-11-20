@@ -86,6 +86,17 @@ export const HeroSection: React.FC = () => {
       href: "/products/prod-pen-1",
     },
     {
+      id: "cushions",
+      category: "Satin Cushions",
+      title: "Custom Photo Print Heart Satin Cushion",
+      subtitle: "High-sheen Duchess satin cushion filled with soft microfiber, printed with romantic heart collage.",
+      priceNote: "₹399 • Free Photo Personalization",
+      badge: "Duchess Satin",
+      tag: "Best Seller",
+      image: "/images/products/custom-photo-heart-cushion.jpg",
+      href: "/products/prod-cushion-1",
+    },
+    {
       id: "badges",
       category: "Magnetic Badges",
       title: "Neodymium Magnetic Name Badges",

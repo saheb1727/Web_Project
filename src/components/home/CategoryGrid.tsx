@@ -261,6 +261,42 @@ export const CategoryGrid: React.FC = () => {
             </div>
           </Link>
 
+          {/* Card 6: Dual-Tone Ceramic Mugs & Embroidered Caps */}
+          <Link
+            href="/category/drinkware-mugs"
+            className="category-bento-card group relative rounded-3xl overflow-hidden bg-slate-50 border border-slate-200/90 hover:border-slate-400 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between p-6"
+          >
+            <div>
+              <div className="flex items-center justify-between mb-3">
+                <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-cyan-100 text-cyan-800">
+                  Drinkware & Caps
+                </span>
+                <span className="text-xs text-slate-400 font-bold">New Models</span>
+              </div>
+              <h3 className="text-xl font-black text-[#1E1B4B] group-hover:text-[#F95738] transition-colors">
+                Dual-Tone Mugs & Custom Caps
+              </h3>
+              <p className="text-xs text-slate-500 mt-1 line-clamp-2">
+                AAA sublimation inner-color ceramic mugs and custom script embroidered cotton baseball caps.
+              </p>
+            </div>
+
+            <div className="relative aspect-16/10 w-full my-4 rounded-2xl overflow-hidden bg-slate-100">
+              <Image
+                src="/images/products/dual-tone-ceramic-mugs.jpg"
+                alt="Dual Tone Ceramic Sublimation Mugs"
+                fill
+                sizes="(max-width: 640px) 100vw, 33vw"
+                className="object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+            </div>
+
+            <div className="flex items-center justify-between text-xs font-bold text-slate-700 pt-2 border-t border-slate-200/60">
+              <span>From ₹89 / pc</span>
+              <ArrowRight className="w-4 h-4 text-[#F95738] group-hover:translate-x-1 transition-transform" />
+            </div>
+          </Link>
+
         </div>
 
       </div>

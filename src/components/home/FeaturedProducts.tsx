@@ -15,15 +15,16 @@ export const FeaturedProducts: React.FC = () => {
   const filterTabs = [
     { id: "all", label: "All Products" },
     { id: "Custom Photo Frames", label: "Photo Frames" },
-    { id: "Personalized Gifts & LED Lamps", label: "LED Lamps & Gifts" },
+    { id: "Personalized Gifts & LED Lamps", label: "Gifts & Cushions" },
     { id: "Corporate Kits & ID Cards", label: "Leather & Pens" },
+    { id: "Drinkware & Ceramic Mugs", label: "Dual-Tone Mugs" },
     { id: "Magnetic & Pin Badges", label: "Badges" },
-    { id: "Custom T-Shirts", label: "Apparel & Tees" },
+    { id: "Custom Caps", label: "Caps" },
   ];
 
   const filteredProducts =
     activeTab === "all"
-      ? products.slice(0, 10)
+      ? products.slice(0, 12)
       : products.filter(
           (p) =>
             p.category === activeTab ||
