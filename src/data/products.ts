@@ -3020,6 +3020,7 @@ export const products: Product[] = [
     gallery: [
           "/images/products/steel-tea-coffee-mug-h701-main.jpg",
           "/images/products/steel-tea-coffee-mug-h701-colors.jpg",
+          "/images/products/steel-tea-coffee-mug-h701-black.jpg",
           "/images/products/steel-tea-coffee-mug-h701-group.jpg"
     ],
     description: "Compact 200ml tea and espresso desk mug featuring a food-safe stainless steel inner cup and a colorful heat-shielded outer plastic casing. Features an ergonomic comfort handle and push-on silicone-ring splash lid, perfect for quick chai breaks and office pantries.",
