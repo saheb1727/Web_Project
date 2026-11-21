@@ -246,7 +246,7 @@ export default function AuthPage() {
               )}
 
               {/* Factory Contact Card */}
-              <div className="p-4 rounded-2xl bg-gradient-to-br from-[#1E1B4B] to-[#110E38] text-white text-xs space-y-2">
+              <div className="p-4 rounded-2xl bg-[#0B0F19] text-white text-xs space-y-2">
                 <div className="flex items-center gap-2 font-bold text-[var(--color-accent)]">
                   <Sparkles className="w-4 h-4" />
                   <span>VIP Corporate Print Desk</span>

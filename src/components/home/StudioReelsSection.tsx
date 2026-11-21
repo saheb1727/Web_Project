@@ -227,7 +227,7 @@ export const StudioReelsSection: React.FC = () => {
 
   return (
     <>
-      <section ref={sectionRef} className="py-20 bg-gradient-to-b from-white via-slate-50/70 to-white border-b border-slate-200/80 overflow-hidden w-full max-w-full">
+      <section ref={sectionRef} className="py-20 bg-white border-b border-slate-200/80 overflow-hidden w-full max-w-full">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           {/* Section Header */}
@@ -282,8 +282,8 @@ export const StudioReelsSection: React.FC = () => {
                     className="absolute inset-0 w-full h-full object-cover group-hover:scale-102 transition-transform duration-700"
                   />
 
-                  {/* Gradient Overlays for Readability */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-slate-950/40 pointer-events-none" />
+                  {/* Overlays for Readability */}
+                  <div className="absolute inset-0 bg-black/50 pointer-events-none" />
 
                   {/* Top Bar on Video Card */}
                   <div className="relative z-10 p-4 flex items-center justify-between">
@@ -428,7 +428,7 @@ export const StudioReelsSection: React.FC = () => {
             </div>
 
             {/* Right Column: Merch Details & Quick Action (5 cols) */}
-            <div className="md:col-span-5 p-6 sm:p-8 flex flex-col justify-between text-white bg-gradient-to-b from-slate-900 via-[#1E1B4B] to-slate-950 overflow-y-auto">
+            <div className="md:col-span-5 p-6 sm:p-8 flex flex-col justify-between text-white bg-[#0B0F19] overflow-y-auto">
               <div className="space-y-4">
                 <div className="flex items-center gap-2">
                   <span className="px-2.5 py-1 rounded-full bg-[#F95738] text-white text-[10px] font-bold">

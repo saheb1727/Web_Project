@@ -84,7 +84,7 @@ export const CategoryGrid: React.FC = () => {
           {/* Card 1: Custom Photo Frames & Keepsakes (Spanning 2 Columns on LG) */}
           <Link
             href="/category/custom-photo-frames"
-            className="category-bento-card w-[84vw] xs:w-[320px] shrink-0 snap-start md:w-auto md:shrink lg:col-span-2 group relative rounded-3xl overflow-hidden bg-gradient-to-br from-slate-900 via-[#0B0F19] to-black text-white p-5 sm:p-8 flex flex-col justify-between shadow-md hover:shadow-2xl transition-all duration-300 min-h-[300px] sm:min-h-[340px]"
+            className="category-bento-card w-[84vw] xs:w-[320px] shrink-0 snap-start md:w-auto md:shrink lg:col-span-2 group relative rounded-3xl overflow-hidden bg-[#0B0F19] text-white p-5 sm:p-8 flex flex-col justify-between shadow-md hover:shadow-2xl transition-all duration-300 min-h-[300px] sm:min-h-[340px]"
           >
             <div className="absolute top-0 right-0 w-2/3 h-full overflow-hidden opacity-40 lg:opacity-50 pointer-events-none">
               <Image
@@ -94,7 +94,7 @@ export const CategoryGrid: React.FC = () => {
                 sizes="(max-width: 1024px) 100vw, 66vw"
                 className="object-cover group-hover:scale-105 transition-transform duration-700"
               />
-              <div className="absolute inset-0 bg-gradient-to-r from-slate-900 via-slate-900/80 to-transparent" />
+              <div className="absolute inset-0 bg-[#0B0F19]/80" />
             </div>
 
             <div className="relative z-10 max-w-md space-y-2.5 sm:space-y-3">

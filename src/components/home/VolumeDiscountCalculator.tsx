@@ -134,7 +134,7 @@ export const VolumeDiscountCalculator: React.FC = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-16 bg-gradient-to-b from-white via-indigo-50/20 to-white border-b border-slate-200">
+    <section ref={sectionRef} className="py-16 bg-slate-50 border-b border-slate-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Heading */}
@@ -252,7 +252,7 @@ export const VolumeDiscountCalculator: React.FC = () => {
             </div>
 
             {/* Right Column: Price Output Card (5 cols) */}
-            <div className="md:col-span-5 bg-gradient-to-br from-[#0B0F19] to-slate-900 text-white p-6 rounded-2xl shadow-xl flex flex-col justify-between space-y-5">
+            <div className="md:col-span-5 bg-[#0B0F19] text-white p-6 rounded-2xl shadow-xl flex flex-col justify-between space-y-5">
               
               <div>
                 <div className="flex items-center justify-between text-xs text-slate-300 pb-3 border-b border-white/10">

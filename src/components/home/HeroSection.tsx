@@ -141,25 +141,6 @@ export const HeroSection: React.FC = () => {
           { opacity: 1, y: 0, duration: 0.5, clearProps: "all" },
           "-=0.2"
         );
-
-      // Ambient Orbs Breathing
-      gsap.to(".hero-ambient-orb-1", {
-        scale: 1.25,
-        opacity: 0.18,
-        duration: 6,
-        yoyo: true,
-        repeat: -1,
-        ease: "sine.inOut",
-      });
-
-      gsap.to(".hero-ambient-orb-2", {
-        scale: 1.3,
-        opacity: 0.15,
-        duration: 7,
-        yoyo: true,
-        repeat: -1,
-        ease: "sine.inOut",
-      });
     }, heroRef);
 
     return () => ctx.revert();
@@ -169,12 +150,8 @@ export const HeroSection: React.FC = () => {
     <>
       <section
         ref={heroRef}
-        className="relative bg-gradient-to-b from-slate-50 via-white to-slate-50/60 text-[#0B0F19] pt-8 pb-14 sm:pt-12 sm:pb-16 border-b border-slate-200/80 overflow-hidden"
+        className="relative bg-white text-[#0B0F19] pt-8 pb-14 sm:pt-12 sm:pb-16 border-b border-slate-200 overflow-hidden"
       >
-        {/* Subtle Ambient Decorative Gradient Glow Orbs */}
-        <div className="hero-ambient-orb-1 absolute -top-32 -right-32 w-96 h-96 bg-[#FF4D36]/10 rounded-full blur-3xl pointer-events-none z-0" />
-        <div className="hero-ambient-orb-2 absolute top-1/2 -left-32 w-96 h-96 bg-indigo-500/8 rounded-full blur-3xl pointer-events-none z-0" />
-
         {/* Foreground Content & Bento Showcase */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 relative z-10 w-full">
           
@@ -194,7 +171,7 @@ export const HeroSection: React.FC = () => {
             {/* Bold Grand Headline */}
             <h1 className="hero-title-main text-3xl sm:text-5xl lg:text-6xl font-black text-[#0B0F19] tracking-tight leading-[1.08] break-words">
               Bespoke Custom Gifts & Merch.{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FF4D36] to-[#FF6E52] block sm:inline">
+              <span className="text-[#FF4D36] block sm:inline">
                 Handcrafted With Zero Minimums.
               </span>
             </h1>
@@ -340,7 +317,7 @@ export const HeroSection: React.FC = () => {
                 className="hero-bento-card-secondary group relative rounded-3xl overflow-hidden bg-white text-[#0B0F19] p-5 sm:p-6 shadow-xl hover:shadow-2xl transition-all duration-300 flex-1 flex flex-col justify-between border border-slate-200 hover:border-slate-300"
               >
                 {/* Background Image Accent */}
-                <div className="absolute top-0 right-0 w-1/2 h-full overflow-hidden opacity-35 group-hover:opacity-50 transition-opacity pointer-events-none">
+                <div className="absolute top-0 right-0 w-1/2 h-full overflow-hidden opacity-30 group-hover:opacity-45 transition-opacity pointer-events-none">
                   <Image
                     src="/images/products/corporate-oneplus-buddha-hamper.jpg"
                     alt="OnePlus Buddha Wellness Hamper"
@@ -348,7 +325,6 @@ export const HeroSection: React.FC = () => {
                     sizes="300px"
                     className="object-cover group-hover:scale-105 transition-transform duration-700"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-r from-white via-white/80 to-transparent" />
                 </div>
 
                 <div className="relative z-10 space-y-2 max-w-xs">
@@ -385,7 +361,7 @@ export const HeroSection: React.FC = () => {
                 className="hero-bento-card-secondary group relative rounded-3xl overflow-hidden bg-white text-[#0B0F19] p-5 sm:p-6 shadow-xl hover:shadow-2xl transition-all duration-300 flex-1 flex flex-col justify-between border border-slate-200 hover:border-slate-300"
               >
                 {/* Background Image Accent */}
-                <div className="absolute top-0 right-0 w-1/2 h-full overflow-hidden opacity-35 group-hover:opacity-50 transition-opacity pointer-events-none">
+                <div className="absolute top-0 right-0 w-1/2 h-full overflow-hidden opacity-30 group-hover:opacity-45 transition-opacity pointer-events-none">
                   <Image
                     src="/images/products/vacuum-flask-cup-gift-set.jpg"
                     alt="SG 21 Vacuum Flask Set"
@@ -393,7 +369,6 @@ export const HeroSection: React.FC = () => {
                     sizes="300px"
                     className="object-cover group-hover:scale-105 transition-transform duration-700"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-r from-white via-white/80 to-transparent" />
                 </div>
 
                 <div className="relative z-10 space-y-2 max-w-xs">
@@ -527,7 +502,7 @@ export const HeroSection: React.FC = () => {
 
               <button
                 onClick={() => setIsVideoModalOpen(false)}
-                className="mt-2 px-6 py-2.5 bg-gradient-to-r from-[#FF4D36] to-[#FF6B4A] text-white text-xs font-bold rounded-xl hover:opacity-90 transition-opacity cursor-pointer shadow-md"
+                className="mt-2 px-6 py-2.5 bg-[#FF4D36] hover:bg-[#E0351D] text-white text-xs font-bold rounded-xl transition-colors cursor-pointer shadow-md"
               >
                 Close Video Preview
               </button>

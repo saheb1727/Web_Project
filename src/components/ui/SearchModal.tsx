@@ -266,7 +266,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose }) => 
               </div>
 
               {/* Pro Tip Callout */}
-              <div className="p-3.5 rounded-xl bg-gradient-to-r from-amber-50 to-orange-50 border border-amber-200/60 flex items-center gap-3 text-xs text-amber-900">
+              <div className="p-3.5 rounded-xl bg-amber-50 border border-amber-200/60 flex items-center gap-3 text-xs text-amber-900">
                 <Sparkles className="w-4 h-4 text-[#F95738] shrink-0" />
                 <span className="font-medium">
                   <strong>Zero Minimum Orders:</strong> Order 1 sample piece to inspect print quality before bulk ordering.

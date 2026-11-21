@@ -127,7 +127,7 @@ export const ProductCustomizer: React.FC<ProductCustomizerProps> = ({
 
       {/* Optional In-Situ Live Preview (only rendered if hidePreview is false) */}
       {!hidePreview && (
-        <div className="relative aspect-4/3 w-full bg-gradient-to-b from-slate-100 to-slate-200 rounded-xl overflow-hidden border border-slate-200 shadow-inner flex items-center justify-center">
+        <div className="relative aspect-4/3 w-full bg-slate-100 rounded-xl overflow-hidden border border-slate-200 shadow-inner flex items-center justify-center">
           <Image
             src={product.image}
             alt={product.name}

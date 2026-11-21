@@ -34,7 +34,7 @@ export const CouponBanner: React.FC = () => {
   return (
     <section className="py-8 bg-slate-100/70 border-b border-slate-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-gradient-to-r from-[#1E1B4B] via-[#1B315F] to-[#1E1B4B] rounded-3xl p-6 sm:p-8 text-white shadow-xl relative overflow-hidden">
+        <div className="bg-[#0B0F19] rounded-3xl p-6 sm:p-8 text-white shadow-xl relative overflow-hidden">
           {/* Subtle geometric lines */}
           <div className="absolute top-0 right-0 -mt-12 -mr-12 w-64 h-64 bg-[#F95738]/10 rounded-full blur-2xl pointer-events-none" />
 

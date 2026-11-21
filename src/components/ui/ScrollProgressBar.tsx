@@ -28,7 +28,7 @@ export const ScrollProgressBar: React.FC = () => {
   return (
     <div
       ref={barRef}
-      className="fixed top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[#FF4D36] via-[#FF6E52] to-[#FFA07A] z-50 origin-left scale-x-0 pointer-events-none shadow-sm shadow-[#FF4D36]/50"
+      className="fixed top-0 left-0 right-0 h-[3px] bg-[#FF4D36] z-50 origin-left scale-x-0 pointer-events-none shadow-xs"
     />
   );
 };

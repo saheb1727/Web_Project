@@ -218,7 +218,7 @@ export default function CartPage() {
                 </div>
                 <div className="w-full h-2 rounded-md bg-slate-100 overflow-hidden">
                   <div
-                    className="h-full bg-gradient-to-r from-[#F95738] to-emerald-500 rounded-md transition-all duration-500"
+                    className="h-full bg-emerald-500 rounded-md transition-all duration-500"
                     style={{ width: `${freeShippingProgress}%` }}
                   />
                 </div>

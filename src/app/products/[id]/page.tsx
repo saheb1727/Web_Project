@@ -407,7 +407,7 @@ export default function ProductDetailPage() {
             </div>
 
             {/* Unified Pricing & Bulk Volume Discount Matrix */}
-            <div className="p-4 sm:p-5 rounded-2xl bg-gradient-to-b from-slate-50/70 to-white border border-slate-200/90 shadow-2xs space-y-4">
+            <div className="p-4 sm:p-5 rounded-2xl bg-slate-50 border border-slate-200/90 shadow-2xs space-y-4">
               {/* Unit Price & Dynamic Total */}
               <div className="flex flex-wrap items-end justify-between gap-3 pb-3 border-b border-slate-200/60">
                 <div>
@@ -577,7 +577,7 @@ export default function ProductDetailPage() {
                 <button
                   type="button"
                   onClick={handleAddToCart}
-                  className="flex-1 h-11 px-5 bg-gradient-to-r from-[#FF4D36] to-[#FF6B4A] hover:from-[#E0351D] hover:to-[#FF4D36] text-white font-bold rounded-xl shadow-md shadow-[#FF4D36]/20 transition-all flex items-center justify-center gap-2 text-sm active:scale-98 cursor-pointer"
+                  className="flex-1 h-11 px-5 bg-[#FF4D36] hover:bg-[#E0351D] text-white font-bold rounded-xl shadow-md shadow-[#FF4D36]/20 transition-all flex items-center justify-center gap-2 text-sm active:scale-98 cursor-pointer"
                 >
                   <ShoppingBag className="w-4 h-4" />
                   <span>Add {quantity} to Cart • ₹{totalPrice.toLocaleString()}</span>
