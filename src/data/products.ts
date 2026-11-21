@@ -3497,6 +3497,99 @@ export const products: Product[] = [
     printArea: "Curved Steel Clasp: 18mm x 55mm",
   },
   {
+    id: "prod-corp-giftset-2in1-h3116",
+    name: "Executive 2-in-1 Pen & Metal Keychain Corporate Gift Set - Model H3116",
+    slug: "executive-2-in-1-pen-metal-keychain-gift-set-h3116",
+    category: "Corporate Kits & ID Cards",
+    categorySlug: "corporate-kits",
+    price: 349,
+    originalPrice: 699,
+    rating: 4.9,
+    reviewsCount: 178,
+    image: "/images/products/giftset-2in1-h3116-main.jpg",
+    gallery: [
+      "/images/products/giftset-2in1-h3116-main.jpg",
+      "/images/products/giftset-2in1-h3116-black.jpg",
+      "/images/products/giftset-2in1-h3116-blue.jpg"
+    ],
+    description: "An executive combo gift box featuring our popular metallic click ball pen with dual chrome rings and a matching dual-sided capsule metal keychain. Neatly housed in a luxury matte black presentation gift box with custom die-cut velvet insert. Both the pen barrel and keychain plate are laser engraved with your corporate logo or employee name.",
+    features: [
+      "Complete 2-in-1 Set: Executive metallic click pen + dual-sided capsule metal keychain",
+      "Precision fiber laser branding on both pen barrel and keychain plate",
+      "Includes sleek padded gift box with soft velvet molded bed (Size: 16.5cm x 9.5cm x 1.6cm, 100g)",
+      "Pen features 0.7mm Swiss carbide tip with smooth smudge-free blue German ink",
+      "Keychain features heavy-duty split ring and dual-sided engraving surface",
+      "5 Executive Color Themes: Obsidian Black, Slate Grey, Bold Red, Royal Blue, Pure White",
+      "Ideal for corporate welcome kits, employee anniversaries, client gifting, and seminars"
+    ],
+    colors: [
+      { name: "Obsidian Black", hex: "#111827" },
+      { name: "Slate Grey", hex: "#4B5563" },
+      { name: "Bold Red", hex: "#DC2626" },
+      { name: "Royal Blue", hex: "#1D4ED8" },
+      { name: "Pure White", hex: "#FFFFFF" }
+    ],
+    sizes: [
+      "Gift Box (16.5cm x 9.5cm x 1.6cm)"
+    ],
+    minQuantity: 1,
+    tieredPricing: [
+      { minQty: 1, maxQty: 4, price: 349, savings: "Standard" },
+      { minQty: 5, maxQty: 19, price: 289, savings: "17% Off" },
+      { minQty: 20, maxQty: 49, price: 229, savings: "34% Off" },
+      { minQty: 50, maxQty: null, price: 169, savings: "51% Off" }
+    ],
+    inStock: true,
+    isBestSeller: true,
+    badgeText: "Corporate Favorite",
+    customizable: true,
+    printArea: "Pen Barrel: 5mm x 45mm | Keychain Plate: 20mm x 35mm",
+  },
+  {
+    id: "prod-corp-giftset-gold-foil-2in1",
+    name: "Luxury 24K Floating Gold Foil Pen & Matching Keychain 2-in-1 Executive Gift Box",
+    slug: "luxury-24k-floating-gold-foil-pen-keychain-2in1-gift-box",
+    category: "Corporate Kits & ID Cards",
+    categorySlug: "corporate-kits",
+    price: 449,
+    originalPrice: 899,
+    rating: 5.0,
+    reviewsCount: 142,
+    image: "/images/products/giftset-gold-foil-pen-keychain.jpg",
+    gallery: [
+      "/images/products/giftset-gold-foil-pen-keychain.jpg",
+      "/images/products/gold-foil-engraved-pens.jpg"
+    ],
+    description: "An opulent VIP corporate gift set presented in a custom foam-cushioned black hardbox. Contains a prestigious twist-action metallic ballpoint pen with a clear liquid chamber suspended with genuine 24K gold foil flakes, paired with a matching gold foil crystal prism keychain. Features bespoke laser engraving on both items for a lasting impression.",
+    features: [
+      "Luxury 2-in-1 VIP Set: 24K floating gold leaf pen + matching 24K gold prism keychain",
+      "Suspended in mineral liquid that gently cascades gold foil flakes with movement",
+      "Polished 18K gold electroplated trims, spring pocket clip, and high-tension key ring",
+      "High-contrast fiber laser engraving of name, designation, or corporate crest",
+      "Packaged in a textured matte black gift box with protective charcoal foam bed",
+      "Refillable 0.7mm German black ballpoint ink with smooth twist mechanism",
+      "Prestigious token for Doctors, Lawyers, CXOs, Board Members, and festive Diwali gifting"
+    ],
+    colors: [
+      { name: "Gloss Black & 24K Gold", hex: "#000000" }
+    ],
+    sizes: [
+      "Executive Presentation Box"
+    ],
+    minQuantity: 1,
+    tieredPricing: [
+      { minQty: 1, maxQty: 4, price: 449, savings: "Standard" },
+      { minQty: 5, maxQty: 19, price: 369, savings: "18% Off" },
+      { minQty: 20, maxQty: 49, price: 299, savings: "33% Off" },
+      { minQty: 50, maxQty: null, price: 239, savings: "47% Off" }
+    ],
+    inStock: true,
+    isBestSeller: true,
+    badgeText: "VIP Luxury",
+    customizable: true,
+    printArea: "Pen Barrel: 5mm x 40mm | Keychain Base: 8mm x 25mm",
+  },
+  {
     id: "prod-gift-keychain-home-h575",
     name: "Custom Laser Engraved Home-Shape Metal Keychain (Dual-Sided) - Model H575",
     slug: "custom-laser-engraved-home-shape-metal-keychain-h575",

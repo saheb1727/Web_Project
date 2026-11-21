@@ -23,9 +23,9 @@ export const categories: Category[] = [
     id: "corporate",
     name: "Corporate Kits & ID Cards",
     slug: "corporate-kits",
-    description: "OnePlus Buddha hampers, executive metal pens, PU leather business card holders, 3-in-1 welcome kits, 4-in-1 leather sets, doctor sets, and satin lanyards.",
+    description: "OnePlus Buddha hampers, executive 2-in-1 gift sets, metal pens, PU leather business card holders, 3-in-1 welcome kits, 4-in-1 leather sets, doctor sets, and satin lanyards.",
     image: "/images/products/corporate-oneplus-buddha-hamper.jpg",
-    itemCount: 13,
+    itemCount: 15,
     badge: "Bulk Deals",
   },
   {
