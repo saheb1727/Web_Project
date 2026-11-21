@@ -1813,7 +1813,7 @@ export const products: Product[] = [
     image: "/images/products/personalized-photo-charm-leather-wallet.jpg",
     gallery: [
       "/images/products/personalized-photo-charm-leather-wallet.jpg",
-      "/images/products/leather-photo-engraved-wallet.jpg",
+      "/images/products/custom-photo-leather-wallet.jpg",
       "/images/products/executive-leather-gift-set.jpg",
     ],
     description: "A heartfelt, heirloom-grade keepsake wallet for husband, boyfriend, father, or couples. Crafted from buttery-soft vegetable-tanned tan leather with golden-yellow perimeter stitching. Fully customizable on both sides: the front face features your choice of antique metallic charm (kissing couple, intertwined hearts, or crown) with a riveted brass nameplate, while the back face is permanently laser-engraved with your favorite high-resolution couple or family photograph.",
@@ -2359,5 +2359,1723 @@ export const products: Product[] = [
     customizable: true,
     printArea: "Front Foam: 4\" x 2.5\"",
   },
+  {
+    id: "prod-drink-kulhad-h723",
+    name: "Stainless Steel Vacuum Tea & Coffee Kulhad Mug (360ml) - Model H723",
+    slug: "stainless-steel-vacuum-tea-coffee-kulhad-mug-h723",
+    category: "Drinkware & Ceramic Mugs",
+    categorySlug: "drinkware-mugs",
+    price: 399,
+    originalPrice: 799,
+    rating: 4.9,
+    reviewsCount: 168,
+    image: "/images/products/vacuum-kulhad-mug-h723-main.jpg",
+    gallery: [
+          "/images/products/vacuum-kulhad-mug-h723-main.jpg",
+          "/images/products/vacuum-kulhad-mug-h723-inside.jpg",
+          "/images/products/vacuum-kulhad-mug-h723-black.jpg",
+          "/images/products/vacuum-kulhad-mug-h723-blue.jpg"
+    ],
+    description: "An innovative blend of traditional Indian Kulhad culture and modern thermal engineering. Built with food-grade SUS 304 double-wall vacuum insulation to keep beverages hot or cold for extended hours. Includes a clear leak-resistant sip lid, perfect for office desks, executive gifting, and corporate branding with precision fiber laser engraving.",
+    features: [
+          "Double-wall vacuum insulation keeps beverages hot or cold for 6+ hours",
+          "Traditional Indian Kulhad silhouette with contemporary brushed steel collar",
+          "360ml ergonomic handy capacity (11cm height x 8cm diameter, 187g with box)",
+          "Food-grade SUS 304 stainless steel interior with zero chemical leaching",
+          "Spill-resistant crystal clear acrylic sip-through slide lid",
+          "Custom fiber laser engraving or UV color printing with your company logo"
+    ],
+    colors: [
+          {
+                "name": "Executive Matte Black",
+                "hex": "#1A1A1A"
+          },
+          {
+                "name": "Royal Cobalt Blue",
+                "hex": "#1D4ED8"
+          }
+    ],
+    sizes: [
+          "360ml Compact Desk Mug"
+    ],
+    minQuantity: 1,
+    tieredPricing: [
+          {
+                "minQty": 1,
+                "maxQty": 4,
+                "price": 399,
+                "savings": "Standard"
+          },
+          {
+                "minQty": 5,
+                "maxQty": 19,
+                "price": 329,
+                "savings": "18% Off"
+          },
+          {
+                "minQty": 20,
+                "maxQty": 49,
+                "price": 269,
+                "savings": "33% Off"
+          },
+          {
+                "minQty": 50,
+                "maxQty": null,
+                "price": 199,
+                "savings": "50% Off"
+          }
+    ],
+    inStock: true,
+    isBestSeller: true,
+    badgeText: "Bestseller",
+    customizable: true,
+    printArea: "Laser Engraving Area: 45mm x 55mm (Front & Back)",
+  },
+  {
+    id: "prod-drink-smart-led-500",
+    name: "Smart LED Temperature Display Vacuum Flask (500ml)",
+    slug: "smart-led-temperature-display-vacuum-flask-500ml",
+    category: "Drinkware & Ceramic Mugs",
+    categorySlug: "drinkware-mugs",
+    price: 449,
+    originalPrice: 899,
+    rating: 4.8,
+    reviewsCount: 214,
+    image: "/images/products/smart-temperature-display-flask-colors.jpg",
+    gallery: [
+          "/images/products/smart-temperature-display-flask-colors.jpg",
+          "/images/products/smart-temperature-display-flask-specs.jpg"
+    ],
+    description: "High-tech smart hydration flask featuring an intelligent touch-activated LED temperature display integrated into the waterproof cap. Double-wall SUS 304 stainless steel vacuum construction delivers 24-hour temperature retention. Includes a detachable stainless steel tea infuser filter and non-slip bottom base.",
+    features: [
+          "Smart touch LED cap displays real-time liquid temperature in Celsius",
+          "Food-grade SUS 304 stainless steel with double-wall thermal insulation",
+          "Detachable SUS 304 mesh tea & fruit infuser strainer included",
+          "24-Hour cold retention & 12-hour hot beverage temperature maintenance",
+          "Non-slip silicone bottom base prevents accidental desk slips",
+          "Laser engraved logo or personalized executive name on matte bottle body"
+    ],
+    colors: [
+          {
+                "name": "Matte Black",
+                "hex": "#1A1A1A"
+          },
+          {
+                "name": "Polar White",
+                "hex": "#F8FAFC"
+          },
+          {
+                "name": "Cobalt Blue",
+                "hex": "#1E40AF"
+          },
+          {
+                "name": "Crimson Red",
+                "hex": "#DC2626"
+          },
+          {
+                "name": "Blush Pink",
+                "hex": "#F472B6"
+          },
+          {
+                "name": "Champagne Gold",
+                "hex": "#D4AF37"
+          }
+    ],
+    sizes: [
+          "500ml (23cm x 6.5cm)"
+    ],
+    minQuantity: 1,
+    tieredPricing: [
+          {
+                "minQty": 1,
+                "maxQty": 4,
+                "price": 449,
+                "savings": "Standard"
+          },
+          {
+                "minQty": 5,
+                "maxQty": 19,
+                "price": 369,
+                "savings": "18% Off"
+          },
+          {
+                "minQty": 20,
+                "maxQty": 49,
+                "price": 299,
+                "savings": "33% Off"
+          },
+          {
+                "minQty": 50,
+                "maxQty": null,
+                "price": 249,
+                "savings": "45% Off"
+          }
+    ],
+    inStock: true,
+    isBestSeller: true,
+    badgeText: "Trending Tech",
+    customizable: true,
+    printArea: "Vertical Bottle Body: 35mm x 120mm",
+  },
+  {
+    id: "prod-drink-tumbler-h717",
+    name: "Executive Vacuum Tumbler Cup with Flip Lock & Handle (500ml) - Model H717",
+    slug: "executive-vacuum-tumbler-cup-flip-lock-handle-500ml-h717",
+    category: "Drinkware & Ceramic Mugs",
+    categorySlug: "drinkware-mugs",
+    price: 499,
+    originalPrice: 999,
+    rating: 4.9,
+    reviewsCount: 138,
+    image: "/images/products/vacuum-tumbler-handle-h717-main.jpg",
+    gallery: [
+          "/images/products/vacuum-tumbler-handle-h717-main.jpg",
+          "/images/products/vacuum-tumbler-handle-h717-trio.jpg"
+    ],
+    description: "The ultimate commuter and executive coffee tumbler. Engineered with double-wall SUS 304 food-grade stainless steel inside and a leakproof flip-up lock cap with an integrated carry handle. Tapered ergonomic profile fits standard car cup holders effortlessly.",
+    features: [
+          "100% Leakproof flip-up lock lid with integrated foldable finger handle",
+          "SUS 304 stainless steel interior with odorless, stain-resistant electropolished finish",
+          "500ml travel capacity (17.7cm height x 8.3cm diameter, 360g weight with box)",
+          "Car cup-holder friendly tapered base with rubberized anti-scratch coaster bottom",
+          "Thermal vacuum insulation for 8 hours hot coffee or 16 hours iced tea",
+          "Permanent laser etched logo branding or corporate personalization"
+    ],
+    colors: [
+          {
+                "name": "Matte Black",
+                "hex": "#1C1C1E"
+          },
+          {
+                "name": "Gunmetal Titanium",
+                "hex": "#4A4D52"
+          },
+          {
+                "name": "Pure White",
+                "hex": "#FAFAFA"
+          }
+    ],
+    sizes: [
+          "500ml Travel Tumbler"
+    ],
+    minQuantity: 1,
+    tieredPricing: [
+          {
+                "minQty": 1,
+                "maxQty": 4,
+                "price": 499,
+                "savings": "Standard"
+          },
+          {
+                "minQty": 5,
+                "maxQty": 19,
+                "price": 419,
+                "savings": "16% Off"
+          },
+          {
+                "minQty": 20,
+                "maxQty": 49,
+                "price": 349,
+                "savings": "30% Off"
+          },
+          {
+                "minQty": 50,
+                "maxQty": null,
+                "price": 279,
+                "savings": "44% Off"
+          }
+    ],
+    inStock: true,
+    isBestSeller: true,
+    badgeText: "Corporate Favorite",
+    customizable: true,
+    printArea: "Front Tumbler Face: 40mm x 70mm",
+  },
+  {
+    id: "prod-drink-gym-shaker-h722",
+    name: "Heavy-Duty Stainless Steel Gym Shaker Bottle with Whisk Ball (1000ml) - Model H722",
+    slug: "stainless-steel-gym-shaker-bottle-whisk-ball-1000ml-h722",
+    category: "Drinkware & Ceramic Mugs",
+    categorySlug: "drinkware-mugs",
+    price: 549,
+    originalPrice: 1099,
+    rating: 4.8,
+    reviewsCount: 97,
+    image: "/images/products/steel-gym-shaker-1000ml-h722.jpg",
+    gallery: [
+          "/images/products/steel-gym-shaker-1000ml-h722.jpg"
+    ],
+    description: "Built for serious fitness enthusiasts, athletes, and daily hydration. Massive 1000ml (1 Liter) capacity crafted from premium shatterproof stainless steel with embossed measurement marks (oz & ml). Includes a surgical steel wire whisk blender ball for lump-free protein shakes.",
+    features: [
+          "1000ml (1L) jumbo capacity for gym pre-workouts, protein shakes, and bcaa mixes",
+          "Includes food-grade stainless steel wire whisk ball for smooth, lump-free shakes",
+          "Embossed internal and external measurement markings in oz and ml",
+          "Leakproof snap-lock flip cap with integrated carry loop handle",
+          "Odor-resistant steel interior that never retains stale supplement smell",
+          "Custom gym name, company logo, or athlete personalization via laser engraving"
+    ],
+    colors: [
+          {
+                "name": "Midnight Black",
+                "hex": "#111827"
+          },
+          {
+                "name": "Royal Blue",
+                "hex": "#1D4ED8"
+          },
+          {
+                "name": "Crimson Red",
+                "hex": "#DC2626"
+          },
+          {
+                "name": "Brushed Silver",
+                "hex": "#D1D5DB"
+          },
+          {
+                "name": "Arctic White",
+                "hex": "#FFFFFF"
+          }
+    ],
+    sizes: [
+          "1000ml / 1 Liter (23cm x 8.7cm)"
+    ],
+    minQuantity: 1,
+    tieredPricing: [
+          {
+                "minQty": 1,
+                "maxQty": 4,
+                "price": 549,
+                "savings": "Standard"
+          },
+          {
+                "minQty": 5,
+                "maxQty": 19,
+                "price": 469,
+                "savings": "15% Off"
+          },
+          {
+                "minQty": 20,
+                "maxQty": 49,
+                "price": 389,
+                "savings": "29% Off"
+          },
+          {
+                "minQty": 50,
+                "maxQty": null,
+                "price": 319,
+                "savings": "42% Off"
+          }
+    ],
+    inStock: true,
+    isBestSeller: true,
+    badgeText: "Fitness Essential",
+    customizable: true,
+    printArea: "Center Bottle Panel: 50mm x 90mm",
+  },
+  {
+    id: "prod-drink-bottle-h055",
+    name: "Stainless Steel Water Bottle with Woven Lanyard Strap (750ml) - Model H055",
+    slug: "stainless-steel-water-bottle-lanyard-strap-750ml-h055",
+    category: "Drinkware & Ceramic Mugs",
+    categorySlug: "drinkware-mugs",
+    price: 379,
+    originalPrice: 749,
+    rating: 4.8,
+    reviewsCount: 154,
+    image: "/images/products/steel-water-bottle-h055-main.jpg",
+    gallery: [
+          "/images/products/steel-water-bottle-h055-main.jpg",
+          "/images/products/steel-bottle-strap-h055-silver.jpg",
+          "/images/products/steel-water-bottle-h055-black.jpg",
+          "/images/products/steel-water-bottle-h055-white.jpg",
+          "/images/products/steel-water-bottle-h055-red.jpg",
+          "/images/products/steel-water-bottle-h055-blue.jpg"
+    ],
+    description: "A lightweight, resilient 750ml single-wall stainless steel water bottle. Features an airtight screw-lock stainless steel cap with a durable braided nylon wrist lanyard for effortless portability. Tailored for corporate giveaways, school merchandise, and everyday travel.",
+    features: [
+          "750ml single-wall food-grade stainless steel bottle (Height 25.4cm x Dia 6.3cm)",
+          "Ultra-lightweight design at just 175g for easy commuter handling",
+          "Airtight silicone gasket screw cap with woven nylon lanyard carry strap",
+          "Available in 6 vibrant metallic and matte powder-coated finishes",
+          "Wide mouth accommodates ice cubes and simplifies thorough cleaning",
+          "High-contrast laser engraving or full-color UV screen printing"
+    ],
+    colors: [
+          {
+                "name": "Brushed Silver",
+                "hex": "#CBD5E1"
+          },
+          {
+                "name": "Matte Black",
+                "hex": "#1A1A1A"
+          },
+          {
+                "name": "Pristine White",
+                "hex": "#FFFFFF"
+          },
+          {
+                "name": "Metallic Red",
+                "hex": "#B91C1C"
+          },
+          {
+                "name": "Cobalt Blue",
+                "hex": "#2563EB"
+          },
+          {
+                "name": "Navy Blue",
+                "hex": "#1E3A8A"
+          }
+    ],
+    sizes: [
+          "750ml Standard (25.4cm x 6.3cm)"
+    ],
+    minQuantity: 1,
+    tieredPricing: [
+          {
+                "minQty": 1,
+                "maxQty": 4,
+                "price": 379,
+                "savings": "Standard"
+          },
+          {
+                "minQty": 5,
+                "maxQty": 19,
+                "price": 299,
+                "savings": "21% Off"
+          },
+          {
+                "minQty": 20,
+                "maxQty": 49,
+                "price": 249,
+                "savings": "34% Off"
+          },
+          {
+                "minQty": 50,
+                "maxQty": null,
+                "price": 189,
+                "savings": "50% Off"
+          }
+    ],
+    inStock: true,
+    isBestSeller: true,
+    badgeText: "Budget Value",
+    customizable: true,
+    printArea: "Lower Body Area: 40mm x 110mm",
+  },
+  {
+    id: "prod-drink-bottle-h120",
+    name: "Stainless Steel Sports Water Bottle with Loop Handle (900ml) - Model H120",
+    slug: "stainless-steel-sports-water-bottle-loop-handle-900ml-h120",
+    category: "Drinkware & Ceramic Mugs",
+    categorySlug: "drinkware-mugs",
+    price: 389,
+    originalPrice: 799,
+    rating: 4.8,
+    reviewsCount: 112,
+    image: "/images/products/steel-water-bottle-h120-main.jpg",
+    gallery: [
+          "/images/products/steel-water-bottle-h120-main.jpg",
+          "/images/products/steel-water-bottle-h120-colors.jpg",
+          "/images/products/steel-water-bottle-h120-silver.jpg",
+          "/images/products/steel-water-bottle-h120-whitered.jpg"
+    ],
+    description: "Generous 900ml single-wall stainless steel sports bottle built for trekking, outdoor activities, gym sessions, and university students. Equipped with a heavy-duty carabiner-ready finger loop cap that seals tightly against leaks.",
+    features: [
+          "Generous 900ml high-capacity stainless steel body for all-day hydration",
+          "Ergonomic leakproof screw cap with finger-loop carry handle",
+          "Size: Height 28.7cm x Diameter 7cm (Weight: 167g empty / 213g with box)",
+          "High-gloss reflective and durable matte powder-coated finishes",
+          "100% BPA-free and rust-resistant food-safe stainless steel",
+          "Custom branding with laser etching or silk-screen logo prints"
+    ],
+    colors: [
+          {
+                "name": "Glossy Black",
+                "hex": "#111827"
+          },
+          {
+                "name": "Royal Blue",
+                "hex": "#1D4ED8"
+          },
+          {
+                "name": "Bright White",
+                "hex": "#FFFFFF"
+          },
+          {
+                "name": "Metallic Red",
+                "hex": "#DC2626"
+          },
+          {
+                "name": "Classic Silver",
+                "hex": "#94A3B8"
+          }
+    ],
+    sizes: [
+          "900ml High Capacity (28.7cm x 7cm)"
+    ],
+    minQuantity: 1,
+    tieredPricing: [
+          {
+                "minQty": 1,
+                "maxQty": 4,
+                "price": 389,
+                "savings": "Standard"
+          },
+          {
+                "minQty": 5,
+                "maxQty": 19,
+                "price": 319,
+                "savings": "18% Off"
+          },
+          {
+                "minQty": 20,
+                "maxQty": 49,
+                "price": 259,
+                "savings": "33% Off"
+          },
+          {
+                "minQty": 50,
+                "maxQty": null,
+                "price": 199,
+                "savings": "49% Off"
+          }
+    ],
+    inStock: true,
+    isBestSeller: false,
+    badgeText: "High Capacity",
+    customizable: true,
+    printArea: "Vertical Print Zone: 45mm x 130mm",
+  },
+  {
+    id: "prod-drink-bottle-h155",
+    name: "Dimple Grip Textured Stainless Steel Water Bottle (750ml) - Model H155",
+    slug: "dimple-grip-textured-stainless-steel-water-bottle-750ml-h155",
+    category: "Drinkware & Ceramic Mugs",
+    categorySlug: "drinkware-mugs",
+    price: 369,
+    originalPrice: 749,
+    rating: 4.7,
+    reviewsCount: 86,
+    image: "/images/products/steel-water-bottle-dimple-h155-main.jpg",
+    gallery: [
+          "/images/products/steel-water-bottle-dimple-h155-main.jpg"
+    ],
+    description: "Unique sports water bottle featuring an all-over tactile honeycomb dimple grip pattern for slip-free handling during intense physical training. Includes a dedicated smooth rectangular front panel engineered specifically for crisp corporate logo branding.",
+    features: [
+          "Tactile 3D dimple texture ensures non-slip grip even with sweaty hands",
+          "Specially milled smooth rectangular window dedicated for company logo branding",
+          "750ml capacity with compact 25cm height x 6.5cm diameter (Lightweight 120g)",
+          "High-grade stainless steel with airtight silicone ring cap",
+          "Available in striking metallic copper bronze, electric blue, red, and silver",
+          "Ideal for sports institutes, gym welcome kits, and youth marathons"
+    ],
+    colors: [
+          {
+                "name": "Copper Bronze",
+                "hex": "#B45309"
+          },
+          {
+                "name": "Electric Blue",
+                "hex": "#2563EB"
+          },
+          {
+                "name": "Sport Red",
+                "hex": "#DC2626"
+          },
+          {
+                "name": "Titanium Silver",
+                "hex": "#94A3B8"
+          }
+    ],
+    sizes: [
+          "750ml Dimple Body (25cm x 6.5cm)"
+    ],
+    minQuantity: 1,
+    tieredPricing: [
+          {
+                "minQty": 1,
+                "maxQty": 4,
+                "price": 369,
+                "savings": "Standard"
+          },
+          {
+                "minQty": 5,
+                "maxQty": 19,
+                "price": 299,
+                "savings": "19% Off"
+          },
+          {
+                "minQty": 20,
+                "maxQty": 49,
+                "price": 239,
+                "savings": "35% Off"
+          },
+          {
+                "minQty": 50,
+                "maxQty": null,
+                "price": 185,
+                "savings": "50% Off"
+          }
+    ],
+    inStock: true,
+    isBestSeller: false,
+    badgeText: "Grip Tech",
+    customizable: true,
+    printArea: "Dedicated Smooth Logo Plate: 30mm x 60mm",
+  },
+  {
+    id: "prod-drink-flask-h421",
+    name: "Double-Wall Insulated Steel Vacuum Flask Hot & Cold (500ml) - Model H421",
+    slug: "double-wall-insulated-steel-vacuum-flask-hot-cold-500ml-h421",
+    category: "Drinkware & Ceramic Mugs",
+    categorySlug: "drinkware-mugs",
+    price: 449,
+    originalPrice: 899,
+    rating: 4.9,
+    reviewsCount: 147,
+    image: "/images/products/steel-vacuum-flask-h421-main.jpg",
+    gallery: [
+          "/images/products/steel-vacuum-flask-h421-main.jpg",
+          "/images/products/steel-vacuum-flask-h421-colors.jpg",
+          "/images/products/steel-vacuum-flask-h421-black.jpg"
+    ],
+    description: "Certified BPA-free premium thermal flask with inside SUS 304 stainless steel vacuum insulation. Maintains steaming coffee for 12 hours and refreshing iced drinks for 24 hours. Sleek minimalist silhouette with airtight stopper lid, ideal for boardroom meetings and executive client hampers.",
+    features: [
+          "Inside food-grade SUS 304 stainless steel with double-wall vacuum insulation",
+          "Certified 100% BPA Free, non-toxic, and corrosion-resistant construction",
+          "500ml capacity (Height 23cm x Diameter 7.2cm, 320g with packaging box)",
+          "Multi-part airtight stopper cap guarantees 100% leakproof seal",
+          "Includes executive matte gift box packaging for corporate gifting",
+          "Laser etched corporate identity, brand logo, or recipient monogram"
+    ],
+    colors: [
+          {
+                "name": "Executive Matte Black",
+                "hex": "#18181B"
+          },
+          {
+                "name": "Deep Cobalt Blue",
+                "hex": "#1E3A8A"
+          },
+          {
+                "name": "Pure Arctic White",
+                "hex": "#FFFFFF"
+          },
+          {
+                "name": "Bold Scarlet Red",
+                "hex": "#DC2626"
+          },
+          {
+                "name": "Brushed Chrome Silver",
+                "hex": "#CBD5E1"
+          }
+    ],
+    sizes: [
+          "500ml Standard Vacuum (23cm x 7.2cm)"
+    ],
+    minQuantity: 1,
+    tieredPricing: [
+          {
+                "minQty": 1,
+                "maxQty": 4,
+                "price": 449,
+                "savings": "Standard"
+          },
+          {
+                "minQty": 5,
+                "maxQty": 19,
+                "price": 369,
+                "savings": "18% Off"
+          },
+          {
+                "minQty": 20,
+                "maxQty": 49,
+                "price": 299,
+                "savings": "33% Off"
+          },
+          {
+                "minQty": 50,
+                "maxQty": null,
+                "price": 239,
+                "savings": "47% Off"
+          }
+    ],
+    inStock: true,
+    isBestSeller: true,
+    badgeText: "BPA Free",
+    customizable: true,
+    printArea: "Body Circumference / Front: 40mm x 110mm",
+  },
+  {
+    id: "prod-drink-mug-h701",
+    name: "Compact Insulated Steel Tea & Coffee Desk Mug with Lid (200ml) - Model H701",
+    slug: "compact-insulated-steel-tea-coffee-desk-mug-lid-200ml-h701",
+    category: "Drinkware & Ceramic Mugs",
+    categorySlug: "drinkware-mugs",
+    price: 249,
+    originalPrice: 499,
+    rating: 4.7,
+    reviewsCount: 124,
+    image: "/images/products/steel-tea-coffee-mug-h701-main.jpg",
+    gallery: [
+          "/images/products/steel-tea-coffee-mug-h701-main.jpg",
+          "/images/products/steel-tea-coffee-mug-h701-colors.jpg",
+          "/images/products/steel-tea-coffee-mug-h701-group.jpg"
+    ],
+    description: "Compact 200ml tea and espresso desk mug featuring a food-safe stainless steel inner cup and a colorful heat-shielded outer plastic casing. Features an ergonomic comfort handle and push-on silicone-ring splash lid, perfect for quick chai breaks and office pantries.",
+    features: [
+          "Dual-material build: Stainless steel interior with protective heat-resistant shell",
+          "Compact 200ml volume: Height 8.1cm x Diameter 7.1cm (Weight 125g with box)",
+          "Includes snug-fitting splash-proof lid with drinking sip opening",
+          "Contoured ergonomic finger-grip handle for effortless sipping",
+          "Available in 7 vibrant contemporary desk colors",
+          "Front branding plate for company logo screen printing or UV monogramming"
+    ],
+    colors: [
+          {
+                "name": "Cyan Sky Blue",
+                "hex": "#0EA5E9"
+          },
+          {
+                "name": "Fire Red",
+                "hex": "#EF4444"
+          },
+          {
+                "name": "Sunshine Yellow",
+                "hex": "#FACC15"
+          },
+          {
+                "name": "Tangerine Orange",
+                "hex": "#F97316"
+          },
+          {
+                "name": "Clean White",
+                "hex": "#FFFFFF"
+          },
+          {
+                "name": "Midnight Black",
+                "hex": "#18181B"
+          },
+          {
+                "name": "Royal Purple",
+                "hex": "#7E22CE"
+          }
+    ],
+    sizes: [
+          "200ml Tea Cup (8.1cm x 7.1cm)"
+    ],
+    minQuantity: 1,
+    tieredPricing: [
+          {
+                "minQty": 1,
+                "maxQty": 4,
+                "price": 249,
+                "savings": "Standard"
+          },
+          {
+                "minQty": 5,
+                "maxQty": 19,
+                "price": 199,
+                "savings": "20% Off"
+          },
+          {
+                "minQty": 20,
+                "maxQty": 49,
+                "price": 159,
+                "savings": "36% Off"
+          },
+          {
+                "minQty": 50,
+                "maxQty": null,
+                "price": 129,
+                "savings": "48% Off"
+          }
+    ],
+    inStock: true,
+    isBestSeller: false,
+    badgeText: "Office Favorite",
+    customizable: true,
+    printArea: "Mug Body Face: 35mm x 45mm",
+  },
+  {
+    id: "prod-drink-mug-h702",
+    name: "Stainless Steel Office Coffee Mug with Splash Lid (400ml) - Model H702",
+    slug: "stainless-steel-office-coffee-mug-splash-lid-400ml-h702",
+    category: "Drinkware & Ceramic Mugs",
+    categorySlug: "drinkware-mugs",
+    price: 329,
+    originalPrice: 649,
+    rating: 4.8,
+    reviewsCount: 139,
+    image: "/images/products/steel-coffee-mug-h702-main.jpg",
+    gallery: [
+          "/images/products/steel-coffee-mug-h702-main.jpg",
+          "/images/products/steel-coffee-mug-h702-box.jpg",
+          "/images/products/steel-coffee-mug-h702-black.jpg",
+          "/images/products/steel-coffee-mug-h702-red.jpg",
+          "/images/products/steel-coffee-mug-h702-blue.jpg"
+    ],
+    description: "Generous 400ml executive tea and coffee mug. Combines a polished stainless steel interior liner with a premium matte colored exterior and an angled open-grip handle. Sealed with a push-seal lid, making it a reliable desk companion for long work days.",
+    features: [
+          "400ml capacity (Height 11.2cm x Diameter 8.5cm, Weight 205g with box)",
+          "Polished food-grade stainless steel interior with hygienic rolled lip",
+          "Comfort-molded right-angle handle with thumb resting contour",
+          "Tight-fitting snap-lock lid with easy-open sip tab",
+          "Available in 4 professional shades (Black, Cyan Blue, Scarlet Red, White)",
+          "Full custom logo screen printing or UV color branding on mug face"
+    ],
+    colors: [
+          {
+                "name": "Executive Black",
+                "hex": "#1A1A1A"
+          },
+          {
+                "name": "Cyan Blue",
+                "hex": "#0284C7"
+          },
+          {
+                "name": "Vibrant Red",
+                "hex": "#DC2626"
+          },
+          {
+                "name": "Classic White",
+                "hex": "#FFFFFF"
+          }
+    ],
+    sizes: [
+          "400ml Large Mug (11.2cm x 8.5cm)"
+    ],
+    minQuantity: 1,
+    tieredPricing: [
+          {
+                "minQty": 1,
+                "maxQty": 4,
+                "price": 329,
+                "savings": "Standard"
+          },
+          {
+                "minQty": 5,
+                "maxQty": 19,
+                "price": 269,
+                "savings": "18% Off"
+          },
+          {
+                "minQty": 20,
+                "maxQty": 49,
+                "price": 219,
+                "savings": "33% Off"
+          },
+          {
+                "minQty": 50,
+                "maxQty": null,
+                "price": 169,
+                "savings": "49% Off"
+          }
+    ],
+    inStock: true,
+    isBestSeller: true,
+    badgeText: "Desk Essential",
+    customizable: true,
+    printArea: "Front Face: 45mm x 55mm",
+  },
+  {
+    id: "prod-corp-pen-h264",
+    name: "Executive Metallic Click Ball Pen with Chrome Trims - Model H264",
+    slug: "executive-metallic-click-ball-pen-chrome-trims-h264",
+    category: "Corporate Kits & ID Cards",
+    categorySlug: "corporate-kits",
+    price: 149,
+    originalPrice: 299,
+    rating: 4.8,
+    reviewsCount: 189,
+    image: "/images/products/metal-ball-pen-h264-main.jpg",
+    gallery: [
+          "/images/products/metal-ball-pen-h264-main.jpg",
+          "/images/products/metal-ball-pen-h264-grey.jpg",
+          "/images/products/metal-ball-pen-h264-blue.jpg",
+          "/images/products/metal-ball-pen-h264-white.jpg",
+          "/images/products/metal-ball-pen-h264-black.jpg",
+          "/images/products/metal-ball-pen-h264-red.jpg"
+    ],
+    description: "Refined retractable ballpoint pen crafted from balanced alloy metal with silver chrome trim rings and a sturdy pocket clip. Features a satisfying tik-tik click mechanism and refillable high-capacity blue gel ink for buttery smooth signature writing.",
+    features: [
+          "Precision-weighted metal barrel with dual silver chrome decorative center rings",
+          "Smooth retractable tik-tik push mechanism with heavy-duty pocket clip",
+          "High-density Swiss tungsten carbide 0.7mm tip with skip-free German ink",
+          "Available in 5 executive shades: Carbon Grey, Midnight Black, Blue, Red, White",
+          "Laser engraved golden/silver brand name, corporate slogan, or individual name",
+          "Ideal companion for corporate diaries, conference folders, and welcome hampers"
+    ],
+    colors: [
+          {
+                "name": "Carbon Grey",
+                "hex": "#4B5563"
+          },
+          {
+                "name": "Midnight Black",
+                "hex": "#111827"
+          },
+          {
+                "name": "Royal Blue",
+                "hex": "#1D4ED8"
+          },
+          {
+                "name": "Executive Red",
+                "hex": "#B91C1C"
+          },
+          {
+                "name": "Pure White",
+                "hex": "#FFFFFF"
+          }
+    ],
+    sizes: [
+          "Standard Metal Ballpoint"
+    ],
+    minQuantity: 1,
+    tieredPricing: [
+          {
+                "minQty": 1,
+                "maxQty": 4,
+                "price": 149,
+                "savings": "Standard"
+          },
+          {
+                "minQty": 5,
+                "maxQty": 19,
+                "price": 119,
+                "savings": "20% Off"
+          },
+          {
+                "minQty": 20,
+                "maxQty": 49,
+                "price": 89,
+                "savings": "40% Off"
+          },
+          {
+                "minQty": 50,
+                "maxQty": null,
+                "price": 59,
+                "savings": "60% Off"
+          }
+    ],
+    inStock: true,
+    isBestSeller: true,
+    badgeText: "Conference Pick",
+    customizable: true,
+    printArea: "Pen Barrel: 5mm x 45mm",
+  },
+  {
+    id: "prod-corp-pen-h278",
+    name: "Executive Matte Metal Capped Rollerball Pen - Model H278",
+    slug: "executive-matte-metal-capped-rollerball-pen-h278",
+    category: "Corporate Kits & ID Cards",
+    categorySlug: "corporate-kits",
+    price: 199,
+    originalPrice: 399,
+    rating: 4.9,
+    reviewsCount: 162,
+    image: "/images/products/metal-roller-pen-h278-main.jpg",
+    gallery: [
+          "/images/products/metal-roller-pen-h278-main.jpg",
+          "/images/products/metal-roller-pen-h278-blue.jpg",
+          "/images/products/metal-roller-pen-h278-black.jpg",
+          "/images/products/metal-roller-pen-h278-red.jpg"
+    ],
+    description: "An understated luxury rollerball pen with a smooth snap-on cap and matte anodized metal finish. Perfectly weighted in the hand for executive signing and daily notes. Custom engraved with laser etching that cuts through the matte coating to reveal gleaming metallic brass/silver letters.",
+    features: [
+          "Streamlined cylindrical metal construction with tactile matte texture",
+          "Secure snap-lock cap with minimalist black spring clip",
+          "Balanced center of gravity designed for fatigue-free signature flow",
+          "0.5mm precision ceramic rollerball tip with fast-drying archival liquid ink",
+          "High-contrast laser engraving of name, title, or company logo on cap or barrel",
+          "Ships in an individual protective protective sleeve or gift box"
+    ],
+    colors: [
+          {
+                "name": "Matte Black",
+                "hex": "#18181B"
+          },
+          {
+                "name": "Matte Navy Blue",
+                "hex": "#1E3A8A"
+          },
+          {
+                "name": "Matte Crimson",
+                "hex": "#991B1B"
+          }
+    ],
+    sizes: [
+          "Standard Capped Rollerball"
+    ],
+    minQuantity: 1,
+    tieredPricing: [
+          {
+                "minQty": 1,
+                "maxQty": 4,
+                "price": 199,
+                "savings": "Standard"
+          },
+          {
+                "minQty": 5,
+                "maxQty": 19,
+                "price": 159,
+                "savings": "20% Off"
+          },
+          {
+                "minQty": 20,
+                "maxQty": 49,
+                "price": 119,
+                "savings": "40% Off"
+          },
+          {
+                "minQty": 50,
+                "maxQty": null,
+                "price": 89,
+                "savings": "55% Off"
+          }
+    ],
+    inStock: true,
+    isBestSeller: true,
+    badgeText: "Executive Choice",
+    customizable: true,
+    printArea: "Cap & Body: 5mm x 40mm",
+  },
+  {
+    id: "prod-corp-cardholder-h1115",
+    name: "Horizontal PU Leather Business Card Holder with Steel Logo Plate - Model H1115",
+    slug: "horizontal-pu-leather-business-card-holder-steel-plate-h1115",
+    category: "Corporate Kits & ID Cards",
+    categorySlug: "corporate-kits",
+    price: 299,
+    originalPrice: 599,
+    rating: 4.8,
+    reviewsCount: 105,
+    image: "/images/products/card-holder-h1115-main.jpg",
+    gallery: [
+          "/images/products/card-holder-h1115-main.jpg",
+          "/images/products/card-holder-h1115-black.jpg",
+          "/images/products/card-holder-h1115-blue.jpg"
+    ],
+    description: "A pocket-sized statement of professional sophistication. Premium water-resistant PU leather case with soft velvet interior that holds up to 25 visiting cards crisp and unbent. Features a brushed stainless steel accent plate on the magnetic closure flap designed for precision laser logo engraving.",
+    features: [
+          "Reinforced steel chassis wrapped in rich textured vegan PU leather",
+          "Brushed stainless steel front plate dedicated for laser engraved branding",
+          "Strong magnetic closure keeps cards securely sealed in your pocket or briefcase",
+          "Interior lined with anti-scratch soft microfiber felt (Holds 20-25 cards)",
+          "Ultra-compact dimensions: 9.7cm x 6.7cm x 1.2cm (Weight: 80g)",
+          "Colors available: Executive Black, Midnight Navy Blue, Classic Tan Brown"
+    ],
+    colors: [
+          {
+                "name": "Executive Black",
+                "hex": "#111827"
+          },
+          {
+                "name": "Midnight Navy",
+                "hex": "#1E3A8A"
+          },
+          {
+                "name": "Tan Brown",
+                "hex": "#92400E"
+          }
+    ],
+    sizes: [
+          "Pocket Size (9.7cm x 6.7cm)"
+    ],
+    minQuantity: 1,
+    tieredPricing: [
+          {
+                "minQty": 1,
+                "maxQty": 4,
+                "price": 299,
+                "savings": "Standard"
+          },
+          {
+                "minQty": 5,
+                "maxQty": 19,
+                "price": 239,
+                "savings": "20% Off"
+          },
+          {
+                "minQty": 20,
+                "maxQty": 49,
+                "price": 189,
+                "savings": "37% Off"
+          },
+          {
+                "minQty": 50,
+                "maxQty": null,
+                "price": 149,
+                "savings": "50% Off"
+          }
+    ],
+    inStock: true,
+    isBestSeller: true,
+    badgeText: "New Arrival",
+    customizable: true,
+    printArea: "Brushed Steel Front Plate: 15mm x 50mm",
+  },
+  {
+    id: "prod-corp-cardholder-h1119",
+    name: "Executive Vertical PU Leather Visiting Card Holder with Curved Steel Clasp - Model H1119",
+    slug: "executive-vertical-pu-leather-card-holder-curved-steel-clasp-h1119",
+    category: "Corporate Kits & ID Cards",
+    categorySlug: "corporate-kits",
+    price: 319,
+    originalPrice: 629,
+    rating: 4.9,
+    reviewsCount: 94,
+    image: "/images/products/card-holder-h1119-main.jpg",
+    gallery: [
+          "/images/products/card-holder-h1119-main.jpg",
+          "/images/products/card-holder-h1119-brown.jpg",
+          "/images/products/card-holder-h1119-black.jpg",
+          "/images/products/card-holder-h1119-blue.jpg"
+    ],
+    description: "An elegant vertical flip card case accented with a curved arch stainless steel bottom trim. Made with supple top-grain textured PU leather with magnetic lock. Gives any business card presentation an instant touch of elite executive prestige.",
+    features: [
+          "Distinguished vertical portrait orientation with curved bottom steel clasp",
+          "Laser engraved logo or executive nameplate on the curved steel face",
+          "Strong dual-magnet latch snaps shut securely with tactile feedback",
+          "Pocket-friendly slim profile: 9.5cm x 6.5cm (Weight: 81.5g)",
+          "Available in 4 luxurious textures: Cognac Brown, Obsidian Black, Navy Blue, Slate Grey",
+          "Protects credit cards, ATM cards, and business cards from corner fraying"
+    ],
+    colors: [
+          {
+                "name": "Cognac Brown",
+                "hex": "#78350F"
+          },
+          {
+                "name": "Obsidian Black",
+                "hex": "#0F172A"
+          },
+          {
+                "name": "Navy Blue",
+                "hex": "#1D4ED8"
+          },
+          {
+                "name": "Slate Grey",
+                "hex": "#64748B"
+          }
+    ],
+    sizes: [
+          "Vertical Pocket (9.5cm x 6.5cm)"
+    ],
+    minQuantity: 1,
+    tieredPricing: [
+          {
+                "minQty": 1,
+                "maxQty": 4,
+                "price": 319,
+                "savings": "Standard"
+          },
+          {
+                "minQty": 5,
+                "maxQty": 19,
+                "price": 259,
+                "savings": "19% Off"
+          },
+          {
+                "minQty": 20,
+                "maxQty": 49,
+                "price": 209,
+                "savings": "34% Off"
+          },
+          {
+                "minQty": 50,
+                "maxQty": null,
+                "price": 159,
+                "savings": "50% Off"
+          }
+    ],
+    inStock: true,
+    isBestSeller: false,
+    badgeText: "Elite Luxury",
+    customizable: true,
+    printArea: "Curved Steel Clasp: 18mm x 55mm",
+  },
+  {
+    id: "prod-gift-keychain-home-h575",
+    name: "Custom Laser Engraved Home-Shape Metal Keychain (Dual-Sided) - Model H575",
+    slug: "custom-laser-engraved-home-shape-metal-keychain-h575",
+    category: "Personalized Gifts & LED Lamps",
+    categorySlug: "personalized-gifts",
+    price: 169,
+    originalPrice: 349,
+    rating: 4.9,
+    reviewsCount: 145,
+    image: "/images/products/metal-keychain-home-h575-main.jpg",
+    gallery: [
+          "/images/products/metal-keychain-home-h575-main.jpg",
+          "/images/products/metal-keychain-home-h575-silver.jpg",
+          "/images/products/metal-keychain-home-h575-black.jpg"
+    ],
+    description: "A solid zinc alloy keychain shaped like a house silhouette with front-and-back identical polished design. Highly sought after by real estate agencies, architects, mortgage consultants, and new homeowners. Can be laser engraved with house numbers, family names, or builder logos.",
+    features: [
+          "Precision die-cast metal alloy with durable electroplated chrome finish",
+          "Front and back identical design allowing dual-sided laser engraving",
+          "Dimensions: Height 8cm x Width 2.7cm (Weight 15g, includes PP protective pouch)",
+          "High-tension flat split key ring holds house and car keys securely",
+          "Available in Brushed Silver and High-Gloss Mirror Black",
+          "Popular choice for Griha Pravesh gifts, builder handovers, and hotel keytags"
+    ],
+    colors: [
+          {
+                "name": "Brushed Silver",
+                "hex": "#E2E8F0"
+          },
+          {
+                "name": "Mirror Black",
+                "hex": "#0F172A"
+          }
+    ],
+    sizes: [
+          "8cm x 2.7cm (15g)"
+    ],
+    minQuantity: 1,
+    tieredPricing: [
+          {
+                "minQty": 1,
+                "maxQty": 4,
+                "price": 169,
+                "savings": "Standard"
+          },
+          {
+                "minQty": 5,
+                "maxQty": 19,
+                "price": 129,
+                "savings": "24% Off"
+          },
+          {
+                "minQty": 20,
+                "maxQty": 49,
+                "price": 99,
+                "savings": "41% Off"
+          },
+          {
+                "minQty": 50,
+                "maxQty": null,
+                "price": 79,
+                "savings": "53% Off"
+          }
+    ],
+    inStock: true,
+    isBestSeller: true,
+    badgeText: "Real Estate Pick",
+    customizable: true,
+    printArea: "Dual-Sided House Face: 22mm x 22mm",
+  },
+  {
+    id: "prod-gift-keychain-round-h573",
+    name: "Custom Dual-Side Laser Engraved Round Metal Keychain - Model H573",
+    slug: "custom-dual-side-laser-engraved-round-metal-keychain-h573",
+    category: "Personalized Gifts & LED Lamps",
+    categorySlug: "personalized-gifts",
+    price: 169,
+    originalPrice: 349,
+    rating: 4.8,
+    reviewsCount: 132,
+    image: "/images/products/metal-keychain-round-h573-main.jpg",
+    gallery: [
+          "/images/products/metal-keychain-round-h573-main.jpg",
+          "/images/products/metal-keychain-round-h573-pair.jpg",
+          "/images/products/metal-keychain-round-h573-keys.jpg"
+    ],
+    description: "Classic circular medallion metal keychain with rounded pill-link swivel connector. Beautifully polished bevel edge with a brushed center disc made for high-definition laser engraving on both faces. Fits car keys, motorcycle ignitions, and locker keys with timeless style.",
+    features: [
+          "Circular medallion silhouette with seamless pivot-link connector",
+          "Dual-sided identical face allows distinct text/logo on front & back",
+          "Dimensions: Height 6.8cm x Diameter 4.3cm (Weight 15g)",
+          "High-precision laser etching produces everlasting silver/white mark",
+          "Colors: Brushed Silver Stainless and High-Gloss Obsidian Black",
+          "Individually packed in clean transparent blister PP packaging"
+    ],
+    colors: [
+          {
+                "name": "Brushed Silver",
+                "hex": "#CBD5E1"
+          },
+          {
+                "name": "High-Gloss Black",
+                "hex": "#111827"
+          }
+    ],
+    sizes: [
+          "6.8cm x 4.3cm (15g)"
+    ],
+    minQuantity: 1,
+    tieredPricing: [
+          {
+                "minQty": 1,
+                "maxQty": 4,
+                "price": 169,
+                "savings": "Standard"
+          },
+          {
+                "minQty": 5,
+                "maxQty": 19,
+                "price": 129,
+                "savings": "24% Off"
+          },
+          {
+                "minQty": 20,
+                "maxQty": 49,
+                "price": 99,
+                "savings": "41% Off"
+          },
+          {
+                "minQty": 50,
+                "maxQty": null,
+                "price": 79,
+                "savings": "53% Off"
+          }
+    ],
+    inStock: true,
+    isBestSeller: true,
+    badgeText: "Timeless Classic",
+    customizable: true,
+    printArea: "Round Face: 30mm Diameter (Dual Sided)",
+  },
+  {
+    id: "prod-gift-keychain-tag-h574",
+    name: "Custom Dog-Tag Capsule Metal Keychain (Front & Back Engraved) - Model H574",
+    slug: "custom-dog-tag-capsule-metal-keychain-h574",
+    category: "Personalized Gifts & LED Lamps",
+    categorySlug: "personalized-gifts",
+    price: 169,
+    originalPrice: 349,
+    rating: 4.8,
+    reviewsCount: 118,
+    image: "/images/products/metal-keychain-tag-h574-main.jpg",
+    gallery: [
+          "/images/products/metal-keychain-tag-h574-main.jpg",
+          "/images/products/metal-keychain-tag-h574-black.jpg",
+          "/images/products/metal-keychain-tag-h574-keys.jpg",
+          "/images/products/metal-keychain-tag-h574-pair.jpg"
+    ],
+    description: "Sleek rounded-rectangle dog tag metal keychain featuring a robust elongated link. Double-sided identical design offers plenty of horizontal engraving space for company names, phone numbers, vehicle registration numbers, or inspiring mantras.",
+    features: [
+          "Rounded-rectangle capsule profile with raised protective chrome bezel",
+          "Both front and back share identical design for dual personalization",
+          "Size: Height 8cm x Width 2.7cm (Lightweight 15g)",
+          "High-grade electroplated alloy resists rust, fading, and pocket scratches",
+          "Colors: Brushed Silver and Mirror Black enamel center",
+          "Personalized with laser engraving with instant turnaround in Ranchi Hub"
+    ],
+    colors: [
+          {
+                "name": "Brushed Silver",
+                "hex": "#E2E8F0"
+          },
+          {
+                "name": "Mirror Black",
+                "hex": "#0F172A"
+          }
+    ],
+    sizes: [
+          "8cm x 2.7cm (15g)"
+    ],
+    minQuantity: 1,
+    tieredPricing: [
+          {
+                "minQty": 1,
+                "maxQty": 4,
+                "price": 169,
+                "savings": "Standard"
+          },
+          {
+                "minQty": 5,
+                "maxQty": 19,
+                "price": 129,
+                "savings": "24% Off"
+          },
+          {
+                "minQty": 20,
+                "maxQty": 49,
+                "price": 99,
+                "savings": "41% Off"
+          },
+          {
+                "minQty": 50,
+                "maxQty": null,
+                "price": 79,
+                "savings": "53% Off"
+          }
+    ],
+    inStock: true,
+    isBestSeller: false,
+    badgeText: "Popular Tag",
+    customizable: true,
+    printArea: "Capsule Plate: 20mm x 35mm (Dual Sided)",
+  },
+  {
+    id: "prod-gift-keychain-opener-h519",
+    name: "Heavy-Duty Carabiner Hook Metal Keychain with Built-in Bottle Opener - Model H519",
+    slug: "heavy-duty-carabiner-hook-metal-keychain-bottle-opener-h519",
+    category: "Personalized Gifts & LED Lamps",
+    categorySlug: "personalized-gifts",
+    price: 249,
+    originalPrice: 499,
+    rating: 4.9,
+    reviewsCount: 167,
+    image: "/images/products/metal-keychain-opener-h519-main.jpg",
+    gallery: [
+          "/images/products/metal-keychain-opener-h519-main.jpg",
+          "/images/products/metal-keychain-opener-h519-brown.jpg",
+          "/images/products/metal-keychain-opener-h519-grey.jpg",
+          "/images/products/metal-keychain-opener-h519-blue.jpg",
+          "/images/products/metal-keychain-opener-h519-black.jpg"
+    ],
+    description: "The ultimate everyday carry (EDC) utility keychain. Combines a spring-loaded metal carabiner belt loop clip, an integrated cold drink bottle opener, and a genuine textured leather strap connecting to a heavy-duty key ring. The center metal plate offers high-precision laser logo branding.",
+    features: [
+          "3-in-1 Multi-utility: Spring belt clip, bottle opener & reinforced key ring",
+          "Center metal face plate engineered for crisp permanent laser branding",
+          "Textured premium vegan leather strap with heavy-duty metal rivets",
+          "Dimensions: Height 10cm x Width 3.3cm x Thickness 0.8cm (Weight 29g)",
+          "Available in 4 leather strap shades: Saddle Brown, Olive Grey, Navy Blue, Onyx Black",
+          "Built for daily commuting, outdoor adventure, camping, and automotive gifting"
+    ],
+    colors: [
+          {
+                "name": "Saddle Brown",
+                "hex": "#78350F"
+          },
+          {
+                "name": "Olive Grey",
+                "hex": "#4B5563"
+          },
+          {
+                "name": "Navy Blue",
+                "hex": "#1D4ED8"
+          },
+          {
+                "name": "Onyx Black",
+                "hex": "#111827"
+          }
+    ],
+    sizes: [
+          "10cm x 3.3cm (29g)"
+    ],
+    minQuantity: 1,
+    tieredPricing: [
+          {
+                "minQty": 1,
+                "maxQty": 4,
+                "price": 249,
+                "savings": "Standard"
+          },
+          {
+                "minQty": 5,
+                "maxQty": 19,
+                "price": 199,
+                "savings": "20% Off"
+          },
+          {
+                "minQty": 20,
+                "maxQty": 49,
+                "price": 149,
+                "savings": "40% Off"
+          },
+          {
+                "minQty": 50,
+                "maxQty": null,
+                "price": 119,
+                "savings": "52% Off"
+          }
+    ],
+    inStock: true,
+    isBestSeller: true,
+    badgeText: "EDC Bestseller",
+    customizable: true,
+    printArea: "Center Metal Face: 18mm x 25mm",
+  },
+  {
+    id: "prod-gift-keychain-tyre-h530",
+    name: "3D Spinning Alloy Wheel & Real Rubber Tyre Metal Keychain - Model H530",
+    slug: "3d-spinning-alloy-wheel-rubber-tyre-metal-keychain-h530",
+    category: "Personalized Gifts & LED Lamps",
+    categorySlug: "personalized-gifts",
+    price: 229,
+    originalPrice: 459,
+    rating: 4.9,
+    reviewsCount: 204,
+    image: "/images/products/metal-keychain-tyre-h530-main.jpg",
+    gallery: [
+          "/images/products/metal-keychain-tyre-h530-main.jpg",
+          "/images/products/metal-keychain-tyre-h530-angle.jpg",
+          "/images/products/metal-keychain-tyre-h530-pair.jpg",
+          "/images/products/metal-keychain-tyre-h530-single.jpg"
+    ],
+    description: "A dream collectible for car enthusiasts and automotive brands. Features a free-spinning miniature 5-spoke chrome alloy wheel rim enveloped in a genuine textured rubber tire tread. The connecting metal arm is designed for laser engraved car registration numbers or brand logos.",
+    features: [
+          "Realistic miniature 3D 5-spoke chrome alloy wheel that spins freely on ball axis",
+          "Encased in real textured vulcanized black rubber tire with tread grooves",
+          "Sturdy metal pivot stem provides laser engraving area for logo or car plate number",
+          "Solid chrome split key ring designed for car key fobs and bike keys",
+          "The top gift for car showroom deliveries, auto detailing studios, and vehicle owners"
+    ],
+    colors: [
+          {
+                "name": "Chrome Silver & Black Rubber",
+                "hex": "#E2E8F0"
+          }
+    ],
+    sizes: [
+          "Wheel Diameter 3.5cm x Total Length 8cm"
+    ],
+    minQuantity: 1,
+    tieredPricing: [
+          {
+                "minQty": 1,
+                "maxQty": 4,
+                "price": 229,
+                "savings": "Standard"
+          },
+          {
+                "minQty": 5,
+                "maxQty": 19,
+                "price": 179,
+                "savings": "22% Off"
+          },
+          {
+                "minQty": 20,
+                "maxQty": 49,
+                "price": 139,
+                "savings": "39% Off"
+          },
+          {
+                "minQty": 50,
+                "maxQty": null,
+                "price": 109,
+                "savings": "52% Off"
+          }
+    ],
+    inStock: true,
+    isBestSeller: true,
+    badgeText: "Auto Fan Favorite",
+    customizable: true,
+    printArea: "Wheel Hub & Stem Arm: 10mm x 25mm",
+  },
+  {
+    id: "prod-gift-keychain-home-leather-h589",
+    name: "House Silhouette Metal Carabiner Hook Keychain with Leather Strap - Model H589",
+    slug: "house-silhouette-metal-carabiner-hook-keychain-leather-strap-h589",
+    category: "Personalized Gifts & LED Lamps",
+    categorySlug: "personalized-gifts",
+    price: 219,
+    originalPrice: 449,
+    rating: 4.8,
+    reviewsCount: 88,
+    image: "/images/products/metal-keychain-home-leather-h589-main.jpg",
+    gallery: [
+          "/images/products/metal-keychain-home-leather-h589-main.jpg",
+          "/images/products/metal-keychain-home-leather-h589-brown.jpg",
+          "/images/products/metal-keychain-home-leather-h589-grey.jpg",
+          "/images/products/metal-keychain-home-leather-h589-black.jpg"
+    ],
+    description: "An architectural statement piece. Features a spring-gate metal carabiner hook in a house roof silhouette, connected to a textured leather strap and sturdy key ring. Perfect for hanging on wall key racks or clipping onto belt loops.",
+    features: [
+          "Spring-gate metal carabiner hook designed in charming house silhouette",
+          "Black enamel house plate personalized with laser engraved logo or initials",
+          "Textured vegan leather strap connecting to heavy-duty flat key ring",
+          "Total size: Height 9.7cm x Width 3.2cm (Weight 27g with packing)",
+          "Available in 4 strap colors: Warm Brown, Slate Grey, Navy Blue, Classic Black",
+          "Ideal gift for home handovers, interior designers, and family housewarming"
+    ],
+    colors: [
+          {
+                "name": "Warm Brown",
+                "hex": "#78350F"
+          },
+          {
+                "name": "Slate Grey",
+                "hex": "#4B5563"
+          },
+          {
+                "name": "Navy Blue",
+                "hex": "#1D4ED8"
+          },
+          {
+                "name": "Classic Black",
+                "hex": "#111827"
+          }
+    ],
+    sizes: [
+          "9.7cm x 3.2cm (27g)"
+    ],
+    minQuantity: 1,
+    tieredPricing: [
+          {
+                "minQty": 1,
+                "maxQty": 4,
+                "price": 219,
+                "savings": "Standard"
+          },
+          {
+                "minQty": 5,
+                "maxQty": 19,
+                "price": 169,
+                "savings": "23% Off"
+          },
+          {
+                "minQty": 20,
+                "maxQty": 49,
+                "price": 129,
+                "savings": "41% Off"
+          },
+          {
+                "minQty": 50,
+                "maxQty": null,
+                "price": 99,
+                "savings": "55% Off"
+          }
+    ],
+    inStock: true,
+    isBestSeller: false,
+    badgeText: "New Arrival",
+    customizable: true,
+    printArea: "House Enamel Face: 15mm x 18mm",
+  },
+  {
+    id: "prod-gift-keychain-bar-tag",
+    name: "Personalized Minimalist Metallic Bar Keychain with Round Charm",
+    slug: "personalized-minimalist-metallic-bar-keychain-round-charm",
+    category: "Personalized Gifts & LED Lamps",
+    categorySlug: "personalized-gifts",
+    price: 189,
+    originalPrice: 379,
+    rating: 4.9,
+    reviewsCount: 156,
+    image: "/images/products/metal-keychain-bar-tag-colors.jpg",
+    gallery: [
+          "/images/products/metal-keychain-bar-tag-colors.jpg"
+    ],
+    description: "Chic modern vertical bar pendant keychain accompanied by an accent round coin charm. Crafted from mirror-polished surgical stainless steel with scratch-resistant PVD coating. Can be custom laser engraved on 4 vertical bar sides with dates, coordinates, names, or quotes.",
+    features: [
+          "4-Sided elongated solid steel bar pendant with matching circular coin charm",
+          "Wear-resistant PVD vacuum plating with mirror-reflection polish",
+          "Engrave names on side 1, coordinates on side 2, dates on side 3, initial on charm",
+          "Available in 4 luxury finishes: Rose Gold, 18K Luxury Gold, Mirror Silver, Bronze",
+          "Comes in an elegant velvet jewelry drawstring pouch",
+          "Romantic anniversary, couple milestone, and wedding party keepsake"
+    ],
+    colors: [
+          {
+                "name": "Rose Gold",
+                "hex": "#FB7185"
+          },
+          {
+                "name": "18K Luxury Gold",
+                "hex": "#F59E0B"
+          },
+          {
+                "name": "Mirror Silver",
+                "hex": "#E2E8F0"
+          },
+          {
+                "name": "Antique Bronze",
+                "hex": "#92400E"
+          }
+    ],
+    sizes: [
+          "Bar 40mm x 5mm + 12mm Charm"
+    ],
+    minQuantity: 1,
+    tieredPricing: [
+          {
+                "minQty": 1,
+                "maxQty": 4,
+                "price": 189,
+                "savings": "Standard"
+          },
+          {
+                "minQty": 5,
+                "maxQty": 19,
+                "price": 149,
+                "savings": "21% Off"
+          },
+          {
+                "minQty": 20,
+                "maxQty": 49,
+                "price": 119,
+                "savings": "37% Off"
+          },
+          {
+                "minQty": 50,
+                "maxQty": null,
+                "price": 89,
+                "savings": "53% Off"
+          }
+    ],
+    inStock: true,
+    isBestSeller: true,
+    badgeText: "Couple Favorite",
+    customizable: true,
+    printArea: "4 Bar Sides: 4mm x 35mm each",
+  },
+  {
+    id: "prod-gift-keychain-lawyer-band",
+    name: "Advocate Legal Neckband Stainless Steel Keychain",
+    slug: "advocate-legal-neckband-stainless-steel-keychain",
+    category: "Personalized Gifts & LED Lamps",
+    categorySlug: "personalized-gifts",
+    price: 199,
+    originalPrice: 399,
+    rating: 5,
+    reviewsCount: 112,
+    image: "/images/products/metal-keychain-advocate-band.jpg",
+    gallery: [
+          "/images/products/metal-keychain-advocate-band.jpg"
+    ],
+    description: "An exclusive tribute to legal professionals. Precision laser cut from solid stainless steel depicting the iconic advocate neckband collar tie within a protective circular ring with bottom pedestal for personalized lawyer name engraving.",
+    features: [
+          "Iconic legal advocate white neckband collar insignia laser cut in solid steel",
+          "Dedicated lower pedestal bar personalized with Advocate Name or High Court / Supreme Court",
+          "Rust-proof brushed stainless steel finish with heavy curb link chain",
+          "Sturdy heavy-duty key ring engineered for office keys, court chambers, and car keys",
+          "The definitive law graduation, bar council enrollment, and advocate elevation gift"
+    ],
+    colors: [
+          {
+                "name": "Brushed Surgical Steel",
+                "hex": "#CBD5E1"
+          }
+    ],
+    sizes: [
+          "Medallion Height 4.5cm x Width 4cm"
+    ],
+    minQuantity: 1,
+    tieredPricing: [
+          {
+                "minQty": 1,
+                "maxQty": 4,
+                "price": 199,
+                "savings": "Standard"
+          },
+          {
+                "minQty": 5,
+                "maxQty": 19,
+                "price": 159,
+                "savings": "20% Off"
+          },
+          {
+                "minQty": 20,
+                "maxQty": 49,
+                "price": 129,
+                "savings": "35% Off"
+          },
+          {
+                "minQty": 50,
+                "maxQty": null,
+                "price": 95,
+                "savings": "52% Off"
+          }
+    ],
+    inStock: true,
+    isBestSeller: true,
+    badgeText: "Legal Special",
+    customizable: true,
+    printArea: "Lower Name Bar: 5mm x 25mm",
+  },
 ];
-
