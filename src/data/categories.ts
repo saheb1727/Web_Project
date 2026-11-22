@@ -16,7 +16,7 @@ export const categories: Category[] = [
     slug: "personalized-gifts",
     description: "Couple name mangalsutras, 360° rotating photo cube lamps, crystal LED Nikah frames, custom engraved metallic & leather keychains, and dual-side photo wallets.",
     image: "/images/products/custom-name-mangalsutra-pendants.jpg",
-    itemCount: 20,
+    itemCount: 21,
     badge: "New Launch",
   },
   {
@@ -25,7 +25,7 @@ export const categories: Category[] = [
     slug: "corporate-kits",
     description: "OnePlus Buddha hampers, executive 2-in-1 gift sets, metal pens, PU leather business card holders, 3-in-1 welcome kits, 4-in-1 leather sets, doctor sets, and satin lanyards.",
     image: "/images/products/corporate-oneplus-buddha-hamper.jpg",
-    itemCount: 15,
+    itemCount: 17,
     badge: "Bulk Deals",
   },
   {

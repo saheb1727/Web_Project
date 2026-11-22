@@ -3590,6 +3590,153 @@ export const products: Product[] = [
     printArea: "Pen Barrel: 5mm x 40mm | Keychain Base: 8mm x 25mm",
   },
   {
+    id: "prod-corp-diary-h1007",
+    name: "Executive A5 Office Notebook Diary with Elastic Band & Bookmark - Model H1007",
+    slug: "executive-a5-office-notebook-diary-elastic-band-h1007",
+    category: "Corporate Kits & ID Cards",
+    categorySlug: "corporate-kits",
+    price: 249,
+    originalPrice: 499,
+    rating: 4.9,
+    reviewsCount: 184,
+    image: "/images/products/notebook-diary-h1007-main.jpg",
+    gallery: [
+      "/images/products/notebook-diary-h1007-main.jpg",
+      "/images/products/notebook-diary-h1007-brown.jpg",
+      "/images/products/notebook-diary-h1007-black.jpg",
+      "/images/products/notebook-diary-h1007-blue.jpg",
+      "/images/products/notebook-diary-h1007-pair-brown-black.jpg",
+      "/images/products/notebook-diary-h1007-pair-grey-blue.jpg"
+    ],
+    description: "A timeless A5 non-dated office notebook diary crafted with a smooth hardbound PU leather cover, color-matched vertical elastic closure band, and a matching silk ribbon bookmark. Contains 164 ruled pages of fountain-pen-friendly 80 GSM natural shade paper. Customized with your company logo via blind heat debossing, gold foil stamping, or an optional engraved metal branding plate.",
+    features: [
+      "Standard A5 Dimensions: Height 21cm x Width 14.5cm (Weight 240g with individual PP pack)",
+      "164 Lined Pages (82 leaves) of 80 GSM non-bleed smooth writing paper",
+      "Color-matched flat elastic closure band keeps notes and receipts securely enclosed",
+      "Integrated satin ribbon bookmark for effortless page tracking",
+      "Available in 5 Executive Colors: Tan Brown, Midnight Black, Royal Blue, Slate Grey, Crimson Red",
+      "Customization Options: Blind logo debossing or optional laser-engraved metal front plate",
+      "Ideal for corporate conferences, daily journaling, executive meetings, and welcome hampers"
+    ],
+    colors: [
+      { name: "Tan Brown", hex: "#92400E" },
+      { name: "Midnight Black", hex: "#111827" },
+      { name: "Royal Blue", hex: "#1D4ED8" },
+      { name: "Slate Grey", hex: "#4B5563" },
+      { name: "Crimson Red", hex: "#DC2626" }
+    ],
+    sizes: [
+      "A5 Size (21cm x 14.5cm)"
+    ],
+    minQuantity: 1,
+    tieredPricing: [
+      { minQty: 1, maxQty: 4, price: 249, savings: "Standard" },
+      { minQty: 5, maxQty: 19, price: 199, savings: "20% Off" },
+      { minQty: 20, maxQty: 49, price: 159, savings: "36% Off" },
+      { minQty: 50, maxQty: null, price: 119, savings: "52% Off" }
+    ],
+    inStock: true,
+    isBestSeller: true,
+    badgeText: "Office Essential",
+    customizable: true,
+    printArea: "Cover Front: 75mm x 75mm | Optional Metal Plate: 15mm x 45mm",
+  },
+  {
+    id: "prod-corp-diary-ribbed-h1008",
+    name: "Executive Fluted Ribbed Leather A5 Notebook Diary - Model 1008",
+    slug: "executive-fluted-ribbed-leather-a5-notebook-diary-1008",
+    category: "Corporate Kits & ID Cards",
+    categorySlug: "corporate-kits",
+    price: 279,
+    originalPrice: 549,
+    rating: 4.8,
+    reviewsCount: 126,
+    image: "/images/products/notebook-diary-h1008-black.jpg",
+    gallery: [
+      "/images/products/notebook-diary-h1008-black.jpg",
+      "/images/products/notebook-diary-h1008-blue.jpg",
+      "/images/products/notebook-diary-h1008-grey.jpg"
+    ],
+    description: "A refined A5 corporate notebook diary crafted with a luxury padded faux leather cover featuring perimeter saddle stitching and an elegant central fluted rib texture. Designed for senior executives and boardrooms with 192 lined pages of premium archival paper and a satin ribbon bookmark.",
+    features: [
+      "Tactile padded faux leather cover with perimeter edge stitching and central ribbed design",
+      "Standard A5 Format: 21.5cm x 15cm x 1.8cm (Weight 280g)",
+      "192 Ruled Pages of 80 GSM acid-free ivory paper with date/day header",
+      "Satin ribbon bookmark marker for quick reference",
+      "Available in 3 Executive Hues: Midnight Black, Classic Navy Blue, Steel Grey",
+      "Custom laser engraved or metallic foil stamped company logo and executive name",
+      "The definitive choice for annual corporate diaries, executive planning, and VIP gifting"
+    ],
+    colors: [
+      { name: "Midnight Black", hex: "#111827" },
+      { name: "Classic Navy Blue", hex: "#1E3A8A" },
+      { name: "Steel Grey", hex: "#64748B" }
+    ],
+    sizes: [
+      "A5 Executive (21.5cm x 15cm)"
+    ],
+    minQuantity: 1,
+    tieredPricing: [
+      { minQty: 1, maxQty: 4, price: 279, savings: "Standard" },
+      { minQty: 5, maxQty: 19, price: 229, savings: "18% Off" },
+      { minQty: 20, maxQty: 49, price: 179, savings: "36% Off" },
+      { minQty: 50, maxQty: null, price: 139, savings: "50% Off" }
+    ],
+    inStock: true,
+    isBestSeller: false,
+    badgeText: "Executive Texture",
+    customizable: true,
+    printArea: "Lower Center: 60mm x 40mm",
+  },
+  {
+    id: "prod-gift-leather-passport-cover",
+    name: "Personalized Genuine PU Leather Passport Cover & Travel Document Wallet",
+    slug: "personalized-pu-leather-passport-cover-travel-wallet",
+    category: "Personalized Gifts & LED Lamps",
+    categorySlug: "personalized-gifts",
+    price: 249,
+    originalPrice: 499,
+    rating: 4.9,
+    reviewsCount: 215,
+    image: "/images/products/leather-passport-cover-colors.jpg",
+    gallery: [
+      "/images/products/leather-passport-cover-colors.jpg",
+      "/images/products/executive-leather-gift-set.jpg"
+    ],
+    description: "Travel in luxury with our bespoke bi-fold passport holder hand-stitched from durable, scratch-resistant vegan PU leather. Protects your passport, international driving permit, boarding passes, and currency in style. Personalized with a laser engraved metallic charm and customized brass nameplate strip with your name.",
+    features: [
+      "Custom brass metallic nameplate with high-precision laser engraved name",
+      "Choice of custom metallic charm (Airplane, Globe, Crown, Camera, Eiffel Tower)",
+      "Dedicated inner sleeve fits all standard international passports perfectly",
+      "Two additional quick-access slots for boarding passes, credit cards, and forex cards",
+      "Dimensions: Height 14cm x Width 10cm (Slim pocket-friendly 45g)",
+      "Available in 5 earthy leather tones: Tan Brown, Forest Green, Chocolate Wine, Jet Black, Navy Blue",
+      "The quintessential gift for honeymooners, frequent flyers, study-abroad students, and family vacations"
+    ],
+    colors: [
+      { name: "Tan Brown", hex: "#B45309" },
+      { name: "Forest Green", hex: "#15803D" },
+      { name: "Chocolate Wine", hex: "#4A0404" },
+      { name: "Jet Black", hex: "#111827" },
+      { name: "Navy Blue", hex: "#1D4ED8" }
+    ],
+    sizes: [
+      "Universal Passport Size (14cm x 10cm)"
+    ],
+    minQuantity: 1,
+    tieredPricing: [
+      { minQty: 1, maxQty: 4, price: 249, savings: "Standard" },
+      { minQty: 5, maxQty: 19, price: 199, savings: "20% Off" },
+      { minQty: 20, maxQty: 49, price: 159, savings: "36% Off" },
+      { minQty: 50, maxQty: null, price: 119, savings: "52% Off" }
+    ],
+    inStock: true,
+    isBestSeller: true,
+    badgeText: "Travel Best Seller",
+    customizable: true,
+    printArea: "Name Strip: 10mm x 60mm | Charm: 15mm x 15mm",
+  },
+  {
     id: "prod-gift-keychain-home-h575",
     name: "Custom Laser Engraved Home-Shape Metal Keychain (Dual-Sided) - Model H575",
     slug: "custom-laser-engraved-home-shape-metal-keychain-h575",
