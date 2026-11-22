@@ -3651,8 +3651,9 @@ export const products: Product[] = [
     originalPrice: 549,
     rating: 4.8,
     reviewsCount: 126,
-    image: "/images/products/notebook-diary-h1008-black.jpg",
+    image: "/images/products/notebook-diary-h1008-main.jpg",
     gallery: [
+      "/images/products/notebook-diary-h1008-main.jpg",
       "/images/products/notebook-diary-h1008-black.jpg",
       "/images/products/notebook-diary-h1008-blue.jpg",
       "/images/products/notebook-diary-h1008-grey.jpg"
@@ -4318,5 +4319,158 @@ export const products: Product[] = [
     badgeText: "Legal Special",
     customizable: true,
     printArea: "Lower Name Bar: 5mm x 25mm",
+  },
+  {
+    id: "prod-corp-diary-clasp-h1047",
+    name: "Executive Vintage PU Leather Diary with Circular Magnetic Clasp - Model H1047",
+    slug: "executive-vintage-pu-leather-diary-circular-clasp-h1047",
+    category: "Corporate Kits & ID Cards",
+    categorySlug: "corporate-kits",
+    price: 329,
+    originalPrice: 649,
+    rating: 4.9,
+    reviewsCount: 138,
+    image: "/images/products/notebook-diary-h1047-main.jpg",
+    gallery: [
+      "/images/products/notebook-diary-h1047-main.jpg",
+      "/images/products/notebook-diary-h1047-black.jpg",
+      "/images/products/notebook-diary-h1047-brown.jpg",
+      "/images/products/notebook-diary-h1047-grey.jpg"
+    ],
+    description: "A sophisticated A5 executive notebook diary crafted in rich vintage-finish PU leather with a wrap-around magnetic strap featuring a circular brushed metal emblem. Complete with 116 ruled pages, 4-year calendar (2022-2025), India roadmap, Delhi & Mumbai metro rail maps, and an integrated bookmark ribbon. The central circular steel emblem is custom laser-engraved with your corporate logo or recipient name.",
+    features: [
+      "Wrap-around magnetic leather strap featuring a brushed circular metal emblem for custom logo laser engraving",
+      "Handcrafted vintage-grain PU leather cover with fine perimeter edge stitching",
+      "Dimensions: 21.2cm (H) x 14.5cm (W) | Weight: 360g",
+      "116 Ruled Pages on smooth 80 GSM eye-friendly natural shade archival paper",
+      "Integrated Reference Sections: 4-Year Calendar, India Roadmap, Delhi and Mumbai Metro Rail transit maps",
+      "Satin bookmark ribbon for effortless page tracking",
+      "Available in 4 Corporate Tones: Tan Brown, Obsidian Black, Cyan Blue, Slate Grey",
+      "Premium choice for corporate offsites, annual client gifts, dealer meets, and executive onboarding"
+    ],
+    colors: [
+      { name: "Tan Brown", hex: "#92400E" },
+      { name: "Obsidian Black", hex: "#111827" },
+      { name: "Cyan Blue", hex: "#0284C7" },
+      { name: "Slate Grey", hex: "#64748B" }
+    ],
+    sizes: [
+      "A5 Executive (21.2cm x 14.5cm)"
+    ],
+    minQuantity: 1,
+    tieredPricing: [
+      { minQty: 1, maxQty: 4, price: 329, savings: "Standard" },
+      { minQty: 5, maxQty: 19, price: 269, savings: "18% Off" },
+      { minQty: 20, maxQty: 49, price: 209, savings: "36% Off" },
+      { minQty: 50, maxQty: null, price: 159, savings: "52% Off" }
+    ],
+    inStock: true,
+    isBestSeller: true,
+    badgeText: "Magnetic Clasp",
+    customizable: true,
+    printArea: "Center Clasp Disc (Ø 28mm) or Cover Bottom (60mm x 35mm)",
+  },
+  {
+    id: "prod-corp-diary-plate-h1046",
+    name: "Executive Hardbound PU Leather Diary with Rectangular Steel Magnetic Clasp - Model H1046",
+    slug: "executive-hardbound-pu-leather-diary-steel-clasp-h1046",
+    category: "Corporate Kits & ID Cards",
+    categorySlug: "corporate-kits",
+    price: 349,
+    originalPrice: 699,
+    rating: 4.9,
+    reviewsCount: 164,
+    image: "/images/products/notebook-diary-h1046-main.jpg",
+    gallery: [
+      "/images/products/notebook-diary-h1046-main.jpg",
+      "/images/products/notebook-diary-h1046-blue.jpg",
+      "/images/products/notebook-diary-h1046-brown.jpg",
+      "/images/products/notebook-diary-h1046-black.jpg",
+      "/images/products/notebook-diary-h1046-grey.jpg"
+    ],
+    description: "A stately executive notebook diary featuring a heavy-gauge brushed stainless steel plate embedded on a secure magnetic leather clasp strap. Bound in smooth premium PU leather with perimeter stitching, housing 232 lined pages (116 leaves) of 80 GSM archival paper. Features essential corporate planning resources including a 4-year calendar, India roadmap, and Delhi & Mumbai metro rail network maps.",
+    features: [
+      "Brushed rectangular stainless steel plate mounted on a magnetic closure strap, custom laser-engraved with company branding",
+      "232 High-Capacity Ruled Pages (116 leaves) on premium 80 GSM smooth ink-resistant paper",
+      "Standard Executive Format: 21.2cm (H) x 14.6cm (W) | Weight: 380g",
+      "Executive Planning Section: 4-Year Calendar, National India Highway & Railway Map, Metro Transit System maps",
+      "Durable hardbound vegan leather cover with reinforced spine and perimeter seam stitching",
+      "Integrated color-coordinated satin ribbon page marker",
+      "Available in 5 Executive Colors: Dark Navy Blue, Saddle Brown, Executive Black, Slate Grey, Sage Mint",
+      "Designed for leadership conferences, annual strategic planning, board meetings, and high-impact corporate gifting"
+    ],
+    colors: [
+      { name: "Dark Navy Blue", hex: "#1E3A8A" },
+      { name: "Saddle Brown", hex: "#78350F" },
+      { name: "Executive Black", hex: "#111827" },
+      { name: "Slate Grey", hex: "#4B5563" },
+      { name: "Sage Mint", hex: "#047857" }
+    ],
+    sizes: [
+      "A5 Hardbound (21.2cm x 14.6cm)"
+    ],
+    minQuantity: 1,
+    tieredPricing: [
+      { minQty: 1, maxQty: 4, price: 349, savings: "Standard" },
+      { minQty: 5, maxQty: 19, price: 289, savings: "17% Off" },
+      { minQty: 20, maxQty: 49, price: 229, savings: "34% Off" },
+      { minQty: 50, maxQty: null, price: 169, savings: "52% Off" }
+    ],
+    inStock: true,
+    isBestSeller: false,
+    badgeText: "Steel Nameplate",
+    customizable: true,
+    printArea: "Steel Clasp Plate: 45mm x 18mm, or Cover Lower Right: 60mm x 35mm",
+  },
+  {
+    id: "prod-corp-diary-organizer-h1050",
+    name: "Multifunction A5 Executive Diary with Mobile & Card Holder Pocket - Model H1050",
+    slug: "multifunction-a5-executive-diary-mobile-card-holder-h1050",
+    category: "Corporate Kits & ID Cards",
+    categorySlug: "corporate-kits",
+    price: 359,
+    originalPrice: 699,
+    rating: 4.9,
+    reviewsCount: 152,
+    image: "/images/products/notebook-diary-h1050-main.jpg",
+    gallery: [
+      "/images/products/notebook-diary-h1050-main.jpg",
+      "/images/products/notebook-diary-h1050-blue.jpg",
+      "/images/products/notebook-diary-h1050-black.jpg",
+      "/images/products/notebook-diary-h1050-brown.jpg",
+      "/images/products/notebook-diary-h1050-grey.jpg"
+    ],
+    description: "An innovative multifunction A5 corporate diary tailored for mobile executives. Features a dedicated front slip pocket designed to hold smartphones securely, an integrated visiting card / ID card slot, and an elastic pen loop so essentials stay together. Bound in premium melange-textured fabric and PU leather housing 116 lined pages, 4-year calendar, Delhi Metro, Mumbai Railway, and India maps. Customizable with precision laser-engraved metal plate or direct debossed logo.",
+    features: [
+      "Front Multifunction Organizer: Dedicated smartphone slip pouch + business card / ID card slot + elastic pen loop",
+      "Modern textured melange-grain executive cover with perimeter reinforced stitching",
+      "Standard A5 Dimensions: 21.0cm (H) x 14.5cm (W) | Weight: 380g",
+      "116 Ruled Pages on 80 GSM smooth eye-care natural archival paper",
+      "Comprehensive Reference Pages: 4-Year Calendar, India Route Map, Delhi Metro and Mumbai Railway network maps",
+      "Satin ribbon bookmark marker and optional laser-engraved metal branding plate",
+      "Available in 4 Executive Corporate Colors: Melange Blue, Saddle Brown, Executive Black, Heather Grey",
+      "The all-in-one desk-to-meeting solution for modern mobile professionals and corporate gifting"
+    ],
+    colors: [
+      { name: "Melange Blue", hex: "#1E40AF" },
+      { name: "Saddle Brown", hex: "#854D0E" },
+      { name: "Executive Black", hex: "#111827" },
+      { name: "Heather Grey", hex: "#6B7280" }
+    ],
+    sizes: [
+      "A5 Multifunction (21.0cm x 14.5cm)"
+    ],
+    minQuantity: 1,
+    tieredPricing: [
+      { minQty: 1, maxQty: 4, price: 359, savings: "Standard" },
+      { minQty: 5, maxQty: 19, price: 299, savings: "17% Off" },
+      { minQty: 20, maxQty: 49, price: 239, savings: "33% Off" },
+      { minQty: 50, maxQty: null, price: 179, savings: "50% Off" }
+    ],
+    inStock: true,
+    isBestSeller: true,
+    badgeText: "Mobile Holder",
+    customizable: true,
+    printArea: "Front Pocket Center: 55mm x 30mm or Optional Metal Plate: 45mm x 15mm",
   },
 ];
