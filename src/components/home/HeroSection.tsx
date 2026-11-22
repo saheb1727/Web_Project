@@ -17,6 +17,7 @@ import {
   MessageCircle,
 } from "lucide-react";
 import { gsap } from "@/lib/gsap";
+import { products } from "@/data/products";
 
 interface KeepsakeItem {
   id: string;
@@ -150,8 +151,74 @@ export const HeroSection: React.FC = () => {
     <>
       <section
         ref={heroRef}
-        className="relative bg-white text-[#0B0F19] pt-8 pb-14 sm:pt-12 sm:pb-16 border-b border-slate-200 overflow-hidden"
+        className="relative bg-[#FAFAFC] text-[#0B0F19] pt-8 pb-14 sm:pt-12 sm:pb-16 border-b border-slate-200/90 overflow-hidden"
       >
+        {/* Precision Engineering Studio Background Layer */}
+        <div className="absolute inset-0 pointer-events-none select-none overflow-hidden z-0">
+          {/* Architectural 40px Engineering Grid */}
+          <div
+            className="absolute inset-0 opacity-70"
+            style={{
+              backgroundImage: `
+                linear-gradient(to right, rgba(15, 23, 42, 0.045) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(15, 23, 42, 0.045) 1px, transparent 1px)
+              `,
+              backgroundSize: "40px 40px",
+              maskImage: "radial-gradient(ellipse 90% 70% at 50% 25%, black 40%, transparent 85%)",
+              WebkitMaskImage: "radial-gradient(ellipse 90% 70% at 50% 25%, black 40%, transparent 85%)",
+            }}
+          />
+
+          {/* Micro Laser-Cut Dot Matrix Grid */}
+          <div
+            className="absolute inset-0 opacity-45"
+            style={{
+              backgroundImage: "radial-gradient(rgba(15, 23, 42, 0.12) 1px, transparent 1px)",
+              backgroundSize: "20px 20px",
+              maskImage: "radial-gradient(ellipse 75% 55% at 50% 30%, black 30%, transparent 80%)",
+              WebkitMaskImage: "radial-gradient(ellipse 75% 55% at 50% 30%, black 30%, transparent 80%)",
+            }}
+          />
+
+          {/* Ethereal Coral & Amber Studio Radial Aura behind Headline */}
+          <div
+            className="absolute top-0 left-1/2 -translate-x-1/2 w-[850px] h-[440px] rounded-full blur-[110px] pointer-events-none -z-10"
+            style={{
+              background: "radial-gradient(circle, rgba(255, 77, 54, 0.08) 0%, rgba(251, 146, 60, 0.03) 45%, transparent 75%)",
+            }}
+          />
+          <div
+            className="absolute -top-12 left-1/4 -translate-x-1/2 w-[400px] h-[300px] rounded-full blur-[90px] pointer-events-none -z-10"
+            style={{
+              background: "radial-gradient(circle, rgba(245, 158, 11, 0.04) 0%, transparent 70%)",
+            }}
+          />
+          <div
+            className="absolute top-10 right-1/4 translate-x-1/2 w-[420px] h-[300px] rounded-full blur-[90px] pointer-events-none -z-10"
+            style={{
+              background: "radial-gradient(circle, rgba(99, 102, 241, 0.03) 0%, transparent 70%)",
+            }}
+          />
+
+          {/* Precision Workshop Technical Crosshairs & Corner Registrations */}
+          <div className="hidden sm:flex absolute top-6 left-6 lg:left-12 items-center gap-2 text-[10px] font-mono font-bold tracking-widest text-slate-300">
+            <span className="text-[#FF4D36]/80 font-black text-xs">+</span>
+            <span>SPEC: 1,200 DPI JAPANESE MIMAKI</span>
+          </div>
+          <div className="hidden sm:flex absolute top-6 right-6 lg:right-12 items-center gap-2 text-[10px] font-mono font-bold tracking-widest text-slate-300">
+            <span>RANCHI STUDIO LAB // 24-48H</span>
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500/80" />
+          </div>
+
+          {/* Subtle Studio Geometry Accents in Margins */}
+          <div className="hidden xl:block absolute top-1/3 left-6 text-[9px] font-mono text-slate-300/80 tracking-widest vertical-rl rotate-180">
+            + FACTORY DIRECT • ZERO MINIMUMS +
+          </div>
+          <div className="hidden xl:block absolute top-1/3 right-6 text-[9px] font-mono text-slate-300/80 tracking-widest vertical-rl">
+            + LASER ENGRAVED • UV DTF • BESPOKE +
+          </div>
+        </div>
+
         {/* Foreground Content & Bento Showcase */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 relative z-10 w-full">
           
@@ -159,7 +226,7 @@ export const HeroSection: React.FC = () => {
           <div className="hero-header-block text-center max-w-3xl mx-auto space-y-4">
             
             {/* Live Studio Status Pill */}
-            <div className="hero-badge-pill inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-slate-200 shadow-xs text-xs font-semibold text-slate-700">
+            <div className="hero-badge-pill inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/90 backdrop-blur-md border border-slate-200/90 shadow-xs text-xs font-semibold text-slate-700">
               <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse ring-4 ring-emerald-500/20" />
               <span className="font-bold text-[#0B0F19]">In-House Studio Manufacturing</span>
               <span className="text-slate-300">•</span>
@@ -187,13 +254,13 @@ export const HeroSection: React.FC = () => {
                 href="/products"
                 className="hero-cta-btn px-6 py-3.5 bg-[#FF4D36] hover:bg-[#e0351d] text-white text-xs sm:text-sm font-black rounded-2xl shadow-lg shadow-[#FF4D36]/25 hover:shadow-xl hover:shadow-[#FF4D36]/35 transition-all flex items-center justify-center gap-2 group cursor-pointer active:scale-98"
               >
-                <span>Explore All 56 Products</span>
+                <span>Explore All {products.length} Products</span>
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </Link>
 
               <Link
                 href="/contact"
-                className="hero-cta-btn px-5 py-3.5 bg-white hover:bg-slate-50 text-[#0B0F19] text-xs sm:text-sm font-bold rounded-2xl border border-slate-200 shadow-xs hover:border-slate-300 transition-all flex items-center justify-center gap-2 cursor-pointer active:scale-98"
+                className="hero-cta-btn px-5 py-3.5 bg-white/95 hover:bg-white text-[#0B0F19] text-xs sm:text-sm font-bold rounded-2xl border border-slate-200/90 shadow-xs hover:border-slate-300 backdrop-blur-sm transition-all flex items-center justify-center gap-2 cursor-pointer active:scale-98"
               >
                 <MessageCircle className="w-4 h-4 text-emerald-600" />
                 <span>Custom Bulk Inquiry</span>
@@ -202,7 +269,7 @@ export const HeroSection: React.FC = () => {
               <button
                 type="button"
                 onClick={() => setIsVideoModalOpen(true)}
-                className="hero-cta-btn px-4 py-3.5 bg-white hover:bg-slate-50 text-slate-700 text-xs sm:text-sm font-bold rounded-2xl border border-slate-200 shadow-xs hover:border-slate-300 transition-all flex items-center justify-center gap-2 cursor-pointer active:scale-98"
+                className="hero-cta-btn px-4 py-3.5 bg-white/95 hover:bg-white text-slate-700 text-xs sm:text-sm font-bold rounded-2xl border border-slate-200/90 shadow-xs hover:border-slate-300 backdrop-blur-sm transition-all flex items-center justify-center gap-2 cursor-pointer active:scale-98"
               >
                 <div className="w-5 h-5 rounded-full bg-[#0B0F19] text-white flex items-center justify-center shrink-0">
                   <Play className="w-2.5 h-2.5 fill-white ml-0.5" />
