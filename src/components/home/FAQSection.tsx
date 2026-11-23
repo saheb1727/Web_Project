@@ -41,7 +41,7 @@ export const FAQSection: React.FC = () => {
     <section ref={sectionRef} className="py-20 bg-white border-b border-slate-200">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <div className="inline-flex items-center gap-1.5 text-xs font-bold text-[#FF4D36] uppercase tracking-wider mb-2">
+          <div className="flex items-center justify-center gap-2 text-xs font-bold text-[#FF4D36] uppercase tracking-wider mb-2">
             <HelpCircle className="w-4 h-4" />
             <span>Got Questions? We Have Answers</span>
           </div>

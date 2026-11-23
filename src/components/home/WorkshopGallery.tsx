@@ -624,8 +624,8 @@ export const WorkshopGallery: React.FC = () => {
           {/* Header */}
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
             <div>
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-none bg-[#0B0F19] text-[#FF4D36] text-xs font-bold uppercase tracking-wider mb-2">
-                <Camera className="w-3.5 h-3.5" />
+              <div className="flex items-center gap-2 text-xs font-bold text-[#FF4D36] uppercase tracking-wider mb-2">
+                <Camera className="w-4 h-4" />
                 <span>Real Customer Creations</span>
               </div>
               <h2 className="text-3xl sm:text-4xl font-black text-[#0B0F19] tracking-tight">

@@ -244,8 +244,8 @@ export const StudioReelsSection: React.FC = () => {
           {/* Section Header */}
           <div className="studio-reel-header flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
             <div>
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-none bg-[#FF4D36]/10 text-[#FF4D36] text-xs font-bold uppercase tracking-wider mb-2 border border-[#FF4D36]/20">
-                <Video className="w-3.5 h-3.5" />
+              <div className="flex items-center gap-2 text-xs font-bold text-[#FF4D36] uppercase tracking-wider mb-2">
+                <Video className="w-4 h-4" />
                 <span>Ranchi Workshop & Production Studio</span>
               </div>
               <h2 className="text-3xl sm:text-4xl font-black text-white tracking-tight">

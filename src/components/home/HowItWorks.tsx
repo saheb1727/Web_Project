@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useRef, useEffect } from "react";
-import { PackageSearch, UploadCloud, Eye, Truck, ArrowRight } from "lucide-react";
+import { PackageSearch, UploadCloud, Eye, Truck, ArrowRight, Sparkles } from "lucide-react";
 import Link from "next/link";
 import { gsap } from "@/lib/gsap";
 
@@ -63,9 +63,10 @@ export const HowItWorks: React.FC = () => {
     <section ref={sectionRef} className="py-20 bg-white border-b border-slate-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-2xl mx-auto mb-16">
-          <span className="text-xs font-bold text-[var(--color-accent)] uppercase tracking-wider block mb-2">
-            Effortless 4-Step Process
-          </span>
+          <div className="flex items-center justify-center gap-2 text-xs font-bold text-[#FF4D36] uppercase tracking-wider mb-2">
+            <Sparkles className="w-4 h-4" />
+            <span>Effortless 4-Step Process</span>
+          </div>
           <h2 className="text-3xl sm:text-4xl font-black text-[var(--color-primary)] tracking-tight">
             How Custom Merch Works
           </h2>

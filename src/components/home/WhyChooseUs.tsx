@@ -84,9 +84,10 @@ export const WhyChooseUs: React.FC = () => {
           {/* Left Column: Perks List */}
           <div className="lg:col-span-7 space-y-6">
             <div>
-              <span className="text-xs font-bold text-[#FF4D36] uppercase tracking-wider block mb-2">
-                Uncompromising Standards
-              </span>
+              <div className="flex items-center gap-2 text-xs font-bold text-[#FF4D36] uppercase tracking-wider mb-2">
+                <ShieldCheck className="w-4 h-4" />
+                <span>Uncompromising Standards</span>
+              </div>
               <h2 className="text-3xl sm:text-4xl font-black text-white tracking-tight leading-tight">
                 Why Top Companies & Creators Choose MyPrintHub.in
               </h2>

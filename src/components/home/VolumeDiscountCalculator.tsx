@@ -139,8 +139,8 @@ export const VolumeDiscountCalculator: React.FC = () => {
         
         {/* Section Heading */}
         <div className="text-center max-w-2xl mx-auto mb-10">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-none bg-[#FF4D36]/10 text-[#FF4D36] text-xs font-bold uppercase tracking-wider mb-2">
-            <Calculator className="w-3.5 h-3.5" />
+          <div className="flex items-center justify-center gap-2 text-xs font-bold text-[#FF4D36] uppercase tracking-wider mb-2">
+            <Calculator className="w-4 h-4" />
             <span>Direct Factory Wholesale Pricing</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-black text-[#0B0F19] tracking-tight">

@@ -43,8 +43,8 @@ export const EnterpriseInquirySection: React.FC = () => {
           className="rounded-none border border-slate-800 bg-[#131926] p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6 shadow-2xl"
         >
           <div className="space-y-1 text-center md:text-left">
-            <div className="inline-flex items-center gap-1.5 text-xs font-bold text-[#FF4D36] uppercase tracking-wider mb-1">
-              <Sparkles className="w-3.5 h-3.5" />
+            <div className="flex items-center gap-2 text-xs font-bold text-[#FF4D36] uppercase tracking-wider mb-1">
+              <Sparkles className="w-4 h-4" />
               <span>Dedicated Merch Specialist</span>
             </div>
             <h3 className="text-lg sm:text-xl font-black text-white">

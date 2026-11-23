@@ -449,21 +449,10 @@ export const HeroSection: React.FC = () => {
           {/* Top Hero Header Block */}
           <div className="hero-header-block text-center max-w-3xl mx-auto space-y-3.5">
 
-            {/* Live Studio Status Pill */}
-            <div
-              className={`hero-badge-pill inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border shadow-xs text-xs font-semibold backdrop-blur-md transition-colors ${isDark
-                ? "bg-slate-900/90 border-slate-700/80 text-slate-300"
-                : "bg-white/95 border-slate-200/90 text-slate-700"
-                }`}
-            >
-              <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse ring-4 ring-emerald-500/20" />
-              <span className={`font-bold ${isDark ? "text-white" : "text-[#0B0F19]"}`}>
-                In-House Studio Manufacturing
-              </span>
-              <span className="text-slate-400">•</span>
-              <span>Ranchi Studio Hub</span>
-              <span className="text-slate-400">•</span>
-              <span className="text-[#FF4D36] font-bold">24–48h Dispatch</span>
+            {/* Live Studio Status Eyebrow */}
+            <div className="hero-badge-pill flex items-center justify-center gap-2 text-xs font-bold text-[#FF4D36] uppercase tracking-wider mb-2">
+              <Sparkles className="w-4 h-4 text-[#FF4D36]" />
+              <span>In-House Studio Manufacturing • Ranchi Studio Hub • 24–48h Dispatch</span>
             </div>
 
             {/* Bold Grand Headline */}
