@@ -15,6 +15,9 @@ import {
   Coffee,
   Truck,
   MessageCircle,
+  Compass,
+  Layers,
+  Moon,
 } from "lucide-react";
 import { gsap } from "@/lib/gsap";
 import { products } from "@/data/products";
@@ -33,10 +36,36 @@ interface KeepsakeItem {
   specs: string;
 }
 
+type HeroBgTheme = "blueprint" | "topo" | "obsidian";
+
 export const HeroSection: React.FC = () => {
   const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
+  const [bgTheme, setBgTheme] = useState<HeroBgTheme>("blueprint");
   const heroRef = useRef<HTMLElement>(null);
   const keepsakePreviewRef = useRef<HTMLDivElement>(null);
+
+  // Restore user-selected background preference
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem("myprinthub_hero_bg") as HeroBgTheme;
+      if (saved && ["blueprint", "topo", "obsidian"].includes(saved)) {
+        setBgTheme(saved);
+      }
+    } catch {
+      // Ignore in private browsing
+    }
+  }, []);
+
+  const handleThemeChange = (t: HeroBgTheme) => {
+    setBgTheme(t);
+    try {
+      localStorage.setItem("myprinthub_hero_bg", t);
+    } catch {
+      // Ignore
+    }
+  };
+
+  const isDark = bgTheme === "obsidian";
 
   // Curated keepsake spotlight items for the main hero card
   const keepsakeItems: KeepsakeItem[] = [
@@ -100,7 +129,6 @@ export const HeroSection: React.FC = () => {
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
 
-      // Staggered Entrance with all transforms cleared upon completion
       tl.fromTo(
         ".hero-badge-pill",
         { opacity: 0, scale: 0.9, y: -15 },
@@ -123,6 +151,12 @@ export const HeroSection: React.FC = () => {
           { opacity: 0, scale: 0.92, y: 15 },
           { opacity: 1, scale: 1, y: 0, duration: 0.5, stagger: 0.1, ease: "back.out(1.4)", clearProps: "all" },
           "-=0.3"
+        )
+        .fromTo(
+          ".hero-theme-selector",
+          { opacity: 0, y: 10 },
+          { opacity: 1, y: 0, duration: 0.4, clearProps: "all" },
+          "-=0.2"
         )
         .fromTo(
           ".hero-bento-card-main",
@@ -151,92 +185,228 @@ export const HeroSection: React.FC = () => {
     <>
       <section
         ref={heroRef}
-        className="relative bg-[#FAFAFC] text-[#0B0F19] pt-8 pb-14 sm:pt-12 sm:pb-16 border-b border-slate-200/90 overflow-hidden"
+        className={`relative pt-6 pb-14 sm:pt-10 sm:pb-16 border-b transition-colors duration-500 overflow-hidden ${
+          isDark
+            ? "bg-[#0B0F19] text-white border-slate-800"
+            : bgTheme === "topo"
+            ? "bg-[#FAF8F5] text-[#0B0F19] border-amber-200/60"
+            : "bg-[#F8FAFC] text-[#0B0F19] border-slate-200/90"
+        }`}
       >
-        {/* Precision Engineering Studio Background Layer */}
-        <div className="absolute inset-0 pointer-events-none select-none overflow-hidden z-0">
-          {/* Architectural 40px Engineering Grid */}
-          <div
-            className="absolute inset-0 opacity-70"
-            style={{
-              backgroundImage: `
-                linear-gradient(to right, rgba(15, 23, 42, 0.045) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(15, 23, 42, 0.045) 1px, transparent 1px)
-              `,
-              backgroundSize: "40px 40px",
-              maskImage: "radial-gradient(ellipse 90% 70% at 50% 25%, black 40%, transparent 85%)",
-              WebkitMaskImage: "radial-gradient(ellipse 90% 70% at 50% 25%, black 40%, transparent 85%)",
-            }}
-          />
+        {/* ========================================================== */}
+        {/* BACKGROUND THEME 1: BLUEPRINT GRID & LASER TARGET RETICLES */}
+        {/* ========================================================== */}
+        {bgTheme === "blueprint" && (
+          <div className="absolute inset-0 pointer-events-none select-none overflow-hidden z-0 animate-in fade-in duration-500">
+            {/* Metric Ruler Strip at Top */}
+            <div className="hidden md:flex items-center justify-between px-6 py-1 border-b border-slate-200/80 text-[9px] font-mono font-bold text-slate-400 select-none bg-slate-50/50">
+              <span>0mm</span>
+              <span>• • • 50mm</span>
+              <span>• • • 100mm</span>
+              <span>• • • 150mm</span>
+              <span>• • • 200mm</span>
+              <span>• • • 250mm</span>
+              <span>• • • 300mm</span>
+              <span>• • • 350mm</span>
+              <span>• • • 400mm</span>
+              <span>450mm</span>
+            </div>
 
-          {/* Micro Laser-Cut Dot Matrix Grid */}
-          <div
-            className="absolute inset-0 opacity-45"
-            style={{
-              backgroundImage: "radial-gradient(rgba(15, 23, 42, 0.12) 1px, transparent 1px)",
-              backgroundSize: "20px 20px",
-              maskImage: "radial-gradient(ellipse 75% 55% at 50% 30%, black 30%, transparent 80%)",
-              WebkitMaskImage: "radial-gradient(ellipse 75% 55% at 50% 30%, black 30%, transparent 80%)",
-            }}
-          />
+            {/* Architectural 40px Engineering Grid */}
+            <div
+              className="absolute inset-0 opacity-75"
+              style={{
+                backgroundImage: `
+                  linear-gradient(to right, rgba(15, 23, 42, 0.055) 1px, transparent 1px),
+                  linear-gradient(to bottom, rgba(15, 23, 42, 0.055) 1px, transparent 1px)
+                `,
+                backgroundSize: "40px 40px",
+                maskImage: "radial-gradient(ellipse 90% 70% at 50% 25%, black 45%, transparent 88%)",
+                WebkitMaskImage: "radial-gradient(ellipse 90% 70% at 50% 25%, black 45%, transparent 88%)",
+              }}
+            />
 
-          {/* Ethereal Coral & Amber Studio Radial Aura behind Headline */}
-          <div
-            className="absolute top-0 left-1/2 -translate-x-1/2 w-[850px] h-[440px] rounded-full blur-[110px] pointer-events-none -z-10"
-            style={{
-              background: "radial-gradient(circle, rgba(255, 77, 54, 0.08) 0%, rgba(251, 146, 60, 0.03) 45%, transparent 75%)",
-            }}
-          />
-          <div
-            className="absolute -top-12 left-1/4 -translate-x-1/2 w-[400px] h-[300px] rounded-full blur-[90px] pointer-events-none -z-10"
-            style={{
-              background: "radial-gradient(circle, rgba(245, 158, 11, 0.04) 0%, transparent 70%)",
-            }}
-          />
-          <div
-            className="absolute top-10 right-1/4 translate-x-1/2 w-[420px] h-[300px] rounded-full blur-[90px] pointer-events-none -z-10"
-            style={{
-              background: "radial-gradient(circle, rgba(99, 102, 241, 0.03) 0%, transparent 70%)",
-            }}
-          />
+            {/* Micro Laser-Cut Dot Matrix */}
+            <div
+              className="absolute inset-0 opacity-45"
+              style={{
+                backgroundImage: "radial-gradient(rgba(15, 23, 42, 0.14) 1px, transparent 1px)",
+                backgroundSize: "20px 20px",
+                maskImage: "radial-gradient(ellipse 75% 55% at 50% 30%, black 30%, transparent 80%)",
+                WebkitMaskImage: "radial-gradient(ellipse 75% 55% at 50% 30%, black 30%, transparent 80%)",
+              }}
+            />
 
-          {/* Precision Workshop Technical Crosshairs & Corner Registrations */}
-          <div className="hidden sm:flex absolute top-6 left-6 lg:left-12 items-center gap-2 text-[10px] font-mono font-bold tracking-widest text-slate-300">
-            <span className="text-[#FF4D36]/80 font-black text-xs">+</span>
-            <span>SPEC: 1,200 DPI JAPANESE MIMAKI</span>
-          </div>
-          <div className="hidden sm:flex absolute top-6 right-6 lg:right-12 items-center gap-2 text-[10px] font-mono font-bold tracking-widest text-slate-300">
-            <span>RANCHI STUDIO LAB // 24-48H</span>
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500/80" />
-          </div>
+            {/* Left Circular Laser Reticle Target */}
+            <svg
+              className="hidden lg:block absolute -top-8 -left-12 w-96 h-96 text-slate-300/70"
+              viewBox="0 0 200 200"
+            >
+              <circle cx="100" cy="100" r="85" fill="none" stroke="currentColor" strokeWidth="1" strokeDasharray="6 6" />
+              <circle cx="100" cy="100" r="55" fill="none" stroke="currentColor" strokeWidth="1" />
+              <circle cx="100" cy="100" r="25" fill="none" stroke="currentColor" strokeWidth="1" strokeDasharray="3 3" />
+              <circle cx="100" cy="100" r="4" fill="#FF4D36" opacity="0.6" />
+              <line x1="100" y1="5" x2="100" y2="195" stroke="currentColor" strokeWidth="0.75" strokeDasharray="4 4" />
+              <line x1="5" y1="100" x2="195" y2="100" stroke="currentColor" strokeWidth="0.75" strokeDasharray="4 4" />
+            </svg>
 
-          {/* Subtle Studio Geometry Accents in Margins */}
-          <div className="hidden xl:block absolute top-1/3 left-6 text-[9px] font-mono text-slate-300/80 tracking-widest vertical-rl rotate-180">
-            + FACTORY DIRECT • ZERO MINIMUMS +
+            {/* Right Circular Laser Reticle Target */}
+            <svg
+              className="hidden lg:block absolute top-1/4 -right-12 w-80 h-80 text-slate-300/60"
+              viewBox="0 0 200 200"
+            >
+              <circle cx="100" cy="100" r="80" fill="none" stroke="currentColor" strokeWidth="1" strokeDasharray="8 4" />
+              <circle cx="100" cy="100" r="45" fill="none" stroke="currentColor" strokeWidth="1" />
+              <line x1="100" y1="10" x2="100" y2="190" stroke="currentColor" strokeWidth="0.75" strokeDasharray="4 4" />
+              <line x1="10" y1="100" x2="190" y2="100" stroke="currentColor" strokeWidth="0.75" strokeDasharray="4 4" />
+            </svg>
+
+            {/* Ethereal Coral & Amber Studio Radial Aura behind Headline */}
+            <div
+              className="absolute top-0 left-1/2 -translate-x-1/2 w-[850px] h-[440px] rounded-full blur-[110px] pointer-events-none -z-10"
+              style={{
+                background: "radial-gradient(circle, rgba(255, 77, 54, 0.09) 0%, rgba(251, 146, 60, 0.04) 45%, transparent 75%)",
+              }}
+            />
+            <div
+              className="absolute -top-12 left-1/4 -translate-x-1/2 w-[400px] h-[300px] rounded-full blur-[90px] pointer-events-none -z-10"
+              style={{
+                background: "radial-gradient(circle, rgba(245, 158, 11, 0.05) 0%, transparent 70%)",
+              }}
+            />
+
+            {/* Precision Workshop Technical Crosshairs & Corner Registrations */}
+            <div className="hidden sm:flex absolute top-10 left-6 lg:left-12 items-center gap-2 text-[10px] font-mono font-bold tracking-widest text-slate-400">
+              <span className="text-[#FF4D36] font-black text-xs">+</span>
+              <span>SPEC: 1,200 DPI JAPANESE MIMAKI</span>
+            </div>
+            <div className="hidden sm:flex absolute top-10 right-6 lg:right-12 items-center gap-2 text-[10px] font-mono font-bold tracking-widest text-slate-400">
+              <span>RANCHI STUDIO LAB // 24-48H</span>
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+            </div>
           </div>
-          <div className="hidden xl:block absolute top-1/3 right-6 text-[9px] font-mono text-slate-300/80 tracking-widest vertical-rl">
-            + LASER ENGRAVED • UV DTF • BESPOKE +
+        )}
+
+        {/* ========================================================== */}
+        {/* BACKGROUND THEME 2: TOPOGRAPHIC LASER CONTOUR ATELIER     */}
+        {/* ========================================================== */}
+        {bgTheme === "topo" && (
+          <div className="absolute inset-0 pointer-events-none select-none overflow-hidden z-0 animate-in fade-in duration-500">
+            {/* Topographic Contour Curves */}
+            <svg
+              className="absolute inset-0 w-full h-full opacity-30 text-slate-500"
+              preserveAspectRatio="none"
+              viewBox="0 0 1440 800"
+            >
+              <path d="M0,140 C320,280, 420,80, 720,180 C1020,280, 1120,100, 1440,220 L1440,800 L0,800 Z" fill="none" stroke="currentColor" strokeWidth="1.5" />
+              <path d="M0,200 C340,340, 440,140, 740,240 C1040,340, 1140,160, 1440,280 L1440,800 L0,800 Z" fill="none" stroke="currentColor" strokeWidth="1" strokeDasharray="5 5" />
+              <path d="M0,270 C360,400, 460,200, 760,300 C1060,400, 1160,220, 1440,340 L1440,800 L0,800 Z" fill="none" stroke="#FF4D36" strokeWidth="1.2" opacity="0.4" />
+              <path d="M0,340 C380,470, 480,260, 780,360 C1080,460, 1180,280, 1440,400 L1440,800 L0,800 Z" fill="none" stroke="currentColor" strokeWidth="1" />
+              <path d="M0,420 C400,540, 500,320, 800,430 C1100,540, 1200,340, 1440,480 L1440,800 L0,800 Z" fill="none" stroke="currentColor" strokeWidth="1" strokeDasharray="3 3" />
+            </svg>
+
+            {/* Warm Studio Paper Spotlight */}
+            <div
+              className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] rounded-full blur-[120px] pointer-events-none -z-10"
+              style={{
+                background: "radial-gradient(circle, rgba(245, 158, 11, 0.08) 0%, rgba(255, 77, 54, 0.05) 40%, transparent 75%)",
+              }}
+            />
+
+            {/* Corner Artisan Brackets */}
+            <div className="hidden sm:flex absolute top-8 left-8 items-center gap-2 text-[10px] font-mono font-bold tracking-widest text-amber-700/60">
+              <span>┌ ── HANDCRAFTED BESPOKE ATELIER ── ┐</span>
+            </div>
+            <div className="hidden sm:flex absolute top-8 right-8 items-center gap-2 text-[10px] font-mono font-bold tracking-widest text-amber-700/60">
+              <span>┌ ── ZERO MINIMUMS GUARANTEE ── ┐</span>
+            </div>
           </div>
-        </div>
+        )}
+
+        {/* ========================================================== */}
+        {/* BACKGROUND THEME 3: OBSIDIAN DARK PRO KEYNOTE STUDIO       */}
+        {/* ========================================================== */}
+        {bgTheme === "obsidian" && (
+          <div className="absolute inset-0 pointer-events-none select-none overflow-hidden z-0 animate-in fade-in duration-500">
+            {/* Top Glowing Laser Beam Line */}
+            <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-[#FF4D36]/70 to-transparent" />
+
+            {/* Luminous Dark Laser Grid */}
+            <div
+              className="absolute inset-0 opacity-40"
+              style={{
+                backgroundImage: `
+                  linear-gradient(to right, rgba(255, 77, 54, 0.15) 1px, transparent 1px),
+                  linear-gradient(to bottom, rgba(255, 77, 54, 0.15) 1px, transparent 1px)
+                `,
+                backgroundSize: "40px 40px",
+                maskImage: "radial-gradient(ellipse 85% 65% at 50% 25%, black 40%, transparent 90%)",
+                WebkitMaskImage: "radial-gradient(ellipse 85% 65% at 50% 25%, black 40%, transparent 90%)",
+              }}
+            />
+
+            {/* Deep Obsidian Neon Glow */}
+            <div
+              className="absolute top-0 left-1/2 -translate-x-1/2 w-[850px] h-[450px] rounded-full blur-[130px] pointer-events-none -z-10"
+              style={{
+                background: "radial-gradient(circle, rgba(255, 77, 54, 0.16) 0%, rgba(99, 102, 241, 0.08) 50%, transparent 75%)",
+              }}
+            />
+
+            {/* Luminous Laser Target Rings */}
+            <svg
+              className="hidden lg:block absolute -top-8 -left-12 w-96 h-96 text-cyan-500/20"
+              viewBox="0 0 200 200"
+            >
+              <circle cx="100" cy="100" r="85" fill="none" stroke="currentColor" strokeWidth="1" strokeDasharray="6 6" />
+              <circle cx="100" cy="100" r="55" fill="none" stroke="currentColor" strokeWidth="1" />
+              <circle cx="100" cy="100" r="4" fill="#06B6D4" opacity="0.8" />
+              <line x1="100" y1="5" x2="100" y2="195" stroke="currentColor" strokeWidth="0.75" strokeDasharray="4 4" />
+              <line x1="5" y1="100" x2="195" y2="100" stroke="currentColor" strokeWidth="0.75" strokeDasharray="4 4" />
+            </svg>
+
+            {/* Laser Studio Coordinates */}
+            <div className="hidden sm:flex absolute top-8 left-8 items-center gap-2 text-[10px] font-mono font-bold tracking-widest text-slate-500">
+              <span className="text-[#FF4D36] font-black text-xs">●</span>
+              <span>OBSIDIAN_KEYNOTE_STAGE // 1200_DPI</span>
+            </div>
+            <div className="hidden sm:flex absolute top-8 right-8 items-center gap-2 text-[10px] font-mono font-bold tracking-widest text-slate-500">
+              <span>LIVE_STUDIO_CONNECTED</span>
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+            </div>
+          </div>
+        )}
 
         {/* Foreground Content & Bento Showcase */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 relative z-10 w-full">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-7 relative z-10 w-full">
           
           {/* Top Hero Header Block */}
           <div className="hero-header-block text-center max-w-3xl mx-auto space-y-4">
             
             {/* Live Studio Status Pill */}
-            <div className="hero-badge-pill inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/90 backdrop-blur-md border border-slate-200/90 shadow-xs text-xs font-semibold text-slate-700">
+            <div
+              className={`hero-badge-pill inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border shadow-xs text-xs font-semibold backdrop-blur-md transition-colors ${
+                isDark
+                  ? "bg-slate-900/90 border-slate-700/80 text-slate-300"
+                  : "bg-white/95 border-slate-200/90 text-slate-700"
+              }`}
+            >
               <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse ring-4 ring-emerald-500/20" />
-              <span className="font-bold text-[#0B0F19]">In-House Studio Manufacturing</span>
-              <span className="text-slate-300">•</span>
+              <span className={`font-bold ${isDark ? "text-white" : "text-[#0B0F19]"}`}>
+                In-House Studio Manufacturing
+              </span>
+              <span className="text-slate-400">•</span>
               <span>Ranchi Studio Hub</span>
-              <span className="text-slate-300">•</span>
+              <span className="text-slate-400">•</span>
               <span className="text-[#FF4D36] font-bold">24–48h Dispatch</span>
             </div>
 
             {/* Bold Grand Headline */}
-            <h1 className="hero-title-main text-3xl sm:text-5xl lg:text-6xl font-black text-[#0B0F19] tracking-tight leading-[1.08] break-words">
+            <h1
+              className={`hero-title-main text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.08] break-words transition-colors ${
+                isDark ? "text-white" : "text-[#0B0F19]"
+              }`}
+            >
               Bespoke Custom Gifts & Merch.{" "}
               <span className="text-[#FF4D36] block sm:inline">
                 Handcrafted With Zero Minimums.
@@ -244,12 +414,16 @@ export const HeroSection: React.FC = () => {
             </h1>
 
             {/* Subtitle */}
-            <p className="hero-subtitle-text text-sm sm:text-base text-slate-600 font-medium leading-relaxed max-w-2xl mx-auto">
+            <p
+              className={`hero-subtitle-text text-sm sm:text-base font-medium leading-relaxed max-w-2xl mx-auto transition-colors ${
+                isDark ? "text-slate-300" : "text-slate-600"
+              }`}
+            >
               Order 1 unique personalized keepsake or 1,000 corporate welcome kits. Direct in-house factory manufacturing, instant digital proofs, and Japanese 1,200 DPI precision.
             </p>
 
             {/* CTAs Group */}
-            <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
+            <div className="flex flex-wrap items-center justify-center gap-3 pt-1">
               <Link
                 href="/products"
                 className="hero-cta-btn px-6 py-3.5 bg-[#FF4D36] hover:bg-[#e0351d] text-white text-xs sm:text-sm font-black rounded-2xl shadow-lg shadow-[#FF4D36]/25 hover:shadow-xl hover:shadow-[#FF4D36]/35 transition-all flex items-center justify-center gap-2 group cursor-pointer active:scale-98"
@@ -260,22 +434,87 @@ export const HeroSection: React.FC = () => {
 
               <Link
                 href="/contact"
-                className="hero-cta-btn px-5 py-3.5 bg-white/95 hover:bg-white text-[#0B0F19] text-xs sm:text-sm font-bold rounded-2xl border border-slate-200/90 shadow-xs hover:border-slate-300 backdrop-blur-sm transition-all flex items-center justify-center gap-2 cursor-pointer active:scale-98"
+                className={`hero-cta-btn px-5 py-3.5 text-xs sm:text-sm font-bold rounded-2xl border shadow-xs backdrop-blur-sm transition-all flex items-center justify-center gap-2 cursor-pointer active:scale-98 ${
+                  isDark
+                    ? "bg-slate-900/90 hover:bg-slate-800 text-white border-slate-700 hover:border-slate-600"
+                    : "bg-white/95 hover:bg-white text-[#0B0F19] border-slate-200/90 hover:border-slate-300"
+                }`}
               >
-                <MessageCircle className="w-4 h-4 text-emerald-600" />
+                <MessageCircle className="w-4 h-4 text-emerald-500" />
                 <span>Custom Bulk Inquiry</span>
               </Link>
 
               <button
                 type="button"
                 onClick={() => setIsVideoModalOpen(true)}
-                className="hero-cta-btn px-4 py-3.5 bg-white/95 hover:bg-white text-slate-700 text-xs sm:text-sm font-bold rounded-2xl border border-slate-200/90 shadow-xs hover:border-slate-300 backdrop-blur-sm transition-all flex items-center justify-center gap-2 cursor-pointer active:scale-98"
+                className={`hero-cta-btn px-4 py-3.5 text-xs sm:text-sm font-bold rounded-2xl border shadow-xs backdrop-blur-sm transition-all flex items-center justify-center gap-2 cursor-pointer active:scale-98 ${
+                  isDark
+                    ? "bg-slate-900/90 hover:bg-slate-800 text-slate-200 border-slate-700 hover:border-slate-600"
+                    : "bg-white/95 hover:bg-white text-slate-700 border-slate-200/90 hover:border-slate-300"
+                }`}
               >
                 <div className="w-5 h-5 rounded-full bg-[#0B0F19] text-white flex items-center justify-center shrink-0">
                   <Play className="w-2.5 h-2.5 fill-white ml-0.5" />
                 </div>
                 <span>Studio Lab Tour</span>
               </button>
+            </div>
+
+            {/* Studio Background Theme Selector Pill */}
+            <div className="hero-theme-selector flex items-center justify-center pt-2">
+              <div
+                className={`inline-flex items-center gap-1 p-1 rounded-full border text-xs transition-all backdrop-blur-md shadow-xs ${
+                  isDark
+                    ? "bg-slate-900/90 border-slate-800 text-slate-300"
+                    : "bg-white/95 border-slate-200/90 text-slate-600"
+                }`}
+              >
+                <span className="text-[10px] font-bold uppercase tracking-wider px-2 text-slate-400">
+                  Studio Theme:
+                </span>
+                <button
+                  type="button"
+                  onClick={() => handleThemeChange("blueprint")}
+                  className={`px-3 py-1 rounded-full text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer ${
+                    bgTheme === "blueprint"
+                      ? "bg-[#FF4D36] text-white shadow-xs"
+                      : isDark
+                      ? "hover:text-white"
+                      : "hover:text-slate-900"
+                  }`}
+                >
+                  <Compass className="w-3.5 h-3.5" />
+                  <span>Blueprint Grid</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => handleThemeChange("topo")}
+                  className={`px-3 py-1 rounded-full text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer ${
+                    bgTheme === "topo"
+                      ? "bg-[#FF4D36] text-white shadow-xs"
+                      : isDark
+                      ? "hover:text-white"
+                      : "hover:text-slate-900"
+                  }`}
+                >
+                  <Layers className="w-3.5 h-3.5" />
+                  <span>Topographic</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => handleThemeChange("obsidian")}
+                  className={`px-3 py-1 rounded-full text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer ${
+                    bgTheme === "obsidian"
+                      ? "bg-[#FF4D36] text-white shadow-xs"
+                      : isDark
+                      ? "hover:text-white"
+                      : "hover:text-slate-900"
+                  }`}
+                >
+                  <Moon className="w-3.5 h-3.5" />
+                  <span>Obsidian Dark</span>
+                </button>
+              </div>
             </div>
 
           </div>
@@ -285,11 +524,19 @@ export const HeroSection: React.FC = () => {
             
             {/* Bento Card 1: Curated Keepsakes Stage (7 Cols on LG) */}
             <div
-              className="hero-bento-card-main lg:col-span-7 bg-white rounded-3xl border border-slate-200 shadow-xl p-5 sm:p-6 flex flex-col justify-between text-[#0B0F19] transition-all duration-300 hover:shadow-2xl hover:border-slate-300"
+              className={`hero-bento-card-main lg:col-span-7 rounded-3xl border shadow-xl p-5 sm:p-6 flex flex-col justify-between transition-all duration-300 hover:shadow-2xl ${
+                isDark
+                  ? "bg-[#111726]/95 border-slate-800 text-white hover:border-slate-700"
+                  : "bg-white border-slate-200 text-[#0B0F19] hover:border-slate-300"
+              }`}
             >
               
               {/* Card Header with Interactive Tab Switcher */}
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-slate-100">
+              <div
+                className={`flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b ${
+                  isDark ? "border-slate-800" : "border-slate-100"
+                }`}
+              >
                 <div className="flex items-center gap-2">
                   <div className="w-7 h-7 rounded-lg bg-[#FF4D36]/10 text-[#FF4D36] flex items-center justify-center">
                     <Heart className="w-4 h-4 fill-[#FF4D36]" />
@@ -298,14 +545,18 @@ export const HeroSection: React.FC = () => {
                     <span className="text-[10px] font-black uppercase tracking-wider text-slate-400 block">
                       Curated Keepsakes
                     </span>
-                    <span className="text-sm font-black text-[#0B0F19]">
+                    <span className={`text-sm font-black ${isDark ? "text-white" : "text-[#0B0F19]"}`}>
                       Anniversary, Couples & Family
                     </span>
                   </div>
                 </div>
 
                 {/* Interactive Keepsake Switcher Tabs */}
-                <div className="flex items-center gap-1 bg-slate-100 p-1 rounded-xl overflow-x-auto scrollbar-none border border-slate-200/50">
+                <div
+                  className={`flex items-center gap-1 p-1 rounded-xl overflow-x-auto scrollbar-none border ${
+                    isDark ? "bg-slate-800/80 border-slate-700" : "bg-slate-100 border-slate-200/50"
+                  }`}
+                >
                   {keepsakeItems.map((item, idx) => (
                     <button
                       key={item.id}
@@ -313,7 +564,11 @@ export const HeroSection: React.FC = () => {
                       onClick={() => setActiveKeepsakeIndex(idx)}
                       className={`px-2.5 py-1.5 rounded-lg text-xs font-bold whitespace-nowrap transition-all cursor-pointer ${
                         activeKeepsakeIndex === idx
-                          ? "bg-white text-[#0B0F19] shadow-xs"
+                          ? isDark
+                            ? "bg-slate-700 text-white shadow-xs"
+                            : "bg-white text-[#0B0F19] shadow-xs"
+                          : isDark
+                          ? "text-slate-400 hover:text-white"
                           : "text-slate-600 hover:text-slate-900"
                       }`}
                     >
@@ -326,7 +581,9 @@ export const HeroSection: React.FC = () => {
               {/* Viewport for Active Keepsake */}
               <div
                 ref={keepsakePreviewRef}
-                className="relative aspect-16/10 w-full rounded-2xl overflow-hidden bg-slate-100 my-4 border border-slate-200/70 group"
+                className={`relative aspect-16/10 w-full rounded-2xl overflow-hidden my-4 border group ${
+                  isDark ? "bg-slate-900 border-slate-800" : "bg-slate-100 border-slate-200/70"
+                }`}
               >
                 <Image
                   key={currentKeepsake.id}
@@ -354,9 +611,13 @@ export const HeroSection: React.FC = () => {
               </div>
 
               {/* Keepsake Footer & Direct Action */}
-              <div className="pt-2 flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-t border-slate-100">
+              <div
+                className={`pt-2 flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-t ${
+                  isDark ? "border-slate-800" : "border-slate-100"
+                }`}
+              >
                 <div>
-                  <h3 className="text-base font-extrabold text-[#0B0F19]">
+                  <h3 className={`text-base font-extrabold ${isDark ? "text-white" : "text-[#0B0F19]"}`}>
                     {currentKeepsake.title}
                   </h3>
                   <p className="text-xs font-bold text-[#FF4D36] mt-0.5">
@@ -381,7 +642,11 @@ export const HeroSection: React.FC = () => {
               {/* Bento Card 2: Corporate & VIP Wellness Hamper */}
               <Link
                 href="/products/prod-hamper-oneplus-buddha"
-                className="hero-bento-card-secondary group relative rounded-3xl overflow-hidden bg-white text-[#0B0F19] p-5 sm:p-6 shadow-xl hover:shadow-2xl transition-all duration-300 flex-1 flex flex-col justify-between border border-slate-200 hover:border-slate-300"
+                className={`hero-bento-card-secondary group relative rounded-3xl overflow-hidden p-5 sm:p-6 shadow-xl hover:shadow-2xl transition-all duration-300 flex-1 flex flex-col justify-between border ${
+                  isDark
+                    ? "bg-[#111726]/95 border-slate-800 text-white hover:border-slate-700"
+                    : "bg-white border-slate-200 text-[#0B0F19] hover:border-slate-300"
+                }`}
               >
                 {/* Background Image Accent */}
                 <div className="absolute top-0 right-0 w-1/2 h-full overflow-hidden opacity-30 group-hover:opacity-45 transition-opacity pointer-events-none">
@@ -400,19 +665,27 @@ export const HeroSection: React.FC = () => {
                     <span>VIP Corporate Hamper</span>
                   </div>
 
-                  <h3 className="text-lg font-black text-[#0B0F19] group-hover:text-[#FF4D36] transition-colors leading-tight">
+                  <h3 className={`text-lg font-black group-hover:text-[#FF4D36] transition-colors leading-tight ${
+                    isDark ? "text-white" : "text-[#0B0F19]"
+                  }`}>
                     OnePlus Buddha Corporate Wellness Hamper
                   </h3>
 
-                  <p className="text-xs text-slate-500 leading-relaxed line-clamp-2">
+                  <p className={`text-xs leading-relaxed line-clamp-2 ${isDark ? "text-slate-400" : "text-slate-500"}`}>
                     500ml vacuum bottle with meditating Buddha idol & tea lights in a designer geometric gift box.
                   </p>
                 </div>
 
-                <div className="relative z-10 pt-4 border-t border-slate-100 flex items-center justify-between">
+                <div
+                  className={`relative z-10 pt-4 border-t flex items-center justify-between ${
+                    isDark ? "border-slate-800" : "border-slate-100"
+                  }`}
+                >
                   <div>
                     <span className="text-[11px] text-slate-400 block font-medium">Boxed Gift Set</span>
-                    <span className="text-sm font-black text-[#0B0F19]">₹899 <span className="text-xs text-slate-400 font-normal">• Zero MOQ</span></span>
+                    <span className={`text-sm font-black ${isDark ? "text-white" : "text-[#0B0F19]"}`}>
+                      ₹899 <span className="text-xs text-slate-400 font-normal">• Zero MOQ</span>
+                    </span>
                   </div>
 
                   <span className="inline-flex items-center gap-1 text-xs font-bold text-[#FF4D36] group-hover:translate-x-1 transition-transform">
@@ -425,7 +698,11 @@ export const HeroSection: React.FC = () => {
               {/* Bento Card 3: SG 21 Travel Drinkware Gift Set */}
               <Link
                 href="/products/prod-kit-vacuum-flask-cups"
-                className="hero-bento-card-secondary group relative rounded-3xl overflow-hidden bg-white text-[#0B0F19] p-5 sm:p-6 shadow-xl hover:shadow-2xl transition-all duration-300 flex-1 flex flex-col justify-between border border-slate-200 hover:border-slate-300"
+                className={`hero-bento-card-secondary group relative rounded-3xl overflow-hidden p-5 sm:p-6 shadow-xl hover:shadow-2xl transition-all duration-300 flex-1 flex flex-col justify-between border ${
+                  isDark
+                    ? "bg-[#111726]/95 border-slate-800 text-white hover:border-slate-700"
+                    : "bg-white border-slate-200 text-[#0B0F19] hover:border-slate-300"
+                }`}
               >
                 {/* Background Image Accent */}
                 <div className="absolute top-0 right-0 w-1/2 h-full overflow-hidden opacity-30 group-hover:opacity-45 transition-opacity pointer-events-none">
@@ -439,24 +716,38 @@ export const HeroSection: React.FC = () => {
                 </div>
 
                 <div className="relative z-10 space-y-2 max-w-xs">
-                  <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-slate-100 text-slate-700 text-[10px] font-black uppercase tracking-wider border border-slate-200 shadow-2xs">
+                  <div
+                    className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-black uppercase tracking-wider border shadow-2xs ${
+                      isDark
+                        ? "bg-slate-800 text-slate-300 border-slate-700"
+                        : "bg-slate-100 text-slate-700 border-slate-200"
+                    }`}
+                  >
                     <Coffee className="w-3 h-3 text-[#FF4D36]" />
                     <span>Travel Drinkware</span>
                   </div>
 
-                  <h3 className="text-lg font-black text-[#0B0F19] group-hover:text-[#FF4D36] transition-colors leading-tight">
+                  <h3 className={`text-lg font-black group-hover:text-[#FF4D36] transition-colors leading-tight ${
+                    isDark ? "text-white" : "text-[#0B0F19]"
+                  }`}>
                     Executive 3-Piece Thermal Flask & Cups Set
                   </h3>
 
-                  <p className="text-xs text-slate-500 leading-relaxed line-clamp-2">
+                  <p className={`text-xs leading-relaxed line-clamp-2 ${isDark ? "text-slate-400" : "text-slate-500"}`}>
                     500ml double-wall steel vacuum flask with 2 matching insulated steel handle cups.
                   </p>
                 </div>
 
-                <div className="relative z-10 pt-4 border-t border-slate-100 flex items-center justify-between">
+                <div
+                  className={`relative z-10 pt-4 border-t flex items-center justify-between ${
+                    isDark ? "border-slate-800" : "border-slate-100"
+                  }`}
+                >
                   <div>
                     <span className="text-[11px] text-slate-400 block font-medium">12h Hot / 24h Cold</span>
-                    <span className="text-sm font-black text-[#0B0F19]">₹499 <span className="text-xs text-slate-400 font-normal">• 6 Colors</span></span>
+                    <span className={`text-sm font-black ${isDark ? "text-white" : "text-[#0B0F19]"}`}>
+                      ₹499 <span className="text-xs text-slate-400 font-normal">• 6 Colors</span>
+                    </span>
                   </div>
 
                   <span className="inline-flex items-center gap-1 text-xs font-bold text-[#FF4D36] group-hover:translate-x-1 transition-transform">
@@ -471,46 +762,70 @@ export const HeroSection: React.FC = () => {
           </div>
 
           {/* Bottom Hero Studio Guarantee Bar (4 Cards) */}
-          <div className="hero-guarantee-bar pt-4">
+          <div className="hero-guarantee-bar pt-3">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
               
-              <div className="p-3.5 rounded-2xl bg-white border border-slate-200/90 shadow-xs flex items-center gap-3">
+              <div
+                className={`p-3.5 rounded-2xl border shadow-xs flex items-center gap-3 transition-colors ${
+                  isDark
+                    ? "bg-[#111726]/95 border-slate-800 text-white"
+                    : "bg-white border-slate-200/90 text-[#0B0F19]"
+                }`}
+              >
                 <div className="w-9 h-9 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0 border border-emerald-100">
                   <CheckCircle2 className="w-5 h-5" />
                 </div>
                 <div>
-                  <div className="text-xs font-black text-[#0B0F19]">Zero Minimum MOQ</div>
-                  <div className="text-[11px] text-slate-500 font-medium">Order 1 or 1,000 units</div>
+                  <div className={`text-xs font-black ${isDark ? "text-white" : "text-[#0B0F19]"}`}>Zero Minimum MOQ</div>
+                  <div className="text-[11px] text-slate-400 font-medium">Order 1 or 1,000 units</div>
                 </div>
               </div>
 
-              <div className="p-3.5 rounded-2xl bg-white border border-slate-200/90 shadow-xs flex items-center gap-3">
+              <div
+                className={`p-3.5 rounded-2xl border shadow-xs flex items-center gap-3 transition-colors ${
+                  isDark
+                    ? "bg-[#111726]/95 border-slate-800 text-white"
+                    : "bg-white border-slate-200/90 text-[#0B0F19]"
+                }`}
+              >
                 <div className="w-9 h-9 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center shrink-0 border border-amber-100">
                   <Sparkles className="w-5 h-5" />
                 </div>
                 <div>
-                  <div className="text-xs font-black text-[#0B0F19]">Free Digital Proof</div>
-                  <div className="text-[11px] text-slate-500 font-medium">Mockup approved before print</div>
+                  <div className={`text-xs font-black ${isDark ? "text-white" : "text-[#0B0F19]"}`}>Free Digital Proof</div>
+                  <div className="text-[11px] text-slate-400 font-medium">Mockup approved before print</div>
                 </div>
               </div>
 
-              <div className="p-3.5 rounded-2xl bg-white border border-slate-200/90 shadow-xs flex items-center gap-3">
+              <div
+                className={`p-3.5 rounded-2xl border shadow-xs flex items-center gap-3 transition-colors ${
+                  isDark
+                    ? "bg-[#111726]/95 border-slate-800 text-white"
+                    : "bg-white border-slate-200/90 text-[#0B0F19]"
+                }`}
+              >
                 <div className="w-9 h-9 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center shrink-0 border border-indigo-100">
                   <Building2 className="w-5 h-5" />
                 </div>
                 <div>
-                  <div className="text-xs font-black text-[#0B0F19]">In-House Studio</div>
-                  <div className="text-[11px] text-slate-500 font-medium">Ranchi Studio production</div>
+                  <div className={`text-xs font-black ${isDark ? "text-white" : "text-[#0B0F19]"}`}>In-House Studio</div>
+                  <div className="text-[11px] text-slate-400 font-medium">Ranchi Studio production</div>
                 </div>
               </div>
 
-              <div className="p-3.5 rounded-2xl bg-white border border-slate-200/90 shadow-xs flex items-center gap-3">
+              <div
+                className={`p-3.5 rounded-2xl border shadow-xs flex items-center gap-3 transition-colors ${
+                  isDark
+                    ? "bg-[#111726]/95 border-slate-800 text-white"
+                    : "bg-white border-slate-200/90 text-[#0B0F19]"
+                }`}
+              >
                 <div className="w-9 h-9 rounded-xl bg-[#FF4D36]/10 text-[#FF4D36] flex items-center justify-center shrink-0 border border-[#FF4D36]/20">
                   <Truck className="w-5 h-5" />
                 </div>
                 <div>
-                  <div className="text-xs font-black text-[#0B0F19]">24–48h Dispatch</div>
-                  <div className="text-[11px] text-slate-500 font-medium">Express padded shipping</div>
+                  <div className={`text-xs font-black ${isDark ? "text-white" : "text-[#0B0F19]"}`}>24–48h Dispatch</div>
+                  <div className="text-[11px] text-slate-400 font-medium">Express padded shipping</div>
                 </div>
               </div>
 
