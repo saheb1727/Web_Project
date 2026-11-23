@@ -227,30 +227,30 @@ export const StudioReelsSection: React.FC = () => {
 
   return (
     <>
-      <section ref={sectionRef} className="py-20 bg-white border-b border-slate-200/80 overflow-hidden w-full max-w-full">
+      <section ref={sectionRef} className="py-20 bg-[#0B0F19] text-white border-b border-slate-800 overflow-hidden w-full max-w-full">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           {/* Section Header */}
           <div className="studio-reel-header flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
             <div>
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#FF4D36]/10 text-[#FF4D36] text-xs font-bold uppercase tracking-wider mb-2">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#FF4D36]/10 text-[#FF4D36] text-xs font-bold uppercase tracking-wider mb-2 border border-[#FF4D36]/20">
                 <Video className="w-3.5 h-3.5" />
                 <span>Ranchi Workshop & Production Studio</span>
               </div>
-              <h2 className="text-3xl sm:text-4xl font-black text-[#0B0F19] tracking-tight">
+              <h2 className="text-3xl sm:text-4xl font-black text-white tracking-tight">
                 Craftsmanship in Motion
               </h2>
-              <p className="text-sm text-slate-500 mt-1 max-w-xl">
+              <p className="text-sm text-slate-400 mt-1 max-w-xl">
                 Real raw footage from our production lab. Watch 1200 DPI printing, laser cutting, and precision assembly.
               </p>
             </div>
 
-            <div className="flex items-center gap-2 text-xs font-bold text-slate-500">
-              <span className="sm:hidden text-[11px] font-bold text-slate-500 flex items-center gap-1.5 bg-slate-100 px-2.5 py-1 rounded-full">
+            <div className="flex items-center gap-2 text-xs font-bold text-slate-400">
+              <span className="sm:hidden text-[11px] font-bold text-slate-400 flex items-center gap-1.5 bg-slate-900 border border-slate-800 px-2.5 py-1 rounded-full">
                 <span>Swipe reels</span>
                 <MoveRight className="w-3.5 h-3.5 text-[#FF4D36] animate-pulse" />
               </span>
-              <span className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200/70">
+              <span className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-900 text-emerald-400 border border-slate-800">
                 <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
                 <span>6 Production Reels</span>
               </span>
@@ -267,7 +267,7 @@ export const StudioReelsSection: React.FC = () => {
                 <div
                   key={reel.id}
                   onClick={() => setActiveModalIndex(idx)}
-                  className="studio-reel-card group relative rounded-3xl overflow-hidden bg-slate-900 border border-slate-200 shadow-md hover:shadow-2xl transition-all duration-300 cursor-pointer flex flex-col aspect-9/14 sm:aspect-9/13 w-[250px] sm:w-auto shrink-0 snap-center"
+                  className="studio-reel-card group relative rounded-3xl overflow-hidden bg-slate-900 border border-slate-800 hover:border-slate-700 shadow-xl hover:shadow-2xl transition-all duration-300 cursor-pointer flex flex-col aspect-9/14 sm:aspect-9/13 w-[250px] sm:w-auto shrink-0 snap-center"
                 >
                   {/* Video Player */}
                   <video

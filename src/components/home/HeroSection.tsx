@@ -51,7 +51,7 @@ type HeroBgTheme = "blueprint" | "topo" | "obsidian";
 
 export const HeroSection: React.FC = () => {
   const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
-  const [bgTheme, setBgTheme] = useState<HeroBgTheme>("blueprint");
+  const [bgTheme, setBgTheme] = useState<HeroBgTheme>("obsidian");
   const [activeSlideIndex, setActiveSlideIndex] = useState(0);
   const [isCarouselPaused, setIsCarouselPaused] = useState(false);
   const heroRef = useRef<HTMLElement>(null);

@@ -132,27 +132,27 @@ export const FeaturedProducts: React.FC = () => {
   }, [activeTab]);
 
   return (
-    <section ref={sectionRef} className="py-16 bg-slate-50 border-b border-slate-200 w-full max-w-full overflow-hidden">
+    <section ref={sectionRef} className="py-20 bg-[#0B0F19] text-white border-b border-slate-800 w-full max-w-full overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-4">
           <div>
-            <div className="flex items-center gap-2 text-xs font-bold text-[var(--color-accent)] uppercase tracking-wider mb-2">
+            <div className="flex items-center gap-2 text-xs font-bold text-[#FF4D36] uppercase tracking-wider mb-2">
               <Flame className="w-4 h-4" />
               <span>Category-Wise Product Catalog</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl font-black text-[var(--color-primary)] tracking-tight">
+            <h2 className="text-3xl sm:text-4xl font-black text-white tracking-tight">
               Explore Our Custom Collections
             </h2>
-            <p className="text-sm text-slate-500 mt-1 max-w-xl">
+            <p className="text-sm text-slate-400 mt-1 max-w-xl">
               Organized category-wise from custom anniversary frames and 3D LED lamps to corporate kits and event badges.
             </p>
           </div>
 
           <Link
             href="/products"
-            className="inline-flex items-center gap-2 text-sm font-bold text-[var(--color-accent)] hover:opacity-85 transition-colors group"
+            className="inline-flex items-center gap-2 text-sm font-bold text-[#FF4D36] hover:text-white transition-colors group"
           >
             <span>See Full Catalog ({products.length})</span>
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -166,8 +166,8 @@ export const FeaturedProducts: React.FC = () => {
             onClick={() => setActiveTab("all")}
             className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold whitespace-nowrap transition-all cursor-pointer ${
               activeTab === "all"
-                ? "bg-[var(--color-primary)] text-white shadow-md scale-102"
-                : "bg-white text-slate-600 hover:bg-slate-200/80 border border-slate-200"
+                ? "bg-[#FF4D36] text-white shadow-lg shadow-[#FF4D36]/25 scale-102"
+                : "bg-[#131926] text-slate-300 hover:text-white hover:bg-slate-800 border border-slate-800"
             }`}
           >
             All Categories ({products.length})
@@ -180,8 +180,8 @@ export const FeaturedProducts: React.FC = () => {
               onClick={() => setActiveTab(sec.slug)}
               className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold whitespace-nowrap transition-all cursor-pointer ${
                 activeTab === sec.slug
-                  ? "bg-[var(--color-primary)] text-white shadow-md scale-102"
-                  : "bg-white text-slate-600 hover:bg-slate-200/80 border border-slate-200"
+                  ? "bg-[#FF4D36] text-white shadow-lg shadow-[#FF4D36]/25 scale-102"
+                  : "bg-[#131926] text-slate-300 hover:text-white hover:bg-slate-800 border border-slate-800"
               }`}
             >
               {sec.shortLabel}
@@ -193,35 +193,35 @@ export const FeaturedProducts: React.FC = () => {
         {activeTab !== "all" && activeCategory && (
           <div>
             {/* Category Header Banner */}
-            <div className="bg-white rounded-2xl p-5 border border-slate-200/80 mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4 shadow-2xs">
+            <div className="bg-[#131926] rounded-2xl p-5 border border-slate-800 mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4 shadow-xl">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-[#0B0F19] text-[#FF4D36] flex items-center justify-center shrink-0">
+                <div className="w-10 h-10 rounded-xl bg-[#0B0F19] text-[#FF4D36] flex items-center justify-center shrink-0 border border-slate-800">
                   <activeCategory.icon className="w-5 h-5" />
                 </div>
                 <div>
                   <div className="flex items-center gap-2">
-                    <h3 className="text-lg sm:text-xl font-black text-[#0B0F19]">
+                    <h3 className="text-lg sm:text-xl font-black text-white">
                       {activeCategory.name}
                     </h3>
-                    <span className="px-2 py-0.5 rounded-full bg-[#FF4D36]/10 text-[#FF4D36] text-[10px] font-bold">
+                    <span className="px-2 py-0.5 rounded-full bg-[#FF4D36]/15 text-[#FF4D36] text-[10px] font-bold">
                       {activeCategory.badge}
                     </span>
                   </div>
-                  <p className="text-xs text-slate-500 mt-0.5">
+                  <p className="text-xs text-slate-400 mt-0.5">
                     {activeCategory.description}
                   </p>
                 </div>
               </div>
 
               <div className="flex items-center gap-3 shrink-0">
-                <span className="text-xs font-bold text-slate-500">
+                <span className="text-xs font-bold text-slate-400">
                   Showing <strong>{activeCategory.products.length}</strong> Products
                 </span>
                 <Link
                   href={`/category/${activeCategory.slug}`}
-                  className="px-3.5 py-1.5 bg-[#FF4D36] hover:bg-[#e0351d] text-white text-xs font-bold rounded-xl transition-colors flex items-center gap-1.5"
+                  className="px-4 py-2 rounded-xl bg-[#FF4D36] hover:bg-[#e0351d] text-white text-xs font-bold transition-all shadow-md shadow-[#FF4D36]/20 flex items-center gap-1.5"
                 >
-                  <span>Category Page</span>
+                  <span>View Full Hub</span>
                   <ArrowRight className="w-3.5 h-3.5" />
                 </Link>
               </div>
@@ -246,21 +246,21 @@ export const FeaturedProducts: React.FC = () => {
               return (
                 <div key={sec.slug} className="space-y-4 sm:space-y-5">
                   {/* Category Shelf Header */}
-                  <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-3 border-b border-slate-200/90 gap-2">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-3 border-b border-slate-800 gap-2">
                     <div className="flex items-center gap-2.5">
-                      <div className="w-8 h-8 rounded-xl bg-[#0B0F19] text-[#FF4D36] flex items-center justify-center shrink-0 shadow-2xs">
+                      <div className="w-8 h-8 rounded-xl bg-[#131926] text-[#FF4D36] flex items-center justify-center shrink-0 border border-slate-800 shadow-2xs">
                         <Icon className="w-4 h-4" />
                       </div>
                       <div>
                         <div className="flex items-center gap-2">
-                          <h3 className="text-base sm:text-xl font-black text-[#0B0F19] tracking-tight">
+                          <h3 className="text-base sm:text-xl font-black text-white tracking-tight">
                             {sec.name}
                           </h3>
-                          <span className="hidden sm:inline-block px-2 py-0.5 rounded-full bg-slate-100 text-slate-600 text-[10px] font-bold">
+                          <span className="hidden sm:inline-block px-2 py-0.5 rounded-full bg-slate-800 text-slate-300 text-[10px] font-bold">
                             {sec.products.length} items
                           </span>
                         </div>
-                        <p className="text-xs text-slate-500 line-clamp-1 mt-0.5">
+                        <p className="text-xs text-slate-400 line-clamp-1 mt-0.5">
                           {sec.description}
                         </p>
                       </div>
@@ -270,7 +270,7 @@ export const FeaturedProducts: React.FC = () => {
                       <button
                         type="button"
                         onClick={() => setActiveTab(sec.slug)}
-                        className="text-xs font-bold text-[#FF4D36] hover:text-[#d84024] flex items-center gap-1 cursor-pointer transition-colors"
+                        className="text-xs font-bold text-[#FF4D36] hover:text-white flex items-center gap-1 cursor-pointer transition-colors"
                       >
                         <span>View All ({sec.products.length})</span>
                         <ArrowRight className="w-3.5 h-3.5" />
@@ -296,10 +296,10 @@ export const FeaturedProducts: React.FC = () => {
         <div className="mt-14 text-center">
           <Link
             href="/products"
-            className="inline-flex items-center gap-2 px-8 py-3.5 bg-[var(--color-primary)] hover:opacity-90 text-white text-sm font-bold rounded-xl shadow-lg transition-all"
+            className="inline-flex items-center gap-2 px-8 py-3.5 bg-[#FF4D36] hover:bg-[#e0351d] text-white text-sm font-bold rounded-2xl shadow-lg shadow-[#FF4D36]/25 transition-all"
           >
             <span>Browse Complete {products.length}+ Product Catalog</span>
-            <ArrowRight className="w-4 h-4 text-[var(--color-accent)]" />
+            <ArrowRight className="w-4 h-4" />
           </Link>
         </div>
 

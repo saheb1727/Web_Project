@@ -34,32 +34,32 @@ export const EnterpriseInquirySection: React.FC = () => {
   }, []);
 
   return (
-    <section className="bg-white py-12 overflow-hidden">
+    <section className="bg-[#0B0F19] py-14 border-b border-slate-800 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Custom Enterprise Inquiry Card */}
         <div
           ref={cardRef}
-          className="rounded-3xl border border-slate-200/90 bg-slate-50/60 p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6 shadow-xs hover:shadow-md transition-shadow"
+          className="rounded-3xl border border-slate-800 bg-[#131926] p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6 shadow-2xl"
         >
           <div className="space-y-1 text-center md:text-left">
             <div className="inline-flex items-center gap-1.5 text-xs font-bold text-[#FF4D36] uppercase tracking-wider mb-1">
               <Sparkles className="w-3.5 h-3.5" />
               <span>Dedicated Merch Specialist</span>
             </div>
-            <h3 className="text-lg sm:text-xl font-black text-[#0B0F19]">
+            <h3 className="text-lg sm:text-xl font-black text-white">
               Have a custom enterprise inquiry?
             </h3>
-            <p className="text-xs sm:text-sm text-slate-500 font-medium max-w-xl">
+            <p className="text-xs sm:text-sm text-slate-400 font-medium max-w-xl">
               Talk directly to our print engineers for custom Pantone matches, zero-pinhole badge prototyping, and specialized dimensions.
             </p>
           </div>
 
           <Link
             href="/contact"
-            className="px-6 py-3.5 bg-[#0B0F19] hover:bg-[#FF4D36] text-white text-xs sm:text-sm font-bold rounded-2xl shadow-sm transition-all flex items-center gap-2.5 shrink-0 group cursor-pointer active:scale-98"
+            className="px-6 py-3.5 bg-[#FF4D36] hover:bg-[#e0351d] text-white text-xs sm:text-sm font-bold rounded-2xl shadow-lg shadow-[#FF4D36]/25 transition-all flex items-center gap-2.5 shrink-0 group cursor-pointer active:scale-98"
           >
-            <MessageSquare className="w-4 h-4 text-[#FF4D36] group-hover:text-white group-hover:scale-110 transition-all" />
+            <MessageSquare className="w-4 h-4 text-white group-hover:scale-110 transition-transform" />
             <span>Chat With Support</span>
           </Link>
         </div>

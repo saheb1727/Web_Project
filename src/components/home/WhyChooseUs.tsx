@@ -78,19 +78,19 @@ export const WhyChooseUs: React.FC = () => {
   ];
 
   return (
-    <section ref={sectionRef} className="py-20 bg-slate-50 border-b border-slate-200">
+    <section ref={sectionRef} className="py-20 bg-[#0B0F19] text-white border-b border-slate-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           {/* Left Column: Perks List */}
           <div className="lg:col-span-7 space-y-6">
             <div>
-              <span className="text-xs font-bold text-[var(--color-accent)] uppercase tracking-wider block mb-2">
+              <span className="text-xs font-bold text-[#FF4D36] uppercase tracking-wider block mb-2">
                 Uncompromising Standards
               </span>
-              <h2 className="text-3xl sm:text-4xl font-black text-[var(--color-primary)] tracking-tight leading-tight">
+              <h2 className="text-3xl sm:text-4xl font-black text-white tracking-tight leading-tight">
                 Why Top Companies & Creators Choose MyPrintHub.in
               </h2>
-              <p className="text-sm text-slate-600 mt-2">
+              <p className="text-sm text-slate-400 mt-2">
                 Unlike ordinary print shops that compromise with flimsy vinyl stickers and dull screen prints, we build merchandise meant to last years.
               </p>
             </div>
@@ -101,14 +101,14 @@ export const WhyChooseUs: React.FC = () => {
                 return (
                   <div
                     key={idx}
-                    className="why-perk-card flex items-start gap-4 p-4 rounded-2xl bg-white border border-slate-200 shadow-2xs hover:border-slate-300 hover:shadow-md transition-all"
+                    className="why-perk-card flex items-start gap-4 p-4 rounded-2xl bg-[#131926] border border-slate-800 shadow-md hover:border-slate-700 hover:shadow-xl transition-all"
                   >
-                    <div className="w-10 h-10 rounded-xl bg-[var(--color-primary)] text-[var(--color-accent)] flex items-center justify-center shrink-0">
+                    <div className="w-10 h-10 rounded-xl bg-[#0B0F19] text-[#FF4D36] border border-slate-800 flex items-center justify-center shrink-0">
                       <Icon className="w-5 h-5" />
                     </div>
                     <div>
-                      <h4 className="text-sm font-bold text-[var(--color-primary)]">{p.title}</h4>
-                      <p className="text-xs text-slate-500 mt-1 leading-relaxed">{p.desc}</p>
+                      <h4 className="text-sm font-bold text-white">{p.title}</h4>
+                      <p className="text-xs text-slate-400 mt-1 leading-relaxed">{p.desc}</p>
                     </div>
                   </div>
                 );
@@ -118,7 +118,7 @@ export const WhyChooseUs: React.FC = () => {
             <div className="pt-2">
               <Link
                 href="/about"
-                className="inline-flex items-center gap-2 px-6 py-3 bg-[var(--color-accent)] hover:opacity-90 text-white text-xs font-bold rounded-xl shadow-md transition-opacity"
+                className="inline-flex items-center gap-2 px-6 py-3 bg-[#FF4D36] hover:bg-[#e0351d] text-white text-xs font-bold rounded-xl shadow-md shadow-[#FF4D36]/20 transition-all"
               >
                 <span>Read Our Quality Story</span>
               </Link>
@@ -127,7 +127,7 @@ export const WhyChooseUs: React.FC = () => {
 
           {/* Right Column: Visual Comparison Card */}
           <div className="lg:col-span-5">
-            <div className="why-comparison-box relative rounded-3xl overflow-hidden bg-[var(--color-primary)] p-6 text-white shadow-2xl border border-white/10">
+            <div className="why-comparison-box relative rounded-3xl overflow-hidden bg-[#131926] p-6 text-white shadow-2xl border border-slate-800">
               {/* Badge */}
               <div className="flex items-center justify-between border-b border-white/10 pb-4 mb-6">
                 <div>

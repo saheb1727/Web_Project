@@ -134,7 +134,7 @@ export const VolumeDiscountCalculator: React.FC = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-16 bg-slate-50 border-b border-slate-200">
+    <section ref={sectionRef} className="py-20 bg-white border-b border-slate-200/90">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Heading */}
