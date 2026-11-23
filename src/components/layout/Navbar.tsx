@@ -166,7 +166,7 @@ export const Navbar: React.FC = () => {
               <button
                 type="button"
                 onClick={() => setIsMobileMenuOpen(true)}
-                className="lg:hidden p-2 text-slate-700 hover:text-[#0B0F19] rounded-xl hover:bg-slate-100 transition-colors cursor-pointer active:bg-slate-200"
+                className="lg:hidden p-2 text-slate-700 hover:text-[#0B0F19] rounded-none hover:bg-slate-100 transition-colors cursor-pointer active:bg-slate-200"
                 aria-label="Open navigation menu"
               >
                 <Menu className="w-5 h-5" />
@@ -174,7 +174,7 @@ export const Navbar: React.FC = () => {
 
               {/* Brand Logo & Studio Subtitle */}
               <Link href="/" className="flex items-center gap-2 sm:gap-2.5 group py-1">
-                <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-[#0B0F19] text-[#FF4D36] flex items-center justify-center font-black shadow-xs ring-1 ring-black/5 group-hover:scale-105 transition-transform shrink-0">
+                <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-none bg-[#0B0F19] text-[#FF4D36] flex items-center justify-center font-black shadow-xs ring-1 ring-black/5 group-hover:scale-105 transition-transform shrink-0">
                   <Printer className="w-4 h-4 text-[#FF4D36]" />
                 </div>
                 <div className="flex flex-col">
@@ -200,7 +200,7 @@ export const Navbar: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => setIsProductsOpen((prev) => !prev)}
-                  className={`flex items-center gap-1.5 text-sm font-semibold py-2 px-3.5 rounded-xl transition-all cursor-pointer ${
+                  className={`flex items-center gap-1.5 text-sm font-semibold py-2 px-3.5 rounded-none transition-all cursor-pointer ${
                     isProductsOpen || isProductsActive
                       ? "text-[#FF4D36] bg-[#FF4D36]/8 font-bold"
                       : "text-slate-700 hover:text-[#0B0F19] hover:bg-slate-50"
@@ -219,7 +219,7 @@ export const Navbar: React.FC = () => {
                   {/* Dropdown Menu Panel */}
                   {isProductsOpen && (
                     <div
-                      className="absolute top-full left-0 mt-2.5 w-[680px] bg-white/98 backdrop-blur-xl border border-slate-200/90 rounded-2xl shadow-2xl p-5 z-50 animate-in fade-in slide-in-from-top-2 duration-150"
+                      className="absolute top-full left-0 mt-2.5 w-[680px] bg-white/98 backdrop-blur-xl border border-slate-200/90 rounded-none shadow-2xl p-5 z-50 animate-in fade-in slide-in-from-top-2 duration-150"
                       role="menu"
                     >
                       {/* Header Strip */}
@@ -227,7 +227,7 @@ export const Navbar: React.FC = () => {
                         <div>
                           <div className="text-xs font-black uppercase tracking-wider text-slate-400 flex items-center gap-1.5">
                             <span>Product Catalog</span>
-                            <span className="text-[10px] font-bold px-1.5 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200/60">
+                            <span className="text-[10px] font-bold px-1.5 py-0.5 rounded-none bg-emerald-50 text-emerald-700 border border-emerald-200/60">
                               Zero MOQ
                             </span>
                           </div>
@@ -256,14 +256,14 @@ export const Navbar: React.FC = () => {
                               key={cat.id}
                               href={`/category/${cat.slug}`}
                               onClick={() => setIsProductsOpen(false)}
-                              className={`flex items-start gap-3 p-2.5 rounded-xl border transition-all group/item ${
+                              className={`flex items-start gap-3 p-2.5 rounded-none border transition-all group/item ${
                                 isCurrent
                                   ? "bg-[#FF4D36]/5 border-[#FF4D36]/30 shadow-2xs"
                                   : "hover:bg-slate-50 border-transparent hover:border-slate-200/80"
                               }`}
                             >
                               <div
-                                className={`w-9 h-9 rounded-xl flex items-center justify-center shrink-0 transition-colors ${
+                                className={`w-9 h-9 rounded-none flex items-center justify-center shrink-0 transition-colors ${
                                   isCurrent
                                     ? "bg-[#FF4D36] text-white"
                                     : "bg-slate-100 text-slate-700 group-hover/item:bg-[#FF4D36]/10 group-hover/item:text-[#FF4D36]"
@@ -320,7 +320,7 @@ export const Navbar: React.FC = () => {
                 {/* Best Sellers Link */}
                 <Link
                   href="/products"
-                  className={`text-sm font-semibold py-2 px-3.5 rounded-xl transition-all cursor-pointer ${
+                  className={`text-sm font-semibold py-2 px-3.5 rounded-none transition-all cursor-pointer ${
                     pathname === "/products" && !isProductsOpen
                       ? "text-[#FF4D36] bg-[#FF4D36]/8 font-bold"
                       : "text-slate-700 hover:text-[#0B0F19] hover:bg-slate-50"
@@ -332,7 +332,7 @@ export const Navbar: React.FC = () => {
                 {/* Corporate & Bulk Link */}
                 <Link
                   href="/category/corporate-kits"
-                  className={`text-sm font-semibold py-2 px-3.5 rounded-xl transition-all cursor-pointer ${
+                  className={`text-sm font-semibold py-2 px-3.5 rounded-none transition-all cursor-pointer ${
                     pathname === "/category/corporate-kits"
                       ? "text-[#FF4D36] bg-[#FF4D36]/8 font-bold"
                       : "text-slate-700 hover:text-[#0B0F19] hover:bg-slate-50"
@@ -344,7 +344,7 @@ export const Navbar: React.FC = () => {
                 {/* Track Order Link */}
                 <Link
                   href="/track"
-                  className={`text-sm font-semibold py-2 px-3.5 rounded-xl transition-all cursor-pointer ${
+                  className={`text-sm font-semibold py-2 px-3.5 rounded-none transition-all cursor-pointer ${
                     pathname === "/track"
                       ? "text-[#FF4D36] bg-[#FF4D36]/8 font-bold"
                       : "text-slate-700 hover:text-[#0B0F19] hover:bg-slate-50"
@@ -356,7 +356,7 @@ export const Navbar: React.FC = () => {
                 {/* Custom Quote Link (Visible on xl screens, keeping smaller laptops uncluttered) */}
                 <Link
                   href="/contact"
-                  className={`hidden xl:inline-flex text-sm font-semibold py-2 px-3.5 rounded-xl transition-all cursor-pointer ${
+                  className={`hidden xl:inline-flex text-sm font-semibold py-2 px-3.5 rounded-none transition-all cursor-pointer ${
                     pathname === "/contact"
                       ? "text-[#FF4D36] bg-[#FF4D36]/8 font-bold"
                       : "text-slate-700 hover:text-[#0B0F19] hover:bg-slate-50"
@@ -373,7 +373,7 @@ export const Navbar: React.FC = () => {
               <button
                 type="button"
                 onClick={() => setIsSearchOpen(true)}
-                className="hidden md:flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-100 hover:bg-slate-200/70 border border-slate-200/80 text-slate-500 hover:text-slate-800 transition-all text-xs cursor-pointer group w-36 lg:w-40 xl:w-48"
+                className="hidden md:flex items-center gap-2 px-3.5 py-1.5 rounded-none bg-slate-100 hover:bg-slate-200/70 border border-slate-200/80 text-slate-500 hover:text-slate-800 transition-all text-xs cursor-pointer group w-36 lg:w-40 xl:w-48"
                 aria-label="Search merchandise"
                 title="Search custom products (⌘K)"
               >
@@ -390,7 +390,7 @@ export const Navbar: React.FC = () => {
               <button
                 type="button"
                 onClick={() => setIsSearchOpen(true)}
-                className="flex md:hidden p-2 text-slate-700 hover:text-[#0B0F19] hover:bg-slate-100 rounded-xl transition-colors cursor-pointer"
+                className="flex md:hidden p-2 text-slate-700 hover:text-[#0B0F19] hover:bg-slate-100 rounded-none transition-colors cursor-pointer"
                 aria-label="Search merchandise"
               >
                 <Search className="w-5 h-5 stroke-[1.8]" />
@@ -399,13 +399,13 @@ export const Navbar: React.FC = () => {
               {/* Wishlist Button */}
               <Link
                 href="/wishlist"
-                className="relative p-2 rounded-xl text-slate-600 hover:text-[#FF4D36] hover:bg-slate-100 transition-colors cursor-pointer"
+                className="relative p-2 rounded-none text-slate-600 hover:text-[#FF4D36] hover:bg-slate-100 transition-colors cursor-pointer"
                 aria-label="Wishlist"
                 title="Wishlist"
               >
                 <Heart className="w-4 h-4 stroke-[1.8]" />
                 {wishlistCount > 0 && (
-                  <span className="absolute top-0.5 right-0.5 min-w-[15px] h-3.5 px-0.5 bg-[#FF4D36] text-white text-[9px] font-extrabold rounded-full flex items-center justify-center leading-none ring-1.5 ring-white">
+                  <span className="absolute top-0.5 right-0.5 min-w-[15px] h-3.5 px-0.5 bg-[#FF4D36] text-white text-[9px] font-extrabold rounded-none flex items-center justify-center leading-none ring-1.5 ring-white">
                     {wishlistCount}
                   </span>
                 )}
@@ -414,12 +414,12 @@ export const Navbar: React.FC = () => {
               {/* User Account Button */}
               <Link
                 href="/auth"
-                className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-full text-slate-700 hover:text-slate-900 hover:bg-slate-100 transition-colors text-xs font-semibold cursor-pointer"
+                className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-none text-slate-700 hover:text-slate-900 hover:bg-slate-100 transition-colors text-xs font-semibold cursor-pointer"
                 aria-label="My Account"
                 title={isLoggedIn && user ? `Account: ${user.name}` : "Sign In / Register"}
               >
                 {isLoggedIn && user ? (
-                  <div className="w-6 h-6 rounded-full bg-[#0B0F19] text-white flex items-center justify-center text-[10px] font-bold shadow-2xs">
+                  <div className="w-6 h-6 rounded-none bg-[#0B0F19] text-white flex items-center justify-center text-[10px] font-bold shadow-2xs">
                     {user.name[0].toUpperCase()}
                   </div>
                 ) : (
@@ -433,14 +433,14 @@ export const Navbar: React.FC = () => {
               {/* Executive Cart Pill */}
               <Link
                 href="/cart"
-                className="flex items-center gap-2 px-3.5 sm:px-4 py-2 rounded-full bg-[#0B0F19] hover:bg-[#FF4D36] text-white transition-all shadow-xs hover:shadow-md group cursor-pointer shrink-0"
+                className="flex items-center gap-2 px-3.5 sm:px-4 py-2 rounded-none bg-[#0B0F19] hover:bg-[#FF4D36] text-white transition-all shadow-xs hover:shadow-md group cursor-pointer shrink-0"
                 aria-label="Shopping Cart"
                 title="View Shopping Cart"
               >
                 <div className="relative flex items-center justify-center">
                   <ShoppingBag className="w-3.5 h-3.5 text-white group-hover:scale-110 transition-transform" />
                   {totalItems > 0 && (
-                    <span className="absolute -top-2 -right-2.5 min-w-[15px] h-3.5 px-0.5 bg-[#FF4D36] text-white text-[9px] font-black rounded-full flex items-center justify-center leading-none ring-1.5 ring-[#0B0F19]">
+                    <span className="absolute -top-2 -right-2.5 min-w-[15px] h-3.5 px-0.5 bg-[#FF4D36] text-white text-[9px] font-black rounded-none flex items-center justify-center leading-none ring-1.5 ring-[#0B0F19]">
                       {totalItems}
                     </span>
                   )}

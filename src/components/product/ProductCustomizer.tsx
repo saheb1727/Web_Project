@@ -104,11 +104,11 @@ export const ProductCustomizer: React.FC<ProductCustomizerProps> = ({
   };
 
   return (
-    <div className="bg-white rounded-2xl border border-slate-200/80 p-4 sm:p-5 shadow-xs space-y-4">
+    <div className="bg-white rounded-none border border-slate-200/80 p-4 sm:p-5 shadow-xs space-y-4">
       {/* Header */}
       <div className="flex items-center justify-between border-b border-slate-100 pb-3">
         <div className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-lg bg-[#FF4D36]/10 flex items-center justify-center text-[#FF4D36]">
+          <div className="w-8 h-8 rounded-none bg-[#FF4D36]/10 flex items-center justify-center text-[#FF4D36]">
             <Sparkles className="w-4 h-4" />
           </div>
           <div>
@@ -120,14 +120,14 @@ export const ProductCustomizer: React.FC<ProductCustomizerProps> = ({
             </p>
           </div>
         </div>
-        <span className="text-[10px] font-bold bg-emerald-50 text-emerald-700 px-2.5 py-1 rounded-md border border-emerald-200/60">
+        <span className="text-[10px] font-bold bg-emerald-50 text-emerald-700 px-2.5 py-1 rounded-none border border-emerald-200/60">
           HD Vector Print
         </span>
       </div>
 
       {/* Optional In-Situ Live Preview (only rendered if hidePreview is false) */}
       {!hidePreview && (
-        <div className="relative aspect-4/3 w-full bg-slate-100 rounded-xl overflow-hidden border border-slate-200 shadow-inner flex items-center justify-center">
+        <div className="relative aspect-4/3 w-full bg-slate-100 rounded-none overflow-hidden border border-slate-200 shadow-inner flex items-center justify-center">
           <Image
             src={product.image}
             alt={product.name}
@@ -167,7 +167,7 @@ export const ProductCustomizer: React.FC<ProductCustomizerProps> = ({
             )}
 
             {!customImage && !customText && (
-              <div className="border-2 border-dashed border-[#FF4D36]/60 bg-white/70 backdrop-blur-xs rounded-xl p-3 text-center pointer-events-auto">
+              <div className="border-2 border-dashed border-[#FF4D36]/60 bg-white/70 backdrop-blur-xs rounded-none p-3 text-center pointer-events-auto">
                 <Eye className="w-5 h-5 text-[#FF4D36] mx-auto mb-1 animate-bounce" />
                 <p className="text-xs font-bold text-slate-800">
                   Design Placement Area
@@ -185,7 +185,7 @@ export const ProductCustomizer: React.FC<ProductCustomizerProps> = ({
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
 
         {/* 1. Upload Logo Box */}
-        <div className="p-3.5 rounded-xl bg-slate-50/80 border border-slate-200/80 space-y-2.5">
+        <div className="p-3.5 rounded-none bg-slate-50/80 border border-slate-200/80 space-y-2.5">
           <div className="flex items-center justify-between">
             <label className="text-xs font-bold text-slate-800 flex items-center gap-1.5">
               <ImageIcon className="w-3.5 h-3.5 text-[#FF4D36]" />
@@ -213,7 +213,7 @@ export const ProductCustomizer: React.FC<ProductCustomizerProps> = ({
 
           <label
             htmlFor="logo-upload"
-            className="flex flex-col items-center justify-center p-3 sm:p-4 border-2 border-dashed border-slate-300 hover:border-[#FF4D36] rounded-xl cursor-pointer bg-white transition-colors group text-center"
+            className="flex flex-col items-center justify-center p-3 sm:p-4 border-2 border-dashed border-slate-300 hover:border-[#FF4D36] rounded-none cursor-pointer bg-white transition-colors group text-center"
           >
             <Upload className="w-4 h-4 text-slate-400 group-hover:text-[#FF4D36] mb-1 transition-colors" />
             <span className="text-xs font-bold text-slate-700 group-hover:text-[#0B0F19]">
@@ -245,7 +245,7 @@ export const ProductCustomizer: React.FC<ProductCustomizerProps> = ({
         </div>
 
         {/* 2. Custom Text / Name Box */}
-        <div className="p-3.5 rounded-xl bg-slate-50/80 border border-slate-200/80 space-y-2.5">
+        <div className="p-3.5 rounded-none bg-slate-50/80 border border-slate-200/80 space-y-2.5">
           <label className="text-xs font-bold text-slate-800 flex items-center gap-1.5">
             <Type className="w-3.5 h-3.5 text-[#FF4D36]" />
             Custom Text / Recipient Name
@@ -257,7 +257,7 @@ export const ProductCustomizer: React.FC<ProductCustomizerProps> = ({
             onChange={handleTextChange}
             placeholder="e.g. Rahul Sharma, HR Head"
             maxLength={40}
-            className="w-full px-3 py-2 text-xs bg-white border border-slate-300 rounded-lg focus:outline-hidden focus:border-[#0B0F19] focus:ring-1 focus:ring-[#0B0F19]"
+            className="w-full px-3 py-2 text-xs bg-white border border-slate-300 rounded-none focus:outline-hidden focus:border-[#0B0F19] focus:ring-1 focus:ring-[#0B0F19]"
           />
 
           {/* Typography and color options */}
@@ -269,7 +269,7 @@ export const ProductCustomizer: React.FC<ProductCustomizerProps> = ({
               <select
                 value={fontFamily}
                 onChange={(e) => handleFontChange(e.target.value)}
-                className="w-full text-xs p-1.5 bg-white border border-slate-300 rounded-md focus:outline-hidden cursor-pointer"
+                className="w-full text-xs p-1.5 bg-white border border-slate-300 rounded-none focus:outline-hidden cursor-pointer"
               >
                 <option value="sans-serif">Modern Sans</option>
                 <option value="serif">Classic Serif</option>
@@ -292,7 +292,7 @@ export const ProductCustomizer: React.FC<ProductCustomizerProps> = ({
                     key={color.hex}
                     type="button"
                     onClick={() => handleColorChange(color.hex)}
-                    className={`w-5 h-5 rounded-full border shadow-2xs transition-transform cursor-pointer ${textColor === color.hex ? "scale-115 ring-2 ring-[#FF4D36]" : ""
+                    className={`w-5 h-5 rounded-none border shadow-2xs transition-transform cursor-pointer ${textColor === color.hex ? "scale-115 ring-2 ring-[#FF4D36]" : ""
                       }`}
                     style={{ backgroundColor: color.hex }}
                     title={color.name}

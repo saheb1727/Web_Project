@@ -24,7 +24,7 @@ export const BulkPricingTable: React.FC<BulkPricingTableProps> = ({
           <Sparkles className="w-3.5 h-3.5 text-[#F95738]" />
           <span>Wholesale Volume Discounts</span>
         </div>
-        <span className="text-[11px] font-semibold text-[#F95738] bg-[#F95738]/10 px-2 py-0.5 rounded-full">
+        <span className="text-[11px] font-semibold text-[#F95738] bg-[#F95738]/10 px-2 py-0.5 rounded-none">
           Save Up To 55%
         </span>
       </div>
@@ -42,14 +42,14 @@ export const BulkPricingTable: React.FC<BulkPricingTableProps> = ({
               key={idx}
               type="button"
               onClick={() => onSelectTier && onSelectTier(tier.minQty)}
-              className={`p-3 rounded-xl border text-left transition-all duration-150 relative active:scale-97 cursor-pointer ${
+              className={`p-3 rounded-none border text-left transition-all duration-150 relative active:scale-97 cursor-pointer ${
                 isActive
                   ? "bg-white border-[#1E1B4B] shadow-sm ring-2 ring-[#1E1B4B]/15"
                   : "bg-slate-50/70 hover:bg-white text-slate-700 border-slate-200/80 hover:border-slate-300"
               }`}
             >
               {isActive && (
-                <div className="absolute top-2.5 right-2.5 w-4 h-4 rounded-full bg-[#1E1B4B] text-white flex items-center justify-center">
+                <div className="absolute top-2.5 right-2.5 w-4 h-4 rounded-none bg-[#1E1B4B] text-white flex items-center justify-center">
                   <Check className="w-2.5 h-2.5 stroke-[3]" />
                 </div>
               )}

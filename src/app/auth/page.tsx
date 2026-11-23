@@ -63,9 +63,9 @@ export default function AuthPage() {
       <div className="min-h-screen bg-slate-50 py-10 sm:py-12">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
           {/* Top Profile Banner */}
-          <div className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/90 shadow-sm flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+          <div className="bg-white rounded-none p-6 sm:p-8 border border-slate-200/90 shadow-sm flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
             <div className="flex items-center gap-4">
-              <div className="w-16 h-16 rounded-2xl bg-[#1E1B4B] text-white flex items-center justify-center font-black text-2xl shadow-md border-2 border-[var(--color-accent-border)]">
+              <div className="w-16 h-16 rounded-none bg-[#1E1B4B] text-white flex items-center justify-center font-black text-2xl shadow-md border-2 border-[var(--color-accent-border)]">
                 {user.name ? user.name[0].toUpperCase() : "U"}
               </div>
               <div>
@@ -73,7 +73,7 @@ export default function AuthPage() {
                   <h1 className="text-xl sm:text-2xl font-black text-[#1E1B4B]">
                     {user.name}
                   </h1>
-                  <span className="px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 text-[10px] font-bold border border-emerald-200">
+                  <span className="px-2 py-0.5 rounded-none bg-emerald-50 text-emerald-700 text-[10px] font-bold border border-emerald-200">
                     Verified Buyer
                   </span>
                 </div>
@@ -99,7 +99,7 @@ export default function AuthPage() {
             <button
               type="button"
               onClick={handleLogout}
-              className="px-4 py-2.5 rounded-xl border border-slate-200 hover:bg-rose-50 hover:text-rose-600 hover:border-rose-200 text-xs font-bold text-slate-700 transition-colors flex items-center gap-1.5 cursor-pointer"
+              className="px-4 py-2.5 rounded-none border border-slate-200 hover:bg-rose-50 hover:text-rose-600 hover:border-rose-200 text-xs font-bold text-slate-700 transition-colors flex items-center gap-1.5 cursor-pointer"
             >
               <LogOut className="w-3.5 h-3.5" />
               <span>Sign Out</span>
@@ -129,7 +129,7 @@ export default function AuthPage() {
                   {orders.map((ord) => (
                     <div
                       key={ord.orderId}
-                      className="bg-white rounded-2xl p-4 sm:p-5 border border-slate-200/90 shadow-2xs hover:shadow-md transition-shadow"
+                      className="bg-white rounded-none p-4 sm:p-5 border border-slate-200/90 shadow-2xs hover:shadow-md transition-shadow"
                     >
                       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 border-b border-slate-100">
                         <div>
@@ -160,7 +160,7 @@ export default function AuthPage() {
                       <div className="pt-3 flex items-center justify-between gap-3">
                         <div className="flex items-center gap-1.5">
                           <span
-                            className={`w-2 h-2 rounded-full ${
+                            className={`w-2 h-2 rounded-none ${
                               ord.status.includes("Delivered")
                                 ? "bg-emerald-500"
                                 : ord.status.includes("Dispatched")
@@ -175,7 +175,7 @@ export default function AuthPage() {
 
                         <Link
                           href={`/track?orderId=${ord.orderId}`}
-                          className="px-3.5 py-1.5 rounded-xl bg-[#F95738] hover:bg-[#E03A1B] text-white text-xs font-bold transition-all shadow-xs flex items-center gap-1 active:scale-95 cursor-pointer"
+                          className="px-3.5 py-1.5 rounded-none bg-[#F95738] hover:bg-[#E03A1B] text-white text-xs font-bold transition-all shadow-xs flex items-center gap-1 active:scale-95 cursor-pointer"
                         >
                           <span>Track Package</span>
                           <ArrowRight className="w-3.5 h-3.5" />
@@ -185,7 +185,7 @@ export default function AuthPage() {
                   ))}
                 </div>
               ) : (
-                <div className="bg-white rounded-3xl p-10 text-center border border-slate-200 text-slate-500 space-y-3">
+                <div className="bg-white rounded-none p-10 text-center border border-slate-200 text-slate-500 space-y-3">
                   <Package className="w-10 h-10 text-slate-300 mx-auto" />
                   <p className="text-sm font-bold text-slate-800">No orders placed yet</p>
                   <p className="text-xs text-slate-400">
@@ -193,7 +193,7 @@ export default function AuthPage() {
                   </p>
                   <Link
                     href="/products"
-                    className="inline-block mt-2 px-5 py-2.5 rounded-xl bg-[#F95738] text-white text-xs font-bold"
+                    className="inline-block mt-2 px-5 py-2.5 rounded-none bg-[#F95738] text-white text-xs font-bold"
                   >
                     Start Customizing
                   </Link>
@@ -204,7 +204,7 @@ export default function AuthPage() {
             {/* Right 4 Cols: Saved Address & Business GST */}
             <div className="lg:col-span-4 space-y-5">
               {/* Shipping Address Card */}
-              <div className="bg-white rounded-3xl p-5 sm:p-6 border border-slate-200/90 shadow-2xs space-y-3">
+              <div className="bg-white rounded-none p-5 sm:p-6 border border-slate-200/90 shadow-2xs space-y-3">
                 <div className="flex items-center justify-between text-xs font-bold text-[#1E1B4B]">
                   <span className="flex items-center gap-1.5">
                     <MapPin className="w-4 h-4 text-[#F95738]" />
@@ -215,7 +215,7 @@ export default function AuthPage() {
                   </span>
                 </div>
 
-                <div className="text-xs text-slate-600 space-y-1 bg-slate-50 p-3.5 rounded-2xl border border-slate-100">
+                <div className="text-xs text-slate-600 space-y-1 bg-slate-50 p-3.5 rounded-none border border-slate-100">
                   <p className="font-bold text-slate-900">{user.name}</p>
                   <p>{user.savedAddress?.address || "Dangra toli chowk Purulia road, opposite hyderabadi zaika"}</p>
                   <p>
@@ -229,12 +229,12 @@ export default function AuthPage() {
 
               {/* Corporate GST Card */}
               {user.company && (
-                <div className="bg-white rounded-3xl p-5 sm:p-6 border border-slate-200/90 shadow-2xs space-y-2">
+                <div className="bg-white rounded-none p-5 sm:p-6 border border-slate-200/90 shadow-2xs space-y-2">
                   <div className="flex items-center gap-1.5 text-xs font-bold text-[#1E1B4B]">
                     <Building className="w-4 h-4 text-[#F95738]" />
                     <span>Corporate Billing Info</span>
                   </div>
-                  <div className="text-xs text-slate-600 bg-slate-50 p-3.5 rounded-2xl border border-slate-100">
+                  <div className="text-xs text-slate-600 bg-slate-50 p-3.5 rounded-none border border-slate-100">
                     <p className="font-bold text-slate-900">{user.company}</p>
                     {user.gstNumber && (
                       <p className="text-[11px] text-slate-500 font-mono mt-0.5">
@@ -246,7 +246,7 @@ export default function AuthPage() {
               )}
 
               {/* Factory Contact Card */}
-              <div className="p-4 rounded-2xl bg-[#0B0F19] text-white text-xs space-y-2">
+              <div className="p-4 rounded-none bg-[#0B0F19] text-white text-xs space-y-2">
                 <div className="flex items-center gap-2 font-bold text-[var(--color-accent)]">
                   <Sparkles className="w-4 h-4" />
                   <span>VIP Corporate Print Desk</span>
@@ -275,7 +275,7 @@ export default function AuthPage() {
       <div className="sm:mx-auto sm:w-full sm:max-w-md text-center">
         {/* Brand Logo */}
         <Link href="/" className="inline-flex items-center gap-2 mb-4 group">
-          <div className="w-10 h-10 rounded-xl bg-[#1E1B4B] text-[#F95738] flex items-center justify-center shadow-md">
+          <div className="w-10 h-10 rounded-none bg-[#1E1B4B] text-[#F95738] flex items-center justify-center shadow-md">
             <Printer className="w-6 h-6" />
           </div>
           <span className="text-2xl font-black text-[#1E1B4B]">
@@ -291,13 +291,13 @@ export default function AuthPage() {
       </div>
 
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md px-4 sm:px-0">
-        <div className="bg-white py-8 px-6 sm:px-10 rounded-3xl border border-slate-200 shadow-xl space-y-6">
+        <div className="bg-white py-8 px-6 sm:px-10 rounded-none border border-slate-200 shadow-xl space-y-6">
           {/* Tab Selector */}
-          <div className="flex rounded-2xl bg-slate-100 p-1">
+          <div className="flex rounded-none bg-slate-100 p-1">
             <button
               type="button"
               onClick={() => setActiveTab("login")}
-              className={`flex-1 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer ${
+              className={`flex-1 py-2 rounded-none text-xs font-bold transition-all cursor-pointer ${
                 activeTab === "login"
                   ? "bg-white text-[#1E1B4B] shadow-xs"
                   : "text-slate-500 hover:text-slate-700"
@@ -308,7 +308,7 @@ export default function AuthPage() {
             <button
               type="button"
               onClick={() => setActiveTab("signup")}
-              className={`flex-1 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer ${
+              className={`flex-1 py-2 rounded-none text-xs font-bold transition-all cursor-pointer ${
                 activeTab === "signup"
                   ? "bg-white text-[#1E1B4B] shadow-xs"
                   : "text-slate-500 hover:text-slate-700"
@@ -322,7 +322,7 @@ export default function AuthPage() {
           <button
             type="button"
             onClick={handleDemoLogin}
-            className="w-full py-2.5 px-3 bg-amber-50 hover:bg-amber-100 border border-amber-200/80 rounded-xl text-xs font-bold text-amber-800 flex items-center justify-center gap-1.5 transition-colors cursor-pointer"
+            className="w-full py-2.5 px-3 bg-amber-50 hover:bg-amber-100 border border-amber-200/80 rounded-none text-xs font-bold text-amber-800 flex items-center justify-center gap-1.5 transition-colors cursor-pointer"
           >
             <Sparkles className="w-3.5 h-3.5 text-amber-600" />
             <span>Fill Demo Account (1-Click Login)</span>
@@ -344,7 +344,7 @@ export default function AuthPage() {
                       value={name}
                       onChange={(e) => setName(e.target.value)}
                       placeholder="Vikram Malhotra"
-                      className="w-full pl-9 pr-3 py-2.5 text-xs bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-[#1E1B4B]"
+                      className="w-full pl-9 pr-3 py-2.5 text-xs bg-slate-50 border border-slate-200 rounded-none focus:outline-none focus:border-[#1E1B4B]"
                     />
                   </div>
                 </div>
@@ -361,7 +361,7 @@ export default function AuthPage() {
                       value={phone}
                       onChange={(e) => setPhone(e.target.value)}
                       placeholder="10-digit mobile number"
-                      className="w-full pl-9 pr-3 py-2.5 text-xs bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-[#1E1B4B]"
+                      className="w-full pl-9 pr-3 py-2.5 text-xs bg-slate-50 border border-slate-200 rounded-none focus:outline-none focus:border-[#1E1B4B]"
                     />
                   </div>
                 </div>
@@ -380,7 +380,7 @@ export default function AuthPage() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="name@company.com"
-                  className="w-full pl-9 pr-3 py-2.5 text-xs bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-[#1E1B4B]"
+                  className="w-full pl-9 pr-3 py-2.5 text-xs bg-slate-50 border border-slate-200 rounded-none focus:outline-none focus:border-[#1E1B4B]"
                 />
               </div>
             </div>
@@ -397,7 +397,7 @@ export default function AuthPage() {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="••••••••"
-                  className="w-full pl-9 pr-3 py-2.5 text-xs bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-[#1E1B4B]"
+                  className="w-full pl-9 pr-3 py-2.5 text-xs bg-slate-50 border border-slate-200 rounded-none focus:outline-none focus:border-[#1E1B4B]"
                 />
               </div>
             </div>
@@ -405,7 +405,7 @@ export default function AuthPage() {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="w-full py-3 bg-[#F95738] hover:bg-[#E03A1B] text-white text-xs font-bold rounded-xl shadow-md transition-all flex items-center justify-center gap-1.5 cursor-pointer disabled:opacity-50"
+              className="w-full py-3 bg-[#F95738] hover:bg-[#E03A1B] text-white text-xs font-bold rounded-none shadow-md transition-all flex items-center justify-center gap-1.5 cursor-pointer disabled:opacity-50"
             >
               <span>{activeTab === "login" ? "Sign In" : "Create Account"}</span>
               <ArrowRight className="w-4 h-4" />

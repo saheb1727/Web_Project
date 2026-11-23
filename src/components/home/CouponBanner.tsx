@@ -34,14 +34,14 @@ export const CouponBanner: React.FC = () => {
   return (
     <section className="py-8 bg-slate-100/70 border-b border-slate-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-[#0B0F19] rounded-3xl p-6 sm:p-8 text-white shadow-xl relative overflow-hidden">
+        <div className="bg-[#0B0F19] rounded-none p-6 sm:p-8 text-white shadow-xl relative overflow-hidden">
           {/* Subtle geometric lines */}
-          <div className="absolute top-0 right-0 -mt-12 -mr-12 w-64 h-64 bg-[#F95738]/10 rounded-full blur-2xl pointer-events-none" />
+          <div className="absolute top-0 right-0 -mt-12 -mr-12 w-64 h-64 bg-[#F95738]/10 rounded-none blur-2xl pointer-events-none" />
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center relative">
             {/* Left Offer Description */}
             <div className="lg:col-span-7 space-y-2 text-center lg:text-left">
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#F95738]/20 border border-[#F95738]/30 text-[#F95738] text-xs font-bold">
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-none bg-[#F95738]/20 border border-[#F95738]/30 text-[#F95738] text-xs font-bold">
                 <Sparkles className="w-3.5 h-3.5" />
                 <span>Special Welcome Offer</span>
               </div>
@@ -55,7 +55,7 @@ export const CouponBanner: React.FC = () => {
 
             {/* Right: Interactive Coupon Ticket */}
             <div className="lg:col-span-5 flex flex-col sm:flex-row items-center justify-center lg:justify-end gap-3">
-              <div className="flex items-center bg-white/10 backdrop-blur-md rounded-2xl p-2 border-2 border-dashed border-[#F95738]/50 shadow-inner">
+              <div className="flex items-center bg-white/10 backdrop-blur-md rounded-none p-2 border-2 border-dashed border-[#F95738]/50 shadow-inner">
                 <div className="px-4 py-2 border-r border-white/20 text-center">
                   <span className="text-[10px] uppercase font-bold text-slate-300 tracking-wider block">
                     Coupon Code
@@ -66,7 +66,7 @@ export const CouponBanner: React.FC = () => {
                 </div>
                 <button
                   onClick={() => handleCopy("PRINT15")}
-                  className="ml-2 px-4 py-2.5 bg-[#F95738] hover:bg-[#E03A1B] text-white text-xs font-bold rounded-xl transition-all shadow-md flex items-center gap-1.5 active:scale-95"
+                  className="ml-2 px-4 py-2.5 bg-[#F95738] hover:bg-[#E03A1B] text-white text-xs font-bold rounded-none transition-all shadow-md flex items-center gap-1.5 active:scale-95"
                   aria-label="Copy coupon code PRINT15"
                 >
                   {copiedCode === "PRINT15" ? (
@@ -85,7 +85,7 @@ export const CouponBanner: React.FC = () => {
 
               <Link
                 href="/products"
-                className="px-4 py-3 bg-white/10 hover:bg-white/20 text-white rounded-xl text-xs font-bold transition-colors flex items-center gap-1.5 border border-white/20"
+                className="px-4 py-3 bg-white/10 hover:bg-white/20 text-white rounded-none text-xs font-bold transition-colors flex items-center gap-1.5 border border-white/20"
               >
                 <span>Shop Now</span>
                 <ArrowRight className="w-3.5 h-3.5 text-[#F95738]" />

@@ -49,11 +49,21 @@ body {
 
 ::-webkit-scrollbar-thumb {
   background: #CBD5E1;
-  border-radius: 4px;
+  border-radius: 0px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
   background: #94A3B8;
+}
+
+/* ==========================================================================
+   Square Architectural Form Factor System
+   Strictly enforces 0px border-radius: zero capsule forms, zero rounded corners
+   ========================================================================== */
+*,
+*::before,
+*::after {
+  border-radius: 0px !important;
 }
 
 /* Modern Obsidian & Electric Coral Theme Utility Helpers */

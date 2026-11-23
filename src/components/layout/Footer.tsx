@@ -22,7 +22,7 @@ export const Footer: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12 border-b border-white/10">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
           <div className="flex items-center gap-3.5">
-            <div className="w-12 h-12 rounded-2xl bg-white/10 border border-white/10 flex items-center justify-center text-[var(--color-accent)] shrink-0">
+            <div className="w-12 h-12 rounded-none bg-white/10 border border-white/10 flex items-center justify-center text-[var(--color-accent)] shrink-0">
               <Truck className="w-6 h-6" />
             </div>
             <div>
@@ -32,7 +32,7 @@ export const Footer: React.FC = () => {
           </div>
 
           <div className="flex items-center gap-3.5">
-            <div className="w-12 h-12 rounded-2xl bg-white/10 border border-white/10 flex items-center justify-center text-[var(--color-accent)] shrink-0">
+            <div className="w-12 h-12 rounded-none bg-white/10 border border-white/10 flex items-center justify-center text-[var(--color-accent)] shrink-0">
               <ShieldCheck className="w-6 h-6" />
             </div>
             <div>
@@ -42,7 +42,7 @@ export const Footer: React.FC = () => {
           </div>
 
           <div className="flex items-center gap-3.5">
-            <div className="w-12 h-12 rounded-2xl bg-white/10 border border-white/10 flex items-center justify-center text-[var(--color-accent)] shrink-0">
+            <div className="w-12 h-12 rounded-none bg-white/10 border border-white/10 flex items-center justify-center text-[var(--color-accent)] shrink-0">
               <RotateCcw className="w-6 h-6" />
             </div>
             <div>
@@ -52,7 +52,7 @@ export const Footer: React.FC = () => {
           </div>
 
           <div className="flex items-center gap-3.5">
-            <div className="w-12 h-12 rounded-2xl bg-white/10 border border-white/10 flex items-center justify-center text-[var(--color-accent)] shrink-0">
+            <div className="w-12 h-12 rounded-none bg-white/10 border border-white/10 flex items-center justify-center text-[var(--color-accent)] shrink-0">
               <CreditCard className="w-6 h-6" />
             </div>
             <div>
@@ -69,7 +69,7 @@ export const Footer: React.FC = () => {
           {/* Brand Column */}
           <div className="lg:col-span-2 space-y-4">
             <Link href="/" className="flex items-center gap-2.5">
-              <div className="w-10 h-10 rounded-xl bg-[var(--color-accent)] flex items-center justify-center text-white shadow-lg">
+              <div className="w-10 h-10 rounded-none bg-[var(--color-accent)] flex items-center justify-center text-white shadow-lg">
                 <Printer className="w-5 h-5 text-white" />
               </div>
               <div className="font-extrabold text-2xl text-white tracking-tight">

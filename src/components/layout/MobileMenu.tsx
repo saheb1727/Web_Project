@@ -111,7 +111,7 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
               className="p-4 sm:p-5 border-b border-slate-100 flex items-center justify-between bg-slate-50"
             >
               <Link href="/" onClick={onClose} className="flex items-center gap-2.5">
-                <div className="w-8 h-8 rounded-lg bg-[#0B0F19] flex items-center justify-center text-white shadow-2xs">
+                <div className="w-8 h-8 rounded-none bg-[#0B0F19] flex items-center justify-center text-white shadow-2xs">
                   <Printer className="w-4 h-4 text-[#FF4D36]" />
                 </div>
                 <div className="flex flex-col">
@@ -125,7 +125,7 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
               </Link>
               <button
                 onClick={onClose}
-                className="p-2 text-slate-400 hover:text-slate-700 rounded-lg hover:bg-slate-200 transition-colors cursor-pointer"
+                className="p-2 text-slate-400 hover:text-slate-700 rounded-none hover:bg-slate-200 transition-colors cursor-pointer"
                 aria-label="Close menu"
               >
                 <X className="w-5 h-5" />
@@ -144,7 +144,7 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
                 <Link
                   href="/wishlist"
                   onClick={onClose}
-                  className="flex items-center justify-center gap-2 p-2.5 rounded-xl bg-slate-100 text-slate-700 text-xs font-semibold hover:bg-slate-200 transition-colors"
+                  className="flex items-center justify-center gap-2 p-2.5 rounded-none bg-slate-100 text-slate-700 text-xs font-semibold hover:bg-slate-200 transition-colors"
                 >
                   <Heart className="w-4 h-4 text-[#FF4D36]" />
                   <span>Wishlist ({wishlistCount})</span>
@@ -152,7 +152,7 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
                 <Link
                   href="/auth"
                   onClick={onClose}
-                  className="flex items-center justify-center gap-2 p-2.5 rounded-xl bg-slate-100 text-slate-700 text-xs font-semibold hover:bg-slate-200 transition-colors"
+                  className="flex items-center justify-center gap-2 p-2.5 rounded-none bg-slate-100 text-slate-700 text-xs font-semibold hover:bg-slate-200 transition-colors"
                 >
                   <User className="w-4 h-4 text-[#0B0F19]" />
                   <span>Account / Login</span>
@@ -169,13 +169,13 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
                 <Link
                   href="/products"
                   onClick={onClose}
-                  className="flex items-center justify-between px-3 py-2.5 rounded-xl text-sm font-bold text-[#0B0F19] hover:bg-slate-50 transition-colors"
+                  className="flex items-center justify-between px-3 py-2.5 rounded-none text-sm font-bold text-[#0B0F19] hover:bg-slate-50 transition-colors"
                 >
                   <div className="flex items-center gap-2.5">
                     <Flame className="w-4 h-4 text-[#FF4D36]" />
                     <span>Best Sellers & Deals</span>
                   </div>
-                  <span className="text-[10px] font-bold bg-[#FF4D36]/10 text-[#FF4D36] px-2 py-0.5 rounded-full">
+                  <span className="text-[10px] font-bold bg-[#FF4D36]/10 text-[#FF4D36] px-2 py-0.5 rounded-none">
                     Hot
                   </span>
                 </Link>
@@ -183,7 +183,7 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
                 <Link
                   href="/track"
                   onClick={onClose}
-                  className="flex items-center justify-between px-3 py-2.5 rounded-xl text-sm font-bold text-[#0B0F19] hover:bg-slate-50 transition-colors"
+                  className="flex items-center justify-between px-3 py-2.5 rounded-none text-sm font-bold text-[#0B0F19] hover:bg-slate-50 transition-colors"
                 >
                   <div className="flex items-center gap-2.5">
                     <Truck className="w-4 h-4 text-slate-600" />
@@ -230,10 +230,10 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
                         <Link
                           href={`/category/${cat.slug}`}
                           onClick={onClose}
-                          className="flex items-center justify-between px-3 py-2.5 rounded-xl text-sm font-semibold text-slate-700 hover:bg-slate-100 hover:text-[#0B0F19] transition-colors group"
+                          className="flex items-center justify-between px-3 py-2.5 rounded-none text-sm font-semibold text-slate-700 hover:bg-slate-100 hover:text-[#0B0F19] transition-colors group"
                         >
                           <div className="flex items-center gap-2.5 min-w-0">
-                            <div className="w-7 h-7 rounded-lg bg-slate-100 group-hover:bg-[#FF4D36]/10 group-hover:text-[#FF4D36] flex items-center justify-center text-slate-600 transition-colors shrink-0">
+                            <div className="w-7 h-7 rounded-none bg-slate-100 group-hover:bg-[#FF4D36]/10 group-hover:text-[#FF4D36] flex items-center justify-center text-slate-600 transition-colors shrink-0">
                               <Icon className="w-3.5 h-3.5" />
                             </div>
                             <span className="truncate">{cat.name}</span>
@@ -266,7 +266,7 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
                   <Link
                     href="/category/corporate-kits"
                     onClick={onClose}
-                    className="flex items-center justify-between px-3 py-2.5 rounded-xl text-sm font-semibold text-slate-700 hover:bg-slate-100 transition-colors"
+                    className="flex items-center justify-between px-3 py-2.5 rounded-none text-sm font-semibold text-slate-700 hover:bg-slate-100 transition-colors"
                   >
                     <div className="flex items-center gap-2">
                       <Briefcase className="w-4 h-4 text-slate-500" />
@@ -277,7 +277,7 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
                   <Link
                     href="/contact"
                     onClick={onClose}
-                    className="flex items-center justify-between px-3 py-2.5 rounded-xl text-sm font-semibold text-slate-700 hover:bg-slate-100 transition-colors"
+                    className="flex items-center justify-between px-3 py-2.5 rounded-none text-sm font-semibold text-slate-700 hover:bg-slate-100 transition-colors"
                   >
                     <span>Bulk Quotations & Pantone</span>
                     <ChevronRight className="w-4 h-4 text-slate-400" />
@@ -285,7 +285,7 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
                   <Link
                     href="/about"
                     onClick={onClose}
-                    className="flex items-center justify-between px-3 py-2.5 rounded-xl text-sm font-semibold text-slate-700 hover:bg-slate-100 transition-colors"
+                    className="flex items-center justify-between px-3 py-2.5 rounded-none text-sm font-semibold text-slate-700 hover:bg-slate-100 transition-colors"
                   >
                     <span>About MyPrintHub</span>
                     <ChevronRight className="w-4 h-4 text-slate-400" />
@@ -298,7 +298,7 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.42, duration: 0.3 }}
-                className="p-3.5 rounded-2xl bg-slate-50 border border-slate-200/70 space-y-2 text-xs text-slate-600"
+                className="p-3.5 rounded-none bg-slate-50 border border-slate-200/70 space-y-2 text-xs text-slate-600"
               >
                 <div className="font-bold text-slate-800 text-xs">Customer Support</div>
                 <div className="flex items-center gap-2">
@@ -322,7 +322,7 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
               <Link
                 href="/cart"
                 onClick={onClose}
-                className="w-full flex items-center justify-center gap-2 py-3 bg-[#0B0F19] hover:bg-[#FF4D36] text-white font-bold rounded-xl shadow-md transition-all active:scale-98"
+                className="w-full flex items-center justify-center gap-2 py-3 bg-[#0B0F19] hover:bg-[#FF4D36] text-white font-bold rounded-none shadow-md transition-all active:scale-98"
               >
                 <ShoppingBag className="w-4 h-4 text-[#FF4D36]" />
                 <span>Go to Cart ({totalItems} items)</span>

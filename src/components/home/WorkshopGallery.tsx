@@ -624,7 +624,7 @@ export const WorkshopGallery: React.FC = () => {
           {/* Header */}
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
             <div>
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#0B0F19] text-[#FF4D36] text-xs font-bold uppercase tracking-wider mb-2">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-none bg-[#0B0F19] text-[#FF4D36] text-xs font-bold uppercase tracking-wider mb-2">
                 <Camera className="w-3.5 h-3.5" />
                 <span>Real Customer Creations</span>
               </div>
@@ -650,7 +650,7 @@ export const WorkshopGallery: React.FC = () => {
                   key={tab.id}
                   type="button"
                   onClick={() => setActiveFilter(tab.id)}
-                  className={`px-3.5 py-1.5 rounded-xl text-xs font-bold whitespace-nowrap transition-all cursor-pointer ${activeFilter === tab.id
+                  className={`px-3.5 py-1.5 rounded-none text-xs font-bold whitespace-nowrap transition-all cursor-pointer ${activeFilter === tab.id
                     ? "bg-[#0B0F19] text-white shadow-xs"
                     : "bg-white text-slate-600 hover:bg-slate-200/80 border border-slate-200"
                     }`}
@@ -667,7 +667,7 @@ export const WorkshopGallery: React.FC = () => {
               <div
                 key={photo.id}
                 onClick={() => setSelectedImage(photo)}
-                className="workshop-photo-card group relative rounded-2xl sm:rounded-3xl overflow-hidden bg-white border border-slate-200 shadow-sm hover:shadow-xl hover:border-slate-400 transition-all duration-300 flex flex-col cursor-pointer"
+                className="workshop-photo-card group relative rounded-none sm:rounded-none overflow-hidden bg-white border border-slate-200 shadow-sm hover:shadow-xl hover:border-slate-400 transition-all duration-300 flex flex-col cursor-pointer"
               >
                 {/* Photo Container */}
                 <div className="relative aspect-4/3 w-full overflow-hidden bg-slate-100">
@@ -684,16 +684,16 @@ export const WorkshopGallery: React.FC = () => {
 
                   {/* Top Badges */}
                   <div className="absolute top-2 left-2 sm:top-3 sm:left-3 flex items-center gap-1 sm:gap-1.5 z-10">
-                    <span className="px-1.5 sm:px-2.5 py-0.5 sm:py-1 rounded-full bg-white/95 backdrop-blur-md text-[#0B0F19] text-[8px] sm:text-[10px] font-extrabold shadow-sm truncate max-w-[85px] sm:max-w-none">
+                    <span className="px-1.5 sm:px-2.5 py-0.5 sm:py-1 rounded-none bg-white/95 backdrop-blur-md text-[#0B0F19] text-[8px] sm:text-[10px] font-extrabold shadow-sm truncate max-w-[85px] sm:max-w-none">
                       {photo.categoryLabel}
                     </span>
-                    <span className="hidden xs:inline-block px-1.5 sm:px-2 py-0.5 rounded-full bg-[#FF4D36] text-white text-[8px] sm:text-[9px] font-black uppercase">
+                    <span className="hidden xs:inline-block px-1.5 sm:px-2 py-0.5 rounded-none bg-[#FF4D36] text-white text-[8px] sm:text-[9px] font-black uppercase">
                       {photo.tag}
                     </span>
                   </div>
 
                   {/* Expand Zoom Icon */}
-                  <div className="absolute top-2 right-2 sm:top-3 sm:right-3 w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-white/90 backdrop-blur-md text-slate-800 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity shadow-sm">
+                  <div className="absolute top-2 right-2 sm:top-3 sm:right-3 w-6 h-6 sm:w-8 sm:h-8 rounded-none bg-white/90 backdrop-blur-md text-slate-800 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity shadow-sm">
                     <Maximize2 className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
                   </div>
                 </div>
@@ -720,7 +720,7 @@ export const WorkshopGallery: React.FC = () => {
                     <Link
                       href={photo.productLink}
                       onClick={(e) => e.stopPropagation()}
-                      className="px-2 py-1 sm:px-3.5 sm:py-1.5 bg-[#0B0F19] hover:bg-[#FF4D36] text-white text-[10px] sm:text-xs font-bold rounded-lg sm:rounded-xl transition-colors flex items-center gap-1 shrink-0"
+                      className="px-2 py-1 sm:px-3.5 sm:py-1.5 bg-[#0B0F19] hover:bg-[#FF4D36] text-white text-[10px] sm:text-xs font-bold rounded-none sm:rounded-none transition-colors flex items-center gap-1 shrink-0"
                     >
                       <span>Customize</span>
                       <ArrowRight className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
@@ -737,7 +737,7 @@ export const WorkshopGallery: React.FC = () => {
               <button
                 type="button"
                 onClick={() => setShowAllPhotos(!showAllPhotos)}
-                className="inline-flex items-center gap-2 px-6 py-2.5 sm:py-3 rounded-full bg-white hover:bg-slate-100 text-[#0B0F19] border border-slate-200 text-xs sm:text-sm font-bold shadow-sm transition-all cursor-pointer hover:border-slate-400 active:scale-98"
+                className="inline-flex items-center gap-2 px-6 py-2.5 sm:py-3 rounded-none bg-white hover:bg-slate-100 text-[#0B0F19] border border-slate-200 text-xs sm:text-sm font-bold shadow-sm transition-all cursor-pointer hover:border-slate-400 active:scale-98"
               >
                 <span>
                   {showAllPhotos
@@ -763,13 +763,13 @@ export const WorkshopGallery: React.FC = () => {
           onClick={() => setSelectedImage(null)}
         >
           <div
-            className="relative w-full max-w-4xl bg-white rounded-3xl overflow-hidden shadow-2xl border border-slate-200 flex flex-col md:flex-row max-h-[92vh] sm:max-h-[88vh]"
+            className="relative w-full max-w-4xl bg-white rounded-none overflow-hidden shadow-2xl border border-slate-200 flex flex-col md:flex-row max-h-[92vh] sm:max-h-[88vh]"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Close Button */}
             <button
               onClick={() => setSelectedImage(null)}
-              className="absolute top-3 right-3 sm:top-4 sm:right-4 z-30 w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-slate-900/80 hover:bg-[#FF4D36] text-white flex items-center justify-center backdrop-blur-md shadow-md transition-colors cursor-pointer"
+              className="absolute top-3 right-3 sm:top-4 sm:right-4 z-30 w-8 h-8 sm:w-9 sm:h-9 rounded-none bg-slate-900/80 hover:bg-[#FF4D36] text-white flex items-center justify-center backdrop-blur-md shadow-md transition-colors cursor-pointer"
               aria-label="Close"
             >
               <X className="w-4 h-4 sm:w-5 sm:h-5" />
@@ -785,7 +785,7 @@ export const WorkshopGallery: React.FC = () => {
                 sizes="(max-width: 768px) 100vw, 50vw"
                 className="object-contain p-3 sm:p-5"
               />
-              <div className="absolute bottom-3 left-3 px-2.5 py-1 rounded-lg bg-black/70 backdrop-blur-md text-white text-[10px] font-bold shadow-xs">
+              <div className="absolute bottom-3 left-3 px-2.5 py-1 rounded-none bg-black/70 backdrop-blur-md text-white text-[10px] font-bold shadow-xs">
                 Real Studio Order Sample
               </div>
             </div>
@@ -793,7 +793,7 @@ export const WorkshopGallery: React.FC = () => {
             {/* Right: Info, Price & Actions */}
             <div className="w-full md:w-1/2 p-5 sm:p-7 flex flex-col justify-between bg-white overflow-y-auto">
               <div className="space-y-3 sm:space-y-4">
-                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FF4D36]/10 text-[#FF4D36] text-xs font-bold w-fit">
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-none bg-[#FF4D36]/10 text-[#FF4D36] text-xs font-bold w-fit">
                   {selectedImage.categoryLabel}
                 </span>
 
@@ -805,7 +805,7 @@ export const WorkshopGallery: React.FC = () => {
                   {selectedImage.description}
                 </p>
 
-                <div className="p-3.5 sm:p-4 rounded-2xl bg-slate-50 border border-slate-200/90 space-y-1.5">
+                <div className="p-3.5 sm:p-4 rounded-none bg-slate-50 border border-slate-200/90 space-y-1.5">
                   <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">
                     Product Price
                   </div>
@@ -823,7 +823,7 @@ export const WorkshopGallery: React.FC = () => {
                 <Link
                   href={selectedImage.productLink}
                   onClick={() => setSelectedImage(null)}
-                  className="w-full px-4 py-3 sm:py-3.5 bg-[#FF4D36] hover:bg-[#e0351d] text-white text-xs sm:text-sm font-bold rounded-2xl shadow-lg transition-all flex items-center justify-center gap-2 text-center leading-normal active:scale-98 cursor-pointer group"
+                  className="w-full px-4 py-3 sm:py-3.5 bg-[#FF4D36] hover:bg-[#e0351d] text-white text-xs sm:text-sm font-bold rounded-none shadow-lg transition-all flex items-center justify-center gap-2 text-center leading-normal active:scale-98 cursor-pointer group"
                 >
                   <span className="truncate">Order Custom {selectedImage.productName}</span>
                   <ArrowRight className="w-4 h-4 shrink-0 group-hover:translate-x-0.5 transition-transform" />

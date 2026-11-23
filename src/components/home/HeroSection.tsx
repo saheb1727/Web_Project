@@ -279,13 +279,12 @@ export const HeroSection: React.FC = () => {
         ref={heroRef}
         onMouseEnter={() => setIsCarouselPaused(true)}
         onMouseLeave={() => setIsCarouselPaused(false)}
-        className={`relative pt-6 pb-14 sm:pt-10 sm:pb-16 border-b transition-colors duration-500 overflow-hidden ${
-          isDark
-            ? "bg-[#0B0F19] text-white border-slate-800"
-            : bgTheme === "topo"
+        className={`relative pt-6 pb-14 sm:pt-10 sm:pb-16 border-b transition-colors duration-500 overflow-hidden ${isDark
+          ? "bg-[#0B0F19] text-white border-slate-800"
+          : bgTheme === "topo"
             ? "bg-[#FAF8F5] text-[#0B0F19] border-amber-200/60"
             : "bg-[#F8FAFC] text-[#0B0F19] border-slate-200/90"
-        }`}
+          }`}
       >
         {/* ========================================================== */}
         {/* BACKGROUND LAYER 1: DYNAMIC PRODUCT PHOTO CAROUSEL        */}
@@ -296,9 +295,8 @@ export const HeroSection: React.FC = () => {
             return (
               <div
                 key={slide.id}
-                className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
-                  isActive ? "opacity-100 z-1" : "opacity-0 z-0 pointer-events-none"
-                }`}
+                className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${isActive ? "opacity-100 z-1" : "opacity-0 z-0 pointer-events-none"
+                  }`}
               >
                 <Image
                   src={slide.image}
@@ -306,9 +304,8 @@ export const HeroSection: React.FC = () => {
                   fill
                   priority={idx === 0}
                   sizes="100vw"
-                  className={`object-cover object-center transition-transform duration-7000 ease-out ${
-                    isActive ? "scale-105" : "scale-100"
-                  }`}
+                  className={`object-cover object-center transition-transform duration-7000 ease-out ${isActive ? "scale-105" : "scale-100"
+                    }`}
                 />
               </div>
             );
@@ -316,9 +313,8 @@ export const HeroSection: React.FC = () => {
 
           {/* High-Legibility Frosted Overlay Layer */}
           <div
-            className={`absolute inset-0 z-2 transition-colors duration-500 backdrop-blur-[4px] ${
-              isDark ? "bg-[#0B0F19]/85" : "bg-white/85"
-            }`}
+            className={`absolute inset-0 z-2 transition-colors duration-500 backdrop-blur-[4px] ${isDark ? "bg-[#0B0F19]/85" : "bg-white/85"
+              }`}
             style={{
               background: isDark
                 ? "radial-gradient(ellipse 95% 75% at 50% 25%, rgba(11, 15, 25, 0.82) 0%, rgba(11, 15, 25, 0.94) 85%)"
@@ -449,17 +445,16 @@ export const HeroSection: React.FC = () => {
 
         {/* Foreground Content & Bento Showcase */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6 relative z-10 w-full">
-          
+
           {/* Top Hero Header Block */}
           <div className="hero-header-block text-center max-w-3xl mx-auto space-y-3.5">
-            
+
             {/* Live Studio Status Pill */}
             <div
-              className={`hero-badge-pill inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border shadow-xs text-xs font-semibold backdrop-blur-md transition-colors ${
-                isDark
-                  ? "bg-slate-900/90 border-slate-700/80 text-slate-300"
-                  : "bg-white/95 border-slate-200/90 text-slate-700"
-              }`}
+              className={`hero-badge-pill inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border shadow-xs text-xs font-semibold backdrop-blur-md transition-colors ${isDark
+                ? "bg-slate-900/90 border-slate-700/80 text-slate-300"
+                : "bg-white/95 border-slate-200/90 text-slate-700"
+                }`}
             >
               <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse ring-4 ring-emerald-500/20" />
               <span className={`font-bold ${isDark ? "text-white" : "text-[#0B0F19]"}`}>
@@ -473,9 +468,8 @@ export const HeroSection: React.FC = () => {
 
             {/* Bold Grand Headline */}
             <h1
-              className={`hero-title-main text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.08] break-words transition-colors ${
-                isDark ? "text-white" : "text-[#0B0F19]"
-              }`}
+              className={`hero-title-main text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.08] break-words transition-colors ${isDark ? "text-white" : "text-[#0B0F19]"
+                }`}
             >
               Bespoke Custom Gifts & Merch.{" "}
               <span className="text-[#FF4D36] block sm:inline">
@@ -485,9 +479,8 @@ export const HeroSection: React.FC = () => {
 
             {/* Subtitle */}
             <p
-              className={`hero-subtitle-text text-sm sm:text-base font-medium leading-relaxed max-w-2xl mx-auto transition-colors ${
-                isDark ? "text-slate-300" : "text-slate-600"
-              }`}
+              className={`hero-subtitle-text text-sm sm:text-base font-medium leading-relaxed max-w-2xl mx-auto transition-colors ${isDark ? "text-slate-300" : "text-slate-600"
+                }`}
             >
               Order 1 unique personalized keepsake or 1,000 corporate welcome kits. Direct in-house factory manufacturing, instant digital proofs, and Japanese 1,200 DPI precision.
             </p>
@@ -504,11 +497,10 @@ export const HeroSection: React.FC = () => {
 
               <Link
                 href="/contact"
-                className={`hero-cta-btn px-5 py-3.5 text-xs sm:text-sm font-bold rounded-2xl border shadow-xs backdrop-blur-sm transition-all flex items-center justify-center gap-2 cursor-pointer active:scale-98 ${
-                  isDark
-                    ? "bg-slate-900/90 hover:bg-slate-800 text-white border-slate-700 hover:border-slate-600"
-                    : "bg-white/95 hover:bg-white text-[#0B0F19] border-slate-200/90 hover:border-slate-300"
-                }`}
+                className={`hero-cta-btn px-5 py-3.5 text-xs sm:text-sm font-bold rounded-2xl border shadow-xs backdrop-blur-sm transition-all flex items-center justify-center gap-2 cursor-pointer active:scale-98 ${isDark
+                  ? "bg-slate-900/90 hover:bg-slate-800 text-white border-slate-700 hover:border-slate-600"
+                  : "bg-white/95 hover:bg-white text-[#0B0F19] border-slate-200/90 hover:border-slate-300"
+                  }`}
               >
                 <MessageCircle className="w-4 h-4 text-emerald-500" />
                 <span>Custom Bulk Inquiry</span>
@@ -517,11 +509,10 @@ export const HeroSection: React.FC = () => {
               <button
                 type="button"
                 onClick={() => setIsVideoModalOpen(true)}
-                className={`hero-cta-btn px-4 py-3.5 text-xs sm:text-sm font-bold rounded-2xl border shadow-xs backdrop-blur-sm transition-all flex items-center justify-center gap-2 cursor-pointer active:scale-98 ${
-                  isDark
-                    ? "bg-slate-900/90 hover:bg-slate-800 text-slate-200 border-slate-700 hover:border-slate-600"
-                    : "bg-white/95 hover:bg-white text-slate-700 border-slate-200/90 hover:border-slate-300"
-                }`}
+                className={`hero-cta-btn px-4 py-3.5 text-xs sm:text-sm font-bold rounded-2xl border shadow-xs backdrop-blur-sm transition-all flex items-center justify-center gap-2 cursor-pointer active:scale-98 ${isDark
+                  ? "bg-slate-900/90 hover:bg-slate-800 text-slate-200 border-slate-700 hover:border-slate-600"
+                  : "bg-white/95 hover:bg-white text-slate-700 border-slate-200/90 hover:border-slate-300"
+                  }`}
               >
                 <div className="w-5 h-5 rounded-full bg-[#0B0F19] text-white flex items-center justify-center shrink-0">
                   <Play className="w-2.5 h-2.5 fill-white ml-0.5" />
@@ -533,11 +524,10 @@ export const HeroSection: React.FC = () => {
             {/* Studio Background Carousel Controls & Navigation Pill */}
             <div className="hero-carousel-nav flex flex-wrap items-center justify-center gap-2 pt-2">
               <div
-                className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full border text-xs shadow-xs backdrop-blur-md transition-all ${
-                  isDark
-                    ? "bg-slate-900/90 border-slate-700/80 text-slate-300"
-                    : "bg-white/95 border-slate-200/90 text-slate-700"
-                }`}
+                className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full border text-xs shadow-xs backdrop-blur-md transition-all ${isDark
+                  ? "bg-slate-900/90 border-slate-700/80 text-slate-300"
+                  : "bg-white/95 border-slate-200/90 text-slate-700"
+                  }`}
               >
                 {/* Prev Button */}
                 <button
@@ -559,13 +549,12 @@ export const HeroSection: React.FC = () => {
                       key={slide.id}
                       type="button"
                       onClick={() => setActiveSlideIndex(idx)}
-                      className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
-                        activeSlideIndex === idx
-                          ? "w-6 bg-[#FF4D36]"
-                          : isDark
+                      className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${activeSlideIndex === idx
+                        ? "w-6 bg-[#FF4D36]"
+                        : isDark
                           ? "w-2 bg-slate-700 hover:bg-slate-500"
                           : "w-2 bg-slate-300 hover:bg-slate-400"
-                      }`}
+                        }`}
                       aria-label={`Slide ${idx + 1}`}
                       title={slide.title}
                     />
@@ -597,22 +586,20 @@ export const HeroSection: React.FC = () => {
 
               {/* Theme Toggle Pill */}
               <div
-                className={`inline-flex items-center gap-1 p-1 rounded-full border text-xs transition-all backdrop-blur-md shadow-xs ${
-                  isDark
-                    ? "bg-slate-900/90 border-slate-800 text-slate-300"
-                    : "bg-white/95 border-slate-200/90 text-slate-600"
-                }`}
+                className={`inline-flex items-center gap-1 p-1 rounded-full border text-xs transition-all backdrop-blur-md shadow-xs ${isDark
+                  ? "bg-slate-900/90 border-slate-800 text-slate-300"
+                  : "bg-white/95 border-slate-200/90 text-slate-600"
+                  }`}
               >
                 <button
                   type="button"
                   onClick={() => handleThemeChange("blueprint")}
-                  className={`px-2.5 py-1 rounded-full text-xs font-bold transition-all flex items-center gap-1 cursor-pointer ${
-                    bgTheme === "blueprint"
-                      ? "bg-[#FF4D36] text-white shadow-xs"
-                      : isDark
+                  className={`px-2.5 py-1 rounded-full text-xs font-bold transition-all flex items-center gap-1 cursor-pointer ${bgTheme === "blueprint"
+                    ? "bg-[#FF4D36] text-white shadow-xs"
+                    : isDark
                       ? "hover:text-white"
                       : "hover:text-slate-900"
-                  }`}
+                    }`}
                   title="Blueprint Grid Mode"
                 >
                   <Compass className="w-3 h-3" />
@@ -621,13 +608,12 @@ export const HeroSection: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => handleThemeChange("topo")}
-                  className={`px-2.5 py-1 rounded-full text-xs font-bold transition-all flex items-center gap-1 cursor-pointer ${
-                    bgTheme === "topo"
-                      ? "bg-[#FF4D36] text-white shadow-xs"
-                      : isDark
+                  className={`px-2.5 py-1 rounded-full text-xs font-bold transition-all flex items-center gap-1 cursor-pointer ${bgTheme === "topo"
+                    ? "bg-[#FF4D36] text-white shadow-xs"
+                    : isDark
                       ? "hover:text-white"
                       : "hover:text-slate-900"
-                  }`}
+                    }`}
                   title="Topographic Waves Mode"
                 >
                   <Layers className="w-3 h-3" />
@@ -636,13 +622,12 @@ export const HeroSection: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => handleThemeChange("obsidian")}
-                  className={`px-2.5 py-1 rounded-full text-xs font-bold transition-all flex items-center gap-1 cursor-pointer ${
-                    bgTheme === "obsidian"
-                      ? "bg-[#FF4D36] text-white shadow-xs"
-                      : isDark
+                  className={`px-2.5 py-1 rounded-full text-xs font-bold transition-all flex items-center gap-1 cursor-pointer ${bgTheme === "obsidian"
+                    ? "bg-[#FF4D36] text-white shadow-xs"
+                    : isDark
                       ? "hover:text-white"
                       : "hover:text-slate-900"
-                  }`}
+                    }`}
                   title="Obsidian Dark Keynote Mode"
                 >
                   <Moon className="w-3 h-3" />
@@ -655,20 +640,18 @@ export const HeroSection: React.FC = () => {
 
           {/* Panoramic Bento Grid Showcase (3 Real Products Simultaneously) */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
-            
+
             {/* Bento Card 1: Curated Keepsakes Stage (7 Cols on LG - Single Unified Card, Zero Nested Boxes) */}
             <div
-              className={`hero-bento-card-main lg:col-span-7 rounded-3xl border shadow-xl p-5 sm:p-7 flex flex-col justify-between transition-all duration-300 hover:shadow-2xl ${
-                isDark
-                  ? "bg-[#111726]/95 border-slate-800 text-white hover:border-slate-700"
-                  : "bg-white border-slate-200 text-[#0B0F19] hover:border-slate-300"
-              }`}
+              className={`hero-bento-card-main lg:col-span-7 rounded-3xl border shadow-xl p-5 sm:p-7 flex flex-col justify-between transition-all duration-300 hover:shadow-2xl ${isDark
+                ? "bg-[#111726]/95 border-slate-800 text-white hover:border-slate-700"
+                : "bg-white border-slate-200 text-[#0B0F19] hover:border-slate-300"
+                }`}
             >
               {/* Card Header with Interactive Tab Switcher & Left-Right Arrow Controls */}
               <div
-                className={`flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b ${
-                  isDark ? "border-slate-800" : "border-slate-100"
-                }`}
+                className={`flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b ${isDark ? "border-slate-800" : "border-slate-100"
+                  }`}
               >
                 <div className="flex items-center gap-2">
                   <div className="w-7 h-7 rounded-lg bg-[#FF4D36]/10 text-[#FF4D36] flex items-center justify-center shrink-0">
@@ -688,24 +671,22 @@ export const HeroSection: React.FC = () => {
                 <div className="flex items-center gap-2">
                   {/* Tab Switcher */}
                   <div
-                    className={`flex items-center gap-1 p-1 rounded-xl overflow-x-auto scrollbar-none border ${
-                      isDark ? "bg-slate-800/80 border-slate-700" : "bg-slate-100 border-slate-200/50"
-                    }`}
+                    className={`flex items-center gap-1 p-1 rounded-xl overflow-x-auto scrollbar-none border ${isDark ? "bg-slate-800/80 border-slate-700" : "bg-slate-100 border-slate-200/50"
+                      }`}
                   >
                     {keepsakeItems.map((item, idx) => (
                       <button
                         key={item.id}
                         type="button"
                         onClick={() => handleSelectKeepsake(idx)}
-                        className={`px-2.5 py-1.5 rounded-lg text-xs font-bold whitespace-nowrap transition-all cursor-pointer ${
-                          activeKeepsakeIndex === idx
-                            ? isDark
-                              ? "bg-slate-700 text-white shadow-xs"
-                              : "bg-white text-[#0B0F19] shadow-xs"
-                            : isDark
+                        className={`px-2.5 py-1.5 rounded-lg text-xs font-bold whitespace-nowrap transition-all cursor-pointer ${activeKeepsakeIndex === idx
+                          ? isDark
+                            ? "bg-slate-700 text-white shadow-xs"
+                            : "bg-white text-[#0B0F19] shadow-xs"
+                          : isDark
                             ? "text-slate-400 hover:text-white"
                             : "text-slate-600 hover:text-slate-900"
-                        }`}
+                          }`}
                       >
                         {item.tabLabel}
                       </button>
@@ -717,11 +698,10 @@ export const HeroSection: React.FC = () => {
                     <button
                       type="button"
                       onClick={goToPrevKeepsake}
-                      className={`p-1.5 rounded-lg border transition-all cursor-pointer ${
-                        isDark
-                          ? "bg-slate-800 border-slate-700 text-slate-300 hover:text-white hover:bg-slate-700"
-                          : "bg-slate-100 border-slate-200 text-slate-600 hover:text-slate-900 hover:bg-slate-200"
-                      }`}
+                      className={`p-1.5 rounded-lg border transition-all cursor-pointer ${isDark
+                        ? "bg-slate-800 border-slate-700 text-slate-300 hover:text-white hover:bg-slate-700"
+                        : "bg-slate-100 border-slate-200 text-slate-600 hover:text-slate-900 hover:bg-slate-200"
+                        }`}
                       aria-label="Previous keepsake"
                       title="Previous keepsake (Left)"
                     >
@@ -730,11 +710,10 @@ export const HeroSection: React.FC = () => {
                     <button
                       type="button"
                       onClick={goToNextKeepsake}
-                      className={`p-1.5 rounded-lg border transition-all cursor-pointer ${
-                        isDark
-                          ? "bg-slate-800 border-slate-700 text-slate-300 hover:text-white hover:bg-slate-700"
-                          : "bg-slate-100 border-slate-200 text-slate-600 hover:text-slate-900 hover:bg-slate-200"
-                      }`}
+                      className={`p-1.5 rounded-lg border transition-all cursor-pointer ${isDark
+                        ? "bg-slate-800 border-slate-700 text-slate-300 hover:text-white hover:bg-slate-700"
+                        : "bg-slate-100 border-slate-200 text-slate-600 hover:text-slate-900 hover:bg-slate-200"
+                        }`}
                       aria-label="Next keepsake"
                       title="Next keepsake (Right)"
                     >
@@ -757,33 +736,29 @@ export const HeroSection: React.FC = () => {
                         {currentKeepsake.tag}
                       </span>
                       <span
-                        className={`px-2 py-0.5 rounded-full text-[10px] font-semibold border ${
-                          isDark
-                            ? "bg-slate-800 text-slate-300 border-slate-700"
-                            : "bg-slate-100 text-slate-600 border-slate-200"
-                        }`}
+                        className={`px-2 py-0.5 rounded-full text-[10px] font-semibold border ${isDark
+                          ? "bg-slate-800 text-slate-300 border-slate-700"
+                          : "bg-slate-100 text-slate-600 border-slate-200"
+                          }`}
                       >
                         {currentKeepsake.specs}
                       </span>
                     </div>
 
-                    <h3 className={`text-xl sm:text-2xl font-black tracking-tight leading-tight ${
-                      isDark ? "text-white" : "text-[#0B0F19]"
-                    }`}>
+                    <h3 className={`text-xl sm:text-2xl font-black tracking-tight leading-tight ${isDark ? "text-white" : "text-[#0B0F19]"
+                      }`}>
                       {currentKeepsake.title}
                     </h3>
 
-                    <p className={`text-xs leading-relaxed line-clamp-3 ${
-                      isDark ? "text-slate-400" : "text-slate-500"
-                    }`}>
+                    <p className={`text-xs leading-relaxed line-clamp-3 ${isDark ? "text-slate-400" : "text-slate-500"
+                      }`}>
                       {currentKeepsake.subtitle}
                     </p>
                   </div>
 
                   <div
-                    className={`pt-3 border-t flex items-center justify-between gap-3 ${
-                      isDark ? "border-slate-800" : "border-slate-100"
-                    }`}
+                    className={`pt-3 border-t flex items-center justify-between gap-3 ${isDark ? "border-slate-800" : "border-slate-100"
+                      }`}
                   >
                     <div>
                       <span className="text-[10px] text-slate-400 block font-semibold uppercase tracking-wider">
@@ -825,9 +800,8 @@ export const HeroSection: React.FC = () => {
 
               {/* Bottom Quick Indicator Strip */}
               <div
-                className={`pt-2.5 border-t flex items-center justify-between text-[11px] text-slate-400 font-medium ${
-                  isDark ? "border-slate-800" : "border-slate-100"
-                }`}
+                className={`pt-2.5 border-t flex items-center justify-between text-[11px] text-slate-400 font-medium ${isDark ? "border-slate-800" : "border-slate-100"
+                  }`}
               >
                 <div className="flex items-center gap-2">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#FF4D36] animate-pulse" />
@@ -844,15 +818,14 @@ export const HeroSection: React.FC = () => {
 
             {/* Right Column: 2 Secondary Bento Cards (5 Cols on LG) */}
             <div className="lg:col-span-5 flex flex-col gap-6 justify-between">
-              
+
               {/* Bento Card 2: Corporate & VIP Wellness Hamper */}
               <Link
                 href="/products/prod-hamper-oneplus-buddha"
-                className={`hero-bento-card-secondary group relative rounded-3xl overflow-hidden p-5 sm:p-6 shadow-xl hover:shadow-2xl transition-all duration-300 flex-1 flex flex-col justify-between border ${
-                  isDark
-                    ? "bg-[#111726]/95 border-slate-800 text-white hover:border-slate-700"
-                    : "bg-white border-slate-200 text-[#0B0F19] hover:border-slate-300"
-                }`}
+                className={`hero-bento-card-secondary group relative rounded-3xl overflow-hidden p-5 sm:p-6 shadow-xl hover:shadow-2xl transition-all duration-300 flex-1 flex flex-col justify-between border ${isDark
+                  ? "bg-[#111726]/95 border-slate-800 text-white hover:border-slate-700"
+                  : "bg-white border-slate-200 text-[#0B0F19] hover:border-slate-300"
+                  }`}
               >
                 {/* Background Image Accent */}
                 <div className="absolute top-0 right-0 w-1/2 h-full overflow-hidden opacity-30 group-hover:opacity-45 transition-opacity pointer-events-none">
@@ -871,9 +844,8 @@ export const HeroSection: React.FC = () => {
                     <span>VIP Corporate Hamper</span>
                   </div>
 
-                  <h3 className={`text-lg font-black group-hover:text-[#FF4D36] transition-colors leading-tight ${
-                    isDark ? "text-white" : "text-[#0B0F19]"
-                  }`}>
+                  <h3 className={`text-lg font-black group-hover:text-[#FF4D36] transition-colors leading-tight ${isDark ? "text-white" : "text-[#0B0F19]"
+                    }`}>
                     OnePlus Buddha Corporate Wellness Hamper
                   </h3>
 
@@ -883,9 +855,8 @@ export const HeroSection: React.FC = () => {
                 </div>
 
                 <div
-                  className={`relative z-10 pt-4 border-t flex items-center justify-between ${
-                    isDark ? "border-slate-800" : "border-slate-100"
-                  }`}
+                  className={`relative z-10 pt-4 border-t flex items-center justify-between ${isDark ? "border-slate-800" : "border-slate-100"
+                    }`}
                 >
                   <div>
                     <span className="text-[11px] text-slate-400 block font-medium">Boxed Gift Set</span>
@@ -904,11 +875,10 @@ export const HeroSection: React.FC = () => {
               {/* Bento Card 3: SG 21 Travel Drinkware Gift Set */}
               <Link
                 href="/products/prod-kit-vacuum-flask-cups"
-                className={`hero-bento-card-secondary group relative rounded-3xl overflow-hidden p-5 sm:p-6 shadow-xl hover:shadow-2xl transition-all duration-300 flex-1 flex flex-col justify-between border ${
-                  isDark
-                    ? "bg-[#111726]/95 border-slate-800 text-white hover:border-slate-700"
-                    : "bg-white border-slate-200 text-[#0B0F19] hover:border-slate-300"
-                }`}
+                className={`hero-bento-card-secondary group relative rounded-3xl overflow-hidden p-5 sm:p-6 shadow-xl hover:shadow-2xl transition-all duration-300 flex-1 flex flex-col justify-between border ${isDark
+                  ? "bg-[#111726]/95 border-slate-800 text-white hover:border-slate-700"
+                  : "bg-white border-slate-200 text-[#0B0F19] hover:border-slate-300"
+                  }`}
               >
                 {/* Background Image Accent */}
                 <div className="absolute top-0 right-0 w-1/2 h-full overflow-hidden opacity-30 group-hover:opacity-45 transition-opacity pointer-events-none">
@@ -923,19 +893,17 @@ export const HeroSection: React.FC = () => {
 
                 <div className="relative z-10 space-y-2 max-w-xs">
                   <div
-                    className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-black uppercase tracking-wider border shadow-2xs ${
-                      isDark
-                        ? "bg-slate-800 text-slate-300 border-slate-700"
-                        : "bg-slate-100 text-slate-700 border-slate-200"
-                    }`}
+                    className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-black uppercase tracking-wider border shadow-2xs ${isDark
+                      ? "bg-slate-800 text-slate-300 border-slate-700"
+                      : "bg-slate-100 text-slate-700 border-slate-200"
+                      }`}
                   >
                     <Coffee className="w-3 h-3 text-[#FF4D36]" />
                     <span>Travel Drinkware</span>
                   </div>
 
-                  <h3 className={`text-lg font-black group-hover:text-[#FF4D36] transition-colors leading-tight ${
-                    isDark ? "text-white" : "text-[#0B0F19]"
-                  }`}>
+                  <h3 className={`text-lg font-black group-hover:text-[#FF4D36] transition-colors leading-tight ${isDark ? "text-white" : "text-[#0B0F19]"
+                    }`}>
                     Executive 3-Piece Thermal Flask & Cups Set
                   </h3>
 
@@ -945,9 +913,8 @@ export const HeroSection: React.FC = () => {
                 </div>
 
                 <div
-                  className={`relative z-10 pt-4 border-t flex items-center justify-between ${
-                    isDark ? "border-slate-800" : "border-slate-100"
-                  }`}
+                  className={`relative z-10 pt-4 border-t flex items-center justify-between ${isDark ? "border-slate-800" : "border-slate-100"
+                    }`}
                 >
                   <div>
                     <span className="text-[11px] text-slate-400 block font-medium">12h Hot / 24h Cold</span>
@@ -970,13 +937,12 @@ export const HeroSection: React.FC = () => {
           {/* Bottom Hero Studio Guarantee Bar (4 Cards) */}
           <div className="hero-guarantee-bar pt-3">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-              
+
               <div
-                className={`p-3.5 rounded-2xl border shadow-xs flex items-center gap-3 transition-colors ${
-                  isDark
-                    ? "bg-[#111726]/95 border-slate-800 text-white"
-                    : "bg-white border-slate-200/90 text-[#0B0F19]"
-                }`}
+                className={`p-3.5 rounded-2xl border shadow-xs flex items-center gap-3 transition-colors ${isDark
+                  ? "bg-[#111726]/95 border-slate-800 text-white"
+                  : "bg-white border-slate-200/90 text-[#0B0F19]"
+                  }`}
               >
                 <div className="w-9 h-9 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0 border border-emerald-100">
                   <CheckCircle2 className="w-5 h-5" />
@@ -988,11 +954,10 @@ export const HeroSection: React.FC = () => {
               </div>
 
               <div
-                className={`p-3.5 rounded-2xl border shadow-xs flex items-center gap-3 transition-colors ${
-                  isDark
-                    ? "bg-[#111726]/95 border-slate-800 text-white"
-                    : "bg-white border-slate-200/90 text-[#0B0F19]"
-                }`}
+                className={`p-3.5 rounded-2xl border shadow-xs flex items-center gap-3 transition-colors ${isDark
+                  ? "bg-[#111726]/95 border-slate-800 text-white"
+                  : "bg-white border-slate-200/90 text-[#0B0F19]"
+                  }`}
               >
                 <div className="w-9 h-9 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center shrink-0 border border-amber-100">
                   <Sparkles className="w-5 h-5" />
@@ -1004,11 +969,10 @@ export const HeroSection: React.FC = () => {
               </div>
 
               <div
-                className={`p-3.5 rounded-2xl border shadow-xs flex items-center gap-3 transition-colors ${
-                  isDark
-                    ? "bg-[#111726]/95 border-slate-800 text-white"
-                    : "bg-white border-slate-200/90 text-[#0B0F19]"
-                }`}
+                className={`p-3.5 rounded-2xl border shadow-xs flex items-center gap-3 transition-colors ${isDark
+                  ? "bg-[#111726]/95 border-slate-800 text-white"
+                  : "bg-white border-slate-200/90 text-[#0B0F19]"
+                  }`}
               >
                 <div className="w-9 h-9 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center shrink-0 border border-indigo-100">
                   <Building2 className="w-5 h-5" />
@@ -1020,11 +984,10 @@ export const HeroSection: React.FC = () => {
               </div>
 
               <div
-                className={`p-3.5 rounded-2xl border shadow-xs flex items-center gap-3 transition-colors ${
-                  isDark
-                    ? "bg-[#111726]/95 border-slate-800 text-white"
-                    : "bg-white border-slate-200/90 text-[#0B0F19]"
-                }`}
+                className={`p-3.5 rounded-2xl border shadow-xs flex items-center gap-3 transition-colors ${isDark
+                  ? "bg-[#111726]/95 border-slate-800 text-white"
+                  : "bg-white border-slate-200/90 text-[#0B0F19]"
+                  }`}
               >
                 <div className="w-9 h-9 rounded-xl bg-[#FF4D36]/10 text-[#FF4D36] flex items-center justify-center shrink-0 border border-[#FF4D36]/20">
                   <Truck className="w-5 h-5" />

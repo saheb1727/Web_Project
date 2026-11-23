@@ -139,7 +139,7 @@ export const VolumeDiscountCalculator: React.FC = () => {
         
         {/* Section Heading */}
         <div className="text-center max-w-2xl mx-auto mb-10">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#FF4D36]/10 text-[#FF4D36] text-xs font-bold uppercase tracking-wider mb-2">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-none bg-[#FF4D36]/10 text-[#FF4D36] text-xs font-bold uppercase tracking-wider mb-2">
             <Calculator className="w-3.5 h-3.5" />
             <span>Direct Factory Wholesale Pricing</span>
           </div>
@@ -152,7 +152,7 @@ export const VolumeDiscountCalculator: React.FC = () => {
         </div>
 
         {/* Calculator Interactive Box */}
-        <div className="calc-card-container max-w-4xl mx-auto bg-white rounded-3xl border border-slate-200 shadow-xl overflow-hidden">
+        <div className="calc-card-container max-w-4xl mx-auto bg-white rounded-none border border-slate-200 shadow-xl overflow-hidden">
           
           {/* Product Tabs */}
           <div className="grid grid-cols-2 sm:grid-cols-4 border-b border-slate-100 bg-slate-50/70 p-2 gap-1.5">
@@ -161,7 +161,7 @@ export const VolumeDiscountCalculator: React.FC = () => {
                 key={p.id}
                 type="button"
                 onClick={() => setSelectedProduct(p)}
-                className={`py-2.5 px-3 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer ${
+                className={`py-2.5 px-3 rounded-none text-xs sm:text-sm font-bold transition-all cursor-pointer ${
                   selectedProduct.id === p.id
                     ? "bg-white text-[#0B0F19] shadow-sm border border-slate-200/90 font-extrabold"
                     : "text-slate-600 hover:text-slate-900 hover:bg-white/60"
@@ -195,7 +195,7 @@ export const VolumeDiscountCalculator: React.FC = () => {
                   step="5"
                   value={quantity}
                   onChange={(e) => setQuantity(Number(e.target.value))}
-                  className="w-full h-2.5 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-[#FF4D36]"
+                  className="w-full h-2.5 bg-slate-200 rounded-none appearance-none cursor-pointer accent-[#FF4D36]"
                 />
               </div>
 
@@ -206,7 +206,7 @@ export const VolumeDiscountCalculator: React.FC = () => {
                     key={qty}
                     type="button"
                     onClick={() => setQuantity(qty)}
-                    className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
+                    className={`px-3 py-1.5 rounded-none text-xs font-bold transition-all cursor-pointer ${
                       quantity === qty
                         ? "bg-[#0B0F19] text-white shadow-xs"
                         : "bg-slate-100 text-slate-700 hover:bg-slate-200"
@@ -224,7 +224,7 @@ export const VolumeDiscountCalculator: React.FC = () => {
                   return (
                     <div
                       key={idx}
-                      className={`p-2.5 rounded-xl border text-center transition-all ${
+                      className={`p-2.5 rounded-none border text-center transition-all ${
                         isActive
                           ? "bg-[#FF4D36]/10 border-[#FF4D36] ring-1 ring-[#FF4D36]"
                           : "bg-slate-50 border-slate-200/70"
@@ -252,7 +252,7 @@ export const VolumeDiscountCalculator: React.FC = () => {
             </div>
 
             {/* Right Column: Price Output Card (5 cols) */}
-            <div className="md:col-span-5 bg-[#0B0F19] text-white p-6 rounded-2xl shadow-xl flex flex-col justify-between space-y-5">
+            <div className="md:col-span-5 bg-[#0B0F19] text-white p-6 rounded-none shadow-xl flex flex-col justify-between space-y-5">
               
               <div>
                 <div className="flex items-center justify-between text-xs text-slate-300 pb-3 border-b border-white/10">
@@ -294,7 +294,7 @@ export const VolumeDiscountCalculator: React.FC = () => {
               {/* Action Link */}
               <Link
                 href={`/category/${selectedProduct.slug}`}
-                className="w-full py-3 bg-[#FF4D36] hover:bg-[#e0351d] text-white text-xs font-bold rounded-xl shadow-lg transition-all flex items-center justify-center gap-2 cursor-pointer group"
+                className="w-full py-3 bg-[#FF4D36] hover:bg-[#e0351d] text-white text-xs font-bold rounded-none shadow-lg transition-all flex items-center justify-center gap-2 cursor-pointer group"
               >
                 <span>Customize {selectedProduct.name}</span>
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />

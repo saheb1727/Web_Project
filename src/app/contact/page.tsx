@@ -71,7 +71,7 @@ export default function ContactPage() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center max-w-2xl mx-auto mb-12">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#F95738]/10 text-[#F95738] text-xs font-bold uppercase tracking-wider mb-2">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-none bg-[#F95738]/10 text-[#F95738] text-xs font-bold uppercase tracking-wider mb-2">
             <MessageCircle className="w-4 h-4" />
             <span>Dedicated Customer Care</span>
           </div>
@@ -87,14 +87,14 @@ export default function ContactPage() {
           {/* Left Column: Contact Cards & Hubs (5 cols) */}
           <div className="lg:col-span-5 space-y-6">
             {/* Quick Contact Card */}
-            <div className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/80 shadow-xs space-y-6">
+            <div className="bg-white rounded-none p-6 sm:p-8 border border-slate-200/80 shadow-xs space-y-6">
               <h3 className="text-lg font-black text-[#1E1B4B] border-b border-slate-100 pb-3">
                 Direct Contact Channels
               </h3>
 
               <div className="space-y-4 text-xs">
                 <div className="flex items-start gap-3.5">
-                  <div className="w-10 h-10 rounded-xl bg-[#1E1B4B] text-[#F95738] flex items-center justify-center shrink-0">
+                  <div className="w-10 h-10 rounded-none bg-[#1E1B4B] text-[#F95738] flex items-center justify-center shrink-0">
                     <Phone className="w-5 h-5" />
                   </div>
                   <div>
@@ -105,7 +105,7 @@ export default function ContactPage() {
                 </div>
 
                 <div className="flex items-start gap-3.5">
-                  <div className="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0">
+                  <div className="w-10 h-10 rounded-none bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0">
                     <MessageCircle className="w-5 h-5" />
                   </div>
                   <div>
@@ -116,7 +116,7 @@ export default function ContactPage() {
                 </div>
 
                 <div className="flex items-start gap-3.5">
-                  <div className="w-10 h-10 rounded-xl bg-[#F95738]/10 text-[#F95738] flex items-center justify-center shrink-0">
+                  <div className="w-10 h-10 rounded-none bg-[#F95738]/10 text-[#F95738] flex items-center justify-center shrink-0">
                     <Mail className="w-5 h-5" />
                   </div>
                   <div>
@@ -129,16 +129,16 @@ export default function ContactPage() {
             </div>
 
             {/* Office & Warehouse Locations */}
-            <div className="bg-white rounded-3xl p-6 border border-slate-200/80 shadow-xs space-y-4">
+            <div className="bg-white rounded-none p-6 border border-slate-200/80 shadow-xs space-y-4">
               <h4 className="text-sm font-bold text-[#1E1B4B] flex items-center gap-2">
                 <Building className="w-4 h-4 text-[#F95738]" />
                 <span>Office & Warehouse Locations</span>
               </h4>
 
               <div className="space-y-3 text-xs text-slate-600">
-                <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200/70 hover:border-slate-300 transition-colors">
+                <div className="p-3.5 rounded-none bg-slate-50 border border-slate-200/70 hover:border-slate-300 transition-colors">
                   <div className="flex items-center gap-1.5 text-xs font-bold text-slate-900">
-                    <span className="w-2 h-2 rounded-full bg-[#F95738]" />
+                    <span className="w-2 h-2 rounded-none bg-[#F95738]" />
                     <span>Address Office 1 (Main Office)</span>
                   </div>
                   <p className="text-slate-600 mt-1 font-medium leading-relaxed">
@@ -147,9 +147,9 @@ export default function ContactPage() {
                   <span className="text-[10px] text-slate-400 font-semibold mt-1 block">Inquiries, Meetings & Client Consultations</span>
                 </div>
 
-                <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200/70 hover:border-slate-300 transition-colors">
+                <div className="p-3.5 rounded-none bg-slate-50 border border-slate-200/70 hover:border-slate-300 transition-colors">
                   <div className="flex items-center gap-1.5 text-xs font-bold text-slate-900">
-                    <span className="w-2 h-2 rounded-full bg-[#1E1B4B]" />
+                    <span className="w-2 h-2 rounded-none bg-[#1E1B4B]" />
                     <span>Warehouse Address (Dispatch Hub)</span>
                   </div>
                   <p className="text-slate-600 mt-1 font-medium leading-relaxed">
@@ -163,7 +163,7 @@ export default function ContactPage() {
 
           {/* Right Column: Interactive Quote Request Form (7 cols) */}
           <div className="lg:col-span-7">
-            <div className="bg-white rounded-3xl p-6 sm:p-10 border border-slate-200 shadow-xl space-y-6">
+            <div className="bg-white rounded-none p-6 sm:p-10 border border-slate-200 shadow-xl space-y-6">
               <div className="border-b border-slate-100 pb-4">
                 <span className="text-xs font-bold text-[#F95738] uppercase tracking-wider block mb-1">
                   Custom & Bulk Inquiries
@@ -177,14 +177,14 @@ export default function ContactPage() {
               </div>
 
               {isSubmitted ? (
-                <div className="p-8 sm:p-10 text-center space-y-4 bg-emerald-50 rounded-2xl border border-emerald-200">
-                  <div className="w-14 h-14 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto shadow-xs">
+                <div className="p-8 sm:p-10 text-center space-y-4 bg-emerald-50 rounded-none border border-emerald-200">
+                  <div className="w-14 h-14 rounded-none bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto shadow-xs">
                     <CheckCircle2 className="w-8 h-8" />
                   </div>
                   <h4 className="text-xl font-black text-slate-900">
                     Thank You, {formData.name}!
                   </h4>
-                  <div className="inline-block px-3 py-1 rounded-full bg-emerald-100/70 text-emerald-800 text-xs font-mono font-bold">
+                  <div className="inline-block px-3 py-1 rounded-none bg-emerald-100/70 text-emerald-800 text-xs font-mono font-bold">
                     Reference ID: #{ticketId}
                   </div>
                   <p className="text-xs text-slate-600 max-w-sm mx-auto leading-relaxed">
@@ -194,7 +194,7 @@ export default function ContactPage() {
                     <button
                       type="button"
                       onClick={() => setIsSubmitted(false)}
-                      className="px-6 py-2.5 bg-[#1E1B4B] hover:bg-[#110E38] text-white text-xs font-bold rounded-xl shadow-md transition-all cursor-pointer"
+                      className="px-6 py-2.5 bg-[#1E1B4B] hover:bg-[#110E38] text-white text-xs font-bold rounded-none shadow-md transition-all cursor-pointer"
                     >
                       Send Another Message
                     </button>
@@ -202,7 +202,7 @@ export default function ContactPage() {
                       href={`https://wa.me/919876543210?text=Hi%20MyPrintHub,%20following%20up%20on%20my%20inquiry%20ticket%20${ticketId}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="px-5 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold rounded-xl shadow-md transition-all flex items-center gap-1.5"
+                      className="px-5 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold rounded-none shadow-md transition-all flex items-center gap-1.5"
                     >
                       <span>WhatsApp Direct Follow-up</span>
                     </a>
@@ -221,7 +221,7 @@ export default function ContactPage() {
                         value={formData.name}
                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                         placeholder="e.g. Ananya Deshmukh"
-                        className="w-full px-3 py-2.5 text-xs bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-[#1E1B4B]"
+                        className="w-full px-3 py-2.5 text-xs bg-slate-50 border border-slate-200 rounded-none focus:outline-none focus:border-[#1E1B4B]"
                       />
                     </div>
                     <div>
@@ -234,7 +234,7 @@ export default function ContactPage() {
                         value={formData.phone}
                         onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                         placeholder="10-digit mobile number"
-                        className="w-full px-3 py-2.5 text-xs bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-[#1E1B4B]"
+                        className="w-full px-3 py-2.5 text-xs bg-slate-50 border border-slate-200 rounded-none focus:outline-none focus:border-[#1E1B4B]"
                       />
                     </div>
                   </div>
@@ -250,7 +250,7 @@ export default function ContactPage() {
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                         placeholder="ananya@company.com"
-                        className="w-full px-3 py-2.5 text-xs bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-[#1E1B4B]"
+                        className="w-full px-3 py-2.5 text-xs bg-slate-50 border border-slate-200 rounded-none focus:outline-none focus:border-[#1E1B4B]"
                       />
                     </div>
                     <div>
@@ -262,7 +262,7 @@ export default function ContactPage() {
                         value={formData.company}
                         onChange={(e) => setFormData({ ...formData, company: e.target.value })}
                         placeholder="e.g. Acme Tech Innovations"
-                        className="w-full px-3 py-2.5 text-xs bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-[#1E1B4B]"
+                        className="w-full px-3 py-2.5 text-xs bg-slate-50 border border-slate-200 rounded-none focus:outline-none focus:border-[#1E1B4B]"
                       />
                     </div>
                   </div>
@@ -275,7 +275,7 @@ export default function ContactPage() {
                       <select
                         value={formData.productInterest}
                         onChange={(e) => setFormData({ ...formData, productInterest: e.target.value })}
-                        className="w-full px-3 py-2.5 text-xs bg-slate-50 border border-slate-200 rounded-xl focus:outline-none"
+                        className="w-full px-3 py-2.5 text-xs bg-slate-50 border border-slate-200 rounded-none focus:outline-none"
                       >
                         <option value="Magnetic Badges">Executive Magnetic Name Badges</option>
                         <option value="Custom T-Shirts">Cotton Crew & Polo T-Shirts</option>
@@ -292,7 +292,7 @@ export default function ContactPage() {
                       <select
                         value={formData.quantity}
                         onChange={(e) => setFormData({ ...formData, quantity: e.target.value })}
-                        className="w-full px-3 py-2.5 text-xs bg-slate-50 border border-slate-200 rounded-xl focus:outline-none"
+                        className="w-full px-3 py-2.5 text-xs bg-slate-50 border border-slate-200 rounded-none focus:outline-none"
                       >
                         <option value="1-9 pcs">1 - 9 pcs (Prototype Sample)</option>
                         <option value="10-49 pcs">10 - 49 pcs (Small Team)</option>
@@ -312,14 +312,14 @@ export default function ContactPage() {
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                       placeholder="Mention your logo colors, delivery city, or any special packaging preferences..."
-                      className="w-full px-3 py-2.5 text-xs bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-[#1E1B4B]"
+                      className="w-full px-3 py-2.5 text-xs bg-slate-50 border border-slate-200 rounded-none focus:outline-none focus:border-[#1E1B4B]"
                     />
                   </div>
 
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full py-3.5 bg-[#F95738] hover:bg-[#E03A1B] text-white text-xs font-bold rounded-xl shadow-lg shadow-[#F95738]/20 transition-all flex items-center justify-center gap-2 active:scale-98 cursor-pointer disabled:opacity-50"
+                    className="w-full py-3.5 bg-[#F95738] hover:bg-[#E03A1B] text-white text-xs font-bold rounded-none shadow-lg shadow-[#F95738]/20 transition-all flex items-center justify-center gap-2 active:scale-98 cursor-pointer disabled:opacity-50"
                   >
                     <Send className="w-4 h-4" />
                     <span>{isSubmitting ? "Submitting Inquiry..." : "Submit Quotation Request"}</span>

@@ -65,7 +65,7 @@ export default function ProductsPage() {
         </div>
 
         {/* Filter & Sort Bar */}
-        <div className="bg-white rounded-2xl p-4 shadow-xs border border-slate-200 mb-8 flex flex-col md:flex-row items-center justify-between gap-4">
+        <div className="bg-white rounded-none p-4 shadow-xs border border-slate-200 mb-8 flex flex-col md:flex-row items-center justify-between gap-4">
           {/* Search Box */}
           <div className="relative w-full md:w-80">
             <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
@@ -74,7 +74,7 @@ export default function ProductsPage() {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search by name, fabric, specs..."
-              className="w-full pl-9 pr-4 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-slate-400"
+              className="w-full pl-9 pr-4 py-2 text-xs bg-slate-50 border border-slate-200 rounded-none focus:outline-none focus:border-slate-400"
             />
             {searchQuery && (
               <button
@@ -90,7 +90,7 @@ export default function ProductsPage() {
           <div className="hidden lg:flex items-center gap-1.5 overflow-x-auto max-w-xl scrollbar-none">
             <button
               onClick={() => setSelectedCategory("all")}
-              className={`px-3 py-1.5 rounded-lg text-xs font-bold whitespace-nowrap transition-all cursor-pointer ${
+              className={`px-3 py-1.5 rounded-none text-xs font-bold whitespace-nowrap transition-all cursor-pointer ${
                 selectedCategory === "all"
                   ? "bg-[var(--color-primary)] text-white shadow-2xs"
                   : "bg-slate-100 text-slate-600 hover:bg-slate-200"
@@ -102,7 +102,7 @@ export default function ProductsPage() {
               <button
                 key={c.id}
                 onClick={() => setSelectedCategory(c.slug)}
-                className={`px-3 py-1.5 rounded-lg text-xs font-bold whitespace-nowrap transition-all cursor-pointer ${
+                className={`px-3 py-1.5 rounded-none text-xs font-bold whitespace-nowrap transition-all cursor-pointer ${
                   selectedCategory === c.slug
                     ? "bg-[var(--color-primary)] text-white shadow-2xs"
                     : "bg-slate-100 text-slate-600 hover:bg-slate-200"
@@ -120,7 +120,7 @@ export default function ProductsPage() {
               <select
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value)}
-                className="text-xs font-bold p-2 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none text-[var(--color-primary)] cursor-pointer"
+                className="text-xs font-bold p-2 bg-slate-50 border border-slate-200 rounded-none focus:outline-none text-[var(--color-primary)] cursor-pointer"
               >
                 <option value="featured">Featured First</option>
                 <option value="popular">Most Popular</option>
@@ -132,7 +132,7 @@ export default function ProductsPage() {
 
             <button
               onClick={() => setIsFilterDrawerOpen(!isFilterDrawerOpen)}
-              className="lg:hidden p-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl text-xs font-bold flex items-center gap-1.5 cursor-pointer"
+              className="lg:hidden p-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-none text-xs font-bold flex items-center gap-1.5 cursor-pointer"
             >
               <SlidersHorizontal className="w-4 h-4 text-[var(--color-accent)]" />
               <span>Filters</span>
@@ -142,7 +142,7 @@ export default function ProductsPage() {
 
         {/* Mobile Filter Drawer */}
         {isFilterDrawerOpen && (
-          <div className="lg:hidden mb-6 p-5 bg-white rounded-2xl border border-slate-200 shadow-lg space-y-4">
+          <div className="lg:hidden mb-6 p-5 bg-white rounded-none border border-slate-200 shadow-lg space-y-4">
             <div className="flex items-center justify-between border-b border-slate-100 pb-3">
               <span className="font-bold text-sm text-[var(--color-primary)]">Filter Products</span>
               <button
@@ -158,7 +158,7 @@ export default function ProductsPage() {
               <select
                 value={selectedCategory}
                 onChange={(e) => setSelectedCategory(e.target.value)}
-                className="w-full p-2.5 text-xs bg-slate-50 border border-slate-200 rounded-xl"
+                className="w-full p-2.5 text-xs bg-slate-50 border border-slate-200 rounded-none"
               >
                 <option value="all">All Categories ({products.length})</option>
                 {categories.map((c) => (
@@ -220,7 +220,7 @@ export default function ProductsPage() {
                           <h2 className="text-xl sm:text-2xl font-black text-[#1E1B4B]">
                             {cat.name}
                           </h2>
-                          <span className="px-2 py-0.5 rounded-full bg-[#1E1B4B]/10 text-[#1E1B4B] text-[10px] font-bold">
+                          <span className="px-2 py-0.5 rounded-none bg-[#1E1B4B]/10 text-[#1E1B4B] text-[10px] font-bold">
                             {catItems.length} items
                           </span>
                         </div>
@@ -255,8 +255,8 @@ export default function ProductsPage() {
             </div>
           )
         ) : (
-          <div className="bg-white rounded-3xl p-12 text-center border border-slate-200 max-w-md mx-auto my-12">
-            <div className="w-16 h-16 rounded-2xl bg-slate-100 flex items-center justify-center text-slate-400 mx-auto mb-4">
+          <div className="bg-white rounded-none p-12 text-center border border-slate-200 max-w-md mx-auto my-12">
+            <div className="w-16 h-16 rounded-none bg-slate-100 flex items-center justify-center text-slate-400 mx-auto mb-4">
               <Package className="w-8 h-8" />
             </div>
             <h3 className="text-lg font-bold text-[var(--color-primary)] mb-1">
@@ -267,7 +267,7 @@ export default function ProductsPage() {
             </p>
             <button
               onClick={resetFilters}
-              className="px-6 py-2.5 bg-[var(--color-primary)] hover:opacity-90 text-white text-xs font-bold rounded-xl shadow-md transition-opacity cursor-pointer"
+              className="px-6 py-2.5 bg-[var(--color-primary)] hover:opacity-90 text-white text-xs font-bold rounded-none shadow-md transition-opacity cursor-pointer"
             >
               Reset Filters
             </button>

@@ -199,7 +199,7 @@ export default function CartPage() {
             {/* Left Column: Cart Items (8 cols) */}
             <div className="lg:col-span-8 space-y-4">
               {/* Free shipping progress alert */}
-              <div className="p-4 rounded-2xl bg-white border border-slate-200/80 shadow-2xs space-y-2">
+              <div className="p-4 rounded-none bg-white border border-slate-200/80 shadow-2xs space-y-2">
                 <div className="flex items-center justify-between text-xs font-bold">
                   <span className="flex items-center gap-1.5 text-[#1E1B4B]">
                     <Truck className="w-4 h-4 text-[#F95738]" />
@@ -216,20 +216,20 @@ export default function CartPage() {
                   </span>
                   <span className="text-slate-400">{freeShippingProgress}%</span>
                 </div>
-                <div className="w-full h-2 rounded-md bg-slate-100 overflow-hidden">
+                <div className="w-full h-2 rounded-none bg-slate-100 overflow-hidden">
                   <div
-                    className="h-full bg-emerald-500 rounded-md transition-all duration-500"
+                    className="h-full bg-emerald-500 rounded-none transition-all duration-500"
                     style={{ width: `${freeShippingProgress}%` }}
                   />
                 </div>
               </div>
 
               {/* Items List */}
-              <div className="bg-white rounded-3xl border border-slate-200/80 shadow-xs divide-y divide-slate-100 overflow-hidden">
+              <div className="bg-white rounded-none border border-slate-200/80 shadow-xs divide-y divide-slate-100 overflow-hidden">
                 {items.map((item) => (
                   <div key={item.id} className="p-4 sm:p-6 flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6">
                     {/* Thumbnail */}
-                    <div className="relative w-24 h-24 rounded-2xl overflow-hidden bg-slate-50 border border-slate-200 shrink-0">
+                    <div className="relative w-24 h-24 rounded-none overflow-hidden bg-slate-50 border border-slate-200 shrink-0">
                       <Image
                         src={item.product.image}
                         alt={item.product.name}
@@ -259,17 +259,17 @@ export default function CartPage() {
                       {/* Options & Customization Info */}
                       <div className="flex flex-wrap items-center gap-2 mt-1 text-xs text-slate-500">
                         {item.selectedColor && (
-                          <span className="bg-slate-100 px-2 py-0.5 rounded-md font-medium text-slate-700">
+                          <span className="bg-slate-100 px-2 py-0.5 rounded-none font-medium text-slate-700">
                             Color: {item.selectedColor}
                           </span>
                         )}
                         {item.selectedSize && (
-                          <span className="bg-slate-100 px-2 py-0.5 rounded-md font-medium text-slate-700">
+                          <span className="bg-slate-100 px-2 py-0.5 rounded-none font-medium text-slate-700">
                             Size: {item.selectedSize}
                           </span>
                         )}
                         {item.customText && (
-                          <span className="bg-amber-50 text-amber-700 border border-amber-200 px-2 py-0.5 rounded-md font-semibold truncate max-w-xs">
+                          <span className="bg-amber-50 text-amber-700 border border-amber-200 px-2 py-0.5 rounded-none font-semibold truncate max-w-xs">
                             Text: &quot;{item.customText}&quot;
                           </span>
                         )}
@@ -283,11 +283,11 @@ export default function CartPage() {
                     {/* Quantity Controls & Total */}
                     <div className="flex items-center justify-between sm:justify-end gap-6 w-full sm:w-auto">
                       {/* Quantity */}
-                      <div className="flex items-center bg-slate-50 border border-slate-200 rounded-xl p-1">
+                      <div className="flex items-center bg-slate-50 border border-slate-200 rounded-none p-1">
                         <button
                           type="button"
                           onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                          className="w-7 h-7 rounded-lg flex items-center justify-center text-slate-600 hover:bg-slate-200 transition-colors"
+                          className="w-7 h-7 rounded-none flex items-center justify-center text-slate-600 hover:bg-slate-200 transition-colors"
                         >
                           <Minus className="w-3 h-3" />
                         </button>
@@ -297,7 +297,7 @@ export default function CartPage() {
                         <button
                           type="button"
                           onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                          className="w-7 h-7 rounded-lg flex items-center justify-center text-slate-600 hover:bg-slate-200 transition-colors"
+                          className="w-7 h-7 rounded-none flex items-center justify-center text-slate-600 hover:bg-slate-200 transition-colors"
                         >
                           <Plus className="w-3 h-3" />
                         </button>
@@ -314,7 +314,7 @@ export default function CartPage() {
                       <button
                         type="button"
                         onClick={() => removeFromCart(item.id)}
-                        className="p-2 text-slate-400 hover:text-red-500 hover:bg-red-50 rounded-xl transition-colors"
+                        className="p-2 text-slate-400 hover:text-red-500 hover:bg-red-50 rounded-none transition-colors"
                         title="Remove item"
                       >
                         <Trash2 className="w-4 h-4" />
@@ -343,14 +343,14 @@ export default function CartPage() {
             {/* Right Column: Order Summary (4 cols) */}
             <div className="lg:col-span-4 space-y-4">
               {/* Coupon Form */}
-              <div className="bg-white rounded-3xl p-5 border border-slate-200/80 shadow-xs space-y-3">
+              <div className="bg-white rounded-none p-5 border border-slate-200/80 shadow-xs space-y-3">
                 <div className="flex items-center gap-2 text-xs font-bold text-slate-800">
                   <Tag className="w-4 h-4 text-[#F95738]" />
                   <span>Have a Promo Code?</span>
                 </div>
 
                 {coupon ? (
-                  <div className="p-3 rounded-xl bg-emerald-50 border border-emerald-200 flex items-center justify-between">
+                  <div className="p-3 rounded-none bg-emerald-50 border border-emerald-200 flex items-center justify-between">
                     <div>
                       <div className="text-xs font-bold text-emerald-800 flex items-center gap-1">
                         <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
@@ -375,11 +375,11 @@ export default function CartPage() {
                       value={couponInput}
                       onChange={(e) => setCouponInput(e.target.value)}
                       placeholder="Try: PRINT15 or BULK25"
-                      className="flex-1 px-3 py-2 text-xs uppercase bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-[#1E1B4B]"
+                      className="flex-1 px-3 py-2 text-xs uppercase bg-slate-50 border border-slate-200 rounded-none focus:outline-none focus:border-[#1E1B4B]"
                     />
                     <button
                       type="submit"
-                      className="px-4 py-2 bg-[#1E1B4B] hover:bg-[#110E38] text-white text-xs font-bold rounded-xl transition-colors"
+                      className="px-4 py-2 bg-[#1E1B4B] hover:bg-[#110E38] text-white text-xs font-bold rounded-none transition-colors"
                     >
                       Apply
                     </button>
@@ -388,7 +388,7 @@ export default function CartPage() {
               </div>
 
               {/* Order Calculation */}
-              <div className="bg-white rounded-3xl p-6 border border-slate-200/80 shadow-xs space-y-4">
+              <div className="bg-white rounded-none p-6 border border-slate-200/80 shadow-xs space-y-4">
                 <h3 className="text-base font-black text-[#1E1B4B] border-b border-slate-100 pb-3">
                   Order Summary
                 </h3>
@@ -440,7 +440,7 @@ export default function CartPage() {
                 <button
                   type="button"
                   onClick={() => setIsCheckoutOpen(true)}
-                  className="w-full py-4 bg-[#F95738] hover:bg-[#E03A1B] text-white font-bold rounded-2xl shadow-lg shadow-[#F95738]/25 transition-all flex items-center justify-center gap-2 text-sm active:scale-98"
+                  className="w-full py-4 bg-[#F95738] hover:bg-[#E03A1B] text-white font-bold rounded-none shadow-lg shadow-[#F95738]/25 transition-all flex items-center justify-center gap-2 text-sm active:scale-98"
                 >
                   <ShoppingBag className="w-4 h-4" />
                   <span>Proceed to Checkout</span>
@@ -454,8 +454,8 @@ export default function CartPage() {
           </div>
         ) : (
           /* Empty Cart State */
-          <div className="bg-white rounded-3xl p-16 text-center border border-slate-200 max-w-lg mx-auto shadow-xs">
-            <div className="w-20 h-20 rounded-3xl bg-slate-100 flex items-center justify-center text-slate-400 mx-auto mb-4">
+          <div className="bg-white rounded-none p-16 text-center border border-slate-200 max-w-lg mx-auto shadow-xs">
+            <div className="w-20 h-20 rounded-none bg-slate-100 flex items-center justify-center text-slate-400 mx-auto mb-4">
               <ShoppingBag className="w-10 h-10 text-slate-300" />
             </div>
             <h2 className="text-2xl font-black text-[#1E1B4B] mb-2">
@@ -466,7 +466,7 @@ export default function CartPage() {
             </p>
             <Link
               href="/products"
-              className="inline-flex items-center gap-2 px-8 py-3.5 bg-[#F95738] hover:bg-[#E03A1B] text-white font-bold rounded-xl shadow-lg shadow-[#F95738]/20 transition-all text-sm"
+              className="inline-flex items-center gap-2 px-8 py-3.5 bg-[#F95738] hover:bg-[#E03A1B] text-white font-bold rounded-none shadow-lg shadow-[#F95738]/20 transition-all text-sm"
             >
               <span>Explore Custom Products</span>
               <ArrowRight className="w-4 h-4" />
@@ -478,11 +478,11 @@ export default function CartPage() {
       {/* Checkout Modal */}
       {isCheckoutOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs animate-in fade-in">
-          <div className="relative w-full max-w-2xl bg-white rounded-3xl shadow-2xl border border-slate-200 overflow-hidden max-h-[90vh] flex flex-col">
+          <div className="relative w-full max-w-2xl bg-white rounded-none shadow-2xl border border-slate-200 overflow-hidden max-h-[90vh] flex flex-col">
             {/* Modal Header */}
             <div className="p-5 border-b border-slate-100 flex items-center justify-between bg-slate-50">
               <div className="flex items-center gap-2">
-                <div className="w-8 h-8 rounded-lg bg-[#1E1B4B] text-[#F95738] flex items-center justify-center font-bold text-xs">
+                <div className="w-8 h-8 rounded-none bg-[#1E1B4B] text-[#F95738] flex items-center justify-center font-bold text-xs">
                   MPH
                 </div>
                 <div>
@@ -492,7 +492,7 @@ export default function CartPage() {
               </div>
               <button
                 onClick={() => setIsCheckoutOpen(false)}
-                className="p-1.5 text-slate-400 hover:text-slate-700 rounded-lg"
+                className="p-1.5 text-slate-400 hover:text-slate-700 rounded-none"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -501,7 +501,7 @@ export default function CartPage() {
             {/* Modal Form Body */}
             {isOrderPlaced ? (
               <div className="p-6 sm:p-8 text-center space-y-4">
-                <div className="w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto shadow-sm">
+                <div className="w-16 h-16 rounded-none bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto shadow-sm">
                   <CheckCircle2 className="w-10 h-10" />
                 </div>
                 <h3 className="text-2xl font-black text-[#1E1B4B]">
@@ -523,7 +523,7 @@ export default function CartPage() {
                       setIsCheckoutOpen(false);
                       setIsOrderPlaced(false);
                     }}
-                    className="w-full sm:w-auto px-6 py-3 bg-[#F95738] hover:bg-[#E03A1B] text-white text-xs font-bold rounded-xl shadow-md shadow-[#F95738]/20 flex items-center justify-center gap-2 active:scale-95 transition-all"
+                    className="w-full sm:w-auto px-6 py-3 bg-[#F95738] hover:bg-[#E03A1B] text-white text-xs font-bold rounded-none shadow-md shadow-[#F95738]/20 flex items-center justify-center gap-2 active:scale-95 transition-all"
                   >
                     <Package className="w-4 h-4" />
                     <span>Track Order #{orderId}</span>
@@ -536,7 +536,7 @@ export default function CartPage() {
                       setIsCheckoutOpen(false);
                       setIsOrderPlaced(false);
                     }}
-                    className="w-full sm:w-auto px-6 py-3 bg-[#1E1B4B] hover:bg-[#110E38] text-white text-xs font-bold rounded-xl shadow-sm flex items-center justify-center gap-1.5 active:scale-95 transition-all"
+                    className="w-full sm:w-auto px-6 py-3 bg-[#1E1B4B] hover:bg-[#110E38] text-white text-xs font-bold rounded-none shadow-sm flex items-center justify-center gap-1.5 active:scale-95 transition-all"
                   >
                     <span>View in Account</span>
                   </Link>
@@ -555,7 +555,7 @@ export default function CartPage() {
                       value={formData.fullName}
                       onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
                       placeholder="e.g. Vikram Malhotra"
-                      className="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-[#1E1B4B]"
+                      className="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-none focus:outline-none focus:border-[#1E1B4B]"
                     />
                   </div>
                   <div>
@@ -568,7 +568,7 @@ export default function CartPage() {
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                       placeholder="10-digit mobile number"
-                      className="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-[#1E1B4B]"
+                      className="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-none focus:outline-none focus:border-[#1E1B4B]"
                     />
                   </div>
                 </div>
@@ -583,7 +583,7 @@ export default function CartPage() {
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     placeholder="example@company.com"
-                    className="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-[#1E1B4B]"
+                    className="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-none focus:outline-none focus:border-[#1E1B4B]"
                   />
                 </div>
 
@@ -597,7 +597,7 @@ export default function CartPage() {
                     value={formData.address}
                     onChange={(e) => setFormData({ ...formData, address: e.target.value })}
                     placeholder="Office / Flat / Building, Street, Area"
-                    className="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-[#1E1B4B]"
+                    className="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-none focus:outline-none focus:border-[#1E1B4B]"
                   />
                 </div>
 
@@ -609,7 +609,7 @@ export default function CartPage() {
                       value={formData.city}
                       onChange={(e) => setFormData({ ...formData, city: e.target.value })}
                       placeholder="e.g. Bengaluru"
-                      className="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl"
+                      className="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-none"
                     />
                   </div>
                   <div>
@@ -619,7 +619,7 @@ export default function CartPage() {
                       value={formData.state}
                       onChange={(e) => setFormData({ ...formData, state: e.target.value })}
                       placeholder="Karnataka"
-                      className="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl"
+                      className="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-none"
                     />
                   </div>
                   <div>
@@ -630,7 +630,7 @@ export default function CartPage() {
                       value={formData.pincode}
                       onChange={(e) => setFormData({ ...formData, pincode: e.target.value })}
                       placeholder="560001"
-                      className="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl"
+                      className="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-none"
                     />
                   </div>
                 </div>
@@ -653,7 +653,7 @@ export default function CartPage() {
                           key={opt.id}
                           type="button"
                           onClick={() => setFormData({ ...formData, paymentMethod: opt.id })}
-                          className={`p-3 rounded-xl border text-left flex flex-col justify-between transition-all ${
+                          className={`p-3 rounded-none border text-left flex flex-col justify-between transition-all ${
                             isSelected
                               ? "bg-[#1E1B4B] text-white border-[#1E1B4B] shadow-xs"
                               : "bg-slate-50 text-slate-700 border-slate-200 hover:bg-slate-100"
@@ -675,7 +675,7 @@ export default function CartPage() {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="px-6 py-3 bg-[#F95738] hover:bg-[#E03A1B] text-white text-xs font-bold rounded-xl shadow-lg transition-all disabled:opacity-50 cursor-pointer"
+                    className="px-6 py-3 bg-[#F95738] hover:bg-[#E03A1B] text-white text-xs font-bold rounded-none shadow-lg transition-all disabled:opacity-50 cursor-pointer"
                   >
                     {isSubmitting ? "Processing Order..." : "Confirm & Place Order"}
                   </button>

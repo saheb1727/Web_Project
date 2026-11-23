@@ -39,7 +39,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   };
 
   return (
-    <div className="group relative bg-white rounded-2xl border border-slate-200/80 shadow-xs hover:shadow-xl hover:border-slate-400 transition-all duration-300 flex flex-col overflow-hidden">
+    <div className="group relative bg-white rounded-none border border-slate-200/80 shadow-xs hover:shadow-xl hover:border-slate-400 transition-all duration-300 flex flex-col overflow-hidden">
       {/* Product Image & Badges */}
       <Link href={`/products/${product.id}`} className="relative aspect-square w-full bg-slate-50 overflow-hidden block">
         <Image
@@ -53,12 +53,12 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         {/* Top Badges */}
         <div className="absolute top-2 sm:top-3 left-2 sm:left-3 flex flex-col gap-1 z-10">
           {product.badgeText && (
-            <span className="px-2 py-0.5 text-[9px] sm:text-[10px] font-bold tracking-wide uppercase bg-[#0B0F19] text-white rounded-md shadow-sm">
+            <span className="px-2 py-0.5 text-[9px] sm:text-[10px] font-bold tracking-wide uppercase bg-[#0B0F19] text-white rounded-none shadow-sm">
               {product.badgeText}
             </span>
           )}
           {discountPercent > 0 && (
-            <span className="px-1.5 py-0.5 text-[9px] sm:text-[10px] font-extrabold tracking-wide bg-[#FF4D36] text-white rounded-md shadow-sm">
+            <span className="px-1.5 py-0.5 text-[9px] sm:text-[10px] font-extrabold tracking-wide bg-[#FF4D36] text-white rounded-none shadow-sm">
               {discountPercent}% OFF
             </span>
           )}
@@ -67,7 +67,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         {/* Wishlist Button */}
         <button
           onClick={handleWishlistToggle}
-          className={`absolute top-2 sm:top-3 right-2 sm:right-3 p-1.5 sm:p-2 rounded-xl backdrop-blur-md transition-all z-10 cursor-pointer ${
+          className={`absolute top-2 sm:top-3 right-2 sm:right-3 p-1.5 sm:p-2 rounded-none backdrop-blur-md transition-all z-10 cursor-pointer ${
             inWishlist
               ? "bg-[#FF4D36] text-white shadow-md"
               : "bg-white/80 hover:bg-white text-slate-600 hover:text-[#FF4D36] shadow-xs"
@@ -79,7 +79,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
 
         {/* Customizable Badge */}
         {product.customizable && (
-          <div className="absolute bottom-2 sm:bottom-3 left-2 sm:left-3 z-10 bg-black/60 backdrop-blur-md text-white text-[9px] sm:text-[10px] font-semibold px-2 py-0.5 rounded-md flex items-center gap-1">
+          <div className="absolute bottom-2 sm:bottom-3 left-2 sm:left-3 z-10 bg-black/60 backdrop-blur-md text-white text-[9px] sm:text-[10px] font-semibold px-2 py-0.5 rounded-none flex items-center gap-1">
             <Sparkles className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-[#FF4D36]" />
             <span className="hidden xs:inline">Customizable</span>
           </div>
@@ -127,7 +127,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
 
           <button
             onClick={handleQuickAdd}
-            className="p-1.5 sm:p-2.5 bg-slate-100 hover:bg-[#0B0F19] text-slate-700 hover:text-white rounded-lg sm:rounded-xl transition-all shadow-xs group-hover:bg-[#FF4D36] group-hover:text-white cursor-pointer shrink-0"
+            className="p-1.5 sm:p-2.5 bg-slate-100 hover:bg-[#0B0F19] text-slate-700 hover:text-white rounded-none sm:rounded-none transition-all shadow-xs group-hover:bg-[#FF4D36] group-hover:text-white cursor-pointer shrink-0"
             title="Quick Add to Cart"
             aria-label="Add to cart"
           >

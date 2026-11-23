@@ -80,11 +80,11 @@ export const HowItWorks: React.FC = () => {
             return (
               <div
                 key={idx}
-                className="how-step-card relative bg-slate-50 rounded-2xl sm:rounded-3xl p-4 sm:p-6 border border-slate-200/80 hover:border-slate-400 shadow-xs hover:shadow-xl transition-all duration-300 flex flex-col justify-between group"
+                className="how-step-card relative bg-slate-50 rounded-none sm:rounded-none p-4 sm:p-6 border border-slate-200/80 hover:border-slate-400 shadow-xs hover:shadow-xl transition-all duration-300 flex flex-col justify-between group"
               >
                 <div>
                   <div className="flex items-center justify-between mb-4 sm:mb-6">
-                    <div className="w-10 h-10 sm:w-14 sm:h-14 rounded-xl sm:rounded-2xl bg-[#0B0F19] text-[#FF4D36] flex items-center justify-center shadow-md group-hover:bg-[#FF4D36] group-hover:text-white transition-colors">
+                    <div className="w-10 h-10 sm:w-14 sm:h-14 rounded-none sm:rounded-none bg-[#0B0F19] text-[#FF4D36] flex items-center justify-center shadow-md group-hover:bg-[#FF4D36] group-hover:text-white transition-colors">
                       <Icon className="w-5 h-5 sm:w-7 sm:h-7" />
                     </div>
                     <span className="text-xl sm:text-3xl font-black text-slate-300 group-hover:text-[#0B0F19] transition-colors">
@@ -111,7 +111,7 @@ export const HowItWorks: React.FC = () => {
         <div className="mt-12 text-center">
           <Link
             href="/products"
-            className="inline-flex items-center gap-2 px-8 py-3.5 bg-[var(--color-accent)] hover:opacity-90 text-white text-sm font-bold rounded-xl shadow-lg transition-all group"
+            className="inline-flex items-center gap-2 px-8 py-3.5 bg-[var(--color-accent)] hover:opacity-90 text-white text-sm font-bold rounded-none shadow-lg transition-all group"
           >
             <span>Start Customizing Your First Order</span>
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />

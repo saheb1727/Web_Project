@@ -80,9 +80,9 @@ export const TrustBadges: React.FC = () => {
             return (
               <div
                 key={idx}
-                className="trust-item-card p-4 rounded-xl bg-slate-50 border border-slate-200/80 hover:border-slate-300 transition-all flex flex-col items-center text-center group"
+                className="trust-item-card p-4 rounded-none bg-slate-50 border border-slate-200/80 hover:border-slate-300 transition-all flex flex-col items-center text-center group"
               >
-                <div className="w-10 h-10 rounded-xl bg-[var(--color-accent-soft)] text-[var(--color-accent)] flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+                <div className="w-10 h-10 rounded-none bg-[var(--color-accent-soft)] text-[var(--color-accent)] flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
                   <Icon className="w-5 h-5" />
                 </div>
                 <h4 className="font-bold text-xs text-[var(--color-primary)] leading-tight mb-1">
