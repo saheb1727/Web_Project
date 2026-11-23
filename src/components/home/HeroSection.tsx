@@ -55,7 +55,9 @@ export const HeroSection: React.FC = () => {
   const [activeSlideIndex, setActiveSlideIndex] = useState(0);
   const [isCarouselPaused, setIsCarouselPaused] = useState(false);
   const heroRef = useRef<HTMLElement>(null);
-  const keepsakePreviewRef = useRef<HTMLDivElement>(null);
+  const keepsakeSlideRef = useRef<HTMLDivElement>(null);
+  const prevKeepsakeIndexRef = useRef<number>(0);
+  const slideDirectionRef = useRef<number>(1);
 
   // Curated flagship products for the background carousel
   const backgroundSlides: BackgroundSlide[] = [
@@ -187,18 +189,34 @@ export const HeroSection: React.FC = () => {
   const [activeKeepsakeIndex, setActiveKeepsakeIndex] = useState(0);
   const currentKeepsake = keepsakeItems[activeKeepsakeIndex];
 
-  // Animate preview on keepsake change
+  const handleSelectKeepsake = (idx: number) => {
+    slideDirectionRef.current = idx >= activeKeepsakeIndex ? 1 : -1;
+    setActiveKeepsakeIndex(idx);
+  };
+
+  const goToNextKeepsake = () => {
+    slideDirectionRef.current = 1;
+    setActiveKeepsakeIndex((prev) => (prev + 1) % keepsakeItems.length);
+  };
+
+  const goToPrevKeepsake = () => {
+    slideDirectionRef.current = -1;
+    setActiveKeepsakeIndex((prev) => (prev === 0 ? keepsakeItems.length - 1 : prev - 1));
+  };
+
+  // GSAP Left/Right horizontal animation when keepsake changes
   useEffect(() => {
-    if (keepsakePreviewRef.current) {
-      gsap.fromTo(
-        keepsakePreviewRef.current,
-        { opacity: 0.35, scale: 0.97 },
-        { opacity: 1, scale: 1, duration: 0.4, ease: "power2.out", clearProps: "all" }
-      );
-    }
+    if (!keepsakeSlideRef.current) return;
+    const direction = slideDirectionRef.current;
+
+    gsap.fromTo(
+      keepsakeSlideRef.current,
+      { opacity: 0, x: direction * 45 },
+      { opacity: 1, x: 0, duration: 0.45, ease: "power2.out", clearProps: "all" }
+    );
   }, [activeKeepsakeIndex]);
 
-  // Master Hero GSAP Animations (Clean Staggered Entrance)
+  // Master Hero GSAP Animations (Clean Staggered Entrance with Left/Right Card Animations)
   useEffect(() => {
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
@@ -234,15 +252,15 @@ export const HeroSection: React.FC = () => {
         )
         .fromTo(
           ".hero-bento-card-main",
-          { opacity: 0, scale: 0.96, y: 20 },
-          { opacity: 1, scale: 1, y: 0, duration: 0.6, ease: "power3.out", clearProps: "all" },
+          { opacity: 0, x: -60 },
+          { opacity: 1, x: 0, duration: 0.7, ease: "power3.out", clearProps: "all" },
           "-=0.3"
         )
         .fromTo(
           ".hero-bento-card-secondary",
-          { opacity: 0, y: 20 },
-          { opacity: 1, y: 0, duration: 0.5, stagger: 0.1, ease: "power3.out", clearProps: "all" },
-          "-=0.4"
+          { opacity: 0, x: 60 },
+          { opacity: 1, x: 0, duration: 0.6, stagger: 0.12, ease: "power3.out", clearProps: "all" },
+          "-=0.5"
         )
         .fromTo(
           ".hero-guarantee-bar",
@@ -638,23 +656,22 @@ export const HeroSection: React.FC = () => {
           {/* Panoramic Bento Grid Showcase (3 Real Products Simultaneously) */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
             
-            {/* Bento Card 1: Curated Keepsakes Stage (7 Cols on LG) */}
+            {/* Bento Card 1: Curated Keepsakes Stage (7 Cols on LG - Single Unified Card, Zero Nested Boxes) */}
             <div
-              className={`hero-bento-card-main lg:col-span-7 rounded-3xl border shadow-xl p-5 sm:p-6 flex flex-col justify-between transition-all duration-300 hover:shadow-2xl ${
+              className={`hero-bento-card-main lg:col-span-7 rounded-3xl border shadow-xl p-5 sm:p-7 flex flex-col justify-between transition-all duration-300 hover:shadow-2xl ${
                 isDark
                   ? "bg-[#111726]/95 border-slate-800 text-white hover:border-slate-700"
                   : "bg-white border-slate-200 text-[#0B0F19] hover:border-slate-300"
               }`}
             >
-              
-              {/* Card Header with Interactive Tab Switcher */}
+              {/* Card Header with Interactive Tab Switcher & Left-Right Arrow Controls */}
               <div
                 className={`flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b ${
                   isDark ? "border-slate-800" : "border-slate-100"
                 }`}
               >
                 <div className="flex items-center gap-2">
-                  <div className="w-7 h-7 rounded-lg bg-[#FF4D36]/10 text-[#FF4D36] flex items-center justify-center">
+                  <div className="w-7 h-7 rounded-lg bg-[#FF4D36]/10 text-[#FF4D36] flex items-center justify-center shrink-0">
                     <Heart className="w-4 h-4 fill-[#FF4D36]" />
                   </div>
                   <div>
@@ -667,87 +684,160 @@ export const HeroSection: React.FC = () => {
                   </div>
                 </div>
 
-                {/* Interactive Keepsake Switcher Tabs */}
-                <div
-                  className={`flex items-center gap-1 p-1 rounded-xl overflow-x-auto scrollbar-none border ${
-                    isDark ? "bg-slate-800/80 border-slate-700" : "bg-slate-100 border-slate-200/50"
-                  }`}
-                >
-                  {keepsakeItems.map((item, idx) => (
+                {/* Switcher & Left/Right Arrow Navigation */}
+                <div className="flex items-center gap-2">
+                  {/* Tab Switcher */}
+                  <div
+                    className={`flex items-center gap-1 p-1 rounded-xl overflow-x-auto scrollbar-none border ${
+                      isDark ? "bg-slate-800/80 border-slate-700" : "bg-slate-100 border-slate-200/50"
+                    }`}
+                  >
+                    {keepsakeItems.map((item, idx) => (
+                      <button
+                        key={item.id}
+                        type="button"
+                        onClick={() => handleSelectKeepsake(idx)}
+                        className={`px-2.5 py-1.5 rounded-lg text-xs font-bold whitespace-nowrap transition-all cursor-pointer ${
+                          activeKeepsakeIndex === idx
+                            ? isDark
+                              ? "bg-slate-700 text-white shadow-xs"
+                              : "bg-white text-[#0B0F19] shadow-xs"
+                            : isDark
+                            ? "text-slate-400 hover:text-white"
+                            : "text-slate-600 hover:text-slate-900"
+                        }`}
+                      >
+                        {item.tabLabel}
+                      </button>
+                    ))}
+                  </div>
+
+                  {/* Left / Right Arrows */}
+                  <div className="flex items-center gap-1 shrink-0">
                     <button
-                      key={item.id}
                       type="button"
-                      onClick={() => setActiveKeepsakeIndex(idx)}
-                      className={`px-2.5 py-1.5 rounded-lg text-xs font-bold whitespace-nowrap transition-all cursor-pointer ${
-                        activeKeepsakeIndex === idx
-                          ? isDark
-                            ? "bg-slate-700 text-white shadow-xs"
-                            : "bg-white text-[#0B0F19] shadow-xs"
-                          : isDark
-                          ? "text-slate-400 hover:text-white"
-                          : "text-slate-600 hover:text-slate-900"
+                      onClick={goToPrevKeepsake}
+                      className={`p-1.5 rounded-lg border transition-all cursor-pointer ${
+                        isDark
+                          ? "bg-slate-800 border-slate-700 text-slate-300 hover:text-white hover:bg-slate-700"
+                          : "bg-slate-100 border-slate-200 text-slate-600 hover:text-slate-900 hover:bg-slate-200"
                       }`}
+                      aria-label="Previous keepsake"
+                      title="Previous keepsake (Left)"
                     >
-                      {item.tabLabel}
+                      <ChevronLeft className="w-4 h-4" />
                     </button>
-                  ))}
+                    <button
+                      type="button"
+                      onClick={goToNextKeepsake}
+                      className={`p-1.5 rounded-lg border transition-all cursor-pointer ${
+                        isDark
+                          ? "bg-slate-800 border-slate-700 text-slate-300 hover:text-white hover:bg-slate-700"
+                          : "bg-slate-100 border-slate-200 text-slate-600 hover:text-slate-900 hover:bg-slate-200"
+                      }`}
+                      aria-label="Next keepsake"
+                      title="Next keepsake (Right)"
+                    >
+                      <ChevronRight className="w-4 h-4" />
+                    </button>
+                  </div>
                 </div>
               </div>
 
-              {/* Viewport for Active Keepsake */}
+              {/* Un-Nested Interactive Showcase Stage with GSAP Left/Right Slide */}
               <div
-                ref={keepsakePreviewRef}
-                className={`relative aspect-16/10 w-full rounded-2xl overflow-hidden my-4 border group ${
-                  isDark ? "bg-slate-900 border-slate-800" : "bg-slate-100 border-slate-200/70"
-                }`}
+                ref={keepsakeSlideRef}
+                className="grid grid-cols-1 md:grid-cols-12 gap-5 sm:gap-6 items-center my-4 flex-1"
               >
-                <Image
-                  key={currentKeepsake.id}
-                  src={currentKeepsake.image}
-                  alt={currentKeepsake.title}
-                  fill
-                  priority
-                  sizes="(max-width: 1024px) 100vw, 650px"
-                  className="object-cover group-hover:scale-104 transition-transform duration-700 animate-in fade-in"
-                />
+                {/* Left Column: Product Information & Direct CTA */}
+                <div className="md:col-span-6 flex flex-col justify-between h-full space-y-3">
+                  <div className="space-y-2">
+                    <div className="flex items-center gap-2 flex-wrap">
+                      <span className="px-2.5 py-0.5 rounded-full bg-[#FF4D36]/15 text-[#FF4D36] text-[10px] font-black uppercase tracking-wider">
+                        {currentKeepsake.tag}
+                      </span>
+                      <span
+                        className={`px-2 py-0.5 rounded-full text-[10px] font-semibold border ${
+                          isDark
+                            ? "bg-slate-800 text-slate-300 border-slate-700"
+                            : "bg-slate-100 text-slate-600 border-slate-200"
+                        }`}
+                      >
+                        {currentKeepsake.specs}
+                      </span>
+                    </div>
 
-                {/* Floating Badges */}
-                <div className="absolute top-3 left-3 flex items-center gap-2">
-                  <span className="px-2.5 py-1 rounded-lg bg-black/80 text-white text-[10px] font-bold backdrop-blur-md shadow-sm">
-                    {currentKeepsake.tag}
-                  </span>
-                  <span className="px-2.5 py-1 rounded-lg bg-[#FF4D36] text-white text-[10px] font-bold shadow-sm">
-                    {currentKeepsake.badge}
-                  </span>
+                    <h3 className={`text-xl sm:text-2xl font-black tracking-tight leading-tight ${
+                      isDark ? "text-white" : "text-[#0B0F19]"
+                    }`}>
+                      {currentKeepsake.title}
+                    </h3>
+
+                    <p className={`text-xs leading-relaxed line-clamp-3 ${
+                      isDark ? "text-slate-400" : "text-slate-500"
+                    }`}>
+                      {currentKeepsake.subtitle}
+                    </p>
+                  </div>
+
+                  <div
+                    className={`pt-3 border-t flex items-center justify-between gap-3 ${
+                      isDark ? "border-slate-800" : "border-slate-100"
+                    }`}
+                  >
+                    <div>
+                      <span className="text-[10px] text-slate-400 block font-semibold uppercase tracking-wider">
+                        Direct In-House Pricing
+                      </span>
+                      <span className="text-xs sm:text-sm font-black text-[#FF4D36]">
+                        {currentKeepsake.priceNote}
+                      </span>
+                    </div>
+
+                    <Link
+                      href={currentKeepsake.href}
+                      className="inline-flex items-center gap-1.5 px-4 py-2 bg-[#FF4D36] hover:bg-[#e0351d] text-white text-xs font-bold rounded-xl shadow-md shadow-[#FF4D36]/20 transition-all shrink-0 group/btn cursor-pointer"
+                    >
+                      <span>Customize</span>
+                      <ArrowRight className="w-3.5 h-3.5 group-hover/btn:translate-x-0.5 transition-transform" />
+                    </Link>
+                  </div>
                 </div>
 
-                <div className="absolute bottom-3 right-3 bg-white/95 backdrop-blur-md px-2.5 py-1 rounded-lg text-[10px] font-bold text-[#0B0F19] shadow-sm border border-slate-200/80">
-                  {currentKeepsake.specs}
+                {/* Right Column: Seamless Product Photo Visual (No Nested Card Border) */}
+                <div className="md:col-span-6 relative aspect-4/3 w-full rounded-2xl overflow-hidden group shadow-md">
+                  <Image
+                    key={currentKeepsake.id}
+                    src={currentKeepsake.image}
+                    alt={currentKeepsake.title}
+                    fill
+                    priority
+                    sizes="(max-width: 768px) 100vw, 420px"
+                    className="object-cover group-hover:scale-104 transition-transform duration-700"
+                  />
+
+                  {/* High-Contrast Floating Badge */}
+                  <div className="absolute top-2.5 right-2.5 z-10 px-2.5 py-1 rounded-lg bg-black/80 backdrop-blur-md text-white text-[10px] font-bold shadow-sm border border-white/10">
+                    {currentKeepsake.badge}
+                  </div>
                 </div>
               </div>
 
-              {/* Keepsake Footer & Direct Action */}
+              {/* Bottom Quick Indicator Strip */}
               <div
-                className={`pt-2 flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-t ${
+                className={`pt-2.5 border-t flex items-center justify-between text-[11px] text-slate-400 font-medium ${
                   isDark ? "border-slate-800" : "border-slate-100"
                 }`}
               >
-                <div>
-                  <h3 className={`text-base font-extrabold ${isDark ? "text-white" : "text-[#0B0F19]"}`}>
-                    {currentKeepsake.title}
-                  </h3>
-                  <p className="text-xs font-bold text-[#FF4D36] mt-0.5">
-                    {currentKeepsake.priceNote}
-                  </p>
+                <div className="flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#FF4D36] animate-pulse" />
+                  <span>Interactive Live Studio Preview</span>
                 </div>
-
-                <Link
-                  href={currentKeepsake.href}
-                  className="inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-[#FF4D36] hover:bg-[#e0351d] text-white text-xs font-bold rounded-xl shadow-md shadow-[#FF4D36]/20 transition-all shrink-0 group/btn"
-                >
-                  <span>Customize Now</span>
-                  <ArrowRight className="w-3.5 h-3.5 group-hover/btn:translate-x-0.5 transition-transform" />
-                </Link>
+                <div className="flex items-center gap-1.5 text-[10px] font-bold">
+                  <span>{String(activeKeepsakeIndex + 1).padStart(2, "0")}</span>
+                  <span className="text-slate-500">/</span>
+                  <span className="text-slate-500">{String(keepsakeItems.length).padStart(2, "0")}</span>
+                </div>
               </div>
 
             </div>
