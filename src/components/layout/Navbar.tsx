@@ -88,9 +88,20 @@ export const Navbar: React.FC = () => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isProductsOpen, setIsProductsOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   const dropdownRef = useRef<HTMLDivElement>(null);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  // Monitor scroll for elevated sticky shadow
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10);
+    };
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   // Close dropdown on route change
   useEffect(() => {
@@ -139,7 +150,13 @@ export const Navbar: React.FC = () => {
 
   return (
     <>
-      <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200/80 shadow-2xs transition-all">
+      <header
+        className={`sticky top-0 z-40 w-full transition-all duration-200 ${
+          isScrolled
+            ? "bg-white/98 backdrop-blur-md border-b border-slate-200/95 shadow-sm"
+            : "bg-white/95 backdrop-blur-md border-b border-slate-200/80 shadow-2xs"
+        }`}
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16 sm:h-[72px] gap-3 sm:gap-4 lg:gap-8">
             

@@ -125,14 +125,14 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className="min-h-full flex flex-col font-sans bg-white text-[#0F172A] overflow-x-hidden w-full max-w-full">
+      <body className="min-h-full flex flex-col font-sans bg-white text-[#0F172A] overflow-x-clip w-full max-w-full">
         <ToastProvider>
           <AuthProvider>
             <WishlistProvider>
               <CartProvider>
                 <AnnouncementBar />
                 <Navbar />
-                <main className="flex-1 w-full max-w-full overflow-x-hidden">{children}</main>
+                <main className="flex-1 w-full max-w-full overflow-x-clip">{children}</main>
                 <Footer />
               </CartProvider>
             </WishlistProvider>
