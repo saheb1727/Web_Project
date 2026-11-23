@@ -102,6 +102,7 @@ export const StudioReelsSection: React.FC = () => {
   ];
 
   const [activeModalIndex, setActiveModalIndex] = useState<number | null>(null);
+  const [hoveredReelId, setHoveredReelId] = useState<string | null>(null);
   const [mutedStates, setMutedStates] = useState<{ [key: string]: boolean }>({
     "reel-1": true,
     "reel-2": true,
@@ -111,12 +112,12 @@ export const StudioReelsSection: React.FC = () => {
     "reel-6": true,
   });
   const [playingStates, setPlayingStates] = useState<{ [key: string]: boolean }>({
-    "reel-1": true,
-    "reel-2": true,
-    "reel-3": true,
-    "reel-4": true,
-    "reel-5": true,
-    "reel-6": true,
+    "reel-1": false,
+    "reel-2": false,
+    "reel-3": false,
+    "reel-4": false,
+    "reel-5": false,
+    "reel-6": false,
   });
 
   const videoRefs = useRef<{ [key: string]: HTMLVideoElement | null }>({});
@@ -156,29 +157,21 @@ export const StudioReelsSection: React.FC = () => {
     return () => ctx.revert();
   }, []);
 
-  // Auto-play muted loop on mount using IntersectionObserver
+  // Performance Scroll Guard: Pause all background videos immediately while actively scrolling
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          const video = entry.target as HTMLVideoElement;
-          if (entry.isIntersecting) {
-            video.play().catch(() => {});
-          } else {
-            video.pause();
-          }
-        });
-      },
-      { threshold: 0.3 }
-    );
-
-    Object.values(videoRefs.current).forEach((video) => {
-      if (video) observer.observe(video);
-    });
-
-    return () => {
-      observer.disconnect();
+    const handleScroll = () => {
+      // Pause all playing videos when scroll starts to eliminate GPU contention
+      Object.keys(videoRefs.current).forEach((id) => {
+        const vid = videoRefs.current[id];
+        if (vid && !vid.paused) {
+          vid.pause();
+          setPlayingStates((prev) => ({ ...prev, [id]: false }));
+        }
+      });
     };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   // Keyboard navigation for lightbox
@@ -211,12 +204,30 @@ export const StudioReelsSection: React.FC = () => {
     }
   };
 
+  const handleCardMouseEnter = (id: string) => {
+    setHoveredReelId(id);
+    const vid = videoRefs.current[id];
+    if (vid) {
+      vid.play().catch(() => {});
+      setPlayingStates((prev) => ({ ...prev, [id]: true }));
+    }
+  };
+
+  const handleCardMouseLeave = (id: string) => {
+    setHoveredReelId(null);
+    const vid = videoRefs.current[id];
+    if (vid) {
+      vid.pause();
+      setPlayingStates((prev) => ({ ...prev, [id]: false }));
+    }
+  };
+
   const togglePlay = (id: string, e: React.MouseEvent) => {
     e.stopPropagation();
     const vid = videoRefs.current[id];
     if (vid) {
       if (vid.paused) {
-        vid.play();
+        vid.play().catch(() => {});
         setPlayingStates((prev) => ({ ...prev, [id]: true }));
       } else {
         vid.pause();
@@ -261,15 +272,18 @@ export const StudioReelsSection: React.FC = () => {
           <div className="flex sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 overflow-x-auto sm:overflow-visible snap-x snap-mandatory pb-3 sm:pb-0 scrollbar-none -mx-4 px-4 sm:mx-0 sm:px-0">
             {reels.map((reel, idx) => {
               const isMuted = mutedStates[reel.id] ?? true;
-              const isPlaying = playingStates[reel.id] ?? true;
+              const isPlaying = playingStates[reel.id] ?? false;
 
               return (
                 <div
                   key={reel.id}
                   onClick={() => setActiveModalIndex(idx)}
+                  onMouseEnter={() => handleCardMouseEnter(reel.id)}
+                  onMouseLeave={() => handleCardMouseLeave(reel.id)}
+                  style={{ transform: "translateZ(0)", willChange: "transform" }}
                   className="studio-reel-card group relative rounded-none overflow-hidden bg-slate-900 border border-slate-800 hover:border-slate-700 shadow-xl hover:shadow-2xl transition-all duration-300 cursor-pointer flex flex-col aspect-9/14 sm:aspect-9/13 w-[250px] sm:w-auto shrink-0 snap-center"
                 >
-                  {/* Video Player */}
+                  {/* High-Performance Video Player */}
                   <video
                     ref={(el) => {
                       videoRefs.current[reel.id] = el;
@@ -279,16 +293,17 @@ export const StudioReelsSection: React.FC = () => {
                     muted={isMuted}
                     playsInline
                     preload="metadata"
+                    style={{ transform: "translateZ(0)", willChange: "transform" }}
                     className="absolute inset-0 w-full h-full object-cover group-hover:scale-102 transition-transform duration-700"
                   />
 
-                  {/* Overlays for Readability */}
-                  <div className="absolute inset-0 bg-black/50 pointer-events-none" />
+                  {/* High-Performance Overlay (No live backdrop-blur on video surface) */}
+                  <div className="absolute inset-0 bg-black/45 pointer-events-none" />
 
                   {/* Top Bar on Video Card */}
                   <div className="relative z-10 p-4 flex items-center justify-between">
                     <div className="flex items-center gap-1.5">
-                      <span className="px-2.5 py-1 rounded-none bg-black/60 backdrop-blur-md border border-white/20 text-white text-[10px] font-bold">
+                      <span className="px-2.5 py-1 rounded-none bg-black/85 border border-white/20 text-white text-[10px] font-bold">
                         {reel.category}
                       </span>
                       <span className="px-2 py-0.5 rounded-none bg-[#F95738] text-white text-[9px] font-extrabold uppercase">
@@ -301,7 +316,7 @@ export const StudioReelsSection: React.FC = () => {
                       <button
                         type="button"
                         onClick={(e) => toggleMute(reel.id, e)}
-                        className="w-8 h-8 rounded-none bg-black/60 hover:bg-[#F95738] text-white backdrop-blur-md flex items-center justify-center transition-colors cursor-pointer border border-white/20"
+                        className="w-8 h-8 rounded-none bg-black/85 hover:bg-[#F95738] text-white flex items-center justify-center transition-colors cursor-pointer border border-white/20"
                         title={isMuted ? "Unmute" : "Mute"}
                       >
                         {isMuted ? (
@@ -312,29 +327,34 @@ export const StudioReelsSection: React.FC = () => {
                       </button>
 
                       {/* Expand Button */}
-                      <div className="w-8 h-8 rounded-none bg-black/60 text-white backdrop-blur-md flex items-center justify-center border border-white/20">
+                      <div className="w-8 h-8 rounded-none bg-black/85 text-white flex items-center justify-center border border-white/20">
                         <Maximize2 className="w-3.5 h-3.5" />
                       </div>
                     </div>
                   </div>
 
-                  {/* Center Floating Play/Pause Indicator on Hover */}
-                  <div className="absolute inset-0 z-10 flex items-center justify-center pointer-events-none">
+                  {/* Center Floating Play/Pause Indicator */}
+                  <div
+                    className={`absolute inset-0 z-10 flex items-center justify-center pointer-events-none transition-opacity duration-200 ${
+                      isPlaying ? "opacity-0 group-hover:opacity-100" : "opacity-90"
+                    }`}
+                  >
                     <button
                       type="button"
                       onClick={(e) => togglePlay(reel.id, e)}
-                      className="w-14 h-14 rounded-none bg-white/20 hover:bg-[#F95738] text-white backdrop-blur-md border border-white/40 flex items-center justify-center transition-all opacity-0 group-hover:opacity-100 group-hover:scale-105 pointer-events-auto cursor-pointer"
+                      className="w-12 h-12 rounded-none bg-black/85 hover:bg-[#F95738] text-white border border-white/30 flex items-center justify-center transition-all group-hover:scale-110 pointer-events-auto cursor-pointer shadow-lg"
+                      title={isPlaying ? "Pause video" : "Play video"}
                     >
                       {isPlaying ? (
-                        <Pause className="w-6 h-6 fill-white" />
+                        <Pause className="w-5 h-5 fill-white" />
                       ) : (
-                        <Play className="w-6 h-6 fill-white ml-0.5" />
+                        <Play className="w-5 h-5 fill-white ml-0.5" />
                       )}
                     </button>
                   </div>
 
                   {/* Bottom Meta & Action */}
-                  <div className="relative z-10 mt-auto p-5 text-white space-y-2">
+                  <div className="relative z-10 mt-auto p-5 text-white space-y-2 bg-gradient-to-t from-black/90 via-black/60 to-transparent">
                     <h3 className="text-base font-extrabold text-white tracking-tight leading-snug group-hover:text-[#F95738] transition-colors">
                       {reel.title}
                     </h3>
