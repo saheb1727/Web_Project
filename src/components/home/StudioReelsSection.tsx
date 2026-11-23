@@ -208,7 +208,7 @@ export const StudioReelsSection: React.FC = () => {
     setHoveredReelId(id);
     const vid = videoRefs.current[id];
     if (vid) {
-      vid.play().catch(() => {});
+      vid.play().catch(() => { });
       setPlayingStates((prev) => ({ ...prev, [id]: true }));
     }
   };
@@ -227,7 +227,7 @@ export const StudioReelsSection: React.FC = () => {
     const vid = videoRefs.current[id];
     if (vid) {
       if (vid.paused) {
-        vid.play().catch(() => {});
+        vid.play().catch(() => { });
         setPlayingStates((prev) => ({ ...prev, [id]: true }));
       } else {
         vid.pause();
@@ -240,7 +240,7 @@ export const StudioReelsSection: React.FC = () => {
     <>
       <section ref={sectionRef} className="py-20 bg-[#0B0F19] text-white border-b border-slate-800 overflow-hidden w-full max-w-full">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
+
           {/* Section Header */}
           <div className="studio-reel-header flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
             <div>
@@ -335,9 +335,8 @@ export const StudioReelsSection: React.FC = () => {
 
                   {/* Center Floating Play/Pause Indicator */}
                   <div
-                    className={`absolute inset-0 z-10 flex items-center justify-center pointer-events-none transition-opacity duration-200 ${
-                      isPlaying ? "opacity-0 group-hover:opacity-100" : "opacity-90"
-                    }`}
+                    className={`absolute inset-0 z-10 flex items-center justify-center pointer-events-none transition-opacity duration-200 ${isPlaying ? "opacity-0 group-hover:opacity-100" : "opacity-90"
+                      }`}
                   >
                     <button
                       type="button"
