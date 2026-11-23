@@ -18,6 +18,8 @@ import {
   Compass,
   Layers,
   Moon,
+  ChevronLeft,
+  ChevronRight,
 } from "lucide-react";
 import { gsap } from "@/lib/gsap";
 import { products } from "@/data/products";
@@ -36,13 +38,85 @@ interface KeepsakeItem {
   specs: string;
 }
 
+interface BackgroundSlide {
+  id: string;
+  title: string;
+  category: string;
+  image: string;
+  tag: string;
+  href: string;
+}
+
 type HeroBgTheme = "blueprint" | "topo" | "obsidian";
 
 export const HeroSection: React.FC = () => {
   const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
   const [bgTheme, setBgTheme] = useState<HeroBgTheme>("blueprint");
+  const [activeSlideIndex, setActiveSlideIndex] = useState(0);
+  const [isCarouselPaused, setIsCarouselPaused] = useState(false);
   const heroRef = useRef<HTMLElement>(null);
   const keepsakePreviewRef = useRef<HTMLDivElement>(null);
+
+  // Curated flagship products for the background carousel
+  const backgroundSlides: BackgroundSlide[] = [
+    {
+      id: "hamper",
+      title: "OnePlus Buddha Corporate Wellness Hamper",
+      category: "VIP Corporate Kit",
+      image: "/images/products/corporate-oneplus-buddha-hamper.jpg",
+      tag: "Trending Gift",
+      href: "/products/prod-hamper-oneplus-buddha",
+    },
+    {
+      id: "frame",
+      title: "Anniversary & Memory Calendar Frame",
+      category: "Photo Keepsakes",
+      image: "/images/products/anniversary-calendar-frame.jpg",
+      tag: "Customer Favorite",
+      href: "/products/prod-frame-1",
+    },
+    {
+      id: "lamp",
+      title: "Laser Engraved 3D LED Acrylic Heart Lamp",
+      category: "Ambient LED Lights",
+      image: "/images/products/led-acrylic-heart-lamp.jpg",
+      tag: "Romantic Keepsake",
+      href: "/products/prod-lamp-1",
+    },
+    {
+      id: "leather",
+      title: "Executive 4-in-1 Personalized Leather Gift Set",
+      category: "Personalized Leather",
+      image: "/images/products/executive-leather-gift-set.jpg",
+      tag: "Executive Hamper",
+      href: "/products/prod-leather-1",
+    },
+    {
+      id: "flask",
+      title: "Executive Thermal Vacuum Flask & Cups Set",
+      category: "Custom Drinkware",
+      image: "/images/products/vacuum-flask-cup-gift-set.jpg",
+      tag: "Best Seller",
+      href: "/products/prod-kit-vacuum-flask-cups",
+    },
+    {
+      id: "diary",
+      title: "Vintage PU Leather Diary - Model H1047",
+      category: "Corporate Notebooks",
+      image: "/images/products/notebook-diary-h1047-main.jpg",
+      tag: "New Launch",
+      href: "/products/prod-corp-diary-clasp-h1047",
+    },
+  ];
+
+  // Auto-advance background carousel every 5 seconds
+  useEffect(() => {
+    if (isCarouselPaused) return;
+    const interval = setInterval(() => {
+      setActiveSlideIndex((prev) => (prev + 1) % backgroundSlides.length);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, [isCarouselPaused, backgroundSlides.length]);
 
   // Restore user-selected background preference
   useEffect(() => {
@@ -153,7 +227,7 @@ export const HeroSection: React.FC = () => {
           "-=0.3"
         )
         .fromTo(
-          ".hero-theme-selector",
+          ".hero-carousel-nav",
           { opacity: 0, y: 10 },
           { opacity: 1, y: 0, duration: 0.4, clearProps: "all" },
           "-=0.2"
@@ -185,6 +259,8 @@ export const HeroSection: React.FC = () => {
     <>
       <section
         ref={heroRef}
+        onMouseEnter={() => setIsCarouselPaused(true)}
+        onMouseLeave={() => setIsCarouselPaused(false)}
         className={`relative pt-6 pb-14 sm:pt-10 sm:pb-16 border-b transition-colors duration-500 overflow-hidden ${
           isDark
             ? "bg-[#0B0F19] text-white border-slate-800"
@@ -194,12 +270,62 @@ export const HeroSection: React.FC = () => {
         }`}
       >
         {/* ========================================================== */}
-        {/* BACKGROUND THEME 1: BLUEPRINT GRID & LASER TARGET RETICLES */}
+        {/* BACKGROUND LAYER 1: DYNAMIC PRODUCT PHOTO CAROUSEL        */}
+        {/* ========================================================== */}
+        <div className="absolute inset-0 pointer-events-none select-none overflow-hidden z-0">
+          {backgroundSlides.map((slide, idx) => {
+            const isActive = activeSlideIndex === idx;
+            return (
+              <div
+                key={slide.id}
+                className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+                  isActive ? "opacity-100 z-1" : "opacity-0 z-0 pointer-events-none"
+                }`}
+              >
+                <Image
+                  src={slide.image}
+                  alt={slide.title}
+                  fill
+                  priority={idx === 0}
+                  sizes="100vw"
+                  className={`object-cover object-center transition-transform duration-7000 ease-out ${
+                    isActive ? "scale-105" : "scale-100"
+                  }`}
+                />
+              </div>
+            );
+          })}
+
+          {/* High-Legibility Frosted Overlay Layer */}
+          <div
+            className={`absolute inset-0 z-2 transition-colors duration-500 backdrop-blur-[4px] ${
+              isDark ? "bg-[#0B0F19]/85" : "bg-white/85"
+            }`}
+            style={{
+              background: isDark
+                ? "radial-gradient(ellipse 95% 75% at 50% 25%, rgba(11, 15, 25, 0.82) 0%, rgba(11, 15, 25, 0.94) 85%)"
+                : "radial-gradient(ellipse 95% 75% at 50% 25%, rgba(255, 255, 255, 0.85) 0%, rgba(248, 250, 252, 0.92) 85%)",
+            }}
+          />
+
+          {/* Ethereal Coral & Amber Spotlight Aura */}
+          <div
+            className="absolute top-0 left-1/2 -translate-x-1/2 w-[850px] h-[450px] rounded-full blur-[110px] pointer-events-none z-3"
+            style={{
+              background: isDark
+                ? "radial-gradient(circle, rgba(255, 77, 54, 0.16) 0%, rgba(99, 102, 241, 0.08) 50%, transparent 75%)"
+                : "radial-gradient(circle, rgba(255, 77, 54, 0.10) 0%, rgba(251, 146, 60, 0.05) 45%, transparent 75%)",
+            }}
+          />
+        </div>
+
+        {/* ========================================================== */}
+        {/* BACKGROUND LAYER 2: THEMED ARCHITECTURAL ACCENTS           */}
         {/* ========================================================== */}
         {bgTheme === "blueprint" && (
-          <div className="absolute inset-0 pointer-events-none select-none overflow-hidden z-0 animate-in fade-in duration-500">
-            {/* Metric Ruler Strip at Top */}
-            <div className="hidden md:flex items-center justify-between px-6 py-1 border-b border-slate-200/80 text-[9px] font-mono font-bold text-slate-400 select-none bg-slate-50/50">
+          <div className="absolute inset-0 pointer-events-none select-none overflow-hidden z-3 animate-in fade-in duration-500">
+            {/* Metric Calibration Ruler Strip at Top */}
+            <div className="hidden md:flex items-center justify-between px-6 py-1 border-b border-slate-200/80 text-[9px] font-mono font-bold text-slate-400 select-none bg-white/40 backdrop-blur-xs">
               <span>0mm</span>
               <span>• • • 50mm</span>
               <span>• • • 100mm</span>
@@ -214,26 +340,15 @@ export const HeroSection: React.FC = () => {
 
             {/* Architectural 40px Engineering Grid */}
             <div
-              className="absolute inset-0 opacity-75"
+              className="absolute inset-0 opacity-60"
               style={{
                 backgroundImage: `
-                  linear-gradient(to right, rgba(15, 23, 42, 0.055) 1px, transparent 1px),
-                  linear-gradient(to bottom, rgba(15, 23, 42, 0.055) 1px, transparent 1px)
+                  linear-gradient(to right, rgba(15, 23, 42, 0.05) 1px, transparent 1px),
+                  linear-gradient(to bottom, rgba(15, 23, 42, 0.05) 1px, transparent 1px)
                 `,
                 backgroundSize: "40px 40px",
                 maskImage: "radial-gradient(ellipse 90% 70% at 50% 25%, black 45%, transparent 88%)",
                 WebkitMaskImage: "radial-gradient(ellipse 90% 70% at 50% 25%, black 45%, transparent 88%)",
-              }}
-            />
-
-            {/* Micro Laser-Cut Dot Matrix */}
-            <div
-              className="absolute inset-0 opacity-45"
-              style={{
-                backgroundImage: "radial-gradient(rgba(15, 23, 42, 0.14) 1px, transparent 1px)",
-                backgroundSize: "20px 20px",
-                maskImage: "radial-gradient(ellipse 75% 55% at 50% 30%, black 30%, transparent 80%)",
-                WebkitMaskImage: "radial-gradient(ellipse 75% 55% at 50% 30%, black 30%, transparent 80%)",
               }}
             />
 
@@ -244,7 +359,6 @@ export const HeroSection: React.FC = () => {
             >
               <circle cx="100" cy="100" r="85" fill="none" stroke="currentColor" strokeWidth="1" strokeDasharray="6 6" />
               <circle cx="100" cy="100" r="55" fill="none" stroke="currentColor" strokeWidth="1" />
-              <circle cx="100" cy="100" r="25" fill="none" stroke="currentColor" strokeWidth="1" strokeDasharray="3 3" />
               <circle cx="100" cy="100" r="4" fill="#FF4D36" opacity="0.6" />
               <line x1="100" y1="5" x2="100" y2="195" stroke="currentColor" strokeWidth="0.75" strokeDasharray="4 4" />
               <line x1="5" y1="100" x2="195" y2="100" stroke="currentColor" strokeWidth="0.75" strokeDasharray="4 4" />
@@ -261,21 +375,7 @@ export const HeroSection: React.FC = () => {
               <line x1="10" y1="100" x2="190" y2="100" stroke="currentColor" strokeWidth="0.75" strokeDasharray="4 4" />
             </svg>
 
-            {/* Ethereal Coral & Amber Studio Radial Aura behind Headline */}
-            <div
-              className="absolute top-0 left-1/2 -translate-x-1/2 w-[850px] h-[440px] rounded-full blur-[110px] pointer-events-none -z-10"
-              style={{
-                background: "radial-gradient(circle, rgba(255, 77, 54, 0.09) 0%, rgba(251, 146, 60, 0.04) 45%, transparent 75%)",
-              }}
-            />
-            <div
-              className="absolute -top-12 left-1/4 -translate-x-1/2 w-[400px] h-[300px] rounded-full blur-[90px] pointer-events-none -z-10"
-              style={{
-                background: "radial-gradient(circle, rgba(245, 158, 11, 0.05) 0%, transparent 70%)",
-              }}
-            />
-
-            {/* Precision Workshop Technical Crosshairs & Corner Registrations */}
+            {/* Precision Workshop Technical Registration */}
             <div className="hidden sm:flex absolute top-10 left-6 lg:left-12 items-center gap-2 text-[10px] font-mono font-bold tracking-widest text-slate-400">
               <span className="text-[#FF4D36] font-black text-xs">+</span>
               <span>SPEC: 1,200 DPI JAPANESE MIMAKI</span>
@@ -287,33 +387,17 @@ export const HeroSection: React.FC = () => {
           </div>
         )}
 
-        {/* ========================================================== */}
-        {/* BACKGROUND THEME 2: TOPOGRAPHIC LASER CONTOUR ATELIER     */}
-        {/* ========================================================== */}
         {bgTheme === "topo" && (
-          <div className="absolute inset-0 pointer-events-none select-none overflow-hidden z-0 animate-in fade-in duration-500">
-            {/* Topographic Contour Curves */}
+          <div className="absolute inset-0 pointer-events-none select-none overflow-hidden z-3 animate-in fade-in duration-500">
             <svg
-              className="absolute inset-0 w-full h-full opacity-30 text-slate-500"
+              className="absolute inset-0 w-full h-full opacity-25 text-slate-500"
               preserveAspectRatio="none"
               viewBox="0 0 1440 800"
             >
               <path d="M0,140 C320,280, 420,80, 720,180 C1020,280, 1120,100, 1440,220 L1440,800 L0,800 Z" fill="none" stroke="currentColor" strokeWidth="1.5" />
               <path d="M0,200 C340,340, 440,140, 740,240 C1040,340, 1140,160, 1440,280 L1440,800 L0,800 Z" fill="none" stroke="currentColor" strokeWidth="1" strokeDasharray="5 5" />
               <path d="M0,270 C360,400, 460,200, 760,300 C1060,400, 1160,220, 1440,340 L1440,800 L0,800 Z" fill="none" stroke="#FF4D36" strokeWidth="1.2" opacity="0.4" />
-              <path d="M0,340 C380,470, 480,260, 780,360 C1080,460, 1180,280, 1440,400 L1440,800 L0,800 Z" fill="none" stroke="currentColor" strokeWidth="1" />
-              <path d="M0,420 C400,540, 500,320, 800,430 C1100,540, 1200,340, 1440,480 L1440,800 L0,800 Z" fill="none" stroke="currentColor" strokeWidth="1" strokeDasharray="3 3" />
             </svg>
-
-            {/* Warm Studio Paper Spotlight */}
-            <div
-              className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] rounded-full blur-[120px] pointer-events-none -z-10"
-              style={{
-                background: "radial-gradient(circle, rgba(245, 158, 11, 0.08) 0%, rgba(255, 77, 54, 0.05) 40%, transparent 75%)",
-              }}
-            />
-
-            {/* Corner Artisan Brackets */}
             <div className="hidden sm:flex absolute top-8 left-8 items-center gap-2 text-[10px] font-mono font-bold tracking-widest text-amber-700/60">
               <span>┌ ── HANDCRAFTED BESPOKE ATELIER ── ┐</span>
             </div>
@@ -323,17 +407,11 @@ export const HeroSection: React.FC = () => {
           </div>
         )}
 
-        {/* ========================================================== */}
-        {/* BACKGROUND THEME 3: OBSIDIAN DARK PRO KEYNOTE STUDIO       */}
-        {/* ========================================================== */}
         {bgTheme === "obsidian" && (
-          <div className="absolute inset-0 pointer-events-none select-none overflow-hidden z-0 animate-in fade-in duration-500">
-            {/* Top Glowing Laser Beam Line */}
+          <div className="absolute inset-0 pointer-events-none select-none overflow-hidden z-3 animate-in fade-in duration-500">
             <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-[#FF4D36]/70 to-transparent" />
-
-            {/* Luminous Dark Laser Grid */}
             <div
-              className="absolute inset-0 opacity-40"
+              className="absolute inset-0 opacity-30"
               style={{
                 backgroundImage: `
                   linear-gradient(to right, rgba(255, 77, 54, 0.15) 1px, transparent 1px),
@@ -344,44 +422,18 @@ export const HeroSection: React.FC = () => {
                 WebkitMaskImage: "radial-gradient(ellipse 85% 65% at 50% 25%, black 40%, transparent 90%)",
               }}
             />
-
-            {/* Deep Obsidian Neon Glow */}
-            <div
-              className="absolute top-0 left-1/2 -translate-x-1/2 w-[850px] h-[450px] rounded-full blur-[130px] pointer-events-none -z-10"
-              style={{
-                background: "radial-gradient(circle, rgba(255, 77, 54, 0.16) 0%, rgba(99, 102, 241, 0.08) 50%, transparent 75%)",
-              }}
-            />
-
-            {/* Luminous Laser Target Rings */}
-            <svg
-              className="hidden lg:block absolute -top-8 -left-12 w-96 h-96 text-cyan-500/20"
-              viewBox="0 0 200 200"
-            >
-              <circle cx="100" cy="100" r="85" fill="none" stroke="currentColor" strokeWidth="1" strokeDasharray="6 6" />
-              <circle cx="100" cy="100" r="55" fill="none" stroke="currentColor" strokeWidth="1" />
-              <circle cx="100" cy="100" r="4" fill="#06B6D4" opacity="0.8" />
-              <line x1="100" y1="5" x2="100" y2="195" stroke="currentColor" strokeWidth="0.75" strokeDasharray="4 4" />
-              <line x1="5" y1="100" x2="195" y2="100" stroke="currentColor" strokeWidth="0.75" strokeDasharray="4 4" />
-            </svg>
-
-            {/* Laser Studio Coordinates */}
             <div className="hidden sm:flex absolute top-8 left-8 items-center gap-2 text-[10px] font-mono font-bold tracking-widest text-slate-500">
               <span className="text-[#FF4D36] font-black text-xs">●</span>
               <span>OBSIDIAN_KEYNOTE_STAGE // 1200_DPI</span>
-            </div>
-            <div className="hidden sm:flex absolute top-8 right-8 items-center gap-2 text-[10px] font-mono font-bold tracking-widest text-slate-500">
-              <span>LIVE_STUDIO_CONNECTED</span>
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
             </div>
           </div>
         )}
 
         {/* Foreground Content & Bento Showcase */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-7 relative z-10 w-full">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6 relative z-10 w-full">
           
           {/* Top Hero Header Block */}
-          <div className="hero-header-block text-center max-w-3xl mx-auto space-y-4">
+          <div className="hero-header-block text-center max-w-3xl mx-auto space-y-3.5">
             
             {/* Live Studio Status Pill */}
             <div
@@ -460,8 +512,72 @@ export const HeroSection: React.FC = () => {
               </button>
             </div>
 
-            {/* Studio Background Theme Selector Pill */}
-            <div className="hero-theme-selector flex items-center justify-center pt-2">
+            {/* Studio Background Carousel Controls & Navigation Pill */}
+            <div className="hero-carousel-nav flex flex-wrap items-center justify-center gap-2 pt-2">
+              <div
+                className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full border text-xs shadow-xs backdrop-blur-md transition-all ${
+                  isDark
+                    ? "bg-slate-900/90 border-slate-700/80 text-slate-300"
+                    : "bg-white/95 border-slate-200/90 text-slate-700"
+                }`}
+              >
+                {/* Prev Button */}
+                <button
+                  type="button"
+                  onClick={() =>
+                    setActiveSlideIndex((prev) => (prev - 1 + backgroundSlides.length) % backgroundSlides.length)
+                  }
+                  className="hover:text-[#FF4D36] transition-colors cursor-pointer p-0.5"
+                  aria-label="Previous Slide"
+                  title="Previous Keepsake"
+                >
+                  <ChevronLeft className="w-3.5 h-3.5" />
+                </button>
+
+                {/* Slide Indicators */}
+                <div className="flex items-center gap-1.5 px-1">
+                  {backgroundSlides.map((slide, idx) => (
+                    <button
+                      key={slide.id}
+                      type="button"
+                      onClick={() => setActiveSlideIndex(idx)}
+                      className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
+                        activeSlideIndex === idx
+                          ? "w-6 bg-[#FF4D36]"
+                          : isDark
+                          ? "w-2 bg-slate-700 hover:bg-slate-500"
+                          : "w-2 bg-slate-300 hover:bg-slate-400"
+                      }`}
+                      aria-label={`Slide ${idx + 1}`}
+                      title={slide.title}
+                    />
+                  ))}
+                </div>
+
+                {/* Next Button */}
+                <button
+                  type="button"
+                  onClick={() => setActiveSlideIndex((prev) => (prev + 1) % backgroundSlides.length)}
+                  className="hover:text-[#FF4D36] transition-colors cursor-pointer p-0.5"
+                  aria-label="Next Slide"
+                  title="Next Keepsake"
+                >
+                  <ChevronRight className="w-3.5 h-3.5" />
+                </button>
+
+                <span className="text-slate-300 dark:text-slate-700">|</span>
+
+                {/* Active Slide Product Link */}
+                <Link
+                  href={backgroundSlides[activeSlideIndex].href}
+                  className="text-[11px] font-bold text-slate-700 dark:text-slate-200 hover:text-[#FF4D36] transition-colors flex items-center gap-1 max-w-[190px] sm:max-w-[260px] truncate"
+                >
+                  <Sparkles className="w-3 h-3 text-[#FF4D36] shrink-0" />
+                  <span className="truncate">{backgroundSlides[activeSlideIndex].title}</span>
+                </Link>
+              </div>
+
+              {/* Theme Toggle Pill */}
               <div
                 className={`inline-flex items-center gap-1 p-1 rounded-full border text-xs transition-all backdrop-blur-md shadow-xs ${
                   isDark
@@ -469,50 +585,50 @@ export const HeroSection: React.FC = () => {
                     : "bg-white/95 border-slate-200/90 text-slate-600"
                 }`}
               >
-                <span className="text-[10px] font-bold uppercase tracking-wider px-2 text-slate-400">
-                  Studio Theme:
-                </span>
                 <button
                   type="button"
                   onClick={() => handleThemeChange("blueprint")}
-                  className={`px-3 py-1 rounded-full text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer ${
+                  className={`px-2.5 py-1 rounded-full text-xs font-bold transition-all flex items-center gap-1 cursor-pointer ${
                     bgTheme === "blueprint"
                       ? "bg-[#FF4D36] text-white shadow-xs"
                       : isDark
                       ? "hover:text-white"
                       : "hover:text-slate-900"
                   }`}
+                  title="Blueprint Grid Mode"
                 >
-                  <Compass className="w-3.5 h-3.5" />
-                  <span>Blueprint Grid</span>
+                  <Compass className="w-3 h-3" />
+                  <span>Blueprint</span>
                 </button>
                 <button
                   type="button"
                   onClick={() => handleThemeChange("topo")}
-                  className={`px-3 py-1 rounded-full text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer ${
+                  className={`px-2.5 py-1 rounded-full text-xs font-bold transition-all flex items-center gap-1 cursor-pointer ${
                     bgTheme === "topo"
                       ? "bg-[#FF4D36] text-white shadow-xs"
                       : isDark
                       ? "hover:text-white"
                       : "hover:text-slate-900"
                   }`}
+                  title="Topographic Waves Mode"
                 >
-                  <Layers className="w-3.5 h-3.5" />
-                  <span>Topographic</span>
+                  <Layers className="w-3 h-3" />
+                  <span>Topo</span>
                 </button>
                 <button
                   type="button"
                   onClick={() => handleThemeChange("obsidian")}
-                  className={`px-3 py-1 rounded-full text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer ${
+                  className={`px-2.5 py-1 rounded-full text-xs font-bold transition-all flex items-center gap-1 cursor-pointer ${
                     bgTheme === "obsidian"
                       ? "bg-[#FF4D36] text-white shadow-xs"
                       : isDark
                       ? "hover:text-white"
                       : "hover:text-slate-900"
                   }`}
+                  title="Obsidian Dark Keynote Mode"
                 >
-                  <Moon className="w-3.5 h-3.5" />
-                  <span>Obsidian Dark</span>
+                  <Moon className="w-3 h-3" />
+                  <span>Dark</span>
                 </button>
               </div>
             </div>
