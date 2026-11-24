@@ -181,6 +181,18 @@ export const Navbar: React.FC = () => {
 
             {/* Zone 2: Spacious Clean Navigation (Center) */}
             <nav className="hidden lg:flex items-center gap-1 xl:gap-1.5 2xl:gap-3 shrink-0">
+              {/* Home Link */}
+              <Link
+                href="/"
+                className={`text-[13px] xl:text-sm font-semibold py-2 px-2.5 xl:px-3 rounded-none whitespace-nowrap transition-all cursor-pointer ${
+                  pathname === "/" && !isProductsOpen
+                    ? "text-[#FF4D36] bg-[#FF4D36]/8 font-bold"
+                    : "text-slate-700 hover:text-[#0B0F19] hover:bg-slate-50"
+                }`}
+              >
+                Home
+              </Link>
+
               {/* Products Mega Dropdown Trigger */}
               <div
                 ref={dropdownRef}

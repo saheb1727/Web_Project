@@ -5,6 +5,7 @@ import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   X,
+  Home,
   Printer,
   ChevronRight,
   Heart,
@@ -158,6 +159,18 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
                 transition={{ delay: 0.15, duration: 0.3 }}
                 className="space-y-1"
               >
+                <Link
+                  href="/"
+                  onClick={onClose}
+                  className="flex items-center justify-between px-3 py-2.5 rounded-none text-sm font-bold text-[#0B0F19] hover:bg-slate-50 transition-colors"
+                >
+                  <div className="flex items-center gap-2.5">
+                    <Home className="w-4 h-4 text-slate-600" />
+                    <span>Home</span>
+                  </div>
+                  <ChevronRight className="w-4 h-4 text-slate-400" />
+                </Link>
+
                 <Link
                   href="/products"
                   onClick={onClose}
