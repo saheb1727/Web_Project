@@ -20,6 +20,7 @@ import { Product } from "@/types";
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { useBodyScrollLock } from "@/hooks/useBodyScrollLock";
 
 interface SearchModalProps {
   isOpen: boolean;
@@ -53,13 +54,13 @@ export const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose }) => 
     "Ceramic Mugs",
   ];
 
+  useBodyScrollLock(isOpen);
+
   useEffect(() => {
     if (isOpen) {
       setTimeout(() => inputRef.current?.focus(), 50);
-      document.body.style.overflow = "hidden";
       setSelectedIndex(-1);
     } else {
-      document.body.style.overflow = "auto";
       setQuery("");
       setResults([]);
     }
@@ -72,7 +73,6 @@ export const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose }) => 
     window.addEventListener("keydown", handleKeyDown);
 
     return () => {
-      document.body.style.overflow = "auto";
       window.removeEventListener("keydown", handleKeyDown);
     };
   }, [isOpen, onClose]);

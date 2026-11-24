@@ -18,6 +18,7 @@ import {
   MoveRight,
 } from "lucide-react";
 import { gsap } from "@/lib/gsap";
+import { useBodyScrollLock } from "@/hooks/useBodyScrollLock";
 
 interface StudioReel {
   id: string;
@@ -102,6 +103,7 @@ export const StudioReelsSection: React.FC = () => {
   ];
 
   const [activeModalIndex, setActiveModalIndex] = useState<number | null>(null);
+  useBodyScrollLock(activeModalIndex !== null);
   const [hoveredReelId, setHoveredReelId] = useState<string | null>(null);
   const [mutedStates, setMutedStates] = useState<{ [key: string]: boolean }>({
     "reel-1": true,

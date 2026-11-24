@@ -37,6 +37,7 @@ import {
 } from "lucide-react";
 import { UserProfile, UserOrder } from "@/context/AuthContext";
 import { useToast } from "@/context/ToastContext";
+import { useBodyScrollLock } from "@/hooks/useBodyScrollLock";
 
 interface UserProfileDashboardProps {
   user: UserProfile;
@@ -67,6 +68,7 @@ export const UserProfileDashboard: React.FC<UserProfileDashboardProps> = ({
   const [isOrderItemOpen, setIsOrderItemOpen] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  useBodyScrollLock(isMobileMenuOpen);
   const [notificationsOpen, setNotificationsOpen] = useState(false);
 
   // Active selected order details (fallback to default mock if orders empty)

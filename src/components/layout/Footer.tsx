@@ -216,6 +216,11 @@ export const Footer: React.FC = () => {
                   Corporate Partnership
                 </Link>
               </li>
+              <li>
+                <Link href="/admin" className="text-amber-400 hover:text-amber-300 transition-colors font-bold flex items-center gap-1">
+                  <span>★ Admin Console</span>
+                </Link>
+              </li>
             </ul>
           </div>
         </div>

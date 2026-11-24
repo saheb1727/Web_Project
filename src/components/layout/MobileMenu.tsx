@@ -26,6 +26,7 @@ import { categories } from "@/data/categories";
 import { WhatsAppBadge } from "@/components/ui/WhatsAppIcon";
 import { useWishlist } from "@/context/WishlistContext";
 import { useCart } from "@/context/CartContext";
+import { useBodyScrollLock } from "@/hooks/useBodyScrollLock";
 
 interface MobileMenuProps {
   isOpen: boolean;
@@ -58,13 +59,9 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
   const { wishlistCount } = useWishlist();
   const { totalItems } = useCart();
 
-  useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "auto";
-    }
+  useBodyScrollLock(isOpen);
 
+  useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape" && isOpen) {
         onClose();
@@ -73,7 +70,6 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
     window.addEventListener("keydown", handleKeyDown);
 
     return () => {
-      document.body.style.overflow = "auto";
       window.removeEventListener("keydown", handleKeyDown);
     };
   }, [isOpen, onClose]);

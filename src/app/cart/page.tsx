@@ -23,6 +23,7 @@ import {
 import { useCart } from "@/context/CartContext";
 import { useToast } from "@/context/ToastContext";
 import { useAuth } from "@/context/AuthContext";
+import { useBodyScrollLock } from "@/hooks/useBodyScrollLock";
 
 export default function CartPage() {
   const {
@@ -45,6 +46,7 @@ export default function CartPage() {
   const { user, addOrderToHistory } = useAuth();
   const [couponInput, setCouponInput] = useState("");
   const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
+  useBodyScrollLock(isCheckoutOpen);
   const [isOrderPlaced, setIsOrderPlaced] = useState(false);
   const [orderId, setOrderId] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);

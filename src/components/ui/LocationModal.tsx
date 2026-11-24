@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import { MapPin, X, Navigation, Check, Clock, Truck, ShieldCheck } from "lucide-react";
+import { useBodyScrollLock } from "@/hooks/useBodyScrollLock";
 
 interface LocationModalProps {
   isOpen: boolean;
@@ -32,14 +33,13 @@ export const LocationModal: React.FC<LocationModalProps> = ({
     { city: "Kolkata", pincode: "700001", state: "West Bengal", speed: "3-4 Days" },
   ];
 
+  useBodyScrollLock(isOpen);
+
   useEffect(() => {
     if (isOpen) {
       setPincodeInput(currentPincode || "");
       setError("");
       setTimeout(() => inputRef.current?.focus(), 50);
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "auto";
     }
 
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -50,7 +50,6 @@ export const LocationModal: React.FC<LocationModalProps> = ({
     window.addEventListener("keydown", handleKeyDown);
 
     return () => {
-      document.body.style.overflow = "auto";
       window.removeEventListener("keydown", handleKeyDown);
     };
   }, [isOpen, currentPincode, onClose]);

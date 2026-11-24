@@ -21,6 +21,7 @@ import {
 import { gsap } from "@/lib/gsap";
 import { products } from "@/data/products";
 import { WhatsAppBadge } from "@/components/ui/WhatsAppIcon";
+import { useBodyScrollLock } from "@/hooks/useBodyScrollLock";
 
 interface KeepsakeItem {
   id: string;
@@ -49,6 +50,7 @@ type HeroBgTheme = "blueprint" | "topo" | "obsidian";
 
 export const HeroSection: React.FC = () => {
   const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
+  useBodyScrollLock(isVideoModalOpen);
   const [bgTheme, setBgTheme] = useState<HeroBgTheme>("obsidian");
   const [activeSlideIndex, setActiveSlideIndex] = useState(0);
   const [isCarouselPaused, setIsCarouselPaused] = useState(false);
