@@ -15,9 +15,6 @@ import {
   Coffee,
   Truck,
   MessageCircle,
-  Compass,
-  Layers,
-  Moon,
   ChevronLeft,
   ChevronRight,
 } from "lucide-react";
@@ -133,15 +130,6 @@ export const HeroSection: React.FC = () => {
     }
   }, []);
 
-  const handleThemeChange = (t: HeroBgTheme) => {
-    setBgTheme(t);
-    try {
-      localStorage.setItem("myprinthub_hero_bg", t);
-    } catch {
-      // Ignore
-    }
-  };
-
   const isDark = bgTheme === "obsidian";
 
   // Curated keepsake spotlight items for the main hero card
@@ -244,12 +232,6 @@ export const HeroSection: React.FC = () => {
           { opacity: 0, scale: 0.92, y: 15 },
           { opacity: 1, scale: 1, y: 0, duration: 0.5, stagger: 0.1, ease: "back.out(1.4)", clearProps: "all" },
           "-=0.3"
-        )
-        .fromTo(
-          ".hero-carousel-nav",
-          { opacity: 0, y: 10 },
-          { opacity: 1, y: 0, duration: 0.4, clearProps: "all" },
-          "-=0.2"
         )
         .fromTo(
           ".hero-bento-card-main",
@@ -512,122 +494,6 @@ export const HeroSection: React.FC = () => {
                 <span>Studio Lab Tour</span>
               </button>
             </div>
-
-            {/* Studio Background Carousel Controls & Navigation Pill */}
-            <div className="hero-carousel-nav flex flex-wrap items-center justify-center gap-2 pt-2">
-              <div
-                className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full border text-xs shadow-xs backdrop-blur-md transition-all ${isDark
-                  ? "bg-slate-900/90 border-slate-700/80 text-slate-300"
-                  : "bg-white/95 border-slate-200/90 text-slate-700"
-                  }`}
-              >
-                {/* Prev Button */}
-                <button
-                  type="button"
-                  onClick={() =>
-                    setActiveSlideIndex((prev) => (prev - 1 + backgroundSlides.length) % backgroundSlides.length)
-                  }
-                  className="hover:text-[#FF4D36] transition-colors cursor-pointer p-0.5"
-                  aria-label="Previous Slide"
-                  title="Previous Keepsake"
-                >
-                  <ChevronLeft className="w-3.5 h-3.5" />
-                </button>
-
-                {/* Slide Indicators */}
-                <div className="flex items-center gap-1.5 px-1">
-                  {backgroundSlides.map((slide, idx) => (
-                    <button
-                      key={slide.id}
-                      type="button"
-                      onClick={() => setActiveSlideIndex(idx)}
-                      className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${activeSlideIndex === idx
-                        ? "w-6 bg-[#FF4D36]"
-                        : isDark
-                          ? "w-2 bg-slate-700 hover:bg-slate-500"
-                          : "w-2 bg-slate-300 hover:bg-slate-400"
-                        }`}
-                      aria-label={`Slide ${idx + 1}`}
-                      title={slide.title}
-                    />
-                  ))}
-                </div>
-
-                {/* Next Button */}
-                <button
-                  type="button"
-                  onClick={() => setActiveSlideIndex((prev) => (prev + 1) % backgroundSlides.length)}
-                  className="hover:text-[#FF4D36] transition-colors cursor-pointer p-0.5"
-                  aria-label="Next Slide"
-                  title="Next Keepsake"
-                >
-                  <ChevronRight className="w-3.5 h-3.5" />
-                </button>
-
-                <span className="text-slate-300 dark:text-slate-700">|</span>
-
-                {/* Active Slide Product Link */}
-                <Link
-                  href={backgroundSlides[activeSlideIndex].href}
-                  className="text-[11px] font-bold text-slate-700 dark:text-slate-200 hover:text-[#FF4D36] transition-colors flex items-center gap-1 max-w-[190px] sm:max-w-[260px] truncate"
-                >
-                  <Sparkles className="w-3 h-3 text-[#FF4D36] shrink-0" />
-                  <span className="truncate">{backgroundSlides[activeSlideIndex].title}</span>
-                </Link>
-              </div>
-
-              {/* Theme Toggle Pill */}
-              <div
-                className={`inline-flex items-center gap-1 p-1 rounded-full border text-xs transition-all backdrop-blur-md shadow-xs ${isDark
-                  ? "bg-slate-900/90 border-slate-800 text-slate-300"
-                  : "bg-white/95 border-slate-200/90 text-slate-600"
-                  }`}
-              >
-                <button
-                  type="button"
-                  onClick={() => handleThemeChange("blueprint")}
-                  className={`px-2.5 py-1 rounded-full text-xs font-bold transition-all flex items-center gap-1 cursor-pointer ${bgTheme === "blueprint"
-                    ? "bg-[#FF4D36] text-white shadow-xs"
-                    : isDark
-                      ? "hover:text-white"
-                      : "hover:text-slate-900"
-                    }`}
-                  title="Blueprint Grid Mode"
-                >
-                  <Compass className="w-3 h-3" />
-                  <span>Blueprint</span>
-                </button>
-                <button
-                  type="button"
-                  onClick={() => handleThemeChange("topo")}
-                  className={`px-2.5 py-1 rounded-full text-xs font-bold transition-all flex items-center gap-1 cursor-pointer ${bgTheme === "topo"
-                    ? "bg-[#FF4D36] text-white shadow-xs"
-                    : isDark
-                      ? "hover:text-white"
-                      : "hover:text-slate-900"
-                    }`}
-                  title="Topographic Waves Mode"
-                >
-                  <Layers className="w-3 h-3" />
-                  <span>Topo</span>
-                </button>
-                <button
-                  type="button"
-                  onClick={() => handleThemeChange("obsidian")}
-                  className={`px-2.5 py-1 rounded-full text-xs font-bold transition-all flex items-center gap-1 cursor-pointer ${bgTheme === "obsidian"
-                    ? "bg-[#FF4D36] text-white shadow-xs"
-                    : isDark
-                      ? "hover:text-white"
-                      : "hover:text-slate-900"
-                    }`}
-                  title="Obsidian Dark Keynote Mode"
-                >
-                  <Moon className="w-3 h-3" />
-                  <span>Dark</span>
-                </button>
-              </div>
-            </div>
-
           </div>
 
           {/* Panoramic Bento Grid Showcase (3 Real Products Simultaneously) */}
