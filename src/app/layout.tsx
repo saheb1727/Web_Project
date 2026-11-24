@@ -7,6 +7,7 @@ import { AuthProvider } from "@/context/AuthContext";
 import { AnnouncementBar } from "@/components/layout/AnnouncementBar";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
+import { FloatingWhatsApp } from "@/components/ui/FloatingWhatsApp";
 
 export const viewport: Viewport = {
   themeColor: "#1E1B4B",
@@ -134,6 +135,7 @@ export default function RootLayout({
                 <Navbar />
                 <main className="flex-1 w-full max-w-full overflow-x-clip">{children}</main>
                 <Footer />
+                <FloatingWhatsApp />
               </CartProvider>
             </WishlistProvider>
           </AuthProvider>

@@ -12,6 +12,7 @@ import {
   CheckCircle2,
   Sparkles,
 } from "lucide-react";
+import { WhatsAppBadge, WhatsAppIcon } from "@/components/ui/WhatsAppIcon";
 import { useToast } from "@/context/ToastContext";
 
 export default function ContactPage() {
@@ -105,12 +106,19 @@ export default function ContactPage() {
                 </div>
 
                 <div className="flex items-start gap-3.5">
-                  <div className="w-10 h-10 rounded-none bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0">
-                    <MessageCircle className="w-5 h-5" />
+                  <div className="w-10 h-10 rounded-none bg-emerald-50 flex items-center justify-center shrink-0">
+                    <WhatsAppBadge className="w-6 h-6" />
                   </div>
                   <div>
                     <div className="font-bold text-slate-900 text-sm">WhatsApp Business Chat</div>
-                    <div className="text-slate-600 mt-0.5">+91 98765 43210 (Instant Replies)</div>
+                    <a
+                      href="https://wa.me/919876543210?text=Hi%20MyPrintHub,%20I%20have%20an%20inquiry%20regarding%20custom%20merchandise."
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-slate-600 hover:text-emerald-600 font-semibold mt-0.5 block transition-colors"
+                    >
+                      +91 98765 43210 (Instant Replies) →
+                    </a>
                     <div className="text-[10px] text-emerald-600 font-semibold mt-0.5">Send vector logo files directly</div>
                   </div>
                 </div>
@@ -202,8 +210,9 @@ export default function ContactPage() {
                       href={`https://wa.me/919876543210?text=Hi%20MyPrintHub,%20following%20up%20on%20my%20inquiry%20ticket%20${ticketId}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="px-5 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold rounded-none shadow-md transition-all flex items-center gap-1.5"
+                      className="px-5 py-2.5 bg-[#25D366] hover:bg-[#20ba59] text-white text-xs font-bold rounded-none shadow-md transition-all flex items-center gap-2 cursor-pointer"
                     >
+                      <WhatsAppIcon className="w-4 h-4 text-white shrink-0" />
                       <span>WhatsApp Direct Follow-up</span>
                     </a>
                   </div>

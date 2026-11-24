@@ -14,6 +14,7 @@ import {
   Heart,
 } from "lucide-react";
 import { categories } from "@/data/categories";
+import { WhatsAppIcon } from "@/components/ui/WhatsAppIcon";
 
 export const Footer: React.FC = () => {
   return (
@@ -106,6 +107,15 @@ export const Footer: React.FC = () => {
                 <Mail className="w-4 h-4 text-[var(--color-accent)] shrink-0" />
                 <span>support@myprinthub.in | bulk@myprinthub.in</span>
               </div>
+              <a
+                href="https://wa.me/919876543210?text=Hi%20MyPrintHub,%20I%20have%20an%20inquiry%20regarding%20custom%20merchandise%20and%20printing."
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2.5 text-slate-300 hover:text-[#25D366] transition-colors group/wa"
+              >
+                <WhatsAppIcon className="w-4 h-4 text-[#25D366] shrink-0 group-hover/wa:scale-110 transition-transform" />
+                <span className="font-semibold">+91 98765 43210 (WhatsApp Chat)</span>
+              </a>
             </div>
           </div>
 

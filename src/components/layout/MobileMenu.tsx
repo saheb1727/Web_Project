@@ -23,6 +23,7 @@ import {
   Layers,
 } from "lucide-react";
 import { categories } from "@/data/categories";
+import { WhatsAppBadge } from "@/components/ui/WhatsAppIcon";
 import { useWishlist } from "@/context/WishlistContext";
 import { useCart } from "@/context/CartContext";
 
@@ -314,6 +315,15 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
                   <Mail className="w-3.5 h-3.5 text-[#FF4D36]" />
                   <span>support@myprinthub.in</span>
                 </div>
+                <a
+                  href="https://wa.me/919876543210?text=Hi%20MyPrintHub,%20I%20have%20an%20inquiry%20regarding%20custom%20merchandise."
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 pt-1 border-t border-slate-200/80 font-bold text-emerald-600 hover:text-emerald-700 transition-colors"
+                >
+                  <WhatsAppBadge className="w-3.5 h-3.5" />
+                  <span>Direct WhatsApp Chat</span>
+                </a>
               </motion.div>
             </div>
 

@@ -23,6 +23,7 @@ import {
 } from "lucide-react";
 import { gsap } from "@/lib/gsap";
 import { products } from "@/data/products";
+import { WhatsAppBadge } from "@/components/ui/WhatsAppIcon";
 
 interface KeepsakeItem {
   id: string;
@@ -478,7 +479,7 @@ export const HeroSection: React.FC = () => {
             <div className="flex flex-wrap items-center justify-center gap-3 pt-1">
               <Link
                 href="/products"
-                className="hero-cta-btn px-6 py-3.5 bg-[#FF4D36] hover:bg-[#e0351d] text-white text-xs sm:text-sm font-black rounded-2xl shadow-lg shadow-[#FF4D36]/25 hover:shadow-xl hover:shadow-[#FF4D36]/35 transition-all flex items-center justify-center gap-2 group cursor-pointer active:scale-98"
+                className="hero-cta-btn px-6 py-3.5 bg-[#FF4D36] hover:bg-[#e0351d] text-white text-xs sm:text-sm font-black rounded-none shadow-lg shadow-[#FF4D36]/25 hover:shadow-xl hover:shadow-[#FF4D36]/35 transition-all flex items-center justify-center gap-2 group cursor-pointer active:scale-98"
               >
                 <span>Explore All {products.length} Products</span>
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -486,19 +487,19 @@ export const HeroSection: React.FC = () => {
 
               <Link
                 href="/contact"
-                className={`hero-cta-btn px-5 py-3.5 text-xs sm:text-sm font-bold rounded-2xl border shadow-xs backdrop-blur-sm transition-all flex items-center justify-center gap-2 cursor-pointer active:scale-98 ${isDark
+                className={`hero-cta-btn px-5 py-3.5 text-xs sm:text-sm font-bold rounded-none border shadow-xs backdrop-blur-sm transition-all flex items-center justify-center gap-2 cursor-pointer active:scale-98 ${isDark
                   ? "bg-slate-900/90 hover:bg-slate-800 text-white border-slate-700 hover:border-slate-600"
                   : "bg-white/95 hover:bg-white text-[#0B0F19] border-slate-200/90 hover:border-slate-300"
                   }`}
               >
-                <MessageCircle className="w-4 h-4 text-emerald-500" />
+                <WhatsAppBadge className="w-4 h-4 shrink-0" />
                 <span>Custom Bulk Inquiry</span>
               </Link>
 
               <button
                 type="button"
                 onClick={() => setIsVideoModalOpen(true)}
-                className={`hero-cta-btn px-4 py-3.5 text-xs sm:text-sm font-bold rounded-2xl border shadow-xs backdrop-blur-sm transition-all flex items-center justify-center gap-2 cursor-pointer active:scale-98 ${isDark
+                className={`hero-cta-btn px-4 py-3.5 text-xs sm:text-sm font-bold rounded-none border shadow-xs backdrop-blur-sm transition-all flex items-center justify-center gap-2 cursor-pointer active:scale-98 ${isDark
                   ? "bg-slate-900/90 hover:bg-slate-800 text-slate-200 border-slate-700 hover:border-slate-600"
                   : "bg-white/95 hover:bg-white text-slate-700 border-slate-200/90 hover:border-slate-300"
                   }`}
