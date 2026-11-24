@@ -125,7 +125,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className="min-h-full flex flex-col font-sans bg-white text-[#0F172A] overflow-x-clip w-full max-w-full">
+      <body className="min-h-full flex flex-col font-sans bg-white text-[#0F172A] w-full max-w-full">
         <ToastProvider>
           <AuthProvider>
             <WishlistProvider>
