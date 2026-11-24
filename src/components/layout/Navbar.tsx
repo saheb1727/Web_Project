@@ -157,8 +157,8 @@ export const Navbar: React.FC = () => {
             : "bg-white/95 backdrop-blur-md border-b border-slate-200/80 shadow-2xs"
         }`}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16 sm:h-[72px] gap-3 sm:gap-4 lg:gap-8">
+        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-16 sm:h-[72px] gap-2 sm:gap-4 lg:gap-6 xl:gap-8">
             
             {/* Zone 1: Brand Anchor (Left) */}
             <div className="flex items-center gap-1.5 sm:gap-3 shrink-0">
@@ -178,10 +178,10 @@ export const Navbar: React.FC = () => {
                   <Printer className="w-4 h-4 text-[#FF4D36]" />
                 </div>
                 <div className="flex flex-col">
-                  <span className="font-black text-lg sm:text-xl tracking-tight text-[#0B0F19] leading-none">
+                  <span className="font-black text-lg sm:text-xl tracking-tight text-[#0B0F19] leading-none whitespace-nowrap">
                     MyPrintHub<span className="text-[#FF4D36]">.in</span>
                   </span>
-                  <span className="hidden sm:block text-[9px] font-bold text-slate-400 tracking-wider uppercase mt-1">
+                  <span className="hidden sm:block text-[9px] font-bold text-slate-400 tracking-wider uppercase mt-1 whitespace-nowrap">
                     STUDIO PRINT LAB
                   </span>
                 </div>
@@ -189,7 +189,7 @@ export const Navbar: React.FC = () => {
             </div>
 
             {/* Zone 2: Spacious Clean Navigation (Center) */}
-            <nav className="hidden lg:flex items-center gap-1 xl:gap-2">
+            <nav className="hidden lg:flex items-center gap-1 xl:gap-1.5 2xl:gap-3 shrink-0">
               {/* Products Mega Dropdown Trigger */}
               <div
                 ref={dropdownRef}
@@ -200,7 +200,7 @@ export const Navbar: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => setIsProductsOpen((prev) => !prev)}
-                  className={`flex items-center gap-1.5 text-sm font-semibold py-2 px-3.5 rounded-none transition-all cursor-pointer ${
+                  className={`flex items-center gap-1.5 text-[13px] xl:text-sm font-semibold py-2 px-2.5 xl:px-3 rounded-none whitespace-nowrap transition-all cursor-pointer ${
                     isProductsOpen || isProductsActive
                       ? "text-[#FF4D36] bg-[#FF4D36]/8 font-bold"
                       : "text-slate-700 hover:text-[#0B0F19] hover:bg-slate-50"
@@ -283,7 +283,7 @@ export const Navbar: React.FC = () => {
                                     {cat.name}
                                   </span>
                                   {cat.badge && (
-                                    <span className="text-[9px] font-bold px-1.5 py-0.2 rounded bg-slate-100 text-slate-600 group-hover/item:bg-[#FF4D36]/15 group-hover/item:text-[#FF4D36] shrink-0 transition-colors">
+                                    <span className="text-[9px] font-bold px-1.5 py-0.2 rounded-none bg-slate-100 text-slate-600 group-hover/item:bg-[#FF4D36]/15 group-hover/item:text-[#FF4D36] shrink-0 transition-colors">
                                       {cat.badge}
                                     </span>
                                   )}
@@ -298,7 +298,7 @@ export const Navbar: React.FC = () => {
                       </div>
 
                       {/* Bottom Promo & Enterprise Strip */}
-                      <div className="mt-4 pt-3.5 border-t border-slate-100 flex items-center justify-between text-xs bg-slate-50/80 -mx-5 -mb-5 p-3.5 rounded-b-2xl px-5">
+                      <div className="mt-4 pt-3.5 border-t border-slate-100 flex items-center justify-between text-xs bg-slate-50/80 -mx-5 -mb-5 p-3.5 rounded-none px-5">
                         <div className="flex items-center gap-2 text-slate-600">
                           <ShieldCheck className="w-4 h-4 text-emerald-600 shrink-0" />
                           <span className="font-semibold text-[11px]">
@@ -320,7 +320,7 @@ export const Navbar: React.FC = () => {
                 {/* Best Sellers Link */}
                 <Link
                   href="/products"
-                  className={`text-sm font-semibold py-2 px-3.5 rounded-none transition-all cursor-pointer ${
+                  className={`text-[13px] xl:text-sm font-semibold py-2 px-2.5 xl:px-3 rounded-none whitespace-nowrap transition-all cursor-pointer ${
                     pathname === "/products" && !isProductsOpen
                       ? "text-[#FF4D36] bg-[#FF4D36]/8 font-bold"
                       : "text-slate-700 hover:text-[#0B0F19] hover:bg-slate-50"
@@ -332,7 +332,7 @@ export const Navbar: React.FC = () => {
                 {/* Corporate & Bulk Link */}
                 <Link
                   href="/category/corporate-kits"
-                  className={`text-sm font-semibold py-2 px-3.5 rounded-none transition-all cursor-pointer ${
+                  className={`text-[13px] xl:text-sm font-semibold py-2 px-2.5 xl:px-3 rounded-none whitespace-nowrap transition-all cursor-pointer ${
                     pathname === "/category/corporate-kits"
                       ? "text-[#FF4D36] bg-[#FF4D36]/8 font-bold"
                       : "text-slate-700 hover:text-[#0B0F19] hover:bg-slate-50"
@@ -344,7 +344,7 @@ export const Navbar: React.FC = () => {
                 {/* Track Order Link */}
                 <Link
                   href="/track"
-                  className={`text-sm font-semibold py-2 px-3.5 rounded-none transition-all cursor-pointer ${
+                  className={`text-[13px] xl:text-sm font-semibold py-2 px-2.5 xl:px-3 rounded-none whitespace-nowrap transition-all cursor-pointer ${
                     pathname === "/track"
                       ? "text-[#FF4D36] bg-[#FF4D36]/8 font-bold"
                       : "text-slate-700 hover:text-[#0B0F19] hover:bg-slate-50"
@@ -356,7 +356,7 @@ export const Navbar: React.FC = () => {
                 {/* Custom Quote Link (Visible on xl screens, keeping smaller laptops uncluttered) */}
                 <Link
                   href="/contact"
-                  className={`hidden xl:inline-flex text-sm font-semibold py-2 px-3.5 rounded-none transition-all cursor-pointer ${
+                  className={`hidden xl:inline-flex text-[13px] xl:text-sm font-semibold py-2 px-2.5 xl:px-3 rounded-none whitespace-nowrap transition-all cursor-pointer ${
                     pathname === "/contact"
                       ? "text-[#FF4D36] bg-[#FF4D36]/8 font-bold"
                       : "text-slate-700 hover:text-[#0B0F19] hover:bg-slate-50"
@@ -367,13 +367,13 @@ export const Navbar: React.FC = () => {
             </nav>
 
             {/* Zone 3: Command & Utility Deck (Right) */}
-            <div className="flex items-center gap-2 sm:gap-3 shrink-0">
+            <div className="flex items-center gap-1.5 sm:gap-2.5 xl:gap-3 shrink-0">
               
               {/* Sleek Command Search Trigger Pill (Medium & Desktop) */}
               <button
                 type="button"
                 onClick={() => setIsSearchOpen(true)}
-                className="hidden md:flex items-center gap-2 px-3.5 py-1.5 rounded-none bg-slate-100 hover:bg-slate-200/70 border border-slate-200/80 text-slate-500 hover:text-slate-800 transition-all text-xs cursor-pointer group w-36 lg:w-40 xl:w-48"
+                className="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-none bg-slate-100 hover:bg-slate-200/70 border border-slate-200/80 text-slate-500 hover:text-slate-800 transition-all text-xs cursor-pointer group w-32 xl:w-44 2xl:w-48 whitespace-nowrap"
                 aria-label="Search merchandise"
                 title="Search custom products (⌘K)"
               >
@@ -381,7 +381,7 @@ export const Navbar: React.FC = () => {
                 <span className="truncate text-slate-500 group-hover:text-slate-700 font-medium text-xs">
                   Search products...
                 </span>
-                <kbd className="hidden xl:inline-flex items-center px-1.5 py-0.5 text-[10px] font-semibold text-slate-400 bg-white rounded border border-slate-200/80 ml-auto shadow-2xs">
+                <kbd className="hidden xl:inline-flex items-center px-1.5 py-0.5 text-[10px] font-semibold text-slate-400 bg-white rounded-none border border-slate-200/80 ml-auto shadow-2xs">
                   ⌘K
                 </kbd>
               </button>
@@ -399,7 +399,7 @@ export const Navbar: React.FC = () => {
               {/* Wishlist Button */}
               <Link
                 href="/wishlist"
-                className="relative p-2 rounded-none text-slate-600 hover:text-[#FF4D36] hover:bg-slate-100 transition-colors cursor-pointer"
+                className="relative p-2 rounded-none text-slate-600 hover:text-[#FF4D36] hover:bg-slate-100 transition-colors cursor-pointer shrink-0"
                 aria-label="Wishlist"
                 title="Wishlist"
               >
@@ -414,7 +414,7 @@ export const Navbar: React.FC = () => {
               {/* User Account Button */}
               <Link
                 href="/auth"
-                className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-none text-slate-700 hover:text-slate-900 hover:bg-slate-100 transition-colors text-xs font-semibold cursor-pointer"
+                className="hidden sm:flex items-center gap-1.5 px-2.5 xl:px-3 py-1.5 rounded-none text-slate-700 hover:text-slate-900 hover:bg-slate-100 transition-colors text-xs font-semibold cursor-pointer shrink-0 whitespace-nowrap"
                 aria-label="My Account"
                 title={isLoggedIn && user ? `Account: ${user.name}` : "Sign In / Register"}
               >
@@ -425,7 +425,7 @@ export const Navbar: React.FC = () => {
                 ) : (
                   <User className="w-4 h-4 stroke-[1.8] text-slate-600" />
                 )}
-                <span className="hidden xl:inline truncate max-w-[75px]">
+                <span className="hidden xl:inline truncate max-w-[80px]">
                   {isLoggedIn && user ? user.name.split(" ")[0] : "Sign In"}
                 </span>
               </Link>
@@ -433,7 +433,7 @@ export const Navbar: React.FC = () => {
               {/* Executive Cart Pill */}
               <Link
                 href="/cart"
-                className="flex items-center gap-2 px-3.5 sm:px-4 py-2 rounded-none bg-[#0B0F19] hover:bg-[#FF4D36] text-white transition-all shadow-xs hover:shadow-md group cursor-pointer shrink-0"
+                className="flex items-center gap-2 px-3 sm:px-3.5 py-2 rounded-none bg-[#0B0F19] hover:bg-[#FF4D36] text-white transition-all shadow-xs hover:shadow-md group cursor-pointer shrink-0 whitespace-nowrap"
                 aria-label="Shopping Cart"
                 title="View Shopping Cart"
               >
@@ -449,7 +449,7 @@ export const Navbar: React.FC = () => {
                   Cart
                 </span>
                 {totalItems > 0 && subtotal > 0 && (
-                  <span className="text-[11px] font-bold text-slate-300 group-hover:text-white pl-1.5 border-l border-white/20 hidden xs:inline">
+                  <span className="text-[11px] font-bold text-slate-300 group-hover:text-white pl-1.5 border-l border-white/20 hidden md:inline">
                     ₹{subtotal.toLocaleString("en-IN")}
                   </span>
                 )}
