@@ -26,6 +26,7 @@ export default function AuthPage() {
   const [activeTab, setActiveTab] = useState<"login" | "signup">("login");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -37,6 +38,18 @@ export default function AuthPage() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (activeTab === "signup") {
+      if (password !== confirmPassword) {
+        showToast("Passwords do not match. Please verify.", "error");
+        return;
+      }
+      if (password.length < 6) {
+        showToast("Password must be at least 6 characters long.", "error");
+        return;
+      }
+    }
+
     setIsSubmitting(true);
 
     setTimeout(() => {
@@ -334,7 +347,7 @@ export default function AuthPage() {
                       value={name}
                       onChange={(e) => setName(e.target.value)}
                       placeholder="Vikram Malhotra"
-                      className="w-full pl-9 pr-3 py-2.5 text-xs bg-slate-50 border border-slate-200 rounded-none focus:outline-none focus:border-[#1E1B4B]"
+                      className="w-full pl-9 pr-3 py-2.5 text-xs bg-slate-50 border border-slate-200 rounded-none focus:outline-none focus:border-[#0B0F19]"
                     />
                   </div>
                 </div>
@@ -351,7 +364,7 @@ export default function AuthPage() {
                       value={phone}
                       onChange={(e) => setPhone(e.target.value)}
                       placeholder="10-digit mobile number"
-                      className="w-full pl-9 pr-3 py-2.5 text-xs bg-slate-50 border border-slate-200 rounded-none focus:outline-none focus:border-[#1E1B4B]"
+                      className="w-full pl-9 pr-3 py-2.5 text-xs bg-slate-50 border border-slate-200 rounded-none focus:outline-none focus:border-[#0B0F19]"
                     />
                   </div>
                 </div>
@@ -370,7 +383,7 @@ export default function AuthPage() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="name@company.com"
-                  className="w-full pl-9 pr-3 py-2.5 text-xs bg-slate-50 border border-slate-200 rounded-none focus:outline-none focus:border-[#1E1B4B]"
+                  className="w-full pl-9 pr-3 py-2.5 text-xs bg-slate-50 border border-slate-200 rounded-none focus:outline-none focus:border-[#0B0F19]"
                 />
               </div>
             </div>
@@ -387,10 +400,38 @@ export default function AuthPage() {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="••••••••"
-                  className="w-full pl-9 pr-3 py-2.5 text-xs bg-slate-50 border border-slate-200 rounded-none focus:outline-none focus:border-[#1E1B4B]"
+                  className="w-full pl-9 pr-3 py-2.5 text-xs bg-slate-50 border border-slate-200 rounded-none focus:outline-none focus:border-[#0B0F19]"
                 />
               </div>
             </div>
+
+            {activeTab === "signup" && (
+              <div>
+                <label className="text-xs font-bold text-slate-700 block mb-1">
+                  Confirm Password
+                </label>
+                <div className="relative">
+                  <Lock className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
+                  <input
+                    type="password"
+                    required
+                    value={confirmPassword}
+                    onChange={(e) => setConfirmPassword(e.target.value)}
+                    placeholder="••••••••"
+                    className={`w-full pl-9 pr-3 py-2.5 text-xs bg-slate-50 border rounded-none focus:outline-none transition-colors ${
+                      confirmPassword && confirmPassword !== password
+                        ? "border-red-400 focus:border-red-500"
+                        : "border-slate-200 focus:border-[#0B0F19]"
+                    }`}
+                  />
+                </div>
+                {confirmPassword && confirmPassword !== password && (
+                  <p className="text-[11px] text-red-500 font-medium mt-1">
+                    Passwords do not match
+                  </p>
+                )}
+              </div>
+            )}
 
             <button
               type="submit"
