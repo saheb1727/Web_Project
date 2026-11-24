@@ -485,16 +485,18 @@ export const HeroSection: React.FC = () => {
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </Link>
 
-              <Link
-                href="/contact"
-                className={`hero-cta-btn px-5 py-3.5 text-xs sm:text-sm font-bold rounded-none border shadow-xs backdrop-blur-sm transition-all flex items-center justify-center gap-2 cursor-pointer active:scale-98 ${isDark
+              <a
+                href="https://wa.me/919876543210?text=Hi%20MyPrintHub,%20I%20have%20an%20inquiry%20regarding%20custom%20bulk%20orders%20and%20merchandise."
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`hero-cta-btn px-5 py-3.5 text-xs sm:text-sm font-bold rounded-none border shadow-xs backdrop-blur-sm transition-all flex items-center justify-center gap-2.5 cursor-pointer active:scale-98 ${isDark
                   ? "bg-slate-900/90 hover:bg-slate-800 text-white border-slate-700 hover:border-slate-600"
                   : "bg-white/95 hover:bg-white text-[#0B0F19] border-slate-200/90 hover:border-slate-300"
                   }`}
               >
-                <WhatsAppBadge className="w-4 h-4 shrink-0" />
+                <WhatsAppBadge className="w-5 h-5 shrink-0" />
                 <span>Custom Bulk Inquiry</span>
-              </Link>
+              </a>
 
               <button
                 type="button"
