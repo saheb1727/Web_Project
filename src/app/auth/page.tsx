@@ -3,7 +3,6 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import {
-  Printer,
   Mail,
   Lock,
   User,
@@ -271,27 +270,18 @@ export default function AuthPage() {
 
   // Otherwise, render Login & Register form
   return (
-    <div className="min-h-screen bg-slate-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
+    <div className="min-h-[calc(100vh-80px)] bg-slate-50 flex flex-col justify-start pt-6 sm:pt-10 pb-16 px-4 sm:px-6 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-md text-center">
-        {/* Brand Logo */}
-        <Link href="/" className="inline-flex items-center gap-2 mb-4 group">
-          <div className="w-10 h-10 rounded-none bg-[#1E1B4B] text-[#F95738] flex items-center justify-center shadow-md">
-            <Printer className="w-6 h-6" />
-          </div>
-          <span className="text-2xl font-black text-[#1E1B4B]">
-            MyPrintHub<span className="text-[#F95738]">.in</span>
-          </span>
-        </Link>
-        <h2 className="text-2xl font-black text-[#1E1B4B] tracking-tight">
+        <h2 className="text-2xl sm:text-3xl font-black text-[#0B0F19] tracking-tight">
           {activeTab === "login" ? "Sign in to your account" : "Create a new account"}
         </h2>
-        <p className="text-xs text-slate-500 mt-1">
+        <p className="text-xs sm:text-sm text-slate-500 mt-1.5">
           Access your custom artwork files, saved mockups, and corporate GST invoices.
         </p>
       </div>
 
-      <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md px-4 sm:px-0">
-        <div className="bg-white py-8 px-6 sm:px-10 rounded-none border border-slate-200 shadow-xl space-y-6">
+      <div className="mt-6 sm:mx-auto sm:w-full sm:max-w-md">
+        <div className="bg-white py-8 px-6 sm:px-10 rounded-none border border-slate-200/90 shadow-xl space-y-6">
           {/* Tab Selector */}
           <div className="flex rounded-none bg-slate-100 p-1">
             <button
@@ -299,7 +289,7 @@ export default function AuthPage() {
               onClick={() => setActiveTab("login")}
               className={`flex-1 py-2 rounded-none text-xs font-bold transition-all cursor-pointer ${
                 activeTab === "login"
-                  ? "bg-white text-[#1E1B4B] shadow-xs"
+                  ? "bg-white text-[#0B0F19] shadow-xs"
                   : "text-slate-500 hover:text-slate-700"
               }`}
             >
@@ -310,7 +300,7 @@ export default function AuthPage() {
               onClick={() => setActiveTab("signup")}
               className={`flex-1 py-2 rounded-none text-xs font-bold transition-all cursor-pointer ${
                 activeTab === "signup"
-                  ? "bg-white text-[#1E1B4B] shadow-xs"
+                  ? "bg-white text-[#0B0F19] shadow-xs"
                   : "text-slate-500 hover:text-slate-700"
               }`}
             >
@@ -405,7 +395,7 @@ export default function AuthPage() {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="w-full py-3 bg-[#F95738] hover:bg-[#E03A1B] text-white text-xs font-bold rounded-none shadow-md transition-all flex items-center justify-center gap-1.5 cursor-pointer disabled:opacity-50"
+              className="w-full py-3 bg-[#FF4D36] hover:bg-[#e0351d] text-white text-xs font-bold rounded-none shadow-md transition-all flex items-center justify-center gap-1.5 cursor-pointer disabled:opacity-50"
             >
               <span>{activeTab === "login" ? "Sign In" : "Create Account"}</span>
               <ArrowRight className="w-4 h-4" />
