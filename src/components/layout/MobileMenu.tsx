@@ -110,18 +110,10 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
               transition={{ delay: 0.08, duration: 0.3 }}
               className="p-4 sm:p-5 border-b border-slate-100 flex items-center justify-between bg-slate-50"
             >
-              <Link href="/" onClick={onClose} className="flex items-center gap-2.5">
-                <div className="w-8 h-8 rounded-none bg-[#0B0F19] flex items-center justify-center text-white shadow-2xs">
-                  <Printer className="w-4 h-4 text-[#FF4D36]" />
-                </div>
-                <div className="flex flex-col">
-                  <span className="font-extrabold text-lg text-[#0B0F19] leading-none">
-                    MyPrintHub<span className="text-[#FF4D36]">.in</span>
-                  </span>
-                  <span className="text-[9px] font-semibold text-slate-400 uppercase mt-0.5">
-                    Custom Merch & Print
-                  </span>
-                </div>
+              <Link href="/" onClick={onClose} className="flex items-center group">
+                <span className="font-extrabold text-xl text-[#0B0F19] leading-none">
+                  MyPrintHub
+                </span>
               </Link>
               <button
                 onClick={onClose}

@@ -73,7 +73,7 @@ export const Footer: React.FC = () => {
                 <Printer className="w-5 h-5 text-white" />
               </div>
               <div className="font-extrabold text-2xl text-white tracking-tight">
-                MyPrintHub<span className="text-[var(--color-accent)]">.in</span>
+                MyPrintHub
               </div>
             </Link>
             <p className="text-sm text-slate-300 leading-relaxed pr-6">

@@ -151,15 +151,14 @@ export const Navbar: React.FC = () => {
   return (
     <>
       <header
-        className={`sticky top-0 z-40 w-full transition-all duration-200 ${
-          isScrolled
+        className={`sticky top-0 z-40 w-full transition-all duration-200 ${isScrolled
             ? "bg-white/98 backdrop-blur-md border-b border-slate-200/95 shadow-sm"
             : "bg-white/95 backdrop-blur-md border-b border-slate-200/80 shadow-2xs"
-        }`}
+          }`}
       >
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16 sm:h-[72px] gap-2 sm:gap-4 lg:gap-6 xl:gap-8">
-            
+
             {/* Zone 1: Brand Anchor (Left) */}
             <div className="flex items-center gap-1.5 sm:gap-3 shrink-0">
               {/* Mobile Hamburger Trigger */}
@@ -172,19 +171,11 @@ export const Navbar: React.FC = () => {
                 <Menu className="w-5 h-5" />
               </button>
 
-              {/* Brand Logo & Studio Subtitle */}
-              <Link href="/" className="flex items-center gap-2 sm:gap-2.5 group py-1">
-                <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-none bg-[#0B0F19] text-[#FF4D36] flex items-center justify-center font-black shadow-xs ring-1 ring-black/5 group-hover:scale-105 transition-transform shrink-0">
-                  <Printer className="w-4 h-4 text-[#FF4D36]" />
-                </div>
-                <div className="flex flex-col">
-                  <span className="font-black text-lg sm:text-xl tracking-tight text-[#0B0F19] leading-none whitespace-nowrap">
-                    MyPrintHub<span className="text-[#FF4D36]">.in</span>
-                  </span>
-                  <span className="hidden sm:block text-[9px] font-bold text-slate-400 tracking-wider uppercase mt-1 whitespace-nowrap">
-                    STUDIO PRINT LAB
-                  </span>
-                </div>
+              {/* Brand Logo (Name Only) */}
+              <Link href="/" className="flex items-center group py-1">
+                <span className="font-black text-xl sm:text-2xl tracking-tight text-[#0B0F19] leading-none whitespace-nowrap group-hover:text-[#FF4D36] transition-colors">
+                  MyPrintHub
+                </span>
               </Link>
             </div>
 
@@ -200,175 +191,166 @@ export const Navbar: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => setIsProductsOpen((prev) => !prev)}
-                  className={`flex items-center gap-1.5 text-[13px] xl:text-sm font-semibold py-2 px-2.5 xl:px-3 rounded-none whitespace-nowrap transition-all cursor-pointer ${
-                    isProductsOpen || isProductsActive
+                  className={`flex items-center gap-1.5 text-[13px] xl:text-sm font-semibold py-2 px-2.5 xl:px-3 rounded-none whitespace-nowrap transition-all cursor-pointer ${isProductsOpen || isProductsActive
                       ? "text-[#FF4D36] bg-[#FF4D36]/8 font-bold"
                       : "text-slate-700 hover:text-[#0B0F19] hover:bg-slate-50"
-                  }`}
+                    }`}
                   aria-expanded={isProductsOpen}
                   aria-haspopup="true"
                 >
                   <span>Products</span>
                   <ChevronDown
-                    className={`w-3.5 h-3.5 transition-transform duration-200 ${
-                      isProductsOpen ? "rotate-180 text-[#FF4D36]" : "text-slate-400"
-                    }`}
+                    className={`w-3.5 h-3.5 transition-transform duration-200 ${isProductsOpen ? "rotate-180 text-[#FF4D36]" : "text-slate-400"
+                      }`}
                   />
                 </button>
 
-                  {/* Dropdown Menu Panel */}
-                  {isProductsOpen && (
-                    <div
-                      className="absolute top-full left-0 mt-2.5 w-[680px] bg-white/98 backdrop-blur-xl border border-slate-200/90 rounded-none shadow-2xl p-5 z-50 animate-in fade-in slide-in-from-top-2 duration-150"
-                      role="menu"
-                    >
-                      {/* Header Strip */}
-                      <div className="flex items-center justify-between pb-3.5 mb-3.5 border-b border-slate-100">
-                        <div>
-                          <div className="text-xs font-black uppercase tracking-wider text-slate-400 flex items-center gap-1.5">
-                            <span>Product Catalog</span>
-                            <span className="text-[10px] font-bold px-1.5 py-0.5 rounded-none bg-emerald-50 text-emerald-700 border border-emerald-200/60">
-                              Zero MOQ
-                            </span>
-                          </div>
-                          <p className="text-xs text-slate-500 font-medium mt-0.5">
-                            Direct factory manufacturing with 24-48h dispatch
-                          </p>
-                        </div>
-                        <Link
-                          href="/products"
-                          onClick={() => setIsProductsOpen(false)}
-                          className="text-xs font-bold text-[#FF4D36] hover:text-[#e0351d] flex items-center gap-1 transition-colors group/link"
-                        >
-                          <span>View All Products</span>
-                          <ArrowRight className="w-3.5 h-3.5 group-hover/link:translate-x-0.5 transition-transform" />
-                        </Link>
-                      </div>
-
-                      {/* 2-Column Grid of Categories */}
-                      <div className="grid grid-cols-2 gap-2.5">
-                        {categories.map((cat) => {
-                          const Icon = getCategoryIcon(cat.slug);
-                          const isCurrent = pathname === `/category/${cat.slug}`;
-
-                          return (
-                            <Link
-                              key={cat.id}
-                              href={`/category/${cat.slug}`}
-                              onClick={() => setIsProductsOpen(false)}
-                              className={`flex items-start gap-3 p-2.5 rounded-none border transition-all group/item ${
-                                isCurrent
-                                  ? "bg-[#FF4D36]/5 border-[#FF4D36]/30 shadow-2xs"
-                                  : "hover:bg-slate-50 border-transparent hover:border-slate-200/80"
-                              }`}
-                            >
-                              <div
-                                className={`w-9 h-9 rounded-none flex items-center justify-center shrink-0 transition-colors ${
-                                  isCurrent
-                                    ? "bg-[#FF4D36] text-white"
-                                    : "bg-slate-100 text-slate-700 group-hover/item:bg-[#FF4D36]/10 group-hover/item:text-[#FF4D36]"
-                                }`}
-                              >
-                                <Icon className="w-4 h-4" />
-                              </div>
-                              <div className="min-w-0 flex-1">
-                                <div className="flex items-center gap-1.5">
-                                  <span
-                                    className={`text-xs font-bold truncate transition-colors ${
-                                      isCurrent
-                                        ? "text-[#FF4D36]"
-                                        : "text-slate-900 group-hover/item:text-[#FF4D36]"
-                                    }`}
-                                  >
-                                    {cat.name}
-                                  </span>
-                                  {cat.badge && (
-                                    <span className="text-[9px] font-bold px-1.5 py-0.2 rounded-none bg-slate-100 text-slate-600 group-hover/item:bg-[#FF4D36]/15 group-hover/item:text-[#FF4D36] shrink-0 transition-colors">
-                                      {cat.badge}
-                                    </span>
-                                  )}
-                                </div>
-                                <p className="text-[11px] text-slate-500 line-clamp-1 mt-0.5">
-                                  {cat.description}
-                                </p>
-                              </div>
-                            </Link>
-                          );
-                        })}
-                      </div>
-
-                      {/* Bottom Promo & Enterprise Strip */}
-                      <div className="mt-4 pt-3.5 border-t border-slate-100 flex items-center justify-between text-xs bg-slate-50/80 -mx-5 -mb-5 p-3.5 rounded-none px-5">
-                        <div className="flex items-center gap-2 text-slate-600">
-                          <ShieldCheck className="w-4 h-4 text-emerald-600 shrink-0" />
-                          <span className="font-semibold text-[11px]">
-                            100% Quality Guarantee • Custom Pantone Matches
+                {/* Dropdown Menu Panel */}
+                {isProductsOpen && (
+                  <div
+                    className="absolute top-full left-0 mt-2.5 w-[680px] bg-white/98 backdrop-blur-xl border border-slate-200/90 rounded-none shadow-2xl p-5 z-50 animate-in fade-in slide-in-from-top-2 duration-150"
+                    role="menu"
+                  >
+                    {/* Header Strip */}
+                    <div className="flex items-center justify-between pb-3.5 mb-3.5 border-b border-slate-100">
+                      <div>
+                        <div className="text-xs font-black uppercase tracking-wider text-slate-400 flex items-center gap-1.5">
+                          <span>Product Catalog</span>
+                          <span className="text-[10px] font-bold px-1.5 py-0.5 rounded-none bg-emerald-50 text-emerald-700 border border-emerald-200/60">
+                            Zero MOQ
                           </span>
                         </div>
-                        <Link
-                          href="/contact"
-                          onClick={() => setIsProductsOpen(false)}
-                          className="text-[11px] font-bold text-slate-900 hover:text-[#FF4D36] transition-colors"
-                        >
-                          Enterprise Inquiries →
-                        </Link>
+                        <p className="text-xs text-slate-500 font-medium mt-0.5">
+                          Direct factory manufacturing with 24-48h dispatch
+                        </p>
                       </div>
+                      <Link
+                        href="/products"
+                        onClick={() => setIsProductsOpen(false)}
+                        className="text-xs font-bold text-[#FF4D36] hover:text-[#e0351d] flex items-center gap-1 transition-colors group/link"
+                      >
+                        <span>View All Products</span>
+                        <ArrowRight className="w-3.5 h-3.5 group-hover/link:translate-x-0.5 transition-transform" />
+                      </Link>
                     </div>
-                  )}
-                </div>
 
-                {/* Best Sellers Link */}
-                <Link
-                  href="/products"
-                  className={`text-[13px] xl:text-sm font-semibold py-2 px-2.5 xl:px-3 rounded-none whitespace-nowrap transition-all cursor-pointer ${
-                    pathname === "/products" && !isProductsOpen
-                      ? "text-[#FF4D36] bg-[#FF4D36]/8 font-bold"
-                      : "text-slate-700 hover:text-[#0B0F19] hover:bg-slate-50"
-                  }`}
-                >
-                  Best Sellers
-                </Link>
+                    {/* 2-Column Grid of Categories */}
+                    <div className="grid grid-cols-2 gap-2.5">
+                      {categories.map((cat) => {
+                        const Icon = getCategoryIcon(cat.slug);
+                        const isCurrent = pathname === `/category/${cat.slug}`;
 
-                {/* Corporate & Bulk Link */}
-                <Link
-                  href="/category/corporate-kits"
-                  className={`text-[13px] xl:text-sm font-semibold py-2 px-2.5 xl:px-3 rounded-none whitespace-nowrap transition-all cursor-pointer ${
-                    pathname === "/category/corporate-kits"
-                      ? "text-[#FF4D36] bg-[#FF4D36]/8 font-bold"
-                      : "text-slate-700 hover:text-[#0B0F19] hover:bg-slate-50"
-                  }`}
-                >
-                  Corporate & Bulk
-                </Link>
+                        return (
+                          <Link
+                            key={cat.id}
+                            href={`/category/${cat.slug}`}
+                            onClick={() => setIsProductsOpen(false)}
+                            className={`flex items-start gap-3 p-2.5 rounded-none border transition-all group/item ${isCurrent
+                                ? "bg-[#FF4D36]/5 border-[#FF4D36]/30 shadow-2xs"
+                                : "hover:bg-slate-50 border-transparent hover:border-slate-200/80"
+                              }`}
+                          >
+                            <div
+                              className={`w-9 h-9 rounded-none flex items-center justify-center shrink-0 transition-colors ${isCurrent
+                                  ? "bg-[#FF4D36] text-white"
+                                  : "bg-slate-100 text-slate-700 group-hover/item:bg-[#FF4D36]/10 group-hover/item:text-[#FF4D36]"
+                                }`}
+                            >
+                              <Icon className="w-4 h-4" />
+                            </div>
+                            <div className="min-w-0 flex-1">
+                              <div className="flex items-center gap-1.5">
+                                <span
+                                  className={`text-xs font-bold truncate transition-colors ${isCurrent
+                                      ? "text-[#FF4D36]"
+                                      : "text-slate-900 group-hover/item:text-[#FF4D36]"
+                                    }`}
+                                >
+                                  {cat.name}
+                                </span>
+                                {cat.badge && (
+                                  <span className="text-[9px] font-bold px-1.5 py-0.2 rounded-none bg-slate-100 text-slate-600 group-hover/item:bg-[#FF4D36]/15 group-hover/item:text-[#FF4D36] shrink-0 transition-colors">
+                                    {cat.badge}
+                                  </span>
+                                )}
+                              </div>
+                              <p className="text-[11px] text-slate-500 line-clamp-1 mt-0.5">
+                                {cat.description}
+                              </p>
+                            </div>
+                          </Link>
+                        );
+                      })}
+                    </div>
 
-                {/* Track Order Link */}
-                <Link
-                  href="/track"
-                  className={`text-[13px] xl:text-sm font-semibold py-2 px-2.5 xl:px-3 rounded-none whitespace-nowrap transition-all cursor-pointer ${
-                    pathname === "/track"
-                      ? "text-[#FF4D36] bg-[#FF4D36]/8 font-bold"
-                      : "text-slate-700 hover:text-[#0B0F19] hover:bg-slate-50"
-                  }`}
-                >
-                  Track Order
-                </Link>
+                    {/* Bottom Promo & Enterprise Strip */}
+                    <div className="mt-4 pt-3.5 border-t border-slate-100 flex items-center justify-between text-xs bg-slate-50/80 -mx-5 -mb-5 p-3.5 rounded-none px-5">
+                      <div className="flex items-center gap-2 text-slate-600">
+                        <ShieldCheck className="w-4 h-4 text-emerald-600 shrink-0" />
+                        <span className="font-semibold text-[11px]">
+                          100% Quality Guarantee • Custom Pantone Matches
+                        </span>
+                      </div>
+                      <Link
+                        href="/contact"
+                        onClick={() => setIsProductsOpen(false)}
+                        className="text-[11px] font-bold text-slate-900 hover:text-[#FF4D36] transition-colors"
+                      >
+                        Enterprise Inquiries →
+                      </Link>
+                    </div>
+                  </div>
+                )}
+              </div>
 
-                {/* Custom Quote Link (Visible on xl screens, keeping smaller laptops uncluttered) */}
-                <Link
-                  href="/contact"
-                  className={`hidden xl:inline-flex text-[13px] xl:text-sm font-semibold py-2 px-2.5 xl:px-3 rounded-none whitespace-nowrap transition-all cursor-pointer ${
-                    pathname === "/contact"
-                      ? "text-[#FF4D36] bg-[#FF4D36]/8 font-bold"
-                      : "text-slate-700 hover:text-[#0B0F19] hover:bg-slate-50"
+              {/* Best Sellers Link */}
+              <Link
+                href="/products"
+                className={`text-[13px] xl:text-sm font-semibold py-2 px-2.5 xl:px-3 rounded-none whitespace-nowrap transition-all cursor-pointer ${pathname === "/products" && !isProductsOpen
+                    ? "text-[#FF4D36] bg-[#FF4D36]/8 font-bold"
+                    : "text-slate-700 hover:text-[#0B0F19] hover:bg-slate-50"
                   }`}
-                >
-                  Custom Quote
-                </Link>
+              >
+                Best Sellers
+              </Link>
+
+              {/* Corporate & Bulk Link */}
+              <Link
+                href="/category/corporate-kits"
+                className={`text-[13px] xl:text-sm font-semibold py-2 px-2.5 xl:px-3 rounded-none whitespace-nowrap transition-all cursor-pointer ${pathname === "/category/corporate-kits"
+                    ? "text-[#FF4D36] bg-[#FF4D36]/8 font-bold"
+                    : "text-slate-700 hover:text-[#0B0F19] hover:bg-slate-50"
+                  }`}
+              >
+                Corporate & Bulk
+              </Link>
+
+              {/* Track Order Link */}
+              <Link
+                href="/track"
+                className={`text-[13px] xl:text-sm font-semibold py-2 px-2.5 xl:px-3 rounded-none whitespace-nowrap transition-all cursor-pointer ${pathname === "/track"
+                    ? "text-[#FF4D36] bg-[#FF4D36]/8 font-bold"
+                    : "text-slate-700 hover:text-[#0B0F19] hover:bg-slate-50"
+                  }`}
+              >
+                Track Order
+              </Link>
+
+              {/* Custom Quote Link (Visible on xl screens, keeping smaller laptops uncluttered) */}
+              <Link
+                href="/contact"
+                className={`hidden xl:inline-flex text-[13px] xl:text-sm font-semibold py-2 px-2.5 xl:px-3 rounded-none whitespace-nowrap transition-all cursor-pointer ${pathname === "/contact"
+                    ? "text-[#FF4D36] bg-[#FF4D36]/8 font-bold"
+                    : "text-slate-700 hover:text-[#0B0F19] hover:bg-slate-50"
+                  }`}
+              >
+                Custom Quote
+              </Link>
             </nav>
 
             {/* Zone 3: Command & Utility Deck (Right) */}
             <div className="flex items-center gap-1.5 sm:gap-2.5 xl:gap-3 shrink-0">
-              
+
               {/* Sleek Command Search Trigger Pill (Medium & Desktop) */}
               <button
                 type="button"
