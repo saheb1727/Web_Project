@@ -109,7 +109,7 @@ function PageTransitionLoaderContent() {
     <>
       {/* Top glowing progress line */}
       <div
-        className="fixed top-0 left-0 right-0 h-[3px] z-[99999] pointer-events-none transition-all duration-300 ease-out"
+        className="fixed top-0 left-0 right-0 h-[3.5px] z-[999999] pointer-events-none transition-all duration-300 ease-out"
         style={{
           width: `${progress}%`,
           opacity: progress === 100 ? 0 : 1,
@@ -121,10 +121,38 @@ function PageTransitionLoaderContent() {
         <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-r from-transparent to-white/70 blur-[1px]" />
       </div>
 
-      {/* Subtle floating spinner indicator at top-right */}
+      {/* Screen Center Loader Modal - Optimized for mobile phone screens & desktop */}
       {isVisible && progress < 100 && (
-        <div className="fixed top-3.5 right-4 z-[99999] pointer-events-none animate-in fade-in duration-200">
-          <div className="w-5 h-5 rounded-full border-2 border-[#FF4D36]/30 border-t-[#FF4D36] animate-spin shadow-sm" />
+        <div className="fixed inset-0 z-[999998] flex items-center justify-center p-4 bg-slate-950/25 backdrop-blur-xs pointer-events-none animate-in fade-in duration-200">
+          <div className="flex flex-col items-center justify-center p-6 sm:p-7 rounded-3xl bg-white shadow-2xl border border-slate-200/90 text-center max-w-[260px] w-full animate-in zoom-in-95 duration-200">
+            <div className="relative mb-3 flex items-center justify-center">
+              {/* Ambient Glow */}
+              <div className="absolute w-14 h-14 rounded-2xl bg-[#FF4D36]/25 blur-md animate-pulse" />
+
+              {/* Spinning Outer Ring */}
+              <div className="w-13 h-13 rounded-2xl border-2 border-slate-100 border-t-[#FF4D36] border-r-[#FF4D36] animate-spin" />
+
+              {/* Central Brand Monogram Box */}
+              <div className="absolute inset-1.5 rounded-xl bg-[#0B0F19] flex items-center justify-center text-white font-black text-sm shadow-xs">
+                <span className="text-[#FF4D36]">MP</span>
+              </div>
+            </div>
+
+            <p className="text-sm font-black text-[#0B0F19] tracking-tight">
+              MyPrintHub
+            </p>
+            <p className="text-[11px] text-slate-500 font-medium mt-0.5">
+              Loading page...
+            </p>
+
+            {/* Progress Bar in center card */}
+            <div className="w-full h-1 bg-slate-100 rounded-full mt-2.5 overflow-hidden">
+              <div
+                className="h-full bg-gradient-to-r from-[#FF4D36] to-[#FFA07A] transition-all duration-300 rounded-full"
+                style={{ width: `${Math.max(progress, 20)}%` }}
+              />
+            </div>
+          </div>
         </div>
       )}
     </>

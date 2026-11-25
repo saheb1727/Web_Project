@@ -1,34 +1,33 @@
 import React from "react";
-import { ProductGridSkeleton, PageHeaderSkeleton } from "@/components/ui/Skeleton";
 
 export default function RootLoading() {
   return (
-    <div className="min-h-screen bg-slate-50/50 py-8 animate-in fade-in duration-200">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
-        {/* Top subtle brand loading badge */}
-        <div className="flex items-center gap-3 p-4 bg-white rounded-2xl border border-slate-200/80 shadow-2xs max-w-md mx-auto">
-          <div className="relative w-10 h-10 rounded-xl bg-[#0B0F19] text-white flex items-center justify-center font-black text-sm shrink-0">
+    <div className="fixed inset-0 z-[99999] flex flex-col items-center justify-center bg-white/95 backdrop-blur-md animate-in fade-in duration-200">
+      <div className="flex flex-col items-center justify-center p-6 sm:p-8 rounded-3xl bg-white shadow-2xl border border-slate-200/90 text-center mx-4 max-w-[280px] w-full animate-in zoom-in-95 duration-200">
+        <div className="relative mb-3.5 flex items-center justify-center">
+          {/* Ambient Glow */}
+          <div className="absolute w-16 h-16 rounded-2xl bg-[#FF4D36]/25 blur-lg animate-pulse" />
+
+          {/* Outer Rotating Dual Ring */}
+          <div className="w-15 h-15 rounded-2xl border-[2.5px] border-slate-100 border-t-[#FF4D36] border-r-[#FF4D36] animate-spin" />
+
+          {/* Central Brand Monogram Box */}
+          <div className="absolute inset-1.5 rounded-xl bg-[#0B0F19] flex items-center justify-center text-white font-black text-base shadow-sm">
             <span className="text-[#FF4D36]">MP</span>
-            <div className="absolute inset-0 rounded-xl border border-t-[#FF4D36] border-transparent animate-spin" />
-          </div>
-          <div>
-            <p className="text-xs font-bold text-[#0B0F19]">Loading MyPrintHub...</p>
-            <p className="text-[10px] text-slate-400">Loading custom apparel & merchandise</p>
           </div>
         </div>
 
-        {/* Page Header Skeleton */}
-        <PageHeaderSkeleton />
+        <p className="text-base font-black text-[#0B0F19] tracking-tight">
+          MyPrintHub
+        </p>
+        <p className="text-xs text-slate-500 font-medium mt-0.5">
+          Loading studio experience...
+        </p>
 
-        {/* Filter bar Skeleton */}
-        <div className="h-14 rounded-2xl bg-white border border-slate-200/80 p-3 flex items-center gap-3">
-          <div className="w-28 h-8 rounded-xl skeleton-shimmer" />
-          <div className="w-28 h-8 rounded-xl skeleton-shimmer" />
-          <div className="w-28 h-8 rounded-xl skeleton-shimmer" />
+        {/* Shimmer loading bar */}
+        <div className="w-full h-1.5 bg-slate-100 rounded-full mt-3.5 overflow-hidden">
+          <div className="h-full w-3/4 bg-gradient-to-r from-[#FF4D36] via-[#FF7A66] to-[#FFA07A] rounded-full animate-shimmer" />
         </div>
-
-        {/* Product Cards Grid Skeleton */}
-        <ProductGridSkeleton count={8} />
       </div>
     </div>
   );
