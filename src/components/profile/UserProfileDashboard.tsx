@@ -63,7 +63,7 @@ export const UserProfileDashboard: React.FC<UserProfileDashboardProps> = ({
   const { showToast } = useToast();
   const [activeTab, setActiveTab] = useState<DashboardTab>("order");
   const [selectedOrderId, setSelectedOrderId] = useState<string>(
-    orders.length > 0 ? orders[0].orderId : "MPH-849201"
+    orders.length > 0 ? orders[0].orderId : ""
   );
   const [isOrderItemOpen, setIsOrderItemOpen] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
@@ -71,18 +71,11 @@ export const UserProfileDashboard: React.FC<UserProfileDashboardProps> = ({
   useBodyScrollLock(isMobileMenuOpen);
   const [notificationsOpen, setNotificationsOpen] = useState(false);
 
-  // Active selected order details (fallback to default mock if orders empty)
+  // Active selected order details (only if orders exist)
   const activeOrder =
     orders.find((o) => o.orderId === selectedOrderId) ||
-    orders[0] || {
-      orderId: "334902445",
-      date: "14 Jan 2025 9:13 AM",
-      total: 78.74,
-      itemsCount: 1,
-      itemsSummary: "Custom Laser-Cut Magnetic Badges",
-      status: "Completed",
-      paymentMethod: "UPI",
-    };
+    orders[0] ||
+    null;
 
   const totalSpent = orders.reduce((sum, ord) => sum + ord.total, 0);
 
@@ -355,8 +348,33 @@ export const UserProfileDashboard: React.FC<UserProfileDashboardProps> = ({
           {/* TAB 1: ORDER DETAILS VIEW (Matches user's exact uploaded screenshot) */}
           {activeTab === "order" && (
             <div className="space-y-6">
-              {/* Breadcrumb & Order Status Header */}
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-white p-4 sm:p-5 rounded-2xl border border-slate-200/80 shadow-xs">
+              {!activeOrder || orders.length === 0 ? (
+                <div className="bg-white rounded-2xl sm:rounded-3xl border border-slate-200/80 p-8 sm:p-14 text-center shadow-xs max-w-xl mx-auto my-8 space-y-4">
+                  <div className="w-16 h-16 rounded-2xl bg-indigo-50 border border-indigo-100 flex items-center justify-center text-indigo-600 mx-auto">
+                    <ShoppingBag className="w-8 h-8" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-black text-slate-900 tracking-tight">
+                      No Orders Placed Yet
+                    </h3>
+                    <p className="text-xs sm:text-sm text-slate-500 mt-1.5 max-w-sm mx-auto leading-relaxed">
+                      You haven&apos;t placed any orders with this account yet. Browse our catalog to customize magnetic badges, t-shirts, hoodies, and corporate gifts!
+                    </p>
+                  </div>
+                  <div className="pt-2">
+                    <Link
+                      href="/products"
+                      className="inline-flex items-center gap-2 px-6 py-3 bg-[#FF4D36] hover:bg-[#e0351d] text-white font-bold text-xs rounded-xl shadow-md transition-all cursor-pointer"
+                    >
+                      <Package className="w-4 h-4" />
+                      <span>Browse Products & Start Customizing</span>
+                    </Link>
+                  </div>
+                </div>
+              ) : (
+                <>
+                  {/* Breadcrumb & Order Status Header */}
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-white p-4 sm:p-5 rounded-2xl border border-slate-200/80 shadow-xs">
                 <div className="flex items-center gap-3 flex-wrap">
                   <Link
                     href="/"
@@ -633,6 +651,8 @@ export const UserProfileDashboard: React.FC<UserProfileDashboardProps> = ({
                   </div>
                 </div>
               </div>
+                </>
+              )}
             </div>
           )}
 
@@ -670,33 +690,42 @@ export const UserProfileDashboard: React.FC<UserProfileDashboardProps> = ({
                     New Order +
                   </Link>
                 </div>
-                <div className="divide-y divide-slate-100">
-                  {orders.map((ord) => (
-                    <div key={ord.orderId} className="py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-                      <div>
-                        <div className="flex items-center gap-2">
-                          <span className="font-mono font-bold text-xs text-slate-900">#{ord.orderId}</span>
-                          <span className="text-slate-300">•</span>
-                          <span className="text-xs text-slate-500">{ord.date}</span>
+                {orders.length === 0 ? (
+                  <div className="py-8 text-center space-y-2">
+                    <p className="text-xs text-slate-500">No previous orders found for this account.</p>
+                    <Link href="/products" className="text-xs font-bold text-[#FF4D36] hover:underline inline-block">
+                      Browse catalog to create your first order →
+                    </Link>
+                  </div>
+                ) : (
+                  <div className="divide-y divide-slate-100">
+                    {orders.map((ord) => (
+                      <div key={ord.orderId} className="py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                        <div>
+                          <div className="flex items-center gap-2">
+                            <span className="font-mono font-bold text-xs text-slate-900">#{ord.orderId}</span>
+                            <span className="text-slate-300">•</span>
+                            <span className="text-xs text-slate-500">{ord.date}</span>
+                          </div>
+                          <p className="text-xs font-bold text-slate-800 mt-0.5">{ord.itemsSummary}</p>
                         </div>
-                        <p className="text-xs font-bold text-slate-800 mt-0.5">{ord.itemsSummary}</p>
+                        <div className="flex items-center gap-4">
+                          <span className="text-sm font-black text-slate-900">₹{ord.total.toLocaleString("en-IN")}</span>
+                          <button
+                            type="button"
+                            onClick={() => {
+                              setSelectedOrderId(ord.orderId);
+                              setActiveTab("order");
+                            }}
+                            className="px-3 py-1.5 rounded-xl text-xs font-bold bg-slate-100 hover:bg-slate-200 text-slate-700 transition-colors"
+                          >
+                            View Details
+                          </button>
+                        </div>
                       </div>
-                      <div className="flex items-center gap-4">
-                        <span className="text-sm font-black text-slate-900">₹{ord.total.toLocaleString("en-IN")}</span>
-                        <button
-                          type="button"
-                          onClick={() => {
-                            setSelectedOrderId(ord.orderId);
-                            setActiveTab("order");
-                          }}
-                          className="px-3 py-1.5 rounded-xl text-xs font-bold bg-slate-100 hover:bg-slate-200 text-slate-700 transition-colors"
-                        >
-                          View Details
-                        </button>
-                      </div>
-                    </div>
-                  ))}
-                </div>
+                    ))}
+                  </div>
+                )}
               </div>
             </div>
           )}

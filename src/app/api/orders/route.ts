@@ -144,16 +144,28 @@ export async function GET(req: NextRequest) {
     const { searchParams } = new URL(req.url);
     const orderId = searchParams.get("orderId");
     const phone = searchParams.get("phone");
+    const email = searchParams.get("email");
 
-    if (!orderId && !phone) {
+    if (!orderId && !phone && !email) {
       return NextResponse.json(
-        { error: "Please provide an orderId or phone number" },
+        { error: "Please provide an orderId, phone number, or email" },
         { status: 400 }
       );
     }
 
     try {
       await connectToDatabase();
+
+      // If email is provided, return all orders for that user
+      if (email) {
+        const cleanEmail = email.trim().toLowerCase();
+        const userOrders = await Order.find({
+          "customer.email": { $regex: new RegExp(`^${cleanEmail}$`, "i") },
+        }).sort({ createdAt: -1 });
+
+        return NextResponse.json({ success: true, orders: userOrders });
+      }
+
       let query: Record<string, unknown> = {};
 
       if (orderId) {
