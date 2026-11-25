@@ -100,6 +100,28 @@ body {
   }
 }
 
+@keyframes skeletonShimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+.skeleton-shimmer {
+  background: linear-gradient(
+    90deg,
+    #F1F5F9 0%,
+    #E2E8F0 25%,
+    #F8FAFC 50%,
+    #E2E8F0 75%,
+    #F1F5F9 100%
+  );
+  background-size: 200% 100%;
+  animation: skeletonShimmer 2s ease-in-out infinite;
+}
+
 .animate-shimmer {
   animation: shimmerWave 1.8s infinite;
   background: linear-gradient(
@@ -108,6 +130,11 @@ body {
     rgba(255, 255, 255, 0.4) 50%,
     rgba(255, 255, 255, 0) 100%
   );
+}
+
+/* Page Transition Route Progress Bar Glow */
+.page-loader-glow {
+  box-shadow: 0 0 12px #FF4D36, 0 0 4px #FF4D36;
 }
 
 /* Prevent unwanted layout shifts */

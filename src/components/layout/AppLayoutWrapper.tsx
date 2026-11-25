@@ -6,6 +6,7 @@ import { useAuth } from "@/context/AuthContext";
 import { AnnouncementBar } from "@/components/layout/AnnouncementBar";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
+import { PageTransitionLoader } from "@/components/ui/PageTransitionLoader";
 
 export function AppLayoutWrapper({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
@@ -25,6 +26,7 @@ export function AppLayoutWrapper({ children }: { children: React.ReactNode }) {
   if (isDedicatedPortal) {
     return (
       <main className="flex-1 w-full max-w-full min-h-screen bg-[#F8FAFC]">
+        <PageTransitionLoader />
         {children}
       </main>
     );
@@ -33,6 +35,7 @@ export function AppLayoutWrapper({ children }: { children: React.ReactNode }) {
   // Otherwise, render normal e-commerce storefront layout with header and footer
   return (
     <>
+      <PageTransitionLoader />
       <AnnouncementBar />
       <Navbar />
       <main className="flex-1 w-full max-w-full overflow-x-clip">{children}</main>

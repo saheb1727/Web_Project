@@ -228,9 +228,8 @@ export const UserProfileDashboard: React.FC<UserProfileDashboardProps> = ({
 
       {/* Left Sidebar Navigation (Desktop Fixed, Mobile Slide-in Drawer) */}
       <aside
-        className={`fixed lg:sticky top-0 left-0 h-screen w-72 sm:w-64 bg-white border-r border-slate-200 flex flex-col justify-between z-50 transition-transform duration-300 ${
-          isMobileMenuOpen ? "translate-x-0 shadow-2xl" : "-translate-x-full lg:translate-x-0"
-        }`}
+        className={`fixed lg:sticky top-0 left-0 h-screen w-72 sm:w-64 bg-white border-r border-slate-200 flex flex-col justify-between z-50 transition-transform duration-300 ${isMobileMenuOpen ? "translate-x-0 shadow-2xl" : "-translate-x-full lg:translate-x-0"
+          }`}
       >
         <div className="p-5 flex flex-col flex-1 overflow-y-auto">
           {/* Brand Header & Close on Mobile */}
@@ -286,11 +285,10 @@ export const UserProfileDashboard: React.FC<UserProfileDashboardProps> = ({
                     setActiveTab(item.id);
                     setIsMobileMenuOpen(false);
                   }}
-                  className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
-                    isActive
-                      ? "bg-[#0B0F19] text-white shadow-xs"
-                      : "text-slate-600 hover:text-slate-900 hover:bg-slate-100"
-                  }`}
+                  className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${isActive
+                    ? "bg-[#0B0F19] text-white shadow-xs"
+                    : "text-slate-600 hover:text-slate-900 hover:bg-slate-100"
+                    }`}
                 >
                   <div className="flex items-center gap-3">
                     <Icon className={`w-4 h-4 ${isActive ? "text-[#FF4D36]" : "text-slate-400"}`} />
@@ -298,11 +296,10 @@ export const UserProfileDashboard: React.FC<UserProfileDashboardProps> = ({
                   </div>
                   {item.badge && (
                     <span
-                      className={`text-[10px] font-extrabold px-1.5 py-0.5 rounded-full ${
-                        isActive
-                          ? "bg-[#FF4D36] text-white"
-                          : "bg-slate-100 text-slate-600"
-                      }`}
+                      className={`text-[10px] font-extrabold px-1.5 py-0.5 rounded-full ${isActive
+                        ? "bg-[#FF4D36] text-white"
+                        : "bg-slate-100 text-slate-600"
+                        }`}
                     >
                       {item.badge}
                     </span>
@@ -478,11 +475,10 @@ export const UserProfileDashboard: React.FC<UserProfileDashboardProps> = ({
                 <button
                   key={item.id}
                   onClick={() => setActiveTab(item.id)}
-                  className={`px-3 py-1.5 rounded-xl text-xs font-bold whitespace-nowrap flex items-center gap-1.5 transition-all shrink-0 cursor-pointer ${
-                    isActive
-                      ? "bg-[#0B0F19] text-white shadow-xs"
-                      : "bg-white text-slate-600 border border-slate-200"
-                  }`}
+                  className={`px-3 py-1.5 rounded-xl text-xs font-bold whitespace-nowrap flex items-center gap-1.5 transition-all shrink-0 cursor-pointer ${isActive
+                    ? "bg-[#0B0F19] text-white shadow-xs"
+                    : "bg-white text-slate-600 border border-slate-200"
+                    }`}
                 >
                   <Icon className={`w-3.5 h-3.5 ${isActive ? "text-[#FF4D36]" : "text-slate-400"}`} />
                   <span>{item.label}</span>
@@ -538,8 +534,8 @@ export const UserProfileDashboard: React.FC<UserProfileDashboardProps> = ({
                           {activeOrder.status.includes("Delivered") || activeOrder.status.includes("Completed")
                             ? "Completed"
                             : activeOrder.status.includes("Dispatched")
-                            ? "Dispatched"
-                            : "In Production"}
+                              ? "Dispatched"
+                              : "In Production"}
                         </span>
                       </span>
                       <span className="text-[11px] sm:text-xs text-slate-400 font-medium">
@@ -574,11 +570,10 @@ export const UserProfileDashboard: React.FC<UserProfileDashboardProps> = ({
                           key={ord.orderId}
                           type="button"
                           onClick={() => setSelectedOrderId(ord.orderId)}
-                          className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer shrink-0 ${
-                            selectedOrderId === ord.orderId
-                              ? "bg-[#0B0F19] text-white shadow-xs"
-                              : "bg-white text-slate-600 hover:bg-slate-100 border border-slate-200"
-                          }`}
+                          className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer shrink-0 ${selectedOrderId === ord.orderId
+                            ? "bg-[#0B0F19] text-white shadow-xs"
+                            : "bg-white text-slate-600 hover:bg-slate-100 border border-slate-200"
+                            }`}
                         >
                           #{ord.orderId} ({ord.itemsSummary.split(" ")[0]})
                         </button>
