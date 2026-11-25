@@ -20,7 +20,6 @@ import {
   CreditCard,
   Truck,
   CheckCircle2,
-  Clock,
   Sparkles,
   ArrowLeft,
   LogOut,
@@ -87,43 +86,84 @@ export const UserProfileDashboard: React.FC<UserProfileDashboardProps> = ({
   const navItems: { id: DashboardTab; label: string; icon: React.ElementType; badge?: string }[] = [
     { id: "dashboard", label: "Dashboard", icon: LayoutDashboard },
     { id: "order", label: "Orders", icon: ShoppingBag, badge: `${orders.length}` },
-    { id: "products", label: "Products Catalog", icon: Package },
+    { id: "products", label: "Catalog", icon: Package },
     { id: "analytics", label: "Analytics", icon: BarChart3 },
-    { id: "customers", label: "Profile & Addresses", icon: Users },
-    { id: "finances", label: "Finances & UPI", icon: Wallet },
-    { id: "invoices", label: "Tax Invoices", icon: FileText },
+    { id: "customers", label: "Profile", icon: Users },
+    { id: "finances", label: "Finances", icon: Wallet },
+    { id: "invoices", label: "Invoices", icon: FileText },
     { id: "discounts", label: "Vouchers", icon: Percent, badge: "2 Active" },
   ];
 
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900 flex flex-col lg:flex-row antialiased">
-      {/* Mobile Top App Bar */}
-      <div className="lg:hidden bg-white border-b border-slate-200 px-4 py-3 flex items-center justify-between sticky top-0 z-40 shadow-xs">
-        <div className="flex items-center gap-2.5">
-          <div className="w-8 h-8 rounded-xl bg-[#0B0F19] text-[#FF4D36] flex items-center justify-center font-black text-xs shadow-xs">
-            <Printer className="w-4 h-4 text-[#FF4D36]" />
-          </div>
-          <span className="font-extrabold text-sm tracking-tight text-[#0B0F19]">
-            MyPrintHub
-          </span>
+      {/* 1. UNIFIED MOBILE TOP APP BAR (Single clean header on mobile) */}
+      <div className="lg:hidden bg-white border-b border-slate-200 px-3 sm:px-4 py-2.5 flex items-center justify-between sticky top-0 z-40 shadow-xs">
+        <div className="flex items-center gap-2 min-w-0">
+          {/* Hamburger / Menu button */}
+          <button
+            onClick={() => setIsMobileMenuOpen(true)}
+            className="p-2 -ml-1 text-slate-700 hover:bg-slate-100 rounded-xl transition-colors cursor-pointer"
+            aria-label="Open Navigation"
+          >
+            <Menu className="w-5 h-5" />
+          </button>
+
+          {/* Brand Logo */}
+          <Link href="/" className="flex items-center gap-2">
+            <div className="w-7 h-7 rounded-lg bg-[#0B0F19] text-[#FF4D36] flex items-center justify-center font-black text-xs shadow-xs shrink-0">
+              <Printer className="w-4 h-4 text-[#FF4D36]" />
+            </div>
+            <span className="font-extrabold text-sm tracking-tight text-[#0B0F19] truncate">
+              MyPrintHub
+            </span>
+          </Link>
         </div>
-        <button
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          className="p-2 rounded-xl text-slate-600 hover:bg-slate-100 transition-colors cursor-pointer"
-          aria-label="Toggle Navigation Menu"
-        >
-          {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-        </button>
+
+        {/* Mobile Right Controls: Back to Store & Avatar */}
+        <div className="flex items-center gap-2 shrink-0">
+          <Link
+            href="/"
+            className="inline-flex items-center gap-1 px-2.5 py-1.5 text-xs font-bold text-slate-700 hover:text-[#0B0F19] bg-slate-100 hover:bg-slate-200 border border-slate-200 rounded-xl transition-all shadow-2xs"
+            title="Return to Storefront"
+          >
+            <ArrowLeft className="w-3.5 h-3.5" />
+            <span className="text-[11px]">Store</span>
+          </Link>
+
+          {/* Notification Button */}
+          <button
+            type="button"
+            onClick={() => setNotificationsOpen(!notificationsOpen)}
+            className="p-1.5 text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded-xl transition-colors relative cursor-pointer"
+            title="Notifications"
+          >
+            <Bell className="w-4 h-4" />
+            <span className="absolute top-1 right-1 w-2 h-2 rounded-full bg-[#FF4D36]" />
+          </button>
+
+          {/* User Avatar */}
+          <div className="w-7 h-7 rounded-full bg-[#0B0F19] text-white flex items-center justify-center font-bold text-xs shadow-2xs">
+            {user.name ? user.name[0].toUpperCase() : "U"}
+          </div>
+        </div>
       </div>
 
-      {/* Left Sidebar Navigation */}
+      {/* Mobile Backdrop for Drawer */}
+      {isMobileMenuOpen && (
+        <div
+          className="fixed inset-0 bg-black/50 backdrop-blur-xs z-50 lg:hidden animate-in fade-in duration-200"
+          onClick={() => setIsMobileMenuOpen(false)}
+        />
+      )}
+
+      {/* Left Sidebar Navigation (Desktop Fixed, Mobile Slide-in Drawer) */}
       <aside
-        className={`fixed lg:sticky top-0 left-0 h-screen w-64 bg-white border-r border-slate-200 flex flex-col justify-between z-50 transition-transform duration-300 ${
-          isMobileMenuOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"
+        className={`fixed lg:sticky top-0 left-0 h-screen w-72 sm:w-64 bg-white border-r border-slate-200 flex flex-col justify-between z-50 transition-transform duration-300 ${
+          isMobileMenuOpen ? "translate-x-0 shadow-2xl" : "-translate-x-full lg:translate-x-0"
         }`}
       >
         <div className="p-5 flex flex-col flex-1 overflow-y-auto">
-          {/* Brand Header */}
+          {/* Brand Header & Close on Mobile */}
           <div className="flex items-center justify-between pb-5 border-b border-slate-100">
             <Link href="/" className="flex items-center gap-2.5 group" title="Return to Main Store">
               <div className="w-9 h-9 rounded-xl bg-[#0B0F19] text-white flex items-center justify-center font-black text-sm shadow-xs group-hover:bg-[#FF4D36] transition-colors">
@@ -138,13 +178,14 @@ export const UserProfileDashboard: React.FC<UserProfileDashboardProps> = ({
                 </span>
               </div>
             </Link>
-            <Link
-              href="/"
-              className="text-slate-400 hover:text-[#FF4D36] p-1.5 rounded-lg hover:bg-slate-100 transition-colors flex items-center"
-              title="Return to Storefront"
+
+            <button
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="lg:hidden p-1.5 rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-colors"
+              aria-label="Close Navigation"
             >
-              <ArrowLeft className="w-4 h-4" />
-            </Link>
+              <X className="w-5 h-5" />
+            </button>
           </div>
 
           {/* Search Input */}
@@ -208,6 +249,7 @@ export const UserProfileDashboard: React.FC<UserProfileDashboardProps> = ({
             </span>
             <Link
               href="/products"
+              onClick={() => setIsMobileMenuOpen(false)}
               className="flex items-center gap-2 px-3 py-2 text-xs font-semibold text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-xl transition-colors"
             >
               <Package className="w-3.5 h-3.5 text-slate-400" />
@@ -215,6 +257,7 @@ export const UserProfileDashboard: React.FC<UserProfileDashboardProps> = ({
             </Link>
             <Link
               href="/track"
+              onClick={() => setIsMobileMenuOpen(false)}
               className="flex items-center gap-2 px-3 py-2 text-xs font-semibold text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-xl transition-colors"
             >
               <Truck className="w-3.5 h-3.5 text-slate-400" />
@@ -249,9 +292,9 @@ export const UserProfileDashboard: React.FC<UserProfileDashboardProps> = ({
 
       {/* Main Content Area */}
       <main className="flex-1 min-w-0 flex flex-col overflow-y-auto">
-        {/* Top Header Bar */}
-        <header className="bg-white border-b border-slate-200 px-4 sm:px-8 py-4 sm:py-5 flex items-center justify-between sticky top-0 z-30 shadow-xs gap-4">
-          <div className="flex items-center gap-3 sm:gap-4">
+        {/* Desktop Top Header Bar (Hidden on Mobile) */}
+        <header className="hidden lg:flex bg-white border-b border-slate-200 px-8 py-5 items-center justify-between sticky top-0 z-30 shadow-xs gap-4">
+          <div className="flex items-center gap-4">
             <Link
               href="/"
               className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold text-slate-700 hover:text-[#0B0F19] bg-slate-100 hover:bg-slate-200 border border-slate-200 rounded-xl transition-all shadow-2xs"
@@ -261,10 +304,10 @@ export const UserProfileDashboard: React.FC<UserProfileDashboardProps> = ({
               <span>Back to Store</span>
             </Link>
             <div>
-              <h1 className="text-lg sm:text-2xl font-black text-[#0B0F19] tracking-tight leading-tight">
+              <h1 className="text-2xl font-black text-[#0B0F19] tracking-tight leading-tight">
                 Hi, {user.name ? user.name.split(" ")[0] : "Customer"}
               </h1>
-              <p className="text-[11px] sm:text-xs text-slate-500 font-medium mt-0.5 flex items-center gap-1.5">
+              <p className="text-xs text-slate-500 font-medium mt-0.5 flex items-center gap-1.5">
                 <span>Welcome back to MyPrintHub</span>
                 <span className="text-sm">👋</span>
               </p>
@@ -272,7 +315,7 @@ export const UserProfileDashboard: React.FC<UserProfileDashboardProps> = ({
           </div>
 
           {/* Right Action Icons */}
-          <div className="flex items-center gap-2 sm:gap-3">
+          <div className="flex items-center gap-3">
             <button
               type="button"
               onClick={() => showToast("Search opened. Enter order ID or product name.", "info")}
@@ -342,17 +385,52 @@ export const UserProfileDashboard: React.FC<UserProfileDashboardProps> = ({
         </header>
 
         {/* Dynamic Workspace Container */}
-        <div className="p-4 sm:p-8 space-y-6 max-w-7xl">
+        <div className="p-3 sm:p-6 lg:p-8 space-y-4 sm:space-y-6 max-w-7xl">
+          {/* Mobile Welcome Greeting Card (Clean full-width greeting on mobile) */}
+          <div className="lg:hidden bg-white p-4 rounded-2xl border border-slate-200 shadow-xs flex items-center justify-between gap-3">
+            <div>
+              <h1 className="text-lg font-black text-[#0B0F19] tracking-tight">
+                Hi, {user.name ? user.name.split(" ")[0] : "Customer"} 👋
+              </h1>
+              <p className="text-[11px] text-slate-500 mt-0.5">Welcome to your studio portal</p>
+            </div>
+            <span className="text-[10px] font-bold px-2.5 py-1 bg-emerald-50 text-emerald-700 border border-emerald-200 rounded-full shrink-0">
+              Verified
+            </span>
+          </div>
+
+          {/* Mobile Horizontal Quick Tabs (Swipeable navigation pills on mobile) */}
+          <div className="lg:hidden flex items-center gap-1.5 overflow-x-auto pb-1 scrollbar-none -mx-3 px-3 sm:-mx-6 sm:px-6">
+            {navItems.map((item) => {
+              const Icon = item.icon;
+              const isActive = activeTab === item.id;
+              return (
+                <button
+                  key={item.id}
+                  onClick={() => setActiveTab(item.id)}
+                  className={`px-3 py-1.5 rounded-xl text-xs font-bold whitespace-nowrap flex items-center gap-1.5 transition-all shrink-0 cursor-pointer ${
+                    isActive
+                      ? "bg-[#0B0F19] text-white shadow-xs"
+                      : "bg-white text-slate-600 border border-slate-200"
+                  }`}
+                >
+                  <Icon className={`w-3.5 h-3.5 ${isActive ? "text-[#FF4D36]" : "text-slate-400"}`} />
+                  <span>{item.label}</span>
+                </button>
+              );
+            })}
+          </div>
+
           {/* TAB 1: ORDER DETAILS VIEW */}
           {activeTab === "order" && (
-            <div className="space-y-6">
+            <div className="space-y-4 sm:space-y-6">
               {!activeOrder || orders.length === 0 ? (
-                <div className="bg-white rounded-2xl sm:rounded-3xl border border-slate-200 p-8 sm:p-14 text-center shadow-xs max-w-xl mx-auto my-8 space-y-4">
-                  <div className="w-16 h-16 rounded-2xl bg-orange-50 border border-orange-100 flex items-center justify-center text-[#FF4D36] mx-auto">
-                    <ShoppingBag className="w-8 h-8" />
+                <div className="bg-white rounded-2xl sm:rounded-3xl border border-slate-200 p-6 sm:p-14 text-center shadow-xs max-w-xl mx-auto my-4 sm:my-8 space-y-4">
+                  <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-orange-50 border border-orange-100 flex items-center justify-center text-[#FF4D36] mx-auto">
+                    <ShoppingBag className="w-7 h-7 sm:w-8 sm:h-8" />
                   </div>
                   <div>
-                    <h3 className="text-xl font-black text-[#0B0F19] tracking-tight">
+                    <h3 className="text-lg sm:text-xl font-black text-[#0B0F19] tracking-tight">
                       No Orders Placed Yet
                     </h3>
                     <p className="text-xs sm:text-sm text-slate-500 mt-1.5 max-w-sm mx-auto leading-relaxed">
@@ -362,7 +440,7 @@ export const UserProfileDashboard: React.FC<UserProfileDashboardProps> = ({
                   <div className="pt-2">
                     <Link
                       href="/products"
-                      className="inline-flex items-center gap-2 px-6 py-3 bg-[#FF4D36] hover:bg-[#e0351d] text-white font-bold text-xs rounded-xl shadow-md transition-all cursor-pointer"
+                      className="inline-flex items-center gap-2 px-5 py-2.5 sm:px-6 sm:py-3 bg-[#FF4D36] hover:bg-[#e0351d] text-white font-bold text-xs rounded-xl shadow-md transition-all cursor-pointer"
                     >
                       <Package className="w-4 h-4" />
                       <span>Browse Products & Start Customizing</span>
@@ -373,7 +451,7 @@ export const UserProfileDashboard: React.FC<UserProfileDashboardProps> = ({
                 <>
                   {/* Breadcrumb & Order Status Header */}
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-white p-4 sm:p-5 rounded-2xl border border-slate-200 shadow-xs">
-                    <div className="flex items-center gap-3 flex-wrap">
+                    <div className="flex items-center gap-2 sm:gap-3 flex-wrap">
                       <Link
                         href="/"
                         className="p-1.5 text-slate-400 hover:text-slate-800 hover:bg-slate-100 rounded-lg transition-colors"
@@ -384,7 +462,7 @@ export const UserProfileDashboard: React.FC<UserProfileDashboardProps> = ({
                       <h2 className="text-base sm:text-lg font-black text-[#0B0F19] tracking-tight">
                         Orders ID: {activeOrder.orderId}
                       </h2>
-                      <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-emerald-50 text-emerald-700 border border-emerald-200/60">
+                      <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full text-[11px] sm:text-xs font-bold bg-emerald-50 text-emerald-700 border border-emerald-200/60">
                         <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
                         <span>
                           {activeOrder.status.includes("Delivered") || activeOrder.status.includes("Completed")
@@ -394,15 +472,15 @@ export const UserProfileDashboard: React.FC<UserProfileDashboardProps> = ({
                             : "In Production"}
                         </span>
                       </span>
-                      <span className="text-xs text-slate-400 font-medium">
+                      <span className="text-[11px] sm:text-xs text-slate-400 font-medium">
                         {activeOrder.date}
                       </span>
                     </div>
 
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-2 pt-2 sm:pt-0 border-t sm:border-t-0 border-slate-100">
                       <Link
                         href={`/track?orderId=${activeOrder.orderId}`}
-                        className="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-bold rounded-xl transition-colors flex items-center gap-1.5"
+                        className="flex-1 sm:flex-none justify-center px-3.5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-bold rounded-xl transition-colors flex items-center gap-1.5"
                       >
                         <Truck className="w-3.5 h-3.5 text-slate-600" />
                         <span>Track Shipment</span>
@@ -410,7 +488,7 @@ export const UserProfileDashboard: React.FC<UserProfileDashboardProps> = ({
                       <button
                         type="button"
                         onClick={() => showToast(`Invoice downloaded for Order #${activeOrder.orderId}`, "success")}
-                        className="px-4 py-2 bg-[#0B0F19] hover:bg-[#1E1B4B] text-white text-xs font-bold rounded-xl transition-all shadow-xs cursor-pointer"
+                        className="flex-1 sm:flex-none justify-center px-3.5 py-2 bg-[#0B0F19] hover:bg-[#1E1B4B] text-white text-xs font-bold rounded-xl transition-all shadow-xs cursor-pointer"
                       >
                         Download Invoice
                       </button>
@@ -419,8 +497,8 @@ export const UserProfileDashboard: React.FC<UserProfileDashboardProps> = ({
 
                   {/* Order Switcher Pills (If user has multiple orders) */}
                   {orders.length > 1 && (
-                    <div className="flex items-center gap-2 overflow-x-auto pb-1">
-                      <span className="text-xs font-bold text-slate-400 shrink-0 pr-1">Switch Order:</span>
+                    <div className="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-none -mx-3 px-3 sm:-mx-0 sm:px-0">
+                      <span className="text-xs font-bold text-slate-400 shrink-0 pr-1">Switch:</span>
                       {orders.map((ord) => (
                         <button
                           key={ord.orderId}
@@ -439,18 +517,18 @@ export const UserProfileDashboard: React.FC<UserProfileDashboardProps> = ({
                   )}
 
                   {/* Two Column Layout: Left (Order Item & Financials) + Right (Detail Information) */}
-                  <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+                  <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-6 items-start">
                     {/* Left Column (7 cols): Order Item Card & Visual Stepper */}
-                    <div className="lg:col-span-7 space-y-6">
+                    <div className="lg:col-span-7 space-y-4 sm:space-y-6">
                       {/* Order Item Card */}
                       <div className="bg-white rounded-2xl sm:rounded-3xl border border-slate-200 shadow-xs overflow-hidden">
                         {/* Collapsible Header */}
                         <button
                           type="button"
                           onClick={() => setIsOrderItemOpen(!isOrderItemOpen)}
-                          className="w-full p-5 sm:p-6 flex items-center justify-between border-b border-slate-100 text-left hover:bg-slate-50 transition-colors cursor-pointer"
+                          className="w-full p-4 sm:p-6 flex items-center justify-between border-b border-slate-100 text-left hover:bg-slate-50 transition-colors cursor-pointer"
                         >
-                          <h3 className="text-base font-black text-[#0B0F19] tracking-tight">
+                          <h3 className="text-sm sm:text-base font-black text-[#0B0F19] tracking-tight">
                             Order Item
                           </h3>
                           {isOrderItemOpen ? (
@@ -461,12 +539,12 @@ export const UserProfileDashboard: React.FC<UserProfileDashboardProps> = ({
                         </button>
 
                         {isOrderItemOpen && (
-                          <div className="p-5 sm:p-6 space-y-6">
+                          <div className="p-4 sm:p-6 space-y-5 sm:space-y-6">
                             {/* Product Row */}
-                            <div className="flex items-center justify-between gap-4">
-                              <div className="flex items-center gap-3.5 min-w-0">
+                            <div className="flex items-center justify-between gap-3 sm:gap-4">
+                              <div className="flex items-center gap-3 min-w-0">
                                 {/* Product Thumbnail */}
-                                <div className="relative w-14 h-14 rounded-2xl overflow-hidden bg-slate-100 border border-slate-200 shrink-0 shadow-2xs">
+                                <div className="relative w-12 h-12 sm:w-14 sm:h-14 rounded-xl sm:rounded-2xl overflow-hidden bg-slate-100 border border-slate-200 shrink-0 shadow-2xs">
                                   <Image
                                     src="/images/products/laser-cut-badge.jpg"
                                     alt="Ordered Product"
@@ -481,20 +559,20 @@ export const UserProfileDashboard: React.FC<UserProfileDashboardProps> = ({
                                   </div>
                                 </div>
                                 <div className="min-w-0">
-                                  <h4 className="text-sm font-bold text-[#0B0F19] truncate">
+                                  <h4 className="text-xs sm:text-sm font-bold text-[#0B0F19] truncate">
                                     {activeOrder.itemsSummary || "Custom Laser-Cut Magnetic Badges"}
                                   </h4>
-                                  <p className="text-[11px] font-mono font-medium text-slate-400 mt-0.5 truncate">
+                                  <p className="text-[10px] sm:text-[11px] font-mono font-medium text-slate-400 mt-0.5 truncate">
                                     SKU: 16H9URO • Premium Finish
                                   </p>
                                 </div>
                               </div>
 
-                              <div className="flex items-center gap-4 shrink-0 text-right">
+                              <div className="flex items-center gap-3 sm:gap-4 shrink-0 text-right">
                                 <span className="text-xs font-bold text-slate-500">
                                   {activeOrder.itemsCount || 1}x
                                 </span>
-                                <span className="text-sm font-black text-[#0B0F19]">
+                                <span className="text-xs sm:text-sm font-black text-[#0B0F19]">
                                   ₹{activeOrder.total ? activeOrder.total.toLocaleString("en-IN") : "999"}
                                 </span>
                               </div>
@@ -530,7 +608,7 @@ export const UserProfileDashboard: React.FC<UserProfileDashboardProps> = ({
                       </div>
 
                       {/* Timeline Stepper */}
-                      <div className="bg-white rounded-2xl sm:rounded-3xl border border-slate-200 p-5 sm:p-6 shadow-xs space-y-4">
+                      <div className="bg-white rounded-2xl sm:rounded-3xl border border-slate-200 p-4 sm:p-6 shadow-xs space-y-4">
                         <div className="flex items-center justify-between border-b border-slate-100 pb-3">
                           <h4 className="text-xs font-black uppercase tracking-wider text-slate-500">
                             Production & Transit Status
@@ -541,7 +619,7 @@ export const UserProfileDashboard: React.FC<UserProfileDashboardProps> = ({
                           </span>
                         </div>
 
-                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-1">
+                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 sm:gap-3 pt-1">
                           <div className="p-3 rounded-xl bg-emerald-50 border border-emerald-100 space-y-1">
                             <div className="flex items-center gap-1.5 text-emerald-700 font-bold text-xs">
                               <CheckCircle2 className="w-4 h-4" />
@@ -570,14 +648,14 @@ export const UserProfileDashboard: React.FC<UserProfileDashboardProps> = ({
                     </div>
 
                     {/* Right Column (5 cols): Customer & Delivery Information */}
-                    <div className="lg:col-span-5 space-y-6">
-                      <div className="bg-white rounded-2xl sm:rounded-3xl border border-slate-200 p-6 shadow-xs space-y-5">
-                        <h3 className="text-sm font-black text-[#0B0F19] uppercase tracking-wider">
+                    <div className="lg:col-span-5 space-y-4 sm:space-y-6">
+                      <div className="bg-white rounded-2xl sm:rounded-3xl border border-slate-200 p-4 sm:p-6 shadow-xs space-y-4 sm:space-y-5">
+                        <h3 className="text-xs sm:text-sm font-black text-[#0B0F19] uppercase tracking-wider">
                           Detail Information
                         </h3>
 
                         {/* Customer / Corporate Card */}
-                        <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-2">
+                        <div className="p-3.5 sm:p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-2">
                           <div className="text-[10px] font-bold uppercase tracking-wider text-slate-400">
                             Client Account
                           </div>
@@ -596,7 +674,7 @@ export const UserProfileDashboard: React.FC<UserProfileDashboardProps> = ({
                         </div>
 
                         {/* Delivery Address */}
-                        <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-2">
+                        <div className="p-3.5 sm:p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-2">
                           <div className="text-[10px] font-bold uppercase tracking-wider text-slate-400">
                             Shipping Destination
                           </div>
@@ -617,7 +695,7 @@ export const UserProfileDashboard: React.FC<UserProfileDashboardProps> = ({
                         </div>
 
                         {/* Payment Method */}
-                        <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-2">
+                        <div className="p-3.5 sm:p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-2">
                           <div className="text-[10px] font-bold uppercase tracking-wider text-slate-400">
                             Payment Details
                           </div>
@@ -652,34 +730,34 @@ export const UserProfileDashboard: React.FC<UserProfileDashboardProps> = ({
 
           {/* TAB 2: DASHBOARD OVERVIEW */}
           {activeTab === "dashboard" && (
-            <div className="space-y-6">
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                <div className="bg-white p-5 rounded-2xl border border-slate-200 shadow-xs space-y-1">
-                  <span className="text-xs font-bold text-slate-400">Total Orders</span>
-                  <p className="text-2xl font-black text-[#0B0F19]">{orders.length}</p>
-                  <p className="text-[11px] text-emerald-600 font-semibold">100% On-time dispatch</p>
+            <div className="space-y-4 sm:space-y-6">
+              <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+                <div className="bg-white p-4 sm:p-5 rounded-2xl border border-slate-200 shadow-xs space-y-1">
+                  <span className="text-[11px] sm:text-xs font-bold text-slate-400">Total Orders</span>
+                  <p className="text-xl sm:text-2xl font-black text-[#0B0F19]">{orders.length}</p>
+                  <p className="text-[10px] sm:text-[11px] text-emerald-600 font-semibold truncate">100% On-time dispatch</p>
                 </div>
-                <div className="bg-white p-5 rounded-2xl border border-slate-200 shadow-xs space-y-1">
-                  <span className="text-xs font-bold text-slate-400">Total Spent</span>
-                  <p className="text-2xl font-black text-[#0B0F19]">₹{totalSpent.toLocaleString("en-IN")}</p>
-                  <p className="text-[11px] text-emerald-600 font-semibold">Corporate GST Billed</p>
+                <div className="bg-white p-4 sm:p-5 rounded-2xl border border-slate-200 shadow-xs space-y-1">
+                  <span className="text-[11px] sm:text-xs font-bold text-slate-400">Total Spent</span>
+                  <p className="text-xl sm:text-2xl font-black text-[#0B0F19]">₹{totalSpent.toLocaleString("en-IN")}</p>
+                  <p className="text-[10px] sm:text-[11px] text-emerald-600 font-semibold truncate">GST Invoiced</p>
                 </div>
-                <div className="bg-white p-5 rounded-2xl border border-slate-200 shadow-xs space-y-1">
-                  <span className="text-xs font-bold text-slate-400">Member Status</span>
-                  <p className="text-2xl font-black text-[#FF4D36]">Verified Member</p>
-                  <p className="text-[11px] text-slate-400 font-medium">Since {user.joinedDate || "Oct 2026"}</p>
+                <div className="bg-white p-4 sm:p-5 rounded-2xl border border-slate-200 shadow-xs space-y-1">
+                  <span className="text-[11px] sm:text-xs font-bold text-slate-400">Member Status</span>
+                  <p className="text-xl sm:text-2xl font-black text-[#FF4D36]">Verified</p>
+                  <p className="text-[10px] sm:text-[11px] text-slate-400 font-medium truncate">Since {user.joinedDate || "Oct 2026"}</p>
                 </div>
-                <div className="bg-white p-5 rounded-2xl border border-slate-200 shadow-xs space-y-1">
-                  <span className="text-xs font-bold text-slate-400">Factory Hub</span>
-                  <p className="text-2xl font-black text-[#0B0F19]">Ranchi Studio</p>
-                  <p className="text-[11px] text-slate-500 font-medium">Pan-India Express Dispatch</p>
+                <div className="bg-white p-4 sm:p-5 rounded-2xl border border-slate-200 shadow-xs space-y-1">
+                  <span className="text-[11px] sm:text-xs font-bold text-slate-400">Factory Hub</span>
+                  <p className="text-xl sm:text-2xl font-black text-[#0B0F19]">Ranchi</p>
+                  <p className="text-[10px] sm:text-[11px] text-slate-500 font-medium truncate">Express Dispatch</p>
                 </div>
               </div>
 
               {/* All Orders List */}
-              <div className="bg-white rounded-2xl border border-slate-200 p-6 shadow-xs space-y-4">
-                <div className="flex items-center justify-between border-b border-slate-100 pb-4">
-                  <h3 className="text-base font-black text-[#0B0F19]">Order History ({orders.length})</h3>
+              <div className="bg-white rounded-2xl border border-slate-200 p-4 sm:p-6 shadow-xs space-y-4">
+                <div className="flex items-center justify-between border-b border-slate-100 pb-3 sm:pb-4">
+                  <h3 className="text-sm sm:text-base font-black text-[#0B0F19]">Order History ({orders.length})</h3>
                   <Link href="/products" className="text-xs font-bold text-[#FF4D36] hover:underline">
                     New Order +
                   </Link>
@@ -694,7 +772,7 @@ export const UserProfileDashboard: React.FC<UserProfileDashboardProps> = ({
                 ) : (
                   <div className="divide-y divide-slate-100">
                     {orders.map((ord) => (
-                      <div key={ord.orderId} className="py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                      <div key={ord.orderId} className="py-3 sm:py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 sm:gap-3">
                         <div>
                           <div className="flex items-center gap-2">
                             <span className="font-mono font-bold text-xs text-[#0B0F19]">#{ord.orderId}</span>
@@ -703,7 +781,7 @@ export const UserProfileDashboard: React.FC<UserProfileDashboardProps> = ({
                           </div>
                           <p className="text-xs font-bold text-slate-800 mt-0.5">{ord.itemsSummary}</p>
                         </div>
-                        <div className="flex items-center gap-4">
+                        <div className="flex items-center justify-between sm:justify-end gap-3 pt-1 sm:pt-0">
                           <span className="text-sm font-black text-[#0B0F19]">₹{ord.total.toLocaleString("en-IN")}</span>
                           <button
                             type="button"
@@ -727,13 +805,13 @@ export const UserProfileDashboard: React.FC<UserProfileDashboardProps> = ({
           {/* TAB 3: PRODUCTS & REORDER */}
           {activeTab === "products" && (
             <div className="space-y-6">
-              <div className="bg-white rounded-2xl border border-slate-200 p-6 shadow-xs space-y-2">
-                <h3 className="text-lg font-black text-[#0B0F19]">Custom Keepsakes & Corporate Catalog</h3>
+              <div className="bg-white rounded-2xl border border-slate-200 p-4 sm:p-6 shadow-xs space-y-2">
+                <h3 className="text-base sm:text-lg font-black text-[#0B0F19]">Custom Keepsakes & Corporate Catalog</h3>
                 <p className="text-xs text-slate-500">Fast re-order prints directly customized with your saved vector branding.</p>
-                <div className="pt-4 grid grid-cols-1 sm:grid-cols-3 gap-4">
+                <div className="pt-3 sm:pt-4 grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
                   <Link
                     href="/products/prod-frame-1"
-                    className="p-4 rounded-xl border border-slate-200 hover:border-[#FF4D36] hover:shadow-xs transition-all text-left group"
+                    className="p-3.5 sm:p-4 rounded-xl border border-slate-200 hover:border-[#FF4D36] hover:shadow-xs transition-all text-left group"
                   >
                     <span className="text-[10px] font-bold text-[#FF4D36] uppercase">Bestseller</span>
                     <h4 className="text-xs font-bold text-[#0B0F19] group-hover:text-[#FF4D36] transition-colors mt-1">
@@ -743,7 +821,7 @@ export const UserProfileDashboard: React.FC<UserProfileDashboardProps> = ({
                   </Link>
                   <Link
                     href="/products/prod-lamp-1"
-                    className="p-4 rounded-xl border border-slate-200 hover:border-[#FF4D36] hover:shadow-xs transition-all text-left group"
+                    className="p-3.5 sm:p-4 rounded-xl border border-slate-200 hover:border-[#FF4D36] hover:shadow-xs transition-all text-left group"
                   >
                     <span className="text-[10px] font-bold text-[#FF4D36] uppercase">3D Ambient</span>
                     <h4 className="text-xs font-bold text-[#0B0F19] group-hover:text-[#FF4D36] transition-colors mt-1">
@@ -753,7 +831,7 @@ export const UserProfileDashboard: React.FC<UserProfileDashboardProps> = ({
                   </Link>
                   <Link
                     href="/products/prod-leather-1"
-                    className="p-4 rounded-xl border border-slate-200 hover:border-[#FF4D36] hover:shadow-xs transition-all text-left group"
+                    className="p-3.5 sm:p-4 rounded-xl border border-slate-200 hover:border-[#FF4D36] hover:shadow-xs transition-all text-left group"
                   >
                     <span className="text-[10px] font-bold text-[#FF4D36] uppercase">Executive</span>
                     <h4 className="text-xs font-bold text-[#0B0F19] group-hover:text-[#FF4D36] transition-colors mt-1">
@@ -768,8 +846,8 @@ export const UserProfileDashboard: React.FC<UserProfileDashboardProps> = ({
 
           {/* TAB 4: INVOICES & GST */}
           {activeTab === "invoices" && (
-            <div className="bg-white rounded-2xl border border-slate-200 p-6 shadow-xs space-y-4">
-              <div className="flex items-center justify-between pb-3 border-b border-slate-100">
+            <div className="bg-white rounded-2xl border border-slate-200 p-4 sm:p-6 shadow-xs space-y-4">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-3 border-b border-slate-100 gap-2">
                 <div>
                   <h3 className="text-base font-black text-[#0B0F19]">Tax Invoices & Billing Records</h3>
                   <p className="text-xs text-slate-500">Official GST compliant tax invoices with input credit eligibility.</p>
@@ -785,12 +863,12 @@ export const UserProfileDashboard: React.FC<UserProfileDashboardProps> = ({
               ) : (
                 <div className="divide-y divide-slate-100">
                   {orders.map((ord) => (
-                    <div key={ord.orderId} className="py-4 flex items-center justify-between">
+                    <div key={ord.orderId} className="py-3 sm:py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-2.5">
                       <div>
                         <p className="text-xs font-bold text-[#0B0F19]">TAX-INV-{ord.orderId}</p>
                         <p className="text-[11px] text-slate-400">Issued on {ord.date} • {ord.paymentMethod}</p>
                       </div>
-                      <div className="flex items-center gap-3">
+                      <div className="flex items-center justify-between sm:justify-end gap-3">
                         <span className="text-xs font-black text-[#0B0F19]">₹{ord.total.toLocaleString("en-IN")}</span>
                         <button
                           type="button"
@@ -810,9 +888,9 @@ export const UserProfileDashboard: React.FC<UserProfileDashboardProps> = ({
           {/* TAB 5: DISCOUNTS & COUPONS */}
           {activeTab === "discounts" && (
             <div className="space-y-4">
-              <div className="bg-white rounded-2xl border border-slate-200 p-6 shadow-xs space-y-4">
+              <div className="bg-white rounded-2xl border border-slate-200 p-4 sm:p-6 shadow-xs space-y-4">
                 <h3 className="text-base font-black text-[#0B0F19]">Your Exclusive Studio Vouchers</h3>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                   <div className="p-4 rounded-xl border-2 border-dashed border-orange-200 bg-orange-50/50 space-y-2">
                     <div className="flex items-center justify-between">
                       <span className="font-mono font-black text-sm text-[#FF4D36]">PRINT15</span>
@@ -849,22 +927,22 @@ export const UserProfileDashboard: React.FC<UserProfileDashboardProps> = ({
 
           {/* TAB 6: CUSTOMERS / ADDRESSES & PROFILE */}
           {activeTab === "customers" && (
-            <div className="bg-white rounded-2xl border border-slate-200 p-6 shadow-xs space-y-5">
-              <h3 className="text-base font-black text-[#0B0F19]">Saved Profile & Delivery Hub Details</h3>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
-                <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-1">
+            <div className="bg-white rounded-2xl border border-slate-200 p-4 sm:p-6 shadow-xs space-y-4 sm:space-y-5">
+              <h3 className="text-base font-black text-[#0B0F19]">Saved Profile & Delivery Details</h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 text-xs">
+                <div className="p-3.5 sm:p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-1">
                   <span className="text-[10px] font-bold text-slate-400 uppercase">Primary Client Name</span>
                   <p className="font-bold text-[#0B0F19]">{user.name}</p>
                 </div>
-                <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-1">
+                <div className="p-3.5 sm:p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-1">
                   <span className="text-[10px] font-bold text-slate-400 uppercase">Verified Mobile</span>
                   <p className="font-bold text-[#0B0F19]">{user.phone}</p>
                 </div>
-                <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-1">
+                <div className="p-3.5 sm:p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-1">
                   <span className="text-[10px] font-bold text-slate-400 uppercase">Email Address</span>
                   <p className="font-bold text-[#0B0F19]">{user.email}</p>
                 </div>
-                <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-1">
+                <div className="p-3.5 sm:p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-1">
                   <span className="text-[10px] font-bold text-slate-400 uppercase">Corporate Company</span>
                   <p className="font-bold text-[#0B0F19]">{user.company || "Personal Account"}</p>
                 </div>
@@ -874,11 +952,11 @@ export const UserProfileDashboard: React.FC<UserProfileDashboardProps> = ({
 
           {/* TAB 7: FINANCES & WALLET */}
           {activeTab === "finances" && (
-            <div className="bg-white rounded-2xl border border-slate-200 p-6 shadow-xs space-y-4">
+            <div className="bg-white rounded-2xl border border-slate-200 p-4 sm:p-6 shadow-xs space-y-4">
               <h3 className="text-base font-black text-[#0B0F19]">Wallet & Saved Payment Methods</h3>
               <p className="text-xs text-slate-500">Secure 256-bit encrypted payment gateways. Instant refunds & PO credit.</p>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
-                <div className="p-4 rounded-xl border border-slate-200 bg-slate-50 flex items-center justify-between">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 pt-2">
+                <div className="p-3.5 sm:p-4 rounded-xl border border-slate-200 bg-slate-50 flex items-center justify-between">
                   <div className="flex items-center gap-3">
                     <div className="w-8 h-8 rounded-lg bg-slate-100 text-slate-800 flex items-center justify-center font-bold text-xs">
                       UPI
@@ -892,7 +970,7 @@ export const UserProfileDashboard: React.FC<UserProfileDashboardProps> = ({
                     Active
                   </span>
                 </div>
-                <div className="p-4 rounded-xl border border-slate-200 bg-slate-50 flex items-center justify-between">
+                <div className="p-3.5 sm:p-4 rounded-xl border border-slate-200 bg-slate-50 flex items-center justify-between">
                   <div className="flex items-center gap-3">
                     <div className="w-8 h-8 rounded-lg bg-orange-50 text-[#FF4D36] flex items-center justify-center font-bold text-xs">
                       PO
@@ -912,10 +990,10 @@ export const UserProfileDashboard: React.FC<UserProfileDashboardProps> = ({
 
           {/* TAB 8: ANALYTICS */}
           {activeTab === "analytics" && (
-            <div className="bg-white rounded-2xl border border-slate-200 p-6 shadow-xs space-y-4">
+            <div className="bg-white rounded-2xl border border-slate-200 p-4 sm:p-6 shadow-xs space-y-4">
               <h3 className="text-base font-black text-[#0B0F19]">Merchandise Printing Analytics</h3>
-              <div className="p-6 bg-slate-50 rounded-xl border border-slate-200 text-center space-y-2">
-                <BarChart3 className="w-10 h-10 text-[#FF4D36] mx-auto" />
+              <div className="p-5 sm:p-6 bg-slate-50 rounded-xl border border-slate-200 text-center space-y-2">
+                <BarChart3 className="w-9 h-9 sm:w-10 sm:h-10 text-[#FF4D36] mx-auto" />
                 <p className="text-sm font-bold text-[#0B0F19]">Lifetime Custom Merchandise Statistics</p>
                 <p className="text-xs text-slate-500 max-w-sm mx-auto">
                   You have placed {orders.length} orders through MyPrintHub with 100% vector-verified proofs.
