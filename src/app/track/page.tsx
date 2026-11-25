@@ -243,7 +243,7 @@ function TrackOrderContent() {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-10">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-none bg-[#F95738]/10 text-[#F95738] text-xs font-bold uppercase tracking-wider mb-2">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#F95738]/10 text-[#F95738] text-xs font-bold uppercase tracking-wider mb-2">
             <Truck className="w-4 h-4" />
             <span>Live Courier Tracking</span>
           </div>
@@ -256,7 +256,7 @@ function TrackOrderContent() {
         </div>
 
         {/* Search Card */}
-        <div className="bg-white rounded-none p-6 sm:p-8 border border-slate-200/80 shadow-md mb-8">
+        <div className="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200/80 shadow-md mb-8">
           <form onSubmit={handleSearch} className="grid grid-cols-1 sm:grid-cols-12 gap-3">
             <div className="sm:col-span-6">
               <label className="text-xs font-bold text-slate-700 block mb-1">
@@ -268,7 +268,7 @@ function TrackOrderContent() {
                 onChange={(e) => setOrderInput(e.target.value)}
                 placeholder="e.g. MPH-582910"
                 required
-                className="w-full px-4 py-2.5 text-xs bg-slate-50 border border-slate-200 rounded-none focus:outline-none focus:border-[#1E1B4B] uppercase font-mono font-bold"
+                className="w-full px-4 py-2.5 text-xs bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-[#1E1B4B] uppercase font-mono font-bold"
               />
             </div>
 
@@ -281,7 +281,7 @@ function TrackOrderContent() {
                 value={phoneInput}
                 onChange={(e) => setPhoneInput(e.target.value)}
                 placeholder="10-digit mobile number"
-                className="w-full px-4 py-2.5 text-xs bg-slate-50 border border-slate-200 rounded-none focus:outline-none focus:border-[#1E1B4B]"
+                className="w-full px-4 py-2.5 text-xs bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-[#1E1B4B]"
               />
             </div>
 
@@ -289,7 +289,7 @@ function TrackOrderContent() {
               <button
                 type="submit"
                 disabled={isLoading}
-                className="w-full py-2.5 bg-[#F95738] hover:bg-[#E03A1B] text-white text-xs font-bold rounded-none shadow-md transition-colors flex items-center justify-center gap-1.5 cursor-pointer disabled:opacity-50"
+                className="w-full py-2.5 bg-[#F95738] hover:bg-[#E03A1B] text-white text-xs font-bold rounded-xl shadow-md transition-colors flex items-center justify-center gap-1.5 cursor-pointer disabled:opacity-50"
               >
                 <Search className="w-3.5 h-3.5" />
                 <span>{isLoading ? "Searching..." : "Track"}</span>
@@ -306,21 +306,21 @@ function TrackOrderContent() {
             <button
               type="button"
               onClick={() => handleLoadDemo(3, "MPH-482103")}
-              className="px-2.5 py-1 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-none font-medium transition-colors cursor-pointer"
+              className="px-2.5 py-1 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg font-medium transition-colors cursor-pointer"
             >
               #MPH-482103 (In Production)
             </button>
             <button
               type="button"
               onClick={() => handleLoadDemo(4, "MPH-789214")}
-              className="px-2.5 py-1 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-none font-medium transition-colors cursor-pointer"
+              className="px-2.5 py-1 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg font-medium transition-colors cursor-pointer"
             >
               #MPH-789214 (In Transit)
             </button>
             <button
               type="button"
               onClick={() => handleLoadDemo(5, "MPH-310492")}
-              className="px-2.5 py-1 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-none font-medium transition-colors cursor-pointer"
+              className="px-2.5 py-1 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg font-medium transition-colors cursor-pointer"
             >
               #MPH-310492 (Delivered)
             </button>
@@ -331,7 +331,7 @@ function TrackOrderContent() {
         {isSearched && (
           <div className="space-y-6 animate-in fade-in duration-300">
             {/* Status Summary Banner */}
-            <div className="p-6 rounded-none bg-[#1E1B4B] text-white shadow-xl border border-[#273B66] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            <div className="p-6 rounded-2xl bg-[#1E1B4B] text-white shadow-xl border border-[#273B66] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
               <div>
                 <span className="text-xs text-slate-300 uppercase tracking-wider font-bold">
                   Order #{orderInput.toUpperCase() || "MPH-789214"}
@@ -358,7 +358,7 @@ function TrackOrderContent() {
                 </div>
               </div>
 
-              <div className="px-4 py-2 rounded-none bg-white/10 border border-white/20 text-center">
+              <div className="px-4 py-2 rounded-xl bg-white/10 border border-white/20 text-center">
                 <span className="text-[10px] text-slate-300 uppercase font-bold block">
                   Estimated Arrival
                 </span>
@@ -370,7 +370,7 @@ function TrackOrderContent() {
 
             {/* If Order has actual Items from DB */}
             {fetchedOrder && fetchedOrder.items && fetchedOrder.items.length > 0 && (
-              <div className="bg-white rounded-none p-6 border border-slate-200 shadow-xs space-y-3">
+              <div className="bg-white rounded-2xl p-6 border border-slate-200 shadow-xs space-y-3">
                 <h4 className="text-sm font-bold text-[#1E1B4B] border-b border-slate-100 pb-2.5">
                   Package Contents ({fetchedOrder.items.length} {fetchedOrder.items.length === 1 ? "Item" : "Items"})
                 </h4>
@@ -378,7 +378,7 @@ function TrackOrderContent() {
                   {fetchedOrder.items.map((item, idx) => (
                     <div key={idx} className="py-2.5 flex items-center justify-between gap-3">
                       <div className="flex items-center gap-3">
-                        <div className="relative w-12 h-12 rounded-none overflow-hidden bg-slate-100 border border-slate-200 shrink-0">
+                        <div className="relative w-12 h-12 rounded-xl overflow-hidden bg-slate-100 border border-slate-200 shrink-0">
                           <Image src={item.image} alt={item.name} fill className="object-cover" />
                         </div>
                         <div>
@@ -400,7 +400,7 @@ function TrackOrderContent() {
             )}
 
             {/* Step Timeline */}
-            <div className="bg-white rounded-none p-6 sm:p-8 border border-slate-200 shadow-xs">
+            <div className="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-xs">
               <h4 className="text-base font-black text-[#1E1B4B] mb-6">
                 Live Production & Courier Milestones
               </h4>
@@ -410,7 +410,7 @@ function TrackOrderContent() {
                   <div key={i} className="relative group">
                     {/* Node Dot */}
                     <div
-                      className={`absolute -left-6 sm:-left-8 top-0.5 w-6 h-6 rounded-none flex items-center justify-center text-white transition-all shadow-xs ${
+                      className={`absolute -left-6 sm:-left-8 top-0.5 w-6 h-6 rounded-full flex items-center justify-center text-white transition-all shadow-xs ${
                         st.completed
                           ? "bg-emerald-500 ring-4 ring-emerald-100"
                           : st.active
@@ -447,9 +447,9 @@ function TrackOrderContent() {
             </div>
 
             {/* Need Assistance Card */}
-            <div className="p-6 rounded-none bg-slate-100 border border-slate-200/80 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs">
+            <div className="p-6 rounded-2xl bg-slate-100 border border-slate-200/80 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-none bg-[#1E1B4B] text-[#F95738] flex items-center justify-center shrink-0">
+                <div className="w-10 h-10 rounded-xl bg-[#1E1B4B] text-[#F95738] flex items-center justify-center shrink-0">
                   <PhoneCall className="w-5 h-5" />
                 </div>
                 <div>
@@ -459,7 +459,7 @@ function TrackOrderContent() {
               </div>
               <Link
                 href="/contact"
-                className="px-5 py-2.5 bg-[#1E1B4B] hover:bg-[#110E38] text-white font-bold rounded-none whitespace-nowrap transition-colors"
+                className="px-5 py-2.5 bg-[#1E1B4B] hover:bg-[#110E38] text-white font-bold rounded-xl whitespace-nowrap transition-colors"
               >
                 Contact Support Desk
               </Link>

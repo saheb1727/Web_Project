@@ -102,9 +102,9 @@ export const WhyChooseUs: React.FC = () => {
                 return (
                   <div
                     key={idx}
-                    className="why-perk-card flex items-start gap-4 p-4 rounded-none bg-[#131926] border border-slate-800 shadow-md hover:border-slate-700 hover:shadow-xl transition-all"
+                    className="why-perk-card flex items-start gap-4 p-4 rounded-2xl bg-[#131926] border border-slate-800 shadow-md hover:border-slate-700 hover:shadow-xl transition-all"
                   >
-                    <div className="w-10 h-10 rounded-none bg-[#0B0F19] text-[#FF4D36] border border-slate-800 flex items-center justify-center shrink-0">
+                    <div className="w-10 h-10 rounded-xl bg-[#0B0F19] text-[#FF4D36] border border-slate-800 flex items-center justify-center shrink-0">
                       <Icon className="w-5 h-5" />
                     </div>
                     <div>
@@ -119,7 +119,7 @@ export const WhyChooseUs: React.FC = () => {
             <div className="pt-2">
               <Link
                 href="/about"
-                className="inline-flex items-center gap-2 px-6 py-3 bg-[#FF4D36] hover:bg-[#e0351d] text-white text-xs font-bold rounded-none shadow-md shadow-[#FF4D36]/20 transition-all"
+                className="inline-flex items-center gap-2 px-6 py-3 bg-[#FF4D36] hover:bg-[#e0351d] text-white text-xs font-bold rounded-xl shadow-md shadow-[#FF4D36]/20 transition-all"
               >
                 <span>Read Our Quality Story</span>
               </Link>
@@ -128,7 +128,7 @@ export const WhyChooseUs: React.FC = () => {
 
           {/* Right Column: Visual Comparison Card */}
           <div className="lg:col-span-5">
-            <div className="why-comparison-box relative rounded-none overflow-hidden bg-[#131926] p-6 text-white shadow-2xl border border-slate-800">
+            <div className="why-comparison-box relative rounded-2xl sm:rounded-3xl overflow-hidden bg-[#131926] p-6 text-white shadow-2xl border border-slate-800">
               {/* Badge */}
               <div className="flex items-center justify-between border-b border-white/10 pb-4 mb-6">
                 <div>
@@ -137,7 +137,7 @@ export const WhyChooseUs: React.FC = () => {
                   </span>
                   <h3 className="text-lg font-black text-white">MyPrintHub vs. Local Vendors</h3>
                 </div>
-                <div className="w-9 h-9 rounded-none bg-[var(--color-accent)] flex items-center justify-center font-bold text-white text-xs shadow-xs">
+                <div className="w-9 h-9 rounded-xl bg-[var(--color-accent)] flex items-center justify-center font-bold text-white text-xs shadow-xs">
                   A+
                 </div>
               </div>
@@ -171,7 +171,7 @@ export const WhyChooseUs: React.FC = () => {
                     them: "Manual email back-and-forth for days",
                   },
                 ].map((row, i) => (
-                  <div key={i} className="p-3 rounded-none bg-white/10 border border-white/10">
+                  <div key={i} className="p-3 rounded-xl bg-white/10 border border-white/10">
                     <div className="font-bold text-slate-100 mb-1">{row.feature}</div>
                     <div className="flex items-center justify-between gap-2">
                       <div className="flex items-center gap-1.5 text-emerald-400 font-medium">

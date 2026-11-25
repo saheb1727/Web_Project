@@ -259,12 +259,12 @@ export const StudioReelsSection: React.FC = () => {
             </div>
 
             <div className="flex items-center gap-2 text-xs font-bold text-slate-400">
-              <span className="sm:hidden text-[11px] font-bold text-slate-400 flex items-center gap-1.5 bg-slate-900 border border-slate-800 px-2.5 py-1 rounded-none">
+              <span className="sm:hidden text-[11px] font-bold text-slate-400 flex items-center gap-1.5 bg-slate-900 border border-slate-800 px-2.5 py-1 rounded-full">
                 <span>Swipe reels</span>
                 <MoveRight className="w-3.5 h-3.5 text-[#FF4D36] animate-pulse" />
               </span>
-              <span className="flex items-center gap-1.5 px-3 py-1.5 rounded-none bg-slate-900 text-emerald-400 border border-slate-800">
-                <span className="w-2 h-2 rounded-none bg-emerald-500 animate-pulse" />
+              <span className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-900 text-emerald-400 border border-slate-800">
+                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
                 <span>6 Production Reels</span>
               </span>
             </div>
@@ -283,7 +283,7 @@ export const StudioReelsSection: React.FC = () => {
                   onMouseEnter={() => handleCardMouseEnter(reel.id)}
                   onMouseLeave={() => handleCardMouseLeave(reel.id)}
                   style={{ transform: "translateZ(0)", willChange: "transform" }}
-                  className="studio-reel-card group relative rounded-none overflow-hidden bg-slate-900 border border-slate-800 hover:border-slate-700 shadow-xl hover:shadow-2xl transition-all duration-300 cursor-pointer flex flex-col aspect-9/14 sm:aspect-9/13 w-[250px] sm:w-auto shrink-0 snap-center"
+                  className="studio-reel-card group relative rounded-2xl overflow-hidden bg-slate-900 border border-slate-800 hover:border-slate-700 shadow-xl hover:shadow-2xl transition-all duration-300 cursor-pointer flex flex-col aspect-9/14 sm:aspect-9/13 w-[250px] sm:w-auto shrink-0 snap-center"
                 >
                   {/* High-Performance Video Player */}
                   <video
@@ -305,10 +305,10 @@ export const StudioReelsSection: React.FC = () => {
                   {/* Top Bar on Video Card */}
                   <div className="relative z-10 p-4 flex items-center justify-between">
                     <div className="flex items-center gap-1.5">
-                      <span className="px-2.5 py-1 rounded-none bg-black/85 border border-white/20 text-white text-[10px] font-bold">
+                      <span className="px-2.5 py-1 rounded-full bg-black/85 border border-white/20 text-white text-[10px] font-bold">
                         {reel.category}
                       </span>
-                      <span className="px-2 py-0.5 rounded-none bg-[#F95738] text-white text-[9px] font-extrabold uppercase">
+                      <span className="px-2 py-0.5 rounded-full bg-[#F95738] text-white text-[9px] font-extrabold uppercase">
                         {reel.tag}
                       </span>
                     </div>
@@ -318,7 +318,7 @@ export const StudioReelsSection: React.FC = () => {
                       <button
                         type="button"
                         onClick={(e) => toggleMute(reel.id, e)}
-                        className="w-8 h-8 rounded-none bg-black/85 hover:bg-[#F95738] text-white flex items-center justify-center transition-colors cursor-pointer border border-white/20"
+                        className="w-8 h-8 rounded-full bg-black/85 hover:bg-[#F95738] text-white flex items-center justify-center transition-colors cursor-pointer border border-white/20"
                         title={isMuted ? "Unmute" : "Mute"}
                       >
                         {isMuted ? (
@@ -329,7 +329,7 @@ export const StudioReelsSection: React.FC = () => {
                       </button>
 
                       {/* Expand Button */}
-                      <div className="w-8 h-8 rounded-none bg-black/85 text-white flex items-center justify-center border border-white/20">
+                      <div className="w-8 h-8 rounded-full bg-black/85 text-white flex items-center justify-center border border-white/20">
                         <Maximize2 className="w-3.5 h-3.5" />
                       </div>
                     </div>
@@ -343,7 +343,7 @@ export const StudioReelsSection: React.FC = () => {
                     <button
                       type="button"
                       onClick={(e) => togglePlay(reel.id, e)}
-                      className="w-12 h-12 rounded-none bg-black/85 hover:bg-[#F95738] text-white border border-white/30 flex items-center justify-center transition-all group-hover:scale-110 pointer-events-auto cursor-pointer shadow-lg"
+                      className="w-12 h-12 rounded-full bg-black/85 hover:bg-[#F95738] text-white border border-white/30 flex items-center justify-center transition-all group-hover:scale-110 pointer-events-auto cursor-pointer shadow-lg"
                       title={isPlaying ? "Pause video" : "Play video"}
                     >
                       {isPlaying ? (
@@ -375,7 +375,7 @@ export const StudioReelsSection: React.FC = () => {
                       <Link
                         href={reel.productLink}
                         onClick={(e) => e.stopPropagation()}
-                        className="px-3 py-1.5 rounded-none bg-white/15 hover:bg-[#F95738] text-white text-xs font-bold transition-all flex items-center gap-1.5 border border-white/20"
+                        className="px-3 py-1.5 rounded-xl bg-white/15 hover:bg-[#F95738] text-white text-xs font-bold transition-all flex items-center gap-1.5 border border-white/20"
                       >
                         <span>Customize</span>
                         <ArrowRight className="w-3.5 h-3.5" />
@@ -397,13 +397,13 @@ export const StudioReelsSection: React.FC = () => {
           onClick={() => setActiveModalIndex(null)}
         >
           <div
-            className="relative w-full max-w-4xl bg-slate-900 border border-slate-700/80 rounded-none overflow-hidden shadow-2xl grid grid-cols-1 md:grid-cols-12 max-h-[92vh]"
+            className="relative w-full max-w-4xl bg-slate-900 border border-slate-700/80 rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl grid grid-cols-1 md:grid-cols-12 max-h-[92vh]"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Close Button */}
             <button
               onClick={() => setActiveModalIndex(null)}
-              className="absolute top-4 right-4 z-20 p-2 rounded-none bg-black/70 hover:bg-[#F95738] text-white transition-colors cursor-pointer border border-white/20"
+              className="absolute top-4 right-4 z-20 p-2 rounded-full bg-black/70 hover:bg-[#F95738] text-white transition-colors cursor-pointer border border-white/20"
               aria-label="Close video"
             >
               <X className="w-5 h-5" />
@@ -428,7 +428,7 @@ export const StudioReelsSection: React.FC = () => {
                     prev !== null ? (prev === 0 ? reels.length - 1 : prev - 1) : null
                   )
                 }
-                className="absolute left-3 top-1/2 -translate-y-1/2 p-2 rounded-none bg-black/60 hover:bg-[#F95738] text-white transition-colors cursor-pointer border border-white/20"
+                className="absolute left-3 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/60 hover:bg-[#F95738] text-white transition-colors cursor-pointer border border-white/20"
                 aria-label="Previous reel"
               >
                 <ChevronLeft className="w-5 h-5" />
@@ -441,7 +441,7 @@ export const StudioReelsSection: React.FC = () => {
                     prev !== null ? (prev + 1) % reels.length : null
                   )
                 }
-                className="absolute right-3 top-1/2 -translate-y-1/2 p-2 rounded-none bg-black/60 hover:bg-[#F95738] text-white transition-colors cursor-pointer border border-white/20"
+                className="absolute right-3 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/60 hover:bg-[#F95738] text-white transition-colors cursor-pointer border border-white/20"
                 aria-label="Next reel"
               >
                 <ChevronRight className="w-5 h-5" />
@@ -452,7 +452,7 @@ export const StudioReelsSection: React.FC = () => {
             <div className="md:col-span-5 p-6 sm:p-8 flex flex-col justify-between text-white bg-[#0B0F19] overflow-y-auto">
               <div className="space-y-4">
                 <div className="flex items-center gap-2">
-                  <span className="px-2.5 py-1 rounded-none bg-[#F95738] text-white text-[10px] font-bold">
+                  <span className="px-2.5 py-1 rounded-full bg-[#F95738] text-white text-[10px] font-bold">
                     {reels[activeModalIndex].category}
                   </span>
                   <span className="text-xs text-slate-400 font-mono">
@@ -468,7 +468,7 @@ export const StudioReelsSection: React.FC = () => {
                   {reels[activeModalIndex].description}
                 </p>
 
-                <div className="p-4 rounded-none bg-white/5 border border-white/10 space-y-2">
+                <div className="p-4 rounded-xl bg-white/5 border border-white/10 space-y-2">
                   <div className="text-xs font-bold text-slate-400">Featured In This Video</div>
                   <div className="text-sm font-extrabold text-white">
                     {reels[activeModalIndex].productName}
@@ -489,7 +489,7 @@ export const StudioReelsSection: React.FC = () => {
                 <Link
                   href={reels[activeModalIndex].productLink}
                   onClick={() => setActiveModalIndex(null)}
-                  className="w-full py-3.5 bg-[#F95738] hover:bg-[#e04526] text-white text-xs sm:text-sm font-bold rounded-none shadow-lg transition-all flex items-center justify-center gap-2 group cursor-pointer"
+                  className="w-full py-3.5 bg-[#F95738] hover:bg-[#e04526] text-white text-xs sm:text-sm font-bold rounded-xl shadow-lg transition-all flex items-center justify-center gap-2 group cursor-pointer"
                 >
                   <span>Customize This Merch</span>
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />

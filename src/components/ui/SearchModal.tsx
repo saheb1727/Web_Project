@@ -131,13 +131,13 @@ export const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose }) => 
       onClick={onClose}
     >
       <div
-        className="w-full max-w-2xl bg-white rounded-none sm:rounded-none shadow-2xl border border-slate-200/90 overflow-hidden flex flex-col max-h-[85vh] animate-in zoom-in-95 duration-200"
+        className="w-full max-w-2xl bg-white rounded-2xl sm:rounded-3xl shadow-2xl border border-slate-200/90 overflow-hidden flex flex-col max-h-[85vh] animate-in zoom-in-95 duration-200"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Top Search Input Bar */}
         <div className="p-4 sm:p-5 border-b border-slate-100 bg-white">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-none bg-[var(--color-accent-soft)] flex items-center justify-center shrink-0">
+            <div className="w-10 h-10 rounded-xl bg-[var(--color-accent-soft)] flex items-center justify-center shrink-0">
               <Search className="w-5 h-5 text-[#F95738]" />
             </div>
 
@@ -155,7 +155,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose }) => 
               <button
                 type="button"
                 onClick={() => setQuery("")}
-                className="p-1.5 text-slate-400 hover:text-slate-700 hover:bg-slate-100 rounded-none transition-colors cursor-pointer"
+                className="p-1.5 text-slate-400 hover:text-slate-700 hover:bg-slate-100 rounded-xl transition-colors cursor-pointer"
                 title="Clear query"
               >
                 <X className="w-4 h-4" />
@@ -165,7 +165,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose }) => 
             <button
               type="button"
               onClick={onClose}
-              className="px-2 py-1 text-[11px] font-mono font-bold text-slate-500 bg-slate-100 hover:bg-slate-200 rounded-none border border-slate-200 transition-colors shadow-2xs shrink-0 cursor-pointer"
+              className="px-2 py-1 text-[11px] font-mono font-bold text-slate-500 bg-slate-100 hover:bg-slate-200 rounded-lg border border-slate-200 transition-colors shadow-2xs shrink-0 cursor-pointer"
               title="Close modal (Esc)"
             >
               ESC
@@ -181,7 +181,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose }) => 
                   key={tab.value}
                   type="button"
                   onClick={() => setSelectedCategory(tab.value)}
-                  className={`px-3 py-1 rounded-none text-xs font-bold transition-all shrink-0 cursor-pointer ${
+                  className={`px-3 py-1 rounded-full text-xs font-bold transition-all shrink-0 cursor-pointer ${
                     isActive
                       ? "bg-[#1E1B4B] text-white shadow-2xs"
                       : "bg-slate-100 hover:bg-slate-200 text-slate-600"
@@ -221,9 +221,9 @@ export const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose }) => 
                       key={cat.id}
                       href={`/category/${cat.slug}`}
                       onClick={onClose}
-                      className="group p-3 rounded-none border border-slate-200/80 bg-slate-50/60 hover:bg-white hover:border-slate-300 hover:shadow-xs transition-all flex items-center gap-3"
+                      className="group p-3 rounded-xl border border-slate-200/80 bg-slate-50/60 hover:bg-white hover:border-slate-300 hover:shadow-xs transition-all flex items-center gap-3"
                     >
-                      <div className="relative w-12 h-12 rounded-none overflow-hidden bg-white shrink-0 border border-slate-200/70">
+                      <div className="relative w-12 h-12 rounded-lg overflow-hidden bg-white shrink-0 border border-slate-200/70">
                         <Image
                           src={cat.image}
                           alt={cat.name}
@@ -257,7 +257,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose }) => 
                       key={tag}
                       type="button"
                       onClick={() => setQuery(tag)}
-                      className="px-3 py-1.5 text-xs font-semibold bg-white hover:bg-[#F95738]/10 hover:text-[#F95738] hover:border-[#F95738]/30 text-slate-700 rounded-none transition-all border border-slate-200/80 shadow-2xs active:scale-95 cursor-pointer"
+                      className="px-3 py-1.5 text-xs font-semibold bg-white hover:bg-[#F95738]/10 hover:text-[#F95738] hover:border-[#F95738]/30 text-slate-700 rounded-full transition-all border border-slate-200/80 shadow-2xs active:scale-95 cursor-pointer"
                     >
                       {tag}
                     </button>
@@ -266,7 +266,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose }) => 
               </div>
 
               {/* Pro Tip Callout */}
-              <div className="p-3.5 rounded-none bg-amber-50 border border-amber-200/60 flex items-center gap-3 text-xs text-amber-900">
+              <div className="p-3.5 rounded-xl bg-amber-50 border border-amber-200/60 flex items-center gap-3 text-xs text-amber-900">
                 <Sparkles className="w-4 h-4 text-[#F95738] shrink-0" />
                 <span className="font-medium">
                   <strong>Zero Minimum Orders:</strong> Order 1 sample piece to inspect print quality before bulk ordering.
@@ -289,13 +289,13 @@ export const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose }) => 
                         href={`/products/${product.id}`}
                         onClick={onClose}
                         onMouseEnter={() => setSelectedIndex(idx)}
-                        className={`flex items-center gap-3.5 p-3 rounded-none transition-all group ${
+                        className={`flex items-center gap-3.5 p-3 rounded-xl transition-all group ${
                           isKeyboardSelected
                             ? "bg-slate-100/90 shadow-2xs"
                             : "hover:bg-slate-50"
                         }`}
                       >
-                        <div className="w-14 h-14 relative rounded-none overflow-hidden bg-slate-100 shrink-0 border border-slate-200/80 shadow-2xs">
+                        <div className="w-14 h-14 relative rounded-xl overflow-hidden bg-slate-100 shrink-0 border border-slate-200/80 shadow-2xs">
                           <Image
                             src={product.image}
                             alt={product.name}
@@ -319,7 +319,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose }) => 
                             <span className="text-xs text-slate-400 line-through">
                               ₹{product.originalPrice}
                             </span>
-                            <span className="text-[10px] font-extrabold text-amber-700 bg-amber-50 px-1.5 py-0.5 rounded flex items-center gap-0.5">
+                            <span className="text-[10px] font-extrabold text-amber-700 bg-amber-50 px-1.5 py-0.5 rounded-full flex items-center gap-0.5">
                               <Star className="w-2.5 h-2.5 fill-amber-500 text-amber-500" />
                               <span>{product.rating}</span>
                             </span>
@@ -333,7 +333,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose }) => 
                               <CornerDownLeft className="w-3 h-3" />
                             </span>
                           )}
-                          <div className="w-8 h-8 rounded-none bg-white border border-slate-200 flex items-center justify-center text-slate-400 group-hover:text-[#F95738] group-hover:border-[#F95738]/40 transition-colors shadow-2xs">
+                          <div className="w-8 h-8 rounded-full bg-white border border-slate-200 flex items-center justify-center text-slate-400 group-hover:text-[#F95738] group-hover:border-[#F95738]/40 transition-colors shadow-2xs">
                             <ArrowRight className="w-3.5 h-3.5" />
                           </div>
                         </div>
@@ -343,7 +343,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose }) => 
                 </>
               ) : (
                 <div className="py-14 text-center text-slate-500 space-y-2">
-                  <div className="w-12 h-12 rounded-none bg-slate-100 flex items-center justify-center mx-auto text-slate-400">
+                  <div className="w-12 h-12 rounded-xl bg-slate-100 flex items-center justify-center mx-auto text-slate-400">
                     <Search className="w-5 h-5" />
                   </div>
                   <p className="text-sm font-bold text-slate-800">

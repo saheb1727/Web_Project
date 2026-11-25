@@ -56,7 +56,7 @@ export const Testimonials: React.FC = () => {
           {testimonials.map((t) => (
             <div
               key={t.id}
-              className="testimonial-card bg-white rounded-none sm:rounded-none p-5 sm:p-6 border border-slate-200/80 shadow-xs hover:shadow-xl hover:border-slate-400 transition-all duration-300 flex flex-col justify-between w-[280px] sm:w-[320px] md:w-auto shrink-0 snap-center"
+              className="testimonial-card bg-white rounded-2xl p-5 sm:p-6 border border-slate-200/80 shadow-xs hover:shadow-xl hover:border-slate-300 transition-all duration-300 flex flex-col justify-between w-[280px] sm:w-[320px] md:w-auto shrink-0 snap-center"
             >
               <div>
                 {/* Rating stars & Quote Icon */}
@@ -78,7 +78,7 @@ export const Testimonials: React.FC = () => {
               {/* Author & Product */}
               <div className="pt-4 border-t border-slate-100">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-none relative overflow-hidden bg-slate-100 border border-slate-200 shrink-0">
+                  <div className="w-10 h-10 rounded-full relative overflow-hidden bg-slate-100 border border-slate-200 shrink-0">
                     <Image
                       src={t.avatar}
                       alt={t.name}

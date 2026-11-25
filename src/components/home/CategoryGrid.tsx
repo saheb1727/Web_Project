@@ -63,7 +63,7 @@ export const CategoryGrid: React.FC = () => {
           </div>
 
           <div className="category-header-item flex items-center justify-between sm:justify-end gap-3 self-stretch sm:self-end">
-            <span className="md:hidden text-[11px] font-bold text-slate-400 flex items-center gap-1.5 bg-slate-100 px-2.5 py-1 rounded-none">
+            <span className="md:hidden text-[11px] font-bold text-slate-400 flex items-center gap-1.5 bg-slate-100 px-2.5 py-1 rounded-full">
               <span>Swipe collections</span>
               <MoveRight className="w-3.5 h-3.5 text-[#FF4D36] animate-pulse" />
             </span>
@@ -84,7 +84,7 @@ export const CategoryGrid: React.FC = () => {
           {/* Card 1: Custom Photo Frames & Keepsakes (Spanning 2 Columns on LG) */}
           <Link
             href="/category/custom-photo-frames"
-            className="category-bento-card w-[84vw] xs:w-[320px] shrink-0 snap-start md:w-auto md:shrink lg:col-span-2 group relative rounded-none overflow-hidden bg-[#0B0F19] text-white p-5 sm:p-8 flex flex-col justify-between shadow-md hover:shadow-2xl transition-all duration-300 min-h-[300px] sm:min-h-[340px]"
+            className="category-bento-card w-[84vw] xs:w-[320px] shrink-0 snap-start md:w-auto md:shrink lg:col-span-2 group relative rounded-2xl sm:rounded-3xl overflow-hidden bg-[#0B0F19] text-white p-5 sm:p-8 flex flex-col justify-between shadow-md hover:shadow-2xl transition-all duration-300 min-h-[300px] sm:min-h-[340px]"
           >
             <div className="absolute top-0 right-0 w-2/3 h-full overflow-hidden opacity-40 lg:opacity-50 pointer-events-none">
               <Image
@@ -98,7 +98,7 @@ export const CategoryGrid: React.FC = () => {
             </div>
 
             <div className="relative z-10 max-w-md space-y-2.5 sm:space-y-3">
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-none bg-[#FF4D36] text-white text-[10px] font-black uppercase tracking-wider shadow-sm">
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FF4D36] text-white text-[10px] font-black uppercase tracking-wider shadow-sm">
                 <Heart className="w-3 h-3 fill-white" />
                 <span>Trending Gift Collection</span>
               </div>
@@ -112,13 +112,13 @@ export const CategoryGrid: React.FC = () => {
               </p>
 
               <div className="flex flex-wrap gap-1.5 sm:gap-2 pt-1 sm:pt-2">
-                <span className="text-[10px] sm:text-[11px] font-bold px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-none bg-white/10 border border-white/15 text-slate-200">
+                <span className="text-[10px] sm:text-[11px] font-bold px-2.5 py-1 rounded-lg bg-white/10 border border-white/15 text-slate-200">
                   Custom Calendar Date
                 </span>
-                <span className="text-[10px] sm:text-[11px] font-bold px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-none bg-white/10 border border-white/15 text-slate-200">
+                <span className="text-[10px] sm:text-[11px] font-bold px-2.5 py-1 rounded-lg bg-white/10 border border-white/15 text-slate-200">
                   A4 & A3 Sizes
                 </span>
-                <span className="text-[10px] sm:text-[11px] font-bold px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-none bg-white/10 border border-white/15 text-slate-200">
+                <span className="text-[10px] sm:text-[11px] font-bold px-2.5 py-1 rounded-lg bg-white/10 border border-white/15 text-slate-200">
                   From ₹269 / pc
                 </span>
               </div>
@@ -136,11 +136,11 @@ export const CategoryGrid: React.FC = () => {
           {/* Card 2: 3D LED Acrylic Heart Lamps */}
           <Link
             href="/category/personalized-gifts"
-            className="category-bento-card w-[78vw] xs:w-[285px] shrink-0 snap-start md:w-auto md:shrink group relative rounded-none overflow-hidden bg-slate-50 border border-slate-200/90 hover:border-slate-400 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between p-4 sm:p-6"
+            className="category-bento-card w-[78vw] xs:w-[285px] shrink-0 snap-start md:w-auto md:shrink group relative rounded-2xl sm:rounded-3xl overflow-hidden bg-slate-50 border border-slate-200/90 hover:border-slate-400 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between p-4 sm:p-6"
           >
             <div>
               <div className="flex items-center justify-between mb-2 sm:mb-3">
-                <span className="text-[10px] font-bold px-2 py-0.5 rounded-none bg-pink-100 text-pink-800">
+                <span className="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-pink-100 text-pink-800">
                   Valentine & Anniversary
                 </span>
                 <span className="text-[11px] text-slate-400 font-bold">24+ Styles</span>
@@ -153,7 +153,7 @@ export const CategoryGrid: React.FC = () => {
               </p>
             </div>
 
-            <div className="relative aspect-16/10 w-full my-3 sm:my-4 rounded-none overflow-hidden bg-slate-900">
+            <div className="relative aspect-16/10 w-full my-3 sm:my-4 rounded-xl overflow-hidden bg-slate-900">
               <Image
                 src="/images/products/led-acrylic-heart-lamp.jpg"
                 alt="3D LED Acrylic Heart Lamp"
@@ -172,11 +172,11 @@ export const CategoryGrid: React.FC = () => {
           {/* Card 3: Executive 4-in-1 Leather Gift Hampers */}
           <Link
             href="/category/corporate-kits"
-            className="category-bento-card w-[78vw] xs:w-[285px] shrink-0 snap-start md:w-auto md:shrink group relative rounded-none overflow-hidden bg-slate-50 border border-slate-200/90 hover:border-slate-400 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between p-4 sm:p-6"
+            className="category-bento-card w-[78vw] xs:w-[285px] shrink-0 snap-start md:w-auto md:shrink group relative rounded-2xl sm:rounded-3xl overflow-hidden bg-slate-50 border border-slate-200/90 hover:border-slate-400 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between p-4 sm:p-6"
           >
             <div>
               <div className="flex items-center justify-between mb-2 sm:mb-3">
-                <span className="text-[10px] font-bold px-2 py-0.5 rounded-none bg-amber-100 text-amber-800">
+                <span className="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-800">
                   Executive Hamper
                 </span>
                 <span className="text-[11px] text-slate-400 font-bold">Luxury Box</span>
@@ -189,7 +189,7 @@ export const CategoryGrid: React.FC = () => {
               </p>
             </div>
 
-            <div className="relative aspect-16/10 w-full my-3 sm:my-4 rounded-none overflow-hidden bg-slate-100">
+            <div className="relative aspect-16/10 w-full my-3 sm:my-4 rounded-xl overflow-hidden bg-slate-100">
               <Image
                 src="/images/products/executive-leather-gift-set.jpg"
                 alt="Executive Leather Gift Hamper"
@@ -208,11 +208,11 @@ export const CategoryGrid: React.FC = () => {
           {/* Card 4: Floating 24K Gold Pens & Keychains */}
           <Link
             href="/category/corporate-kits"
-            className="category-bento-card w-[78vw] xs:w-[285px] shrink-0 snap-start md:w-auto md:shrink group relative rounded-none overflow-hidden bg-slate-50 border border-slate-200/90 hover:border-slate-400 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between p-4 sm:p-6"
+            className="category-bento-card w-[78vw] xs:w-[285px] shrink-0 snap-start md:w-auto md:shrink group relative rounded-2xl sm:rounded-3xl overflow-hidden bg-slate-50 border border-slate-200/90 hover:border-slate-400 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between p-4 sm:p-6"
           >
             <div>
               <div className="flex items-center justify-between mb-2 sm:mb-3">
-                <span className="text-[10px] font-bold px-2 py-0.5 rounded-none bg-yellow-100 text-yellow-800">
+                <span className="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-yellow-100 text-yellow-800">
                   24K Gold Flakes
                 </span>
                 <span className="text-[11px] text-slate-400 font-bold">Appreciation</span>
@@ -225,7 +225,7 @@ export const CategoryGrid: React.FC = () => {
               </p>
             </div>
 
-            <div className="relative aspect-16/10 w-full my-3 sm:my-4 rounded-none overflow-hidden bg-slate-100">
+            <div className="relative aspect-16/10 w-full my-3 sm:my-4 rounded-xl overflow-hidden bg-slate-100">
               <Image
                 src="/images/products/gold-foil-engraved-pens.jpg"
                 alt="24K Floating Gold Pens"
@@ -244,11 +244,11 @@ export const CategoryGrid: React.FC = () => {
           {/* Card 5: Magnetic Badges & Wedding Pin Badges */}
           <Link
             href="/category/magnetic-badges"
-            className="category-bento-card w-[78vw] xs:w-[285px] shrink-0 snap-start md:w-auto md:shrink group relative rounded-none overflow-hidden bg-slate-50 border border-slate-200/90 hover:border-slate-400 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between p-4 sm:p-6"
+            className="category-bento-card w-[78vw] xs:w-[285px] shrink-0 snap-start md:w-auto md:shrink group relative rounded-2xl sm:rounded-3xl overflow-hidden bg-slate-50 border border-slate-200/90 hover:border-slate-400 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between p-4 sm:p-6"
           >
             <div>
               <div className="flex items-center justify-between mb-2 sm:mb-3">
-                <span className="text-[10px] font-bold px-2 py-0.5 rounded-none bg-emerald-100 text-emerald-800">
+                <span className="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800">
                   Zero Pinholes
                 </span>
                 <span className="text-[11px] text-slate-400 font-bold">Events & Teams</span>
@@ -261,7 +261,7 @@ export const CategoryGrid: React.FC = () => {
               </p>
             </div>
 
-            <div className="relative aspect-16/10 w-full my-3 sm:my-4 rounded-none overflow-hidden bg-slate-100">
+            <div className="relative aspect-16/10 w-full my-3 sm:my-4 rounded-xl overflow-hidden bg-slate-100">
               <Image
                 src="/images/products/wedding-pin-badges.jpg"
                 alt="Custom Wedding & Magnetic Badges"
@@ -280,11 +280,11 @@ export const CategoryGrid: React.FC = () => {
           {/* Card 6: Dual-Tone Ceramic Mugs & Embroidered Caps */}
           <Link
             href="/category/drinkware-mugs"
-            className="category-bento-card w-[78vw] xs:w-[285px] shrink-0 snap-start md:w-auto md:shrink group relative rounded-none overflow-hidden bg-slate-50 border border-slate-200/90 hover:border-slate-400 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between p-4 sm:p-6"
+            className="category-bento-card w-[78vw] xs:w-[285px] shrink-0 snap-start md:w-auto md:shrink group relative rounded-2xl sm:rounded-3xl overflow-hidden bg-slate-50 border border-slate-200/90 hover:border-slate-400 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between p-4 sm:p-6"
           >
             <div>
               <div className="flex items-center justify-between mb-2 sm:mb-3">
-                <span className="text-[10px] font-bold px-2 py-0.5 rounded-none bg-cyan-100 text-cyan-800">
+                <span className="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-cyan-100 text-cyan-800">
                   Drinkware & Caps
                 </span>
                 <span className="text-[11px] text-slate-400 font-bold">New Models</span>
@@ -297,7 +297,7 @@ export const CategoryGrid: React.FC = () => {
               </p>
             </div>
 
-            <div className="relative aspect-16/10 w-full my-3 sm:my-4 rounded-none overflow-hidden bg-slate-100">
+            <div className="relative aspect-16/10 w-full my-3 sm:my-4 rounded-xl overflow-hidden bg-slate-100">
               <Image
                 src="/images/products/dual-tone-ceramic-mugs.jpg"
                 alt="Dual Tone Ceramic Sublimation Mugs"

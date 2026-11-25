@@ -164,7 +164,7 @@ export const FeaturedProducts: React.FC = () => {
           <button
             type="button"
             onClick={() => setActiveTab("all")}
-            className={`px-4 py-2 rounded-none text-xs sm:text-sm font-bold whitespace-nowrap transition-all cursor-pointer ${
+            className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold whitespace-nowrap transition-all cursor-pointer ${
               activeTab === "all"
                 ? "bg-[#FF4D36] text-white shadow-lg shadow-[#FF4D36]/25 scale-102"
                 : "bg-[#131926] text-slate-300 hover:text-white hover:bg-slate-800 border border-slate-800"
@@ -178,7 +178,7 @@ export const FeaturedProducts: React.FC = () => {
               key={sec.slug}
               type="button"
               onClick={() => setActiveTab(sec.slug)}
-              className={`px-4 py-2 rounded-none text-xs sm:text-sm font-bold whitespace-nowrap transition-all cursor-pointer ${
+              className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold whitespace-nowrap transition-all cursor-pointer ${
                 activeTab === sec.slug
                   ? "bg-[#FF4D36] text-white shadow-lg shadow-[#FF4D36]/25 scale-102"
                   : "bg-[#131926] text-slate-300 hover:text-white hover:bg-slate-800 border border-slate-800"
@@ -193,9 +193,9 @@ export const FeaturedProducts: React.FC = () => {
         {activeTab !== "all" && activeCategory && (
           <div>
             {/* Category Header Banner */}
-            <div className="bg-[#131926] rounded-none p-5 border border-slate-800 mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4 shadow-xl">
+            <div className="bg-[#131926] rounded-2xl p-5 border border-slate-800 mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4 shadow-xl">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-none bg-[#0B0F19] text-[#FF4D36] flex items-center justify-center shrink-0 border border-slate-800">
+                <div className="w-10 h-10 rounded-xl bg-[#0B0F19] text-[#FF4D36] flex items-center justify-center shrink-0 border border-slate-800">
                   <activeCategory.icon className="w-5 h-5" />
                 </div>
                 <div>
@@ -203,7 +203,7 @@ export const FeaturedProducts: React.FC = () => {
                     <h3 className="text-lg sm:text-xl font-black text-white">
                       {activeCategory.name}
                     </h3>
-                    <span className="px-2 py-0.5 rounded-none bg-[#FF4D36]/15 text-[#FF4D36] text-[10px] font-bold">
+                    <span className="px-2.5 py-0.5 rounded-full bg-[#FF4D36]/15 text-[#FF4D36] text-[10px] font-bold">
                       {activeCategory.badge}
                     </span>
                   </div>
@@ -219,7 +219,7 @@ export const FeaturedProducts: React.FC = () => {
                 </span>
                 <Link
                   href={`/category/${activeCategory.slug}`}
-                  className="px-4 py-2 rounded-none bg-[#FF4D36] hover:bg-[#e0351d] text-white text-xs font-bold transition-all shadow-md shadow-[#FF4D36]/20 flex items-center gap-1.5"
+                  className="px-4 py-2 rounded-xl bg-[#FF4D36] hover:bg-[#e0351d] text-white text-xs font-bold transition-all shadow-md shadow-[#FF4D36]/20 flex items-center gap-1.5"
                 >
                   <span>View Full Hub</span>
                   <ArrowRight className="w-3.5 h-3.5" />
@@ -248,7 +248,7 @@ export const FeaturedProducts: React.FC = () => {
                   {/* Category Shelf Header */}
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-3 border-b border-slate-800 gap-2">
                     <div className="flex items-center gap-2.5">
-                      <div className="w-8 h-8 rounded-none bg-[#131926] text-[#FF4D36] flex items-center justify-center shrink-0 border border-slate-800 shadow-2xs">
+                      <div className="w-8 h-8 rounded-lg bg-[#131926] text-[#FF4D36] flex items-center justify-center shrink-0 border border-slate-800 shadow-2xs">
                         <Icon className="w-4 h-4" />
                       </div>
                       <div>
@@ -256,7 +256,7 @@ export const FeaturedProducts: React.FC = () => {
                           <h3 className="text-base sm:text-xl font-black text-white tracking-tight">
                             {sec.name}
                           </h3>
-                          <span className="hidden sm:inline-block px-2 py-0.5 rounded-none bg-slate-800 text-slate-300 text-[10px] font-bold">
+                          <span className="hidden sm:inline-block px-2.5 py-0.5 rounded-full bg-slate-800 text-slate-300 text-[10px] font-bold">
                             {sec.products.length} items
                           </span>
                         </div>
@@ -296,7 +296,7 @@ export const FeaturedProducts: React.FC = () => {
         <div className="mt-14 text-center">
           <Link
             href="/products"
-            className="inline-flex items-center gap-2 px-8 py-3.5 bg-[#FF4D36] hover:bg-[#e0351d] text-white text-sm font-bold rounded-none shadow-lg shadow-[#FF4D36]/25 transition-all"
+            className="inline-flex items-center gap-2 px-8 py-3.5 bg-[#FF4D36] hover:bg-[#e0351d] text-white text-sm font-bold rounded-xl shadow-lg shadow-[#FF4D36]/25 transition-all"
           >
             <span>Browse Complete {products.length}+ Product Catalog</span>
             <ArrowRight className="w-4 h-4" />

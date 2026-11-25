@@ -100,13 +100,13 @@ export const LocationModal: React.FC<LocationModalProps> = ({
       onClick={onClose}
     >
       <div
-        className="w-full max-w-md bg-white rounded-none sm:rounded-none shadow-2xl border border-slate-200/90 overflow-hidden animate-in zoom-in-95 duration-200"
+        className="w-full max-w-md bg-white rounded-2xl sm:rounded-3xl shadow-2xl border border-slate-200/90 overflow-hidden animate-in zoom-in-95 duration-200"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
         <div className="p-5 border-b border-slate-100 flex items-center justify-between bg-slate-50/70">
           <div className="flex items-center gap-2.5">
-            <div className="w-9 h-9 rounded-none bg-[var(--color-accent-soft)] flex items-center justify-center text-[#F95738]">
+            <div className="w-9 h-9 rounded-xl bg-[var(--color-accent-soft)] flex items-center justify-center text-[#F95738]">
               <MapPin className="w-5 h-5" />
             </div>
             <div>
@@ -122,7 +122,7 @@ export const LocationModal: React.FC<LocationModalProps> = ({
           <button
             type="button"
             onClick={onClose}
-            className="p-1.5 text-slate-400 hover:text-slate-700 hover:bg-slate-200 rounded-none transition-colors cursor-pointer"
+            className="p-1.5 text-slate-400 hover:text-slate-700 hover:bg-slate-200 rounded-xl transition-colors cursor-pointer"
             aria-label="Close modal"
           >
             <X className="w-5 h-5" />
@@ -151,12 +151,12 @@ export const LocationModal: React.FC<LocationModalProps> = ({
                   }
                 }}
                 placeholder="e.g. 201301 or 110001"
-                className="flex-1 px-3.5 py-2.5 rounded-none border border-slate-300 text-sm font-semibold text-slate-900 focus:outline-none focus:ring-2 focus:ring-[#F95738]/20 focus:border-[#F95738]"
+                className="flex-1 px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm font-semibold text-slate-900 focus:outline-none focus:ring-2 focus:ring-[#F95738]/20 focus:border-[#F95738]"
               />
               <button
                 type="button"
                 onClick={() => handleApply(pincodeInput)}
-                className="px-4 py-2.5 bg-[#F95738] hover:bg-[#E03A1B] text-white text-xs font-bold rounded-none transition-all shadow-xs cursor-pointer active:scale-95"
+                className="px-4 py-2.5 bg-[#F95738] hover:bg-[#E03A1B] text-white text-xs font-bold rounded-xl transition-all shadow-xs cursor-pointer active:scale-95"
               >
                 Apply
               </button>
@@ -169,7 +169,7 @@ export const LocationModal: React.FC<LocationModalProps> = ({
             type="button"
             onClick={handleDetectLocation}
             disabled={isDetecting}
-            className="w-full py-2.5 px-3 rounded-none border border-slate-200 bg-slate-50 hover:bg-slate-100 text-slate-700 text-xs font-bold flex items-center justify-center gap-2 transition-colors cursor-pointer"
+            className="w-full py-2.5 px-3 rounded-xl border border-slate-200 bg-slate-50 hover:bg-slate-100 text-slate-700 text-xs font-bold flex items-center justify-center gap-2 transition-colors cursor-pointer"
           >
             <Navigation className={`w-3.5 h-3.5 text-[#F95738] ${isDetecting ? "animate-spin" : ""}`} />
             <span>{isDetecting ? "Locating your region..." : "Detect my location automatically"}</span>
@@ -188,7 +188,7 @@ export const LocationModal: React.FC<LocationModalProps> = ({
                     key={hub.pincode}
                     type="button"
                     onClick={() => handleApply(hub.pincode, hub.city)}
-                    className={`p-2.5 rounded-none border text-left transition-all cursor-pointer ${
+                    className={`p-2.5 rounded-xl border text-left transition-all cursor-pointer ${
                       isSelected
                         ? "bg-[var(--color-accent-soft)] border-[#F95738] text-[#1E1B4B] shadow-2xs"
                         : "bg-white hover:bg-slate-50 border-slate-200 text-slate-700"
@@ -209,7 +209,7 @@ export const LocationModal: React.FC<LocationModalProps> = ({
           </div>
 
           {/* Dispatch Notice Card */}
-          <div className="p-3 rounded-none bg-slate-50 border border-slate-200/80 flex items-center gap-3 text-xs text-slate-600">
+          <div className="p-3 rounded-xl bg-slate-50 border border-slate-200/80 flex items-center gap-3 text-xs text-slate-600">
             <Truck className="w-4 h-4 text-[#F95738] shrink-0" />
             <div className="text-[11px] leading-tight">
               <strong>Factory Direct:</strong> Dispatched from our Ranchi studio lab floor within 24–48 hours across India.

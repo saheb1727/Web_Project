@@ -60,7 +60,7 @@ export const FAQSection: React.FC = () => {
             return (
               <div
                 key={idx}
-                className="faq-item rounded-none border border-slate-200 overflow-hidden transition-all duration-200 bg-slate-50/50 hover:bg-slate-50"
+                className="faq-item rounded-2xl border border-slate-200 overflow-hidden transition-all duration-200 bg-slate-50/50 hover:bg-slate-50"
               >
                 <button
                   type="button"
@@ -70,7 +70,7 @@ export const FAQSection: React.FC = () => {
                 >
                   <span>{faq.question}</span>
                   <div
-                    className={`w-8 h-8 rounded-none flex items-center justify-center transition-transform shrink-0 ${
+                    className={`w-8 h-8 rounded-xl flex items-center justify-center transition-transform shrink-0 ${
                       isOpen
                         ? "rotate-180 bg-[#FF4D36] text-white"
                         : "bg-slate-200 text-slate-600"

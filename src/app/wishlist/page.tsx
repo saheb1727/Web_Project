@@ -45,7 +45,7 @@ export default function WishlistPage() {
             {wishlistProducts.map((product) => (
               <div
                 key={product.id}
-                className="bg-white rounded-none sm:rounded-none border border-slate-200/80 shadow-xs hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col justify-between"
+                className="bg-white rounded-2xl border border-slate-200/80 shadow-xs hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col justify-between"
               >
                 <div>
                   {/* Image */}
@@ -58,7 +58,7 @@ export default function WishlistPage() {
                     />
                     <button
                       onClick={() => toggleWishlist(product.id, product.name)}
-                      className="absolute top-2 right-2 sm:top-3 sm:right-3 p-1.5 sm:p-2 bg-white/80 hover:bg-white text-red-500 rounded-none sm:rounded-none shadow-xs transition-colors"
+                      className="absolute top-2 right-2 sm:top-3 sm:right-3 p-1.5 sm:p-2 bg-white/80 hover:bg-white text-red-500 rounded-full shadow-xs transition-colors"
                       title="Remove from wishlist"
                     >
                       <Trash2 className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
@@ -98,7 +98,7 @@ export default function WishlistPage() {
                 <div className="p-3 sm:p-4 pt-0">
                   <button
                     onClick={() => handleMoveToCart(product)}
-                    className="w-full py-2.5 bg-[#1E1B4B] hover:bg-[#110E38] text-white text-xs font-bold rounded-none shadow-sm transition-all flex items-center justify-center gap-2 group"
+                    className="w-full py-2.5 bg-[#1E1B4B] hover:bg-[#110E38] text-white text-xs font-bold rounded-xl shadow-sm transition-all flex items-center justify-center gap-2 group"
                   >
                     <ShoppingBag className="w-4 h-4 text-[#F95738]" />
                     <span>Move to Cart</span>
@@ -108,8 +108,8 @@ export default function WishlistPage() {
             ))}
           </div>
         ) : (
-          <div className="bg-white rounded-none p-16 text-center border border-slate-200 max-w-md mx-auto my-12 shadow-xs">
-            <div className="w-16 h-16 rounded-none bg-red-50 text-red-400 flex items-center justify-center mx-auto mb-4">
+          <div className="bg-white rounded-2xl p-16 text-center border border-slate-200 max-w-md mx-auto my-12 shadow-xs">
+            <div className="w-16 h-16 rounded-full bg-red-50 text-red-400 flex items-center justify-center mx-auto mb-4">
               <Heart className="w-8 h-8" />
             </div>
             <h2 className="text-xl font-black text-[#1E1B4B] mb-1">
@@ -120,7 +120,7 @@ export default function WishlistPage() {
             </p>
             <Link
               href="/products"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-[#1E1B4B] hover:bg-[#110E38] text-white text-xs font-bold rounded-none shadow-md transition-all"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-[#1E1B4B] hover:bg-[#110E38] text-white text-xs font-bold rounded-xl shadow-md transition-all"
             >
               <span>Explore All Products</span>
               <ArrowRight className="w-3.5 h-3.5 text-[#F95738]" />

@@ -133,27 +133,27 @@ export const UserProfileDashboard: React.FC<UserProfileDashboardProps> = ({
       >
         <div className="p-5 flex flex-col flex-1 overflow-y-auto">
           {/* Brand Header */}
-          <div className="flex items-center justify-between pb-5">
-            <div className="flex items-center gap-2.5">
-              <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 text-white flex items-center justify-center font-black text-sm shadow-sm shadow-indigo-500/20">
+          <div className="flex items-center justify-between pb-4">
+            <Link href="/" className="flex items-center gap-2.5 group" title="Return to Main Store">
+              <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 text-white flex items-center justify-center font-black text-sm shadow-sm shadow-indigo-500/20 group-hover:scale-105 transition-transform">
                 <span className="tracking-tighter">MP</span>
               </div>
               <div className="flex flex-col">
-                <span className="font-extrabold text-base tracking-tight text-slate-900">
+                <span className="font-extrabold text-base tracking-tight text-slate-900 group-hover:text-indigo-600 transition-colors">
                   MyPrintHub
                 </span>
                 <span className="text-[10px] text-slate-400 font-semibold tracking-wide uppercase">
                   Studio Portal
                 </span>
               </div>
-            </div>
-            <button
-              type="button"
-              className="text-slate-400 hover:text-slate-600 p-1 rounded-lg hover:bg-slate-100 transition-colors"
-              title="Portal options"
+            </Link>
+            <Link
+              href="/"
+              className="text-slate-400 hover:text-indigo-600 p-1.5 rounded-lg hover:bg-slate-100 transition-colors flex items-center"
+              title="Return to Storefront"
             >
-              <MoreVertical className="w-4 h-4" />
-            </button>
+              <ArrowLeft className="w-4 h-4" />
+            </Link>
           </div>
 
           {/* Search Input */}
@@ -259,15 +259,25 @@ export const UserProfileDashboard: React.FC<UserProfileDashboardProps> = ({
       {/* Main Content Area */}
       <main className="flex-1 min-w-0 flex flex-col overflow-y-auto">
         {/* Top Header Bar */}
-        <header className="bg-white border-b border-slate-200/80 px-6 sm:px-8 py-5 flex items-center justify-between sticky top-0 z-30 shadow-2xs">
-          <div>
-            <h1 className="text-xl sm:text-2xl font-black text-slate-900 tracking-tight">
-              Hi, {user.name ? user.name.split(" ")[0] : "Customer"}
-            </h1>
-            <p className="text-xs text-slate-500 font-medium mt-0.5 flex items-center gap-1.5">
-              <span>Welcome back to MyPrintHub</span>
-              <span className="text-sm">👋</span>
-            </p>
+        <header className="bg-white border-b border-slate-200/80 px-4 sm:px-8 py-4 sm:py-5 flex items-center justify-between sticky top-0 z-30 shadow-2xs gap-4">
+          <div className="flex items-center gap-3 sm:gap-4">
+            <Link
+              href="/"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold text-slate-700 hover:text-indigo-600 bg-slate-100 hover:bg-indigo-50 border border-slate-200 hover:border-indigo-200 rounded-xl transition-all shadow-2xs"
+              title="Return to Store Catalog"
+            >
+              <ArrowLeft className="w-3.5 h-3.5" />
+              <span>Back to Store</span>
+            </Link>
+            <div>
+              <h1 className="text-lg sm:text-2xl font-black text-slate-900 tracking-tight leading-tight">
+                Hi, {user.name ? user.name.split(" ")[0] : "Customer"}
+              </h1>
+              <p className="text-[11px] sm:text-xs text-slate-500 font-medium mt-0.5 flex items-center gap-1.5">
+                <span>Welcome back to MyPrintHub</span>
+                <span className="text-sm">👋</span>
+              </p>
+            </div>
           </div>
 
           {/* Right Action Icons */}

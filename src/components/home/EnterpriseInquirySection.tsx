@@ -40,7 +40,7 @@ export const EnterpriseInquirySection: React.FC = () => {
         {/* Custom Enterprise Inquiry Card */}
         <div
           ref={cardRef}
-          className="rounded-none border border-slate-800 bg-[#131926] p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6 shadow-2xl"
+          className="rounded-2xl border border-slate-800 bg-[#131926] p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6 shadow-2xl"
         >
           <div className="space-y-1 text-center md:text-left">
             <div className="flex items-center gap-2 text-xs font-bold text-[#FF4D36] uppercase tracking-wider mb-1">
@@ -57,7 +57,7 @@ export const EnterpriseInquirySection: React.FC = () => {
 
           <Link
             href="/contact"
-            className="px-6 py-3.5 bg-[#FF4D36] hover:bg-[#e0351d] text-white text-xs sm:text-sm font-bold rounded-none shadow-lg shadow-[#FF4D36]/25 transition-all flex items-center gap-2.5 shrink-0 group cursor-pointer active:scale-98"
+            className="px-6 py-3.5 bg-[#FF4D36] hover:bg-[#e0351d] text-white text-xs sm:text-sm font-bold rounded-xl shadow-lg shadow-[#FF4D36]/25 transition-all flex items-center gap-2.5 shrink-0 group cursor-pointer active:scale-98"
           >
             <MessageSquare className="w-4 h-4 text-white group-hover:scale-110 transition-transform" />
             <span>Chat With Support</span>

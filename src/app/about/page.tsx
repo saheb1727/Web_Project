@@ -43,7 +43,7 @@ export default function AboutPage() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-8 relative z-20">
         {/* Stats Grid */}
-        <div className="bg-white rounded-none p-6 sm:p-8 shadow-xl border border-slate-200/80 grid grid-cols-2 lg:grid-cols-4 gap-6 text-center">
+        <div className="bg-white rounded-2xl p-6 sm:p-8 shadow-xl border border-slate-200/80 grid grid-cols-2 lg:grid-cols-4 gap-6 text-center">
           {stats.map((s, i) => (
             <div key={i} className="p-3">
               <div className="text-3xl sm:text-4xl font-black text-[#1E1B4B] mb-1">
@@ -88,7 +88,7 @@ export default function AboutPage() {
             </div>
           </div>
 
-          <div className="lg:col-span-6 relative aspect-4/3 rounded-none overflow-hidden shadow-2xl border border-slate-200 bg-black group">
+          <div className="lg:col-span-6 relative aspect-4/3 rounded-2xl overflow-hidden shadow-2xl border border-slate-200 bg-black group">
             <video
               src="/videos/reel-1.mp4"
               autoPlay
@@ -97,7 +97,7 @@ export default function AboutPage() {
               playsInline
               className="w-full h-full object-cover"
             />
-            <div className="absolute top-4 left-4 bg-black/60 backdrop-blur-md px-3 py-1 rounded-none text-white text-xs font-bold border border-white/20">
+            <div className="absolute top-4 left-4 bg-black/60 backdrop-blur-md px-3 py-1 rounded-full text-white text-xs font-bold border border-white/20">
               Live Printing Studio • Ranchi Hub
             </div>
           </div>
@@ -115,8 +115,8 @@ export default function AboutPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="p-6 rounded-none bg-white border border-slate-200/80 shadow-xs space-y-3">
-              <div className="w-12 h-12 rounded-none bg-[#F95738]/10 text-[#F95738] flex items-center justify-center">
+            <div className="p-6 rounded-2xl bg-white border border-slate-200/80 shadow-xs space-y-3">
+              <div className="w-12 h-12 rounded-xl bg-[#F95738]/10 text-[#F95738] flex items-center justify-center">
                 <Award className="w-6 h-6" />
               </div>
               <h4 className="text-base font-bold text-[#1E1B4B]">Print Perfection Guarantee</h4>
@@ -125,8 +125,8 @@ export default function AboutPage() {
               </p>
             </div>
 
-            <div className="p-6 rounded-none bg-white border border-slate-200/80 shadow-xs space-y-3">
-              <div className="w-12 h-12 rounded-none bg-[#1E1B4B] text-[#F95738] flex items-center justify-center">
+            <div className="p-6 rounded-2xl bg-white border border-slate-200/80 shadow-xs space-y-3">
+              <div className="w-12 h-12 rounded-xl bg-[#1E1B4B] text-[#F95738] flex items-center justify-center">
                 <Cpu className="w-6 h-6" />
               </div>
               <h4 className="text-base font-bold text-[#1E1B4B]">Industrial Micro-Drop Tech</h4>
@@ -135,8 +135,8 @@ export default function AboutPage() {
               </p>
             </div>
 
-            <div className="p-6 rounded-none bg-white border border-slate-200/80 shadow-xs space-y-3">
-              <div className="w-12 h-12 rounded-none bg-[#F95738]/10 text-[#F95738] flex items-center justify-center">
+            <div className="p-6 rounded-2xl bg-white border border-slate-200/80 shadow-xs space-y-3">
+              <div className="w-12 h-12 rounded-xl bg-[#F95738]/10 text-[#F95738] flex items-center justify-center">
                 <Heart className="w-6 h-6" />
               </div>
               <h4 className="text-base font-bold text-[#1E1B4B]">No MOQ Democratization</h4>
@@ -148,7 +148,7 @@ export default function AboutPage() {
         </div>
 
         {/* CTA */}
-        <div className="mt-20 p-8 sm:p-12 rounded-none bg-[#1E1B4B] text-white text-center shadow-xl relative overflow-hidden">
+        <div className="mt-20 p-8 sm:p-12 rounded-2xl sm:rounded-3xl bg-[#1E1B4B] text-white text-center shadow-xl relative overflow-hidden">
           <h3 className="text-2xl sm:text-3xl font-black mb-3">
             Ready to bring your brand to life?
           </h3>
@@ -157,7 +157,7 @@ export default function AboutPage() {
           </p>
           <Link
             href="/products"
-            className="inline-flex items-center gap-2 px-8 py-3.5 bg-[#F95738] hover:bg-[#E03A1B] text-white font-bold rounded-none shadow-lg transition-all text-sm cursor-pointer"
+            className="inline-flex items-center gap-2 px-8 py-3.5 bg-[#F95738] hover:bg-[#E03A1B] text-white font-bold rounded-xl shadow-lg transition-all text-sm cursor-pointer"
           >
             <span>Start Customizing Today</span>
             <ArrowRight className="w-4 h-4" />

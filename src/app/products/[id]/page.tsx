@@ -81,7 +81,7 @@ export default function ProductDetailPage() {
         <p className="text-xs text-slate-500 mb-6">The requested product could not be found.</p>
         <Link
           href="/products"
-          className="px-6 py-2.5 bg-[#F95738] text-white text-xs font-bold rounded-none shadow-md hover:bg-[#E03A1B]"
+          className="px-6 py-2.5 bg-[#F95738] text-white text-xs font-bold rounded-xl shadow-md hover:bg-[#E03A1B]"
         >
           Back to Catalog
         </Link>
@@ -191,7 +191,7 @@ export default function ProductDetailPage() {
           {/* Left Column: Sticky Live Visual Stage with Custom Mockup & Studio Reassurance (6 cols) */}
           <div className="lg:col-span-6 xl:col-span-6 lg:sticky lg:top-24 lg:self-start space-y-4">
             {/* Main Stage Gallery & Live Customizer Box */}
-            <div className="relative rounded-none sm:rounded-none overflow-hidden bg-white border border-slate-200/90 shadow-md">
+            <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden bg-white border border-slate-200/90 shadow-md">
               {/* Scroll-Snap Swipeable Container */}
               <div
                 ref={galleryRef}
@@ -235,7 +235,7 @@ export default function ProductDetailPage() {
 
                   {customData.customText && (
                     <div
-                      className="mt-3 text-center font-bold px-3.5 py-1.5 rounded-none bg-black/60 backdrop-blur-xs transition-all shadow-lg max-w-xs truncate"
+                      className="mt-3 text-center font-bold px-3.5 py-1.5 rounded-full bg-black/60 backdrop-blur-xs transition-all shadow-lg max-w-xs truncate"
                       style={{
                         fontFamily: customData.fontFamily || "sans-serif",
                         color: customData.textColor || "#FFFFFF",
@@ -247,7 +247,7 @@ export default function ProductDetailPage() {
                   )}
 
                   {product.customizable && !customData.customImage && !customData.customText && (
-                    <div className="border border-dashed border-[#FF4D36]/80 bg-white/85 backdrop-blur-xs rounded-none px-3 py-2 text-center pointer-events-none shadow-xs">
+                    <div className="border border-dashed border-[#FF4D36]/80 bg-white/85 backdrop-blur-xs rounded-xl px-3 py-2 text-center pointer-events-none shadow-xs">
                       <p className="text-[11px] font-black text-[#0B0F19]">
                         Design Placement Area
                       </p>
@@ -262,12 +262,12 @@ export default function ProductDetailPage() {
               {/* Top Left Badges (Clean Frosted Glass Pill) */}
               <div className="absolute top-3 left-3 flex flex-col gap-1.5 z-10 pointer-events-none">
                 {product.badgeText && (
-                  <span className="px-3 py-1 text-[11px] font-extrabold uppercase tracking-wider bg-white/95 backdrop-blur-md text-[#0B0F19] border border-slate-200/80 rounded-none shadow-xs">
+                  <span className="px-3 py-1 text-[11px] font-extrabold uppercase tracking-wider bg-white/95 backdrop-blur-md text-[#0B0F19] border border-slate-200/80 rounded-full shadow-xs">
                     {product.badgeText}
                   </span>
                 )}
                 {product.isNew && (
-                  <span className="px-3 py-1 text-[11px] font-extrabold uppercase tracking-wider bg-[#FF4D36] text-white rounded-none shadow-xs">
+                  <span className="px-3 py-1 text-[11px] font-extrabold uppercase tracking-wider bg-[#FF4D36] text-white rounded-full shadow-xs">
                     New Arrival
                   </span>
                 )}
@@ -276,13 +276,13 @@ export default function ProductDetailPage() {
               {/* Top Right Counter & Wishlist Button */}
               <div className="absolute top-3 right-3 flex items-center gap-2 z-10">
                 {galleryImages.length > 1 && (
-                  <div className="px-2 py-0.5 rounded-none bg-black/50 backdrop-blur-xs text-white text-[10px] font-bold">
+                  <div className="px-2.5 py-0.5 rounded-full bg-black/50 backdrop-blur-xs text-white text-[10px] font-bold">
                     {selectedImageIndex + 1}/{galleryImages.length}
                   </div>
                 )}
                 <button
                   onClick={() => toggleWishlist(product.id, product.name)}
-                  className={`p-2 rounded-none backdrop-blur-md transition-all shadow-sm cursor-pointer ${
+                  className={`p-2 rounded-full backdrop-blur-md transition-all shadow-sm cursor-pointer ${
                     inWishlist
                       ? "bg-[#FF4D36] text-white"
                       : "bg-white/90 hover:bg-white text-slate-700 hover:text-[#FF4D36]"
@@ -299,7 +299,7 @@ export default function ProductDetailPage() {
                   {galleryImages.map((_, i) => (
                     <span
                       key={i}
-                      className={`transition-all rounded-none ${
+                      className={`transition-all rounded-full ${
                         selectedImageIndex === i
                           ? "w-4 h-1.5 bg-[#FF4D36]"
                           : "w-1.5 h-1.5 bg-slate-300"
@@ -318,7 +318,7 @@ export default function ProductDetailPage() {
                     key={idx}
                     type="button"
                     onClick={() => selectImage(idx)}
-                    className={`relative w-14 h-14 sm:w-16 sm:h-16 rounded-none overflow-hidden border-2 transition-all shrink-0 bg-white cursor-pointer ${
+                    className={`relative w-14 h-14 sm:w-16 sm:h-16 rounded-xl overflow-hidden border-2 transition-all shrink-0 bg-white cursor-pointer ${
                       selectedImageIndex === idx
                         ? "border-[#FF4D36] shadow-sm ring-2 ring-[#FF4D36]/20"
                         : "border-slate-200 hover:border-slate-300 opacity-70 hover:opacity-100"
@@ -331,7 +331,7 @@ export default function ProductDetailPage() {
             )}
 
             {/* Studio Engineering & Craftsmanship Reassurance Card */}
-            <div className="p-4 rounded-none bg-white border border-slate-200/90 shadow-2xs space-y-3">
+            <div className="p-4 rounded-2xl bg-white border border-slate-200/90 shadow-2xs space-y-3">
               <div className="flex items-center justify-between text-xs">
                 <span className="font-bold text-[#0B0F19] flex items-center gap-1.5">
                   <Building2 className="w-4 h-4 text-[#FF4D36]" />
@@ -342,19 +342,19 @@ export default function ProductDetailPage() {
                 </span>
               </div>
               <div className="grid grid-cols-2 gap-2 text-left">
-                <div className="p-2.5 rounded-none bg-slate-50 border border-slate-200/60">
+                <div className="p-2.5 rounded-xl bg-slate-50 border border-slate-200/60">
                   <div className="text-[11px] font-black text-[#0B0F19]">1,200 DPI Precision</div>
                   <div className="text-[10px] text-slate-500">Japanese UV DTF & Laser</div>
                 </div>
-                <div className="p-2.5 rounded-none bg-slate-50 border border-slate-200/60">
+                <div className="p-2.5 rounded-xl bg-slate-50 border border-slate-200/60">
                   <div className="text-[11px] font-black text-[#0B0F19]">Zero Minimum MOQ</div>
                   <div className="text-[10px] text-slate-500">Order 1 or 1,000 units</div>
                 </div>
-                <div className="p-2.5 rounded-none bg-slate-50 border border-slate-200/60">
+                <div className="p-2.5 rounded-xl bg-slate-50 border border-slate-200/60">
                   <div className="text-[11px] font-black text-[#0B0F19]">Free Digital Proof</div>
                   <div className="text-[10px] text-slate-500">Approved before production</div>
                 </div>
-                <div className="p-2.5 rounded-none bg-slate-50 border border-slate-200/60">
+                <div className="p-2.5 rounded-xl bg-slate-50 border border-slate-200/60">
                   <div className="text-[11px] font-black text-[#0B0F19]">24–48h Dispatch</div>
                   <div className="text-[10px] text-slate-500">Express padded shipping</div>
                 </div>
@@ -390,7 +390,7 @@ export default function ProductDetailPage() {
                 <button
                   type="button"
                   onClick={scrollToReviews}
-                  className="flex items-center gap-1 text-amber-600 font-bold bg-amber-50 px-2 py-0.5 rounded-none border border-amber-200/60 hover:bg-amber-100 transition-colors cursor-pointer"
+                  className="flex items-center gap-1 text-amber-600 font-bold bg-amber-50 px-2 py-0.5 rounded-full border border-amber-200/60 hover:bg-amber-100 transition-colors cursor-pointer"
                   title="Click to view reviews"
                 >
                   <Star className="w-3 h-3 fill-amber-500 text-amber-500" />
@@ -407,7 +407,7 @@ export default function ProductDetailPage() {
             </div>
 
             {/* Unified Pricing & Bulk Volume Discount Matrix */}
-            <div className="p-4 sm:p-5 rounded-none bg-slate-50 border border-slate-200/90 shadow-2xs space-y-4">
+            <div className="p-4 sm:p-5 rounded-2xl bg-slate-50 border border-slate-200/90 shadow-2xs space-y-4">
               {/* Unit Price & Dynamic Total */}
               <div className="flex flex-wrap items-end justify-between gap-3 pb-3 border-b border-slate-200/60">
                 <div>
@@ -419,7 +419,7 @@ export default function ProductDetailPage() {
                       ₹{product.originalPrice}
                     </span>
                     {discountPercent > 0 && (
-                      <span className="text-xs font-black text-[#F95738] bg-[#F95738]/10 px-2 py-0.5 rounded-none">
+                      <span className="text-xs font-black text-[#F95738] bg-[#F95738]/10 px-2.5 py-0.5 rounded-full">
                         {discountPercent}% OFF
                       </span>
                     )}
@@ -474,14 +474,14 @@ export default function ProductDetailPage() {
                         key={c.name}
                         type="button"
                         onClick={() => setSelectedColor(c.name)}
-                        className={`flex items-center gap-2 px-3 py-1.5 rounded-none text-xs font-bold border transition-all active:scale-95 cursor-pointer ${
+                        className={`flex items-center gap-2 px-3 py-1.5 rounded-xl text-xs font-bold border transition-all active:scale-95 cursor-pointer ${
                           isSelected
                             ? "bg-white text-[#1E1B4B] border-[#1E1B4B] shadow-sm ring-2 ring-[#1E1B4B]/15"
                             : "bg-slate-50/70 hover:bg-white text-slate-700 border-slate-200/80 hover:border-slate-300"
                         }`}
                       >
                         <span
-                          className={`w-3.5 h-3.5 rounded-none border border-black/15 shrink-0 transition-transform ${
+                          className={`w-3.5 h-3.5 rounded-full border border-black/15 shrink-0 transition-transform ${
                             isSelected ? "scale-110 shadow-xs" : ""
                           }`}
                           style={{ backgroundColor: c.hex }}
@@ -512,7 +512,7 @@ export default function ProductDetailPage() {
                         key={s}
                         type="button"
                         onClick={() => setSelectedSize(s)}
-                        className={`min-w-[48px] px-3.5 py-1.5 rounded-none text-xs font-bold border transition-all active:scale-95 cursor-pointer ${
+                        className={`min-w-[48px] px-3.5 py-1.5 rounded-xl text-xs font-bold border transition-all active:scale-95 cursor-pointer ${
                           isSelected
                             ? "bg-[#1E1B4B] text-white border-[#1E1B4B] shadow-sm ring-2 ring-[#1E1B4B]/15"
                             : "bg-slate-50/70 hover:bg-white text-slate-700 border-slate-200/80 hover:border-slate-300"
@@ -547,11 +547,11 @@ export default function ProductDetailPage() {
 
               <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
                 {/* Stepper */}
-                <div className="flex items-center justify-between sm:justify-start border border-slate-200 rounded-none bg-slate-50/70 p-1 shrink-0">
+                <div className="flex items-center justify-between sm:justify-start border border-slate-200 rounded-xl bg-slate-50/70 p-1 shrink-0">
                   <button
                     type="button"
                     onClick={() => setQuantity((q) => Math.max(1, q - 1))}
-                    className="w-9 h-9 rounded-none bg-white flex items-center justify-center text-slate-700 hover:text-[#0B0F19] shadow-2xs transition-colors active:scale-90 cursor-pointer border border-slate-200/60"
+                    className="w-9 h-9 rounded-lg bg-white flex items-center justify-center text-slate-700 hover:text-[#0B0F19] shadow-2xs transition-colors active:scale-90 cursor-pointer border border-slate-200/60"
                     aria-label="Decrease quantity"
                   >
                     <Minus className="w-3.5 h-3.5" />
@@ -566,7 +566,7 @@ export default function ProductDetailPage() {
                   <button
                     type="button"
                     onClick={() => setQuantity((q) => q + 1)}
-                    className="w-9 h-9 rounded-none bg-white flex items-center justify-center text-slate-700 hover:text-[#0B0F19] shadow-2xs transition-colors active:scale-90 cursor-pointer border border-slate-200/60"
+                    className="w-9 h-9 rounded-lg bg-white flex items-center justify-center text-slate-700 hover:text-[#0B0F19] shadow-2xs transition-colors active:scale-90 cursor-pointer border border-slate-200/60"
                     aria-label="Increase quantity"
                   >
                     <Plus className="w-3.5 h-3.5" />
@@ -577,7 +577,7 @@ export default function ProductDetailPage() {
                 <button
                   type="button"
                   onClick={handleAddToCart}
-                  className="flex-1 h-11 px-5 bg-[#FF4D36] hover:bg-[#E0351D] text-white font-bold rounded-none shadow-md shadow-[#FF4D36]/20 transition-all flex items-center justify-center gap-2 text-sm active:scale-98 cursor-pointer"
+                  className="flex-1 h-11 px-5 bg-[#FF4D36] hover:bg-[#E0351D] text-white font-bold rounded-xl shadow-md shadow-[#FF4D36]/20 transition-all flex items-center justify-center gap-2 text-sm active:scale-98 cursor-pointer"
                 >
                   <ShoppingBag className="w-4 h-4" />
                   <span>Add {quantity} to Cart • ₹{totalPrice.toLocaleString()}</span>
@@ -587,7 +587,7 @@ export default function ProductDetailPage() {
                 <button
                   type="button"
                   onClick={handleBuyNow}
-                  className="h-11 px-6 bg-[#0B0F19] hover:bg-slate-800 text-white font-bold rounded-none shadow-xs transition-all flex items-center justify-center gap-2 text-sm active:scale-98 cursor-pointer shrink-0"
+                  className="h-11 px-6 bg-[#0B0F19] hover:bg-slate-800 text-white font-bold rounded-xl shadow-xs transition-all flex items-center justify-center gap-2 text-sm active:scale-98 cursor-pointer shrink-0"
                 >
                   <span>Buy Now</span>
                   <ArrowRight className="w-4 h-4 text-[#FF4D36]" />
@@ -600,7 +600,7 @@ export default function ProductDetailPage() {
         {/* Collapsible Accordions (Amazon / Apple Mobile Style) */}
         <div className="mt-8 sm:mt-12 space-y-3">
           {/* 1. Key Features Accordion */}
-          <div className="bg-white rounded-none border border-slate-200/80 overflow-hidden shadow-2xs">
+          <div className="bg-white rounded-2xl border border-slate-200/80 overflow-hidden shadow-2xs">
             <button
               type="button"
               onClick={() => toggleAccordion("features")}
@@ -632,7 +632,7 @@ export default function ProductDetailPage() {
           </div>
 
           {/* 2. Specifications Accordion */}
-          <div className="bg-white rounded-none border border-slate-200/80 overflow-hidden shadow-2xs">
+          <div className="bg-white rounded-2xl border border-slate-200/80 overflow-hidden shadow-2xs">
             <button
               type="button"
               onClick={() => toggleAccordion("specs")}
@@ -675,7 +675,7 @@ export default function ProductDetailPage() {
           </div>
 
           {/* 3. Dispatch & Shipping Accordion */}
-          <div className="bg-white rounded-none border border-slate-200/80 overflow-hidden shadow-2xs">
+          <div className="bg-white rounded-2xl border border-slate-200/80 overflow-hidden shadow-2xs">
             <button
               type="button"
               onClick={() => toggleAccordion("shipping")}
@@ -707,7 +707,7 @@ export default function ProductDetailPage() {
           </div>
 
           {/* 4. Natural Customer Reviews Section (Satisfies Requirement 1) */}
-          <div ref={reviewsRef} className="bg-white rounded-none border border-slate-200/80 overflow-hidden shadow-2xs">
+          <div ref={reviewsRef} className="bg-white rounded-2xl border border-slate-200/80 overflow-hidden shadow-2xs">
             <button
               type="button"
               onClick={() => toggleAccordion("reviews")}
@@ -727,7 +727,7 @@ export default function ProductDetailPage() {
             {openAccordions.reviews && (
               <div className="px-4 sm:px-5 pb-5 pt-1 border-t border-slate-100 space-y-4">
                 {/* Rating Overview */}
-                <div className="flex items-center gap-4 p-3 bg-amber-50/60 rounded-none border border-amber-100">
+                <div className="flex items-center gap-4 p-3 bg-amber-50/60 rounded-xl border border-amber-100">
                   <div className="text-2xl font-black text-[#1E1B4B]">4.9</div>
                   <div className="flex flex-col">
                     <div className="flex text-amber-500 text-xs">★★★★★</div>
@@ -740,11 +740,11 @@ export default function ProductDetailPage() {
                 {/* Testimonial Cards */}
                 <div className="space-y-3">
                   {testimonials.slice(0, 2).map((t) => (
-                    <div key={t.id} className="p-3 rounded-none bg-slate-50 border border-slate-200 text-xs space-y-2">
+                    <div key={t.id} className="p-3.5 rounded-xl bg-slate-50 border border-slate-200 text-xs space-y-2">
                       <div className="flex items-center justify-between">
                         <div className="font-bold text-slate-900 flex items-center gap-1.5">
                           <span>{t.name}</span>
-                          <span className="text-[10px] text-emerald-600 font-bold bg-emerald-50 px-1 rounded">
+                          <span className="text-[10px] text-emerald-600 font-bold bg-emerald-50 px-1 rounded-full">
                             Verified Buyer
                           </span>
                         </div>
@@ -802,7 +802,7 @@ export default function ProductDetailPage() {
           <button
             type="button"
             onClick={handleAddToCart}
-            className="h-10 px-4 rounded-none bg-[#F95738] hover:bg-[#E03A1B] text-white text-xs font-bold shadow-md shadow-[#F95738]/20 flex items-center gap-1.5 active:scale-95 cursor-pointer"
+            className="h-10 px-4 rounded-xl bg-[#F95738] hover:bg-[#E03A1B] text-white text-xs font-bold shadow-md shadow-[#F95738]/20 flex items-center gap-1.5 active:scale-95 cursor-pointer"
           >
             <ShoppingBag className="w-4 h-4" />
             <span>Add to Cart</span>
@@ -810,7 +810,7 @@ export default function ProductDetailPage() {
           <button
             type="button"
             onClick={handleBuyNow}
-            className="h-10 px-3 rounded-none bg-[#1E1B4B] hover:bg-[#110E38] text-white text-xs font-bold shadow-sm flex items-center justify-center active:scale-95 cursor-pointer"
+            className="h-10 px-3 rounded-xl bg-[#1E1B4B] hover:bg-[#110E38] text-white text-xs font-bold shadow-sm flex items-center justify-center active:scale-95 cursor-pointer"
             title="Instant Checkout"
           >
             <ArrowRight className="w-4 h-4 text-[#F95738]" />

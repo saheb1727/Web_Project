@@ -4,9 +4,7 @@ import { ToastProvider } from "@/context/ToastContext";
 import { WishlistProvider } from "@/context/WishlistContext";
 import { CartProvider } from "@/context/CartContext";
 import { AuthProvider } from "@/context/AuthContext";
-import { AnnouncementBar } from "@/components/layout/AnnouncementBar";
-import { Navbar } from "@/components/layout/Navbar";
-import { Footer } from "@/components/layout/Footer";
+import { AppLayoutWrapper } from "@/components/layout/AppLayoutWrapper";
 
 export const viewport: Viewport = {
   themeColor: "#1E1B4B",
@@ -130,10 +128,7 @@ export default function RootLayout({
           <AuthProvider>
             <WishlistProvider>
               <CartProvider>
-                <AnnouncementBar />
-                <Navbar />
-                <main className="flex-1 w-full max-w-full overflow-x-clip">{children}</main>
-                <Footer />
+                <AppLayoutWrapper>{children}</AppLayoutWrapper>
               </CartProvider>
             </WishlistProvider>
           </AuthProvider>
