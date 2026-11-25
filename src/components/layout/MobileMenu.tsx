@@ -2,6 +2,7 @@
 
 import React, { useEffect } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   X,
@@ -58,8 +59,16 @@ const getCategoryIcon = (slug: string) => {
 export const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
   const { wishlistCount } = useWishlist();
   const { totalItems } = useCart();
+  const pathname = usePathname();
 
   useBodyScrollLock(isOpen);
+
+  // Automatically close menu when navigating to a new route
+  useEffect(() => {
+    if (isOpen) {
+      onClose();
+    }
+  }, [pathname]);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -77,14 +86,14 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
   return (
     <AnimatePresence>
       {isOpen && (
-        <div className="fixed inset-0 z-50 flex lg:hidden">
+        <div className="fixed inset-0 z-[99999] flex lg:hidden">
           {/* Animated Backdrop */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.25, ease: "easeOut" }}
-            className="fixed inset-0 bg-black/60 backdrop-blur-xs"
+            transition={{ duration: 0.2, ease: "easeOut" }}
+            className="fixed inset-0 bg-slate-950/70 backdrop-blur-xs z-[99999]"
             onClick={onClose}
           />
 
@@ -96,34 +105,30 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
             transition={{
               type: "spring",
               damping: 32,
-              stiffness: 320,
-              mass: 0.85,
+              stiffness: 340,
+              mass: 0.8,
             }}
-            className="relative w-full max-w-xs sm:max-w-sm bg-white h-full flex flex-col shadow-2xl z-10"
+            className="relative w-[86vw] max-w-[360px] sm:max-w-sm bg-white h-full flex flex-col shadow-2xl z-[100000] touch-pan-y"
+            style={{ touchAction: "pan-y" }}
           >
             {/* Drawer Header */}
-            <motion.div
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.08, duration: 0.3 }}
-              className="p-4 sm:p-5 border-b border-slate-100 flex items-center justify-between bg-slate-50"
-            >
-              <Link href="/" onClick={onClose} className="flex items-center group">
-                <span className="font-extrabold text-xl text-[#0B0F19] leading-none">
+            <div className="h-16 px-4 sm:px-5 border-b border-slate-100 flex items-center justify-between bg-white shrink-0">
+              <Link href="/" onClick={onClose} className="flex items-center group py-1">
+                <span className="font-black text-xl text-[#0B0F19] leading-none tracking-tight">
                   MyPrintHub
                 </span>
               </Link>
               <button
                 onClick={onClose}
-                className="p-2 text-slate-400 hover:text-slate-700 rounded-lg hover:bg-slate-200 transition-colors cursor-pointer"
+                className="w-9 h-9 rounded-xl flex items-center justify-center bg-slate-100 hover:bg-slate-200 text-slate-700 active:scale-95 transition-all cursor-pointer"
                 aria-label="Close menu"
               >
                 <X className="w-5 h-5" />
               </button>
-            </motion.div>
+            </div>
 
             {/* Navigation Content */}
-            <div className="flex-1 overflow-y-auto p-4 space-y-5">
+            <div className="flex-1 overflow-y-auto p-4 space-y-5 overscroll-contain touch-pan-y">
               {/* Quick Action Pills: Wishlist & User Account */}
               <motion.div
                 initial={{ opacity: 0, y: 12 }}
@@ -324,12 +329,7 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
             </div>
 
             {/* Drawer Footer with Cart Button */}
-            <motion.div
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.45, duration: 0.3 }}
-              className="p-4 border-t border-slate-100 bg-white"
-            >
+            <div className="p-4 border-t border-slate-100 bg-white shrink-0 pb-[max(1rem,env(safe-area-inset-bottom))]">
               <Link
                 href="/cart"
                 onClick={onClose}
@@ -338,7 +338,7 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
                 <ShoppingBag className="w-4 h-4 text-[#FF4D36]" />
                 <span>Go to Cart ({totalItems} items)</span>
               </Link>
-            </motion.div>
+            </div>
           </motion.div>
         </div>
       )}

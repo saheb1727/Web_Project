@@ -171,9 +171,10 @@ export const UserProfileDashboard: React.FC<UserProfileDashboardProps> = ({
         <div className="flex items-center gap-2 min-w-0">
           {/* Hamburger / Menu button */}
           <button
-            onClick={() => setIsMobileMenuOpen(true)}
-            className="p-2 -ml-1 text-slate-700 hover:bg-slate-100 rounded-xl transition-colors cursor-pointer"
+            onClick={() => setIsMobileMenuOpen((prev) => !prev)}
+            className="w-10 h-10 -ml-1 flex items-center justify-center text-slate-800 hover:bg-slate-100 rounded-xl transition-colors cursor-pointer touch-manipulation select-none"
             aria-label="Open Navigation"
+            aria-expanded={isMobileMenuOpen}
           >
             <Menu className="w-5 h-5" />
           </button>
@@ -221,14 +222,14 @@ export const UserProfileDashboard: React.FC<UserProfileDashboardProps> = ({
       {/* Mobile Backdrop for Drawer */}
       {isMobileMenuOpen && (
         <div
-          className="fixed inset-0 bg-black/50 backdrop-blur-xs z-50 lg:hidden animate-in fade-in duration-200"
+          className="fixed inset-0 bg-black/50 backdrop-blur-xs z-[100] lg:hidden animate-in fade-in duration-200"
           onClick={() => setIsMobileMenuOpen(false)}
         />
       )}
 
       {/* Left Sidebar Navigation (Desktop Fixed, Mobile Slide-in Drawer) */}
       <aside
-        className={`fixed lg:sticky top-0 left-0 h-screen w-72 sm:w-64 bg-white border-r border-slate-200 flex flex-col justify-between z-50 transition-transform duration-300 ${isMobileMenuOpen ? "translate-x-0 shadow-2xl" : "-translate-x-full lg:translate-x-0"
+        className={`fixed lg:sticky top-0 left-0 h-screen w-72 sm:w-64 bg-white border-r border-slate-200 flex flex-col justify-between z-[101] transition-transform duration-300 ${isMobileMenuOpen ? "translate-x-0 shadow-2xl" : "-translate-x-full lg:translate-x-0"
           }`}
       >
         <div className="p-5 flex flex-col flex-1 overflow-y-auto">

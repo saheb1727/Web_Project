@@ -26,15 +26,11 @@ import { useCart } from "@/context/CartContext";
 import { useWishlist } from "@/context/WishlistContext";
 import { useAuth } from "@/context/AuthContext";
 import { categories } from "@/data/categories";
+import { MobileMenu } from "./MobileMenu";
 
-// Dynamically import modals to reduce initial JavaScript bundle
+// Dynamically import SearchModal to reduce initial JavaScript bundle
 const SearchModal = dynamic(
   () => import("@/components/ui/SearchModal").then((mod) => mod.SearchModal),
-  { ssr: false }
-);
-
-const MobileMenu = dynamic(
-  () => import("./MobileMenu").then((mod) => mod.MobileMenu),
   { ssr: false }
 );
 
@@ -160,15 +156,16 @@ export const Navbar: React.FC = () => {
           <div className="flex items-center justify-between h-16 sm:h-[72px] gap-2 sm:gap-4 lg:gap-6 xl:gap-8">
 
             {/* Zone 1: Brand Anchor (Left) */}
-            <div className="flex items-center gap-1.5 sm:gap-3 shrink-0">
+            <div className="flex items-center gap-1 sm:gap-3 shrink-0">
               {/* Mobile Hamburger Trigger */}
               <button
                 type="button"
-                onClick={() => setIsMobileMenuOpen(true)}
-                className="lg:hidden p-2 text-slate-700 hover:text-[#0B0F19] rounded-xl hover:bg-slate-100 transition-colors cursor-pointer active:bg-slate-200"
+                onClick={() => setIsMobileMenuOpen((prev) => !prev)}
+                className="lg:hidden w-10 h-10 -ml-1 flex items-center justify-center text-slate-800 hover:text-[#0B0F19] rounded-xl hover:bg-slate-100 active:bg-slate-200 transition-colors cursor-pointer touch-manipulation select-none"
                 aria-label="Open navigation menu"
+                aria-expanded={isMobileMenuOpen}
               >
-                <Menu className="w-5 h-5" />
+                <Menu className="w-5 h-5 stroke-[2.2]" />
               </button>
 
               {/* Brand Logo (Name Only) */}
