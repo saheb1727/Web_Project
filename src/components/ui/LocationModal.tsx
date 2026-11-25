@@ -1,8 +1,9 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
-import { MapPin, X, Navigation, Check, Clock, Truck, ShieldCheck } from "lucide-react";
+import { MapPin, X, Navigation, Check, Clock, Truck, ShieldCheck, CheckCircle2, Loader2 } from "lucide-react";
 import { useBodyScrollLock } from "@/hooks/useBodyScrollLock";
+import { lookupOfflinePincode } from "@/lib/pincode";
 
 interface LocationModalProps {
   isOpen: boolean;
@@ -22,6 +23,8 @@ export const LocationModal: React.FC<LocationModalProps> = ({
   const [pincodeInput, setPincodeInput] = useState("");
   const [error, setError] = useState("");
   const [isDetecting, setIsDetecting] = useState(false);
+  const [detectedInfo, setDetectedInfo] = useState<{ city: string; state: string } | null>(null);
+  const [isLookingUp, setIsLookingUp] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
 
   const popularHubs = [
@@ -39,6 +42,14 @@ export const LocationModal: React.FC<LocationModalProps> = ({
     if (isOpen) {
       setPincodeInput(currentPincode || "");
       setError("");
+      if (currentPincode && currentPincode.length === 6) {
+        const match = lookupOfflinePincode(currentPincode);
+        if (match) {
+          setDetectedInfo({ city: match.city, state: match.state });
+        }
+      } else {
+        setDetectedInfo(null);
+      }
       setTimeout(() => inputRef.current?.focus(), 50);
     }
 
@@ -54,6 +65,38 @@ export const LocationModal: React.FC<LocationModalProps> = ({
     };
   }, [isOpen, currentPincode, onClose]);
 
+  const handleInputChange = async (val: string) => {
+    const clean = val.replace(/\D/g, "").slice(0, 6);
+    setPincodeInput(clean);
+    setError("");
+
+    if (clean.length === 6) {
+      // 1. Instant offline resolution for 0-latency UI
+      const offline = lookupOfflinePincode(clean);
+      if (offline) {
+        setDetectedInfo({ city: offline.city, state: offline.state });
+      }
+
+      // 2. Asynchronous API resolution
+      setIsLookingUp(true);
+      try {
+        const res = await fetch(`/api/pincode/${clean}`);
+        if (res.ok) {
+          const data = await res.json();
+          if (data.success && data.city && data.state) {
+            setDetectedInfo({ city: data.city, state: data.state });
+          }
+        }
+      } catch {
+        // Keep offline detection
+      } finally {
+        setIsLookingUp(false);
+      }
+    } else {
+      setDetectedInfo(null);
+    }
+  };
+
   const handleApply = (pin: string, cityName?: string) => {
     const clean = pin.trim().replace(/\D/g, "");
     if (clean.length !== 6) {
@@ -61,9 +104,11 @@ export const LocationModal: React.FC<LocationModalProps> = ({
       return;
     }
 
-    // Determine city name from preset or generic
+    // Determine city name from detected info, preset, or generic
     const found = popularHubs.find((h) => h.pincode === clean);
-    const resolvedCity = cityName || (found ? found.city : `PIN ${clean}`);
+    const resolvedCity =
+      cityName ||
+      (detectedInfo ? `${detectedInfo.city}, ${detectedInfo.state}` : (found ? found.city : `PIN ${clean}`));
 
     onSaveLocation(clean, resolvedCity);
     onClose();
@@ -132,25 +177,30 @@ export const LocationModal: React.FC<LocationModalProps> = ({
         {/* Form Body */}
         <div className="p-5 space-y-4">
           <div>
-            <label className="text-xs font-bold text-slate-700 block mb-1.5">
-              Enter 6-Digit Indian PIN Code
-            </label>
+            <div className="flex items-center justify-between mb-1.5">
+              <label className="text-xs font-bold text-slate-700">
+                Enter 6-Digit Indian PIN Code
+              </label>
+              {isLookingUp && (
+                <span className="text-[10px] text-slate-400 flex items-center gap-1 font-medium">
+                  <Loader2 className="w-2.5 h-2.5 animate-spin text-[#F95738]" />
+                  Locating circle...
+                </span>
+              )}
+            </div>
             <div className="flex items-center gap-2">
               <input
                 ref={inputRef}
                 type="text"
                 maxLength={6}
                 value={pincodeInput}
-                onChange={(e) => {
-                  setPincodeInput(e.target.value.replace(/\D/g, ""));
-                  setError("");
-                }}
+                onChange={(e) => handleInputChange(e.target.value)}
                 onKeyDown={(e) => {
                   if (e.key === "Enter") {
                     handleApply(pincodeInput);
                   }
                 }}
-                placeholder="e.g. 201301 or 110001"
+                placeholder="e.g. 834001 or 110001"
                 className="flex-1 px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm font-semibold text-slate-900 focus:outline-none focus:ring-2 focus:ring-[#F95738]/20 focus:border-[#F95738]"
               />
               <button
@@ -162,6 +212,21 @@ export const LocationModal: React.FC<LocationModalProps> = ({
               </button>
             </div>
             {error && <p className="text-xs text-rose-500 font-semibold mt-1.5">{error}</p>}
+
+            {/* Auto-detected City & State Card */}
+            {detectedInfo && (
+              <div className="mt-2.5 p-2.5 bg-emerald-50 border border-emerald-200 rounded-xl flex items-center justify-between text-xs animate-in fade-in duration-150">
+                <div className="flex items-center gap-2 text-emerald-900">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                  <span className="text-[11px] sm:text-xs">
+                    Auto-detected: <strong>{detectedInfo.city}</strong>, {detectedInfo.state}
+                  </span>
+                </div>
+                <span className="text-[10px] font-bold text-emerald-700 bg-emerald-100/90 px-2 py-0.5 rounded-full shrink-0">
+                  Verified Hub
+                </span>
+              </div>
+            )}
           </div>
 
           {/* Detect Location Button */}

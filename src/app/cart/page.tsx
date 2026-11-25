@@ -19,7 +19,10 @@ import {
   Smartphone,
   Sparkles,
   Package,
+  MapPin,
+  Loader2,
 } from "lucide-react";
+import { lookupOfflinePincode } from "@/lib/pincode";
 import { useCart } from "@/context/CartContext";
 import { useToast } from "@/context/ToastContext";
 import { useAuth } from "@/context/AuthContext";
@@ -50,6 +53,8 @@ export default function CartPage() {
   const [isOrderPlaced, setIsOrderPlaced] = useState(false);
   const [orderId, setOrderId] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [pincodeStatus, setPincodeStatus] = useState<"idle" | "loading" | "detected" | "error">("idle");
+  const [detectedLocation, setDetectedLocation] = useState<string>("");
 
   // Checkout form state (prefilled from Auth if available)
   const [formData, setFormData] = useState({
@@ -62,6 +67,51 @@ export default function CartPage() {
     pincode: "",
     paymentMethod: "upi",
   });
+
+  const handlePincodeChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const rawVal = e.target.value;
+    const clean = rawVal.replace(/\D/g, "").slice(0, 6);
+    
+    setFormData((prev) => ({ ...prev, pincode: clean }));
+
+    if (clean.length === 6) {
+      // 1. Instant offline resolution for 0-latency feedback
+      const offline = lookupOfflinePincode(clean);
+      if (offline) {
+        setFormData((prev) => ({
+          ...prev,
+          city: offline.city,
+          state: offline.state,
+        }));
+        setDetectedLocation(`${offline.city}, ${offline.state}`);
+        setPincodeStatus("detected");
+      } else {
+        setPincodeStatus("loading");
+      }
+
+      // 2. Query server endpoint for fine-grained district or postal area
+      try {
+        const res = await fetch(`/api/pincode/${clean}`);
+        if (res.ok) {
+          const data = await res.json();
+          if (data.success && data.city && data.state) {
+            setFormData((prev) => ({
+              ...prev,
+              city: data.city,
+              state: data.state,
+            }));
+            setDetectedLocation(`${data.city}, ${data.state}`);
+            setPincodeStatus("detected");
+          }
+        }
+      } catch {
+        // Keep offline detection if network is disconnected
+      }
+    } else {
+      setPincodeStatus("idle");
+      setDetectedLocation("");
+    }
+  };
 
   useEffect(() => {
     if (user) {
@@ -616,15 +666,49 @@ export default function CartPage() {
 
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                   <div>
+                    <div className="flex items-center justify-between mb-1.5">
+                      <label className="text-xs font-bold text-slate-700">PIN Code *</label>
+                      {pincodeStatus === "loading" && (
+                        <span className="text-[10px] text-slate-400 flex items-center gap-1">
+                          <Loader2 className="w-2.5 h-2.5 animate-spin text-[#FF4D36]" />
+                          Detecting...
+                        </span>
+                      )}
+                      {pincodeStatus === "detected" && (
+                        <span className="text-[10px] text-emerald-600 font-bold flex items-center gap-0.5">
+                          <CheckCircle2 className="w-3 h-3 text-emerald-500" />
+                          Auto-detected
+                        </span>
+                      )}
+                    </div>
+                    <div className="relative">
+                      <input
+                        type="text"
+                        required
+                        maxLength={6}
+                        value={formData.pincode}
+                        onChange={handlePincodeChange}
+                        placeholder="834001"
+                        className={`w-full px-3.5 py-2.5 text-xs sm:text-sm bg-slate-50 border rounded-xl focus:outline-none focus:bg-white focus:ring-2 transition-all font-semibold ${
+                          pincodeStatus === "detected"
+                            ? "border-emerald-300 focus:border-emerald-500 focus:ring-emerald-500/15 text-slate-900"
+                            : "border-slate-200 focus:border-[#FF4D36] focus:ring-[#FF4D36]/15 text-slate-900"
+                        }`}
+                      />
+                    </div>
+                  </div>
+
+                  <div>
                     <label className="text-xs font-bold text-slate-700 block mb-1.5">City</label>
                     <input
                       type="text"
                       value={formData.city}
                       onChange={(e) => setFormData({ ...formData, city: e.target.value })}
                       placeholder="e.g. Ranchi"
-                      className="w-full px-3.5 py-2.5 text-xs sm:text-sm bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-[#FF4D36] focus:bg-white focus:ring-2 focus:ring-[#FF4D36]/15 transition-all"
+                      className="w-full px-3.5 py-2.5 text-xs sm:text-sm bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-[#FF4D36] focus:bg-white focus:ring-2 focus:ring-[#FF4D36]/15 transition-all text-slate-900"
                     />
                   </div>
+
                   <div>
                     <label className="text-xs font-bold text-slate-700 block mb-1.5">State</label>
                     <input
@@ -632,21 +716,20 @@ export default function CartPage() {
                       value={formData.state}
                       onChange={(e) => setFormData({ ...formData, state: e.target.value })}
                       placeholder="Jharkhand"
-                      className="w-full px-3.5 py-2.5 text-xs sm:text-sm bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-[#FF4D36] focus:bg-white focus:ring-2 focus:ring-[#FF4D36]/15 transition-all"
-                    />
-                  </div>
-                  <div>
-                    <label className="text-xs font-bold text-slate-700 block mb-1.5">PIN Code *</label>
-                    <input
-                      type="text"
-                      required
-                      value={formData.pincode}
-                      onChange={(e) => setFormData({ ...formData, pincode: e.target.value })}
-                      placeholder="834001"
-                      className="w-full px-3.5 py-2.5 text-xs sm:text-sm bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-[#FF4D36] focus:bg-white focus:ring-2 focus:ring-[#FF4D36]/15 transition-all"
+                      className="w-full px-3.5 py-2.5 text-xs sm:text-sm bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-[#FF4D36] focus:bg-white focus:ring-2 focus:ring-[#FF4D36]/15 transition-all text-slate-900"
                     />
                   </div>
                 </div>
+
+                {/* Auto-detected notification banner */}
+                {detectedLocation && (
+                  <div className="flex items-center gap-2 p-2.5 bg-emerald-50 border border-emerald-200/80 rounded-xl text-emerald-800 text-xs">
+                    <MapPin className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                    <span>
+                      Detected Delivery Region: <strong>{detectedLocation}</strong>
+                    </span>
+                  </div>
+                )}
 
                 {/* Payment Selection */}
                 <div>
